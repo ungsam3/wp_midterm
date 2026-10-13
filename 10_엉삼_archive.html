@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>아카이빙 · 엉뚱한 사람들</title>
+  <meta name="theme-color" content="#0b0b0f">
+  <link rel="icon" href="assets/img/logo.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">본문 바로가기</a>
+
+  <!-- 헤더 (캔바 p.1) -->
+  <header class="site-header always-solid">
+    <div class="wrap">
+      <a class="brand" href="10_엉삼_index.html" aria-label="엉뚱한 사람들 홈">
+        <img src="assets/img/logo-cream.png" alt="">
+        <span>엉뚱한 사람들<small>SMWU INVENTORS</small></span>
+      </a>
+      <nav class="nav" aria-label="주요 메뉴">
+        <a href="10_엉삼_archive.html" aria-current="page">아카이빙</a>
+        <a href="10_엉삼_room.html">동방 운영</a>
+        <a class="nav-cta" href="10_엉삼_login.html">로그인</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <input class="tab-radio" type="radio" name="archive" id="tab-edu" checked>
+    <input class="tab-radio" type="radio" name="archive" id="tab-minutes">
+    <input class="tab-radio" type="radio" name="archive" id="tab-gallery">
+    <section class="page-banner grain">
+      <span class="eyebrow">Archive</span>
+      <h1>아카이빙</h1>
+      <p class="lead">엉뚱한 사람들 부원 전용 자료실이에요.</p>
+      <div class="tabs" role="group" aria-label="아카이빙 메뉴">
+        <label class="tab" for="tab-edu" id="lbl-edu">교육자료</label>
+        <label class="tab" for="tab-minutes" id="lbl-minutes">회의록</label>
+        <label class="tab" for="tab-gallery" id="lbl-gallery">갤러리</label>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <!-- 교육자료 (캔바 p.8) — 구글 드라이브 '해커톤 자료집' 폴더와 연동 -->
+      <section class="panel" id="panel-edu" aria-labelledby="lbl-edu">
+        <div class="panel-title"><h2>교육자료</h2><p>구글 드라이브 폴더와 연결돼 있어요</p></div>
+        <div class="drive-card">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M8 3h8l6 10-4 7H6l-4-7z"/><path d="M8 3l6 10h8M2 13l4 7M14 13l-4 7"/></svg></span>
+          <div><h3>해커톤 자료집</h3><p>폴더에 자료를 올리면 아래 목록에 바로 나타나요</p></div>
+          <a class="open" href="https://drive.google.com/drive/folders/1X5V1fXzrZ6AZoKCfpQFhH8QSXaZ54XIc" target="_blank" rel="noopener">드라이브에서 열기 <span aria-hidden="true">↗</span></a>
+        </div>
+        <!-- 드라이브 폴더 내용 미리보기 (폴더가 '링크가 있는 모든 사용자'로 공유되어 있어야 보여요) -->
+        <iframe class="drive-embed" src="https://drive.google.com/embeddedfolderview?id=1X5V1fXzrZ6AZoKCfpQFhH8QSXaZ54XIc#list" title="해커톤 자료집 폴더 목록" loading="lazy"></iframe>
+      </section>
+
+      <!-- 회의록 (캔바 p.8 / 비로그인 p.10) -->
+      <section class="panel" id="panel-minutes" aria-labelledby="lbl-minutes">
+        <div class="panel-title"><h2>회의록</h2><p>구글 드라이브로 연결돼요</p></div>
+        <ul class="doc-list">
+          <li class="doc"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M8 3h8l6 10-4 7H6l-4-7z"/><path d="M8 3l6 10h8M2 13l4 7M14 13l-4 7"/></svg></span>
+            <div><h3>10월 1주차 정기 회의</h3><div class="meta"><span class="tag">#정기</span><time>2026.10.07</time></div></div>
+            <a class="open" href="#" target="_blank" rel="noopener">드라이브 열기 <span aria-hidden="true">↗</span></a>
+          </li>
+          <li class="doc"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M8 3h8l6 10-4 7H6l-4-7z"/><path d="M8 3l6 10h8M2 13l4 7M14 13l-4 7"/></svg></span>
+            <div><h3>9월 4주차 정기 회의</h3><div class="meta"><span class="tag">#정기</span><time>2026.09.23</time></div></div>
+            <a class="open" href="#" target="_blank" rel="noopener">드라이브 열기 <span aria-hidden="true">↗</span></a>
+          </li>
+          <li class="doc"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M8 3h8l6 10-4 7H6l-4-7z"/><path d="M8 3l6 10h8M2 13l4 7M14 13l-4 7"/></svg></span>
+            <div><h3>2학기 임원 회의</h3><div class="meta"><span class="tag">#임원</span><time>2026.09.02</time></div></div>
+            <a class="open" href="#" target="_blank" rel="noopener">드라이브 열기 <span aria-hidden="true">↗</span></a>
+          </li>
+          <li class="doc"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M8 3h8l6 10-4 7H6l-4-7z"/><path d="M8 3l6 10h8M2 13l4 7M14 13l-4 7"/></svg></span>
+            <div><h3>1학기 결산 회의</h3><div class="meta"><span class="tag">#임원</span><time>2026.06.17</time></div></div>
+            <a class="open" href="#" target="_blank" rel="noopener">드라이브 열기 <span aria-hidden="true">↗</span></a>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 갤러리 (캔바 p.7·9) -->
+      <section class="panel" id="panel-gallery" aria-labelledby="lbl-gallery">
+        <div class="panel-title" id="gallery"><h2>갤러리</h2></div>
+        <div class="marquee" tabindex="0" aria-label="사진 필름 — 마우스를 올리면 흘러가요">
+          <div class="marquee-track">
+          <a class="polaroid" href="#photo-2026-summer-mt"><img src="res/2026-summer-mt.jpg" alt="여름 MT" loading="lazy"><span class="cap">여름 MT</span></a>
+          <a class="polaroid" href="#photo-2026-making-project"><img src="res/2026-making-project.jpg" alt="2026 메이킹 프로젝트" loading="lazy"><span class="cap">2026 메이킹 프로젝트</span></a>
+          <a class="polaroid" href="#photo-2026-claw-machine"><img src="res/2026-claw-machine.jpg" alt="청파제 음성인식 인형뽑기" loading="lazy"><span class="cap">청파제 음성인식 인형뽑기</span></a>
+          <a class="polaroid" href="#photo-2025-ssokssok-camp"><img src="res/2025-ssokssok-camp.jpg" alt="쏙쏙캠프" loading="lazy"><span class="cap">쏙쏙캠프</span></a>
+          <a class="polaroid" href="#photo-2025-team-making"><img src="res/2025-team-making.jpg" alt="조별 메이킹 프로젝트" loading="lazy"><span class="cap">조별 메이킹 프로젝트</span></a>
+          <a class="polaroid" href="#photo-2025-hangang-race"><img src="res/2025-hangang-race.jpg" alt="나만의 한강호 경주대회" loading="lazy"><span class="cap">나만의 한강호 경주대회</span></a>
+          <a class="polaroid" href="#photo-2025-rolling-machine"><img src="res/2025-rolling-machine.jpg" alt="롤링머신 프로젝트" loading="lazy"><span class="cap">롤링머신 프로젝트</span></a>
+          <a class="polaroid" href="#photo-2024-cpu-award"><img src="res/2024-cpu-award.jpg" alt="CPU 우수상" loading="lazy"><span class="cap">CPU 우수상</span></a>
+          <a class="polaroid" href="#photo-2024-snowflake-festival"><img src="res/2024-snowflake-festival.jpg" alt="눈송페스티벌 우수동아리 선정" loading="lazy"><span class="cap">눈송페스티벌 우수동아리 선정</span></a>
+          <a class="polaroid" href="#photo-2024-homecoming"><img src="res/2024-homecoming.jpg" alt="홈커밍데이" loading="lazy"><span class="cap">홈커밍데이</span></a>
+          <a class="polaroid" href="#photo-2024-bm-lecture"><img src="res/2024-bm-lecture.jpg" alt="비즈니스 모델 수립 특강" loading="lazy"><span class="cap">비즈니스 모델 수립 특강</span></a>
+          <a class="polaroid" href="#photo-2026-summer-mt" aria-hidden="true" tabindex="-1"><img src="res/2026-summer-mt.jpg" alt="" loading="lazy"><span class="cap">여름 MT</span></a>
+          <a class="polaroid" href="#photo-2026-making-project" aria-hidden="true" tabindex="-1"><img src="res/2026-making-project.jpg" alt="" loading="lazy"><span class="cap">2026 메이킹 프로젝트</span></a>
+          <a class="polaroid" href="#photo-2026-claw-machine" aria-hidden="true" tabindex="-1"><img src="res/2026-claw-machine.jpg" alt="" loading="lazy"><span class="cap">청파제 음성인식 인형뽑기</span></a>
+          <a class="polaroid" href="#photo-2025-ssokssok-camp" aria-hidden="true" tabindex="-1"><img src="res/2025-ssokssok-camp.jpg" alt="" loading="lazy"><span class="cap">쏙쏙캠프</span></a>
+          <a class="polaroid" href="#photo-2025-team-making" aria-hidden="true" tabindex="-1"><img src="res/2025-team-making.jpg" alt="" loading="lazy"><span class="cap">조별 메이킹 프로젝트</span></a>
+          <a class="polaroid" href="#photo-2025-hangang-race" aria-hidden="true" tabindex="-1"><img src="res/2025-hangang-race.jpg" alt="" loading="lazy"><span class="cap">나만의 한강호 경주대회</span></a>
+          <a class="polaroid" href="#photo-2025-rolling-machine" aria-hidden="true" tabindex="-1"><img src="res/2025-rolling-machine.jpg" alt="" loading="lazy"><span class="cap">롤링머신 프로젝트</span></a>
+          <a class="polaroid" href="#photo-2024-cpu-award" aria-hidden="true" tabindex="-1"><img src="res/2024-cpu-award.jpg" alt="" loading="lazy"><span class="cap">CPU 우수상</span></a>
+          <a class="polaroid" href="#photo-2024-snowflake-festival" aria-hidden="true" tabindex="-1"><img src="res/2024-snowflake-festival.jpg" alt="" loading="lazy"><span class="cap">눈송페스티벌 우수동아리 선정</span></a>
+          <a class="polaroid" href="#photo-2024-homecoming" aria-hidden="true" tabindex="-1"><img src="res/2024-homecoming.jpg" alt="" loading="lazy"><span class="cap">홈커밍데이</span></a>
+          <a class="polaroid" href="#photo-2024-bm-lecture" aria-hidden="true" tabindex="-1"><img src="res/2024-bm-lecture.jpg" alt="" loading="lazy"><span class="cap">비즈니스 모델 수립 특강</span></a>
+          </div>
+        </div>
+        <p class="marquee-hint"><span class="dot" aria-hidden="true"></span>사진에 마우스를 올리거나(모바일은 꾹 누르기) 흘러가요 · 사진을 누르면 크게 볼 수 있어요</p>
+
+        <div class="gallery-filter">
+          <input class="year-radio" type="radio" name="year" id="year-all" checked>
+          <input class="year-radio" type="radio" name="year" id="year-2026">
+          <input class="year-radio" type="radio" name="year" id="year-2025">
+          <input class="year-radio" type="radio" name="year" id="year-2024">
+          <div class="year-chips" role="group" aria-label="연도 선택"><label class="chip" for="year-all">ALL</label><label class="chip" for="year-2026">2026</label><label class="chip" for="year-2025">2025</label><label class="chip" for="year-2024">2024</label></div>
+          <div class="photo-grid">
+          <a class="g-item y2026" href="#photo-2026-summer-mt" aria-label="여름 MT 크게 보기"><img src="res/2026-summer-mt.jpg" alt="" loading="lazy"><span>여름 MT</span></a>
+          <a class="g-item y2026" href="#photo-2026-making-project" aria-label="2026 메이킹 프로젝트 크게 보기"><img src="res/2026-making-project.jpg" alt="" loading="lazy"><span>2026 메이킹 프로젝트</span></a>
+          <a class="g-item y2026" href="#photo-2026-claw-machine" aria-label="청파제 음성인식 인형뽑기 크게 보기"><img src="res/2026-claw-machine.jpg" alt="" loading="lazy"><span>청파제 음성인식 인형뽑기</span></a>
+          <a class="g-item y2025" href="#photo-2025-ssokssok-camp" aria-label="쏙쏙캠프 크게 보기"><img src="res/2025-ssokssok-camp.jpg" alt="" loading="lazy"><span>쏙쏙캠프</span></a>
+          <a class="g-item y2025" href="#photo-2025-team-making" aria-label="조별 메이킹 프로젝트 크게 보기"><img src="res/2025-team-making.jpg" alt="" loading="lazy"><span>조별 메이킹 프로젝트</span></a>
+          <a class="g-item y2025" href="#photo-2025-hangang-race" aria-label="나만의 한강호 경주대회 크게 보기"><img src="res/2025-hangang-race.jpg" alt="" loading="lazy"><span>나만의 한강호 경주대회</span></a>
+          <a class="g-item y2025" href="#photo-2025-rolling-machine" aria-label="롤링머신 프로젝트 크게 보기"><img src="res/2025-rolling-machine.jpg" alt="" loading="lazy"><span>롤링머신 프로젝트</span></a>
+          <a class="g-item y2024" href="#photo-2024-cpu-award" aria-label="CPU 우수상 크게 보기"><img src="res/2024-cpu-award.jpg" alt="" loading="lazy"><span>CPU 우수상</span></a>
+          <a class="g-item y2024" href="#photo-2024-snowflake-festival" aria-label="눈송페스티벌 우수동아리 선정 크게 보기"><img src="res/2024-snowflake-festival.jpg" alt="" loading="lazy"><span>눈송페스티벌 우수동아리 선정</span></a>
+          <a class="g-item y2024" href="#photo-2024-homecoming" aria-label="홈커밍데이 크게 보기"><img src="res/2024-homecoming.jpg" alt="" loading="lazy"><span>홈커밍데이</span></a>
+          <a class="g-item y2024" href="#photo-2024-bm-lecture" aria-label="비즈니스 모델 수립 특강 크게 보기"><img src="res/2024-bm-lecture.jpg" alt="" loading="lazy"><span>비즈니스 모델 수립 특강</span></a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- 사진 크게 보기 (CSS :target) -->
+    <div class="lightbox" id="photo-2026-summer-mt" role="dialog" aria-label="여름 MT 크게 보기">
+      <a class="lb-backdrop" href="#gallery" aria-label="닫기"></a>
+      <a class="lb-btn lb-close" href="#gallery" aria-label="닫기">✕</a>
+      <a class="lb-btn lb-prev" href="#photo-2024-bm-lecture" aria-label="이전 사진">‹</a>
+      <figure>
+        <div class="lb-frame"><img class="tape" src="assets/img/tape.png" alt=""><img src="res/2026-summer-mt.jpg" alt="여름 MT" loading="lazy"></div>
+        <figcaption class="lb-cap">여름 MT<small>1 / 11</small></figcaption>
+      </figure>
+      <a class="lb-btn lb-next" href="#photo-2026-making-project" aria-label="다음 사진">›</a>
+    </div>
+    <div class="lightbox" id="photo-2026-making-project" role="dialog" aria-label="2026 메이킹 프로젝트 크게 보기">
+      <a class="lb-backdrop" href="#gallery" aria-label="닫기"></a>
+      <a class="lb-btn lb-close" href="#gallery" aria-label="닫기">✕</a>
+      <a class="lb-btn lb-prev" href="#photo-2026-summer-mt" aria-label="이전 사진">‹</a>
+      <figure>
+        <div class="lb-frame"><img class="tape" src="assets/img/tape.png" alt=""><img src="res/2026-making-project.jpg" alt="2026 메이킹 프로젝트" loading="lazy"></div>
+        <figcaption class="lb-cap">2026 메이킹 프로젝트<small>2 / 11</small></figcaption>
+      </figure>
+      <a class="lb-btn lb-next" href="#photo-2026-claw-machine" aria-label="다음 사진">›</a>
+    </div>
+    <div class="lightbox" id="photo-2026-claw-machine" role="dialog" aria-label="청파제 음성인식 인형뽑기 크게 보기">
+      <a class="lb-backdrop" href="#gallery" aria-label="닫기"></a>
+      <a class="lb-btn lb-close" href="#gallery" aria-label="닫기">✕</a>
+      <a class="lb-btn lb-prev" href="#photo-2026-making-project" aria-label="이전 사진">‹</a>
+      <figure>
+        <div class="lb-frame"><img class="tape" src="assets/img/tape.png" alt=""><img src="res/2026-claw-machine.jpg" alt="청파제 음성인식 인형뽑기" loading="lazy"></div>
+        <figcaption class="lb-cap">청파제 음성인식 인형뽑기<small>3 / 11</small></figcaption>
+      </figure>
+      <a class="lb-btn lb-next" href="#photo-2025-ssokssok-camp" aria-label="다음 사진">›</a>
+    </div>
+    <div class="lightbox" id="photo-2025-ssokssok-camp" role="dialog" aria-label="쏙쏙캠프 크게 보기">
+      <a class="lb-backdrop" href="#gallery" aria-label="닫기"></a>
+      <a class="lb-btn lb-close" href="#gallery" aria-label="닫기">✕</a>
+      <a class="lb-btn lb-prev" href="#photo-2026-claw-machine" aria-label="이전 사진">‹</a>
+      <figure>
+        <div class="lb-frame"><img class="tape" src="assets/img/tape.png" alt=""><img src="res/2025-ssokssok-camp.jpg" alt="쏙쏙캠프" loading="lazy"></div>
+        <figcaption class="lb-cap">쏙쏙캠프<small>4 / 11</small></figcaption>
+      </figure>
+      <a class="lb-btn lb-next" href="#photo-2025-team-making" aria-label="다음 사진">›</a>
+    </div>
+    <div class="lightbox" id="photo-2025-team-making" role="dialog" aria-label="조별 메이킹 프로젝트 크게 보기">
+      <a class="lb-backdrop" href="#gallery" aria-label="닫기"></a>
+      <a class="lb-btn lb-close" href="#gallery" aria-label="닫기">✕</a>
+      <a class="lb-btn lb-prev" href="#photo-2025-ssokssok-camp" aria-label="이전 사진">‹</a>
+      <figure>
+        <div class="lb-frame"><img class="tape" src="assets/img/tape.png" alt=""><img src="res/2025-team-making.jpg" alt="조별 메이킹 프로젝트" loading="lazy"></div>
+        <figcaption class="lb-cap">조별 메이킹 프로젝트<small>5 / 11</small></figcaption>
+      </figure>
+      <a class="lb-btn lb-next" href="#photo-2025-hangang-race" aria-label="다음 사진">›</a>
+    </div>
+    <div class="lightbox" id="photo-2025-hangang-race" role="dialog" aria-label="나만의 한강호 경주대회 크게 보기">
+      <a class="lb-backdrop" href="#gallery" aria-label="닫기"></a>
+      <a class="lb-btn lb-close" href="#gallery" aria-label="닫기">✕</a>
+      <a class="lb-btn lb-prev" href="#photo-2025-team-making" aria-label="이전 사진">‹</a>
+      <figure>
+        <div class="lb-frame"><img class="tape" src="assets/img/tape.png" alt=""><img src="res/2025-hangang-race.jpg" alt="나만의 한강호 경주대회" loading="lazy"></div>
+        <figcaption class="lb-cap">나만의 한강호 경주대회<small>6 / 11</small></figcaption>
+      </figure>
+      <a class="lb-btn lb-next" href="#photo-2025-rolling-machine" aria-label="다음 사진">›</a>
+    </div>
+    <div class="lightbox" id="photo-2025-rolling-machine" role="dialog" aria-label="롤링머신 프로젝트 크게 보기">
+      <a class="lb-backdrop" href="#gallery" aria-label="닫기"></a>
+      <a class="lb-btn lb-close" href="#gallery" aria-label="닫기">✕</a>
+      <a class="lb-btn lb-prev" href="#photo-2025-hangang-race" aria-label="이전 사진">‹</a>
+      <figure>
+        <div class="lb-frame"><img class="tape" src="assets/img/tape.png" alt=""><img src="res/2025-rolling-machine.jpg" alt="롤링머신 프로젝트" loading="lazy"></div>
+        <figcaption class="lb-cap">롤링머신 프로젝트<small>7 / 11</small></figcaption>
+      </figure>
+      <a class="lb-btn lb-next" href="#photo-2024-cpu-award" aria-label="다음 사진">›</a>
+    </div>
+    <div class="lightbox" id="photo-2024-cpu-award" role="dialog" aria-label="CPU 우수상 크게 보기">
+      <a class="lb-backdrop" href="#gallery" aria-label="닫기"></a>
+      <a class="lb-btn lb-close" href="#gallery" aria-label="닫기">✕</a>
+      <a class="lb-btn lb-prev" href="#photo-2025-rolling-machine" aria-label="이전 사진">‹</a>
+      <figure>
+        <div class="lb-frame"><img class="tape" src="assets/img/tape.png" alt=""><img src="res/2024-cpu-award.jpg" alt="CPU 우수상" loading="lazy"></div>
+        <figcaption class="lb-cap">CPU 우수상<small>8 / 11</small></figcaption>
+      </figure>
+      <a class="lb-btn lb-next" href="#photo-2024-snowflake-festival" aria-label="다음 사진">›</a>
+    </div>
+    <div class="lightbox" id="photo-2024-snowflake-festival" role="dialog" aria-label="눈송페스티벌 우수동아리 선정 크게 보기">
+      <a class="lb-backdrop" href="#gallery" aria-label="닫기"></a>
+      <a class="lb-btn lb-close" href="#gallery" aria-label="닫기">✕</a>
+      <a class="lb-btn lb-prev" href="#photo-2024-cpu-award" aria-label="이전 사진">‹</a>
+      <figure>
+        <div class="lb-frame"><img class="tape" src="assets/img/tape.png" alt=""><img src="res/2024-snowflake-festival.jpg" alt="눈송페스티벌 우수동아리 선정" loading="lazy"></div>
+        <figcaption class="lb-cap">눈송페스티벌 우수동아리 선정<small>9 / 11</small></figcaption>
+      </figure>
+      <a class="lb-btn lb-next" href="#photo-2024-homecoming" aria-label="다음 사진">›</a>
+    </div>
+    <div class="lightbox" id="photo-2024-homecoming" role="dialog" aria-label="홈커밍데이 크게 보기">
+      <a class="lb-backdrop" href="#gallery" aria-label="닫기"></a>
+      <a class="lb-btn lb-close" href="#gallery" aria-label="닫기">✕</a>
+      <a class="lb-btn lb-prev" href="#photo-2024-snowflake-festival" aria-label="이전 사진">‹</a>
+      <figure>
+        <div class="lb-frame"><img class="tape" src="assets/img/tape.png" alt=""><img src="res/2024-homecoming.jpg" alt="홈커밍데이" loading="lazy"></div>
+        <figcaption class="lb-cap">홈커밍데이<small>10 / 11</small></figcaption>
+      </figure>
+      <a class="lb-btn lb-next" href="#photo-2024-bm-lecture" aria-label="다음 사진">›</a>
+    </div>
+    <div class="lightbox" id="photo-2024-bm-lecture" role="dialog" aria-label="비즈니스 모델 수립 특강 크게 보기">
+      <a class="lb-backdrop" href="#gallery" aria-label="닫기"></a>
+      <a class="lb-btn lb-close" href="#gallery" aria-label="닫기">✕</a>
+      <a class="lb-btn lb-prev" href="#photo-2024-homecoming" aria-label="이전 사진">‹</a>
+      <figure>
+        <div class="lb-frame"><img class="tape" src="assets/img/tape.png" alt=""><img src="res/2024-bm-lecture.jpg" alt="비즈니스 모델 수립 특강" loading="lazy"></div>
+        <figcaption class="lb-cap">비즈니스 모델 수립 특강<small>11 / 11</small></figcaption>
+      </figure>
+      <a class="lb-btn lb-next" href="#photo-2026-summer-mt" aria-label="다음 사진">›</a>
+    </div>
+  </main>
+
+  <!-- 푸터 (캔바 p.6) -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="assets/img/logo-cream.png" alt="">
+          <div><b>엉뚱한 사람들</b><small>SMWU INVENTORS</small></div>
+        </div>
+        <ul class="contacts" aria-label="연락처">
+          <li><span class="r">회장</span><span>박여주 · <a href="mailto:seeun23@sookmyung.ac.kr">seeun23@sookmyung.ac.kr</a></span></li>
+          <li><span class="r">부회장</span><span>이남주</span></li>
+        </ul>
+        <div class="socials">
+          <a href="https://www.instagram.com/smwu_inventors" target="_blank" rel="noopener" aria-label="인스타그램 @smwu_inventors (새 창)">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          </a>
+          <a href="https://www.youtube.com/@smwuinventors" target="_blank" rel="noopener" aria-label="유튜브 엉뚱한사람들 (새 창)">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z" fill="currentColor"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="copyright"><span>© 2026 엉뚱한 사람들 · 숙명여자대학교 중앙발명동아리</span><span>Made by Inventors</span></div>
+    </div>
+  </footer>
+</body>
+</html>

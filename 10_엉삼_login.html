@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>로그인 · 엉뚱한 사람들</title>
+  <meta name="theme-color" content="#0b0b0f">
+  <link rel="icon" href="assets/img/logo.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">본문 바로가기</a>
+
+  <!-- 헤더 (캔바 p.1) -->
+  <header class="site-header always-solid">
+    <div class="wrap">
+      <a class="brand" href="10_엉삼_index.html" aria-label="엉뚱한 사람들 홈">
+        <img src="assets/img/logo-cream.png" alt="">
+        <span>엉뚱한 사람들<small>SMWU INVENTORS</small></span>
+      </a>
+      <nav class="nav" aria-label="주요 메뉴">
+        <a href="10_엉삼_archive.html">아카이빙</a>
+        <a href="10_엉삼_room.html">동방 운영</a>
+        <a class="nav-cta" href="10_엉삼_login.html" aria-current="page">로그인</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <input class="tab-radio" type="radio" name="auth" id="tab-login" checked>
+    <input class="tab-radio" type="radio" name="auth" id="tab-signup">
+    <section class="page-banner grain">
+      <span class="eyebrow">Members</span>
+      <h1>로그인</h1>
+      <p class="lead">부원 전용 자료(교육자료·회의록)는 로그인 후 볼 수 있어요.</p>
+      <div class="tabs" role="group" aria-label="로그인 메뉴">
+        <label class="tab" for="tab-login" id="lbl-login">로그인</label>
+        <label class="tab" for="tab-signup" id="lbl-signup">회원가입</label>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <!-- 로그인 (캔바 p.2) — 화면(UI)만 있고 실제 로그인 기능은 없음 -->
+      <section class="panel" id="panel-login" aria-labelledby="lbl-login">
+        <form class="auth-card" action="#">
+          <div class="field">
+            <label for="l-sid">학번</label>
+            <input id="l-sid" name="sid" inputmode="numeric" autocomplete="username" placeholder="예) 2612345" pattern="[0-9]{7}" required>
+            <p class="error">학번 7자리 숫자를 입력해 주세요.</p>
+          </div>
+          <div class="field">
+            <label for="l-pw">비밀번호</label>
+            <input id="l-pw" name="pw" type="password" autocomplete="current-password" placeholder="비밀번호" minlength="8" required>
+            <p class="error">비밀번호는 8자 이상이에요.</p>
+          </div>
+          <label class="remember"><input type="checkbox"> 로그인 상태 유지</label>
+          <button class="btn btn-royal" type="button">로그인</button>
+          <p class="auth-switch">아직 계정이 없나요? <label for="tab-signup">회원가입</label></p>
+        </form>
+      </section>
+
+      <!-- 회원가입 (캔바 p.3) -->
+      <section class="panel" id="panel-signup" aria-labelledby="lbl-signup">
+        <form class="auth-card" action="#">
+          <div class="field">
+            <label for="s-name">이름</label>
+            <input id="s-name" name="name" autocomplete="name" placeholder="홍길동" minlength="2" required>
+            <p class="error">이름을 2자 이상 입력해 주세요.</p>
+          </div>
+          <div class="field">
+            <label for="s-sid">학번</label>
+            <input id="s-sid" name="sid" inputmode="numeric" autocomplete="username" placeholder="7자리 숫자" pattern="[0-9]{7}" required>
+            <p class="error">학번 7자리 숫자를 입력해 주세요.</p>
+          </div>
+          <div class="field">
+            <label for="s-email">이메일</label>
+            <input id="s-email" name="email" type="email" autocomplete="email" placeholder="you@sookmyung.ac.kr" required>
+            <p class="error">이메일 형식을 확인해 주세요.</p>
+          </div>
+          <div class="field">
+            <label for="s-pw">비밀번호 <span class="hint">8자 이상</span></label>
+            <input id="s-pw" name="pw" type="password" autocomplete="new-password" placeholder="8자 이상" minlength="8" required>
+            <p class="error">비밀번호는 8자 이상이에요.</p>
+          </div>
+          <button class="btn btn-royal" type="button">회원 가입</button>
+          <p class="auth-switch">이미 계정이 있나요? <label for="tab-login">로그인</label></p>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <!-- 푸터 (캔바 p.6) -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="assets/img/logo-cream.png" alt="">
+          <div><b>엉뚱한 사람들</b><small>SMWU INVENTORS</small></div>
+        </div>
+        <ul class="contacts" aria-label="연락처">
+          <li><span class="r">회장</span><span>박여주 · <a href="mailto:seeun23@sookmyung.ac.kr">seeun23@sookmyung.ac.kr</a></span></li>
+          <li><span class="r">부회장</span><span>이남주</span></li>
+        </ul>
+        <div class="socials">
+          <a href="https://www.instagram.com/smwu_inventors" target="_blank" rel="noopener" aria-label="인스타그램 @smwu_inventors (새 창)">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          </a>
+          <a href="https://www.youtube.com/@smwuinventors" target="_blank" rel="noopener" aria-label="유튜브 엉뚱한사람들 (새 창)">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z" fill="currentColor"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="copyright"><span>© 2026 엉뚱한 사람들 · 숙명여자대학교 중앙발명동아리</span><span>Made by Inventors</span></div>
+    </div>
+  </footer>
+</body>
+</html>
