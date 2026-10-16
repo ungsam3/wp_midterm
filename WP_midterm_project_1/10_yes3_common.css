@@ -1,24 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap');
 
-/*
-서체: 글꼴, 크기, 굵기, 기울임, 웹폰트 사이트 찾아보기
-단락 조정
-배경 컬러, 이미지, attachment 등
-목록 스타일 지정
-표
-*/
-
-/* 컴포넌트 별로 작성 */
+/* 컴포넌트 */
 /* ---------------
 [1] 메인 페이지 nav: .main_nav .main_menu_container(.item) / .main_nav .main_logo_box, #main_logo_position
 [2] 서브 페이지 nav: .sub_nav .sub_menu_container(.item) / .sub_nav .sub_logo_box, #sub_logo_position
 [3] 서브 페이지 header: .sub_header .menu_name / .sub_header .sub_menu_name .item / #sub_header_menu_now
 [4] 공통 footer: .footer_container(.content)
 [5] 서브 페이지 article: .sub_article(.item)
-...
-[?] 로그인 페이지 :
-[?] 회원가입 페이지 :
-...
 ------------------ */
 
 
@@ -278,26 +266,5 @@
 
 
 
-
-/* [?] 로그인 및 회원가입 페이지 */
-.sub_article .signinup_item {
-    display: flex;
-    width: 500px;
-    box-sizing: border-box;
-    background-color: #f9f2b7;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.sub_article .signinup_item .sign_table {
-    table-layout: fixed;
-    width: 80%;
-    height: 150px;
-}
-
-#td_reset {
-    text-align: end;
-}
 
 /* [?] ??? */
