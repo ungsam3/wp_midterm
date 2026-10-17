@@ -1,0 +1,84 @@
+/* 교육자료 전체 영역 */
+#panel-min {
+    padding: 20px;
+}
+
+/* 교육자료 내용 */
+.archiv-learning {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+
+    padding: 20px;
+    border-radius: 18px;
+    border: 1px solid rgba(0, 114, 206, .45);
+
+    background: linear-gradient(
+        120deg,
+        rgba(0, 48, 135, .55),
+        var(--surface) 70%
+    );
+}
+
+/* 교육자료 제목 */
+.archiv-learning h1 {
+    grid-column: 1 / -1;
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+/* 설명 */
+.archiv-learning p {
+    grid-column: 1 / -1;
+    font-size: .88rem;
+    color: var(--sub);
+}
+
+/* 각각의 교육자료 버튼 */
+.archiv-learning .open {
+    min-height: 80px;
+    padding: 0 18px;
+
+    border-radius: 18px;
+
+    background: var(--cream);
+    color: var(--bg);
+
+    font-weight: 700;
+    font-size: .9rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none;
+}
+
+/* 마우스를 올렸을 때 */
+.archiv-learning .open:hover {
+    background: var(--yellow);
+}
+
+/* 교육자료 제목 */
+.archiv-learning .open h3 {
+    font-size: 1.15rem;
+    font-weight: 800;
+}
+
+
+/* 모바일 */
+@media (max-width: 560px) {
+
+    .archiv-learning {
+        grid-template-columns: 1fr;
+    }
+
+    .archiv-learning h1,
+    .archiv-learning p {
+        grid-column: 1;
+    }
+
+    .archiv-learning .open {
+        width: 100%;
+    }
+}
