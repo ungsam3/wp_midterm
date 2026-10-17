@@ -31,7 +31,6 @@
     width: 100%;
     height: 100%;
     background-color: #000000;     /*배경색에 검은색 반투명하게 네비게이션 바 띄우는 거 어때*/
-    opacity: 0.5;
     flex-direction: row;             /*기준축은 행*/
     flex-wrap: nowrap;               /*줄바꿈 ㄴㄴ*/
     justify-content: flex-end;       /*오른쪽에 몰아서 정렬*/
@@ -229,7 +228,7 @@
 /* [4] 공통 footer */
 .footer_container {
     width: 100vw;
-    height: 100px;
+    height: 200px;
     background-color: #a19c9c;
     display: flex;
     box-sizing: border-box;
@@ -240,7 +239,7 @@
 }
 
 .footer_container .content {
-    width: 100px;
+    width: 70px;
     height: 100%;
     font-size: 15px;
 } 
