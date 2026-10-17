@@ -6,7 +6,6 @@
 [2] 서브 페이지 nav: .sub_nav .sub_menu_container(.item) / .sub_nav .sub_logo_box, #sub_logo_position
 [3] 서브 페이지 header: .sub_header .menu_name / .sub_header .sub_menu_name .item / #sub_header_menu_now
 [4] 공통 footer: .footer_container(.content)
-[5] 서브 페이지 article: .sub_article(.item)
 ------------------ */
 
 
@@ -246,20 +245,6 @@
 
 .footer_container .content:first-child {
     flex-grow: 1;
-}
-
-
-
-/* [5] 서브페이지 article */
-.sub_article {
-    display: flex;
-    position: relative;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    min-height: 57vh;
-    justify-content: center;
-    align-items: center;
 }
 
 
