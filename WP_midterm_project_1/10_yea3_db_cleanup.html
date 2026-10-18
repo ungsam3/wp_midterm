@@ -1,0 +1,119 @@
+<!Doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>엉뚱한사람들</title>
+        <meta name="author1" content="강채린">
+        <meta name="author2" content="박세은">
+        <meta name="author3" content="김서진">
+        <link rel="stylesheet" href="10_yes3_common.css">
+        <link rel="stylesheet" href="10_yes3_dongbang.css">
+    </head>
+    <body>
+        <nav>
+            <div class="sub_nav">
+                <div class="sub_logo_box"><a href="10_yes3_index.html"><img id="sub_logo_position" src="logo_black.png" alt="엉뚱로고"></a></div>
+                <div class="sub_menu_container">
+                    <div class="item"><a href="10_yes3_arch_learning.html">아카이빙</a></div>
+                    <div class="item"><a href="10_yes3_db_equipment.html">동아리방</a></div>
+                    <div class="item"><a href="10_yes3_signin.html">로그인</a></div>
+                </div>
+            </div>
+        </nav>
+        <header>
+            <div class="sub_header">
+                <div class="menu_name">동아리방</div>
+                <div class="sub_menu_name">
+                    <div class="item"><a href="10_yes3_db_equipment.html">비품</a></div>
+                    <div class="item">|</div>
+                    <div class="item"><a href="10_yes3_db_rule.html">이용규칙</a></div>
+                    <div class="item">|</div>
+                    <div class="item"><a id="sub_header_menu_now" href="10_yea3_db_cleanup.html">청소담당</a></div>
+                </div>
+            </div>
+        </header>
+        <article>
+            <div class="db_article">
+                <h1>청소담당</h1>
+                <div class="cleanup_content">
+                    조 추첨과 역할 분담 모두 사다리 타기로 진행합니다.
+                    <br>정해진 요일은 없으니 당번 주간 중 시간이 될 때 올라가서 청소하시면 된답니다. 완료 후 체크박스에 체크를 눌러주세요.
+                    <br>
+                    <br>쓸기 (1명)
+                    <br>: 동방에 비치된 청소기로 바닥을 꼼꼼히 밀어주세요! 청소가 씉나면 바깥 쓰레기통에 먼지통도 비워주세요.
+                    <br>
+                    <br>광내기 (2명)
+                    <br>: 물티슈를 가지고 책상과 창틀, 전자레인지나 프린터 등등 먼지가 쌓일거 같은 곳은 구석구석 닦아주세요! 두 분이 일정을 맞춰서 같이 진행하세요.
+                    <br>
+                    <br>세탁하기 (2명)
+                    <br>: 동아리방 소파 커버와 담요, 수면 의자의 커버 쿠션을 벗겨서 세탁소에서 빨래 및 건조해주세요! 회비 카드를 들고가서 결제하시면 됩니다. 두 분이 일정을 맞춰서 같이 진행하세요.
+                </div>
+                <form class="cleanup_check" name="청소하기" method="GET" action="#">
+                    <div class="cleanup_table">
+                        <table class="item">
+                            <caption>1조 2026.10.01~2026.10.12</caption>
+                            <thead>
+                                <tr>
+                                    <th>역할</th><th>이름</th><th>완료</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>쓸기</th><td></td><th><input type="checkbox" name="청소완료" value="1조_쓸기"/></th>
+                                </tr>
+                                <tr>
+                                    <th>광내기1</th><td></td><th><input type="checkbox" name="청소완료" value="1조_광내기1"/></th>
+                                </tr>
+                                <tr>
+                                    <th>광내기2</th><td></td><th><input type="checkbox" name="청소완료" value="1조_광내기2"/></th>                                
+                                </tr>
+                                <tr>
+                                    <th>세탁하기1</th><td></td><th><input type="checkbox" name="청소완료" value="1조_세탁하기1"/></th>
+                                </tr>
+                                <tr>
+                                    <th>세탁하기2</th><td></td><th><input type="checkbox" name="청소완료" value="1조_세탁하기2"/></th>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="item">
+                            <caption>2조 2026.10.28~2026.11.13</caption>
+                            <thead>
+                                <tr>
+                                    <th>역할</th><th>이름</th><th>완료</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>쓸기</th><td></td><th><input type="checkbox" name="청소완료" value="2조_쓸기"/></th>
+                                </tr>
+                                <tr>
+                                    <th>광내기1</th><td></td><th><input type="checkbox" name="청소완료" value="2조_광내기1"/></th>
+                                </tr>
+                                <tr>
+                                    <th>광내기2</th><td></td><th><input type="checkbox" name="청소완료" value="2조_광내기1"/></th>                                
+                                </tr>
+                                <tr>
+                                    <th>세탁하기1</th><td></td><th><input type="checkbox" name="청소완료" value="2조_세탁하기1"/></th>
+                                </tr>
+                                <tr>
+                                    <th>세탁하기2</th><td></td><th><input type="checkbox" name="청소완료" value="2조_세탁하기2"/></th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="reset">
+                        <input type="reset" value="초기화">
+                    </div>
+                </form>
+            </div>
+        </article>
+        <footer>
+            <div class="footer_container">
+                <div class="content">임원진1 | 이메일1 <br>임원진2 | 이메일2 </div>
+                <div class="content"><a href="https://www.instagram.com/smwu_inventors?cplk=d2Q0N3BrYjA4Y2l2">인스타</a></div>
+                <div class="content"><a href="https://www.youtube.com/@smwuinventors">유튜브</a></div>
+            </div>
+        </footer>
+    </body>
+</html>
+
