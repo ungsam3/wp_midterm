@@ -25,19 +25,19 @@
             </div>
         </nav>
 
-        <div>
-            <p>SMWU INVENTORS · SINCE 2002</p>
-            <p>엉뚱한사람들</p>
+        <div class="main1_title">
+            <p class="title_line1">SMWU INVENTORS · SINCE 2002</p>
+            <p class="title_line2">엉뚱한사람들</p>
             <p>숙명여자대학교 중앙발명동아리</p>
         </div>
 
         
         <!--메인1 바닥에 있는 스티커 4개-->
-        <nav>
-            <a href="#aboutus">ABOUT US</a>
-            <a href="#history">HISTORY</a>
-            <a href="#inventors">INVENTORS</a>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeNgNcAfFI9_MN-Uo_KJ20WDAxeyqM0N_yebkrXAqnVE0hwQw/viewform " target="_blank">지원하기!</a>
+        <nav class="stickers">
+            <a class="main2_sticker" href="#aboutus">ABOUT US</a>
+            <a class= "main3_sticker" href="#history">HISTORY</a>
+            <a class="main4_sticker" href="#inventors">INVENTORS</a>
+            <a class="apply_sticker" href="https://docs.google.com/forms/d/e/1FAIpQLSeNgNcAfFI9_MN-Uo_KJ20WDAxeyqM0N_yebkrXAqnVE0hwQw/viewform " target="_blank">지원하기!</a>
         </nav>
 
         <span>SCROLL</span> <!--span으로 해놓고 css로 위치 잡는 게 편하다고 함-->
@@ -45,46 +45,111 @@
 
 <!--메인2:about us 소개, 주요활동 사진, 캘린더--------------------->
         <section class="main2" id="aboutus">
-            <div class="main2_left">
-            <div class="main2_1">
-                <h2>엉뚱한사람들</h2>
-                <p>2002년 여대 최초로 만들어진 발명동아리로, 다양한 전공과 학년의 사람들이 모였습니다. 엉뚱하고 톡톡튀는 아이디어를 구현해보는 활동을 진행합니다. 또한, 각종 발명관련 대회를 참가하며 우수한 성과를 내기도 했습니다. </p> 
-            </div>
+            <h2 class="main2_title">ABOUT US</h2>
+            
+            <div class="main2_factors">
+                <div class="main2_left">
+                <div class="main2_1">
+                    <h2>엉뚱한사람들</h2>
+                    <p>2002년 여대 최초로 만들어진 발명동아리로, 다양한 전공과 학년의 사람들이 모였습니다. 엉뚱하고 톡톡튀는 아이디어를 구현해보는 활동을 진행합니다. 또한, 각종 발명관련 대회를 참가하며 우수한 성과를 내기도 했습니다. </p> 
+                </div>
 
-            <div class = "main2_2">
-                <input type="radio" name="main_gallery" id="slide1" checked>
-                <input type="radio" name="main_gallery" id="slide2">
-                <input type="radio" name="main_gallery" id="slide3">
+                <div class = "main2_2">
+                    <input type="radio" name="main_gallery" id="slide1" checked>
+                    <input type="radio" name="main_gallery" id="slide2">
+                    <input type="radio" name="main_gallery" id="slide3">
+                    
+
+                    <div class ="main_pictures">
+                        <img src="res/2024-homecoming.jpg" alt="2024-homecoming" width "450px" height "300px">
+                        <img src="res/2024-cpu-award.jpg" alt="2024-cpu-award" width "450px" height "300px">
+                        <img src="res/2026-claw-machine.jpg" alt="2026-claw-machine" width "450px" height "300px">
+                    </div>
+
+                    <div class="onslide1">
+                        <label for="slide3"> ⬅️ </label>
+                        <label for="slide2"> ➡️ </label>
+                    </div>
+
+                    <div class="onslide2">
+                        <label for="slide1"> ⬅️ </label>
+                        <label for="slide3"> ➡️ </label>
+                    </div>
+
+                    <div class="onslide3">
+                        <label for="slide2"> ⬅️ </label>
+                        <label for="slide1"> ➡️ </label>
+                    </div>
+
+                </div>
+                </div>
+
+                <aside class="main2_3"> <!--캘린더 CSS Grid? 아니면 그냥 표노가다..-->
+                    <div class="calendar">
+                        <div class="cal_title">2026년 10월</div>
                 
-
-                <div class ="main_pictures">
-                    <img src="res/2024-homecoming.jpg" alt="2024-homecoming" width "450px" height "300px">
-                    <img src="res/2024-cpu-award.jpg" alt="2024-cpu-award" width "450px" height "300px">
-                    <img src="res/2026-claw-machine.jpg" alt="2026-claw-machine" width "450px" height "300px">
-                </div>
-
-                <div class="onslide1">
-                    <label for="slide3"> ⬅️ </label>
-                    <label for="slide2"> ➡️ </label>
-                </div>
-
-                <div class="onslide2">
-                    <label for="slide1"> ⬅️ </label>
-                    <label for="slide3"> ➡️ </label>
-                </div>
-
-                <div class="onslide3">
-                    <label for="slide2"> ⬅️ </label>
-                    <label for="slide1"> ➡️ </label>
-                </div>
-
-            </div>
-            </div>
-
-            <aside class="main2_3"> <!--캘린더 CSS Grid? 아니면 그냥 표노가다..-->
+                        <div class="cal_week">
+                            <div class="sun">일</div>
+                            <div>월</div>
+                            <div>화</div>
+                            <div>수</div>
+                            <div>목</div>
+                            <div>금</div>
+                            <div class="sat">토</div>
+                        </div>
                 
+                        <!-- 2026년 10월 1일은 목요일 → 앞에 빈칸 4개 -->
+                        <div class="cal_days">
+                            <div class="empty"></div>
+                            <div class="empty"></div>
+                            <div class="empty"></div>
+                            <div class="empty"></div>
+                
+                            <div>1</div>
+                            <div>2</div>
+                            <div class="sat">3</div>
+                
+                            <div class="sun">4</div>
+                            <div>5</div>
+                            <div>6</div>
+                            <div>7</div>
+                            <div>8</div>
+                            <div>9</div>
+                            <div class="sat">10</div>
+                
+                            <div class="sun">11</div>
+                            <div>12</div>
+                            <div>13</div>
+                            <div>14</div>
+                            <div>15</div>
+                            <div>16</div>
+                            <div class="sat">17</div>
+                
+                            <div class="sun">18</div>
+                            <div>19</div>
+                            <div>20</div>
+                            <div>21</div>
+                            <div>22</div>
+                            <div>23</div>
+                            <div class="sat">24</div>
+                
+                            <div class="sun">25</div>
+                            <div>26</div>
+                            <div>27</div>
+                            <div>28</div>
+                            <div>29</div>
+                            <div>30</div>
+                            <div class="sat">31</div>
+                        </div>
+                    </div>
 
-            </aside>
+                    <div class="unbal">엉뚱한발명대회</div>
+
+                    
+
+                </aside>
+
+            </div>
     
         </section>
 
@@ -125,7 +190,7 @@
                     <ul>
                         <li><span class="role">회장</span> <span>박여주</span><span>23학번 경제학부</span></li>
                         <li><span class="role">부회장</span><span>강남주</span><span>24학번 인공지능공학부</span></li>
-                        <li><span class="role">총무</span><span>유가가</span><span>26학번 기계시스템학부</span></li>
+                        <li><span class="role">회계부장</span><span>유가가</span><span>26학번 기계시스템학부</span></li>
                         <li><span class="role">기록부장</span><span>한나나</span><span>26학번 화학과</span></li>
                         <li><span class="role">친목부장</span><span>유다다</span><span>25학번 법학부</span></li>
                         <li><span class="role">홍보부장</span><span>박라라</span><span>21학번 컴퓨터과학전공</span></li>
