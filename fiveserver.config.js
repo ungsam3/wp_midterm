@@ -1,4 +1,4 @@
 module.exports = {
-    root: 'WP_midterm_project_1',
+    root: '10_yes3_midproject',
     open: '10_yes3_index.html'
 }

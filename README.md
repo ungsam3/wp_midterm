@@ -1,6 +1,6 @@
-# 엉뚱한 사람들 웹사이트 (10조 · 엉삼)
+# 엉뚱한 사람들 웹사이트 (yes3)
 
-숙명여대 중앙발명동아리 **엉뚱한 사람들 (SMWU INVENTORS)** 웹사이트입니다. **HTML과 CSS만으로** 만들었고, JavaScript는 한 줄도 없습니다.
+숙명여대 중앙발명동아리 **엉뚱한 사람들 (SMWU INVENTORS)** 웹사이트입니다.
 
 ## 기획 과정
 | 파일 | 링크 |
@@ -9,7 +9,7 @@
 | 와이어프레임 | https://www.canva.com/design/DAHXq4Qg7r4/kEMyFzkYDrlAarvVKL_v4A/edit |
 
 ## 실행
-압축을 푼 뒤 `10_엉삼_index.html`을 더블클릭하면 열립니다.
+압축을 푼 뒤 `10_yes3_index.html`을 더블클릭하면 열립니다.
 
 ## 파일 구조
 ```
