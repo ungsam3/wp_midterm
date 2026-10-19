@@ -5,7 +5,18 @@
 ------------------ */
 
 /* [1] 로그인 및 회원가입 페이지 */
-.sub_article .signinup_item {
+.login_article {
+    display: flex;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    min-height: 57vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.login_article .signinup_item {
     display: flex;
     width: 500px;
     box-sizing: border-box;
@@ -15,7 +26,7 @@
     align-items: center;
 }
 
-.sub_article .signinup_item .sign_table {
+.login_article .signinup_item .sign_table {
     table-layout: fixed;
     width: 80%;
     height: 150px;

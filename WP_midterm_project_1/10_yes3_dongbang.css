@@ -1,9 +1,11 @@
 /* 컴포넌트 */
 /* ---------------
-[1] 비품 페이지 :
-[2] 이용규칙 페이지 :
-[3] 청소담당 페이지 :
+[1] 이용규칙 페이지
+[2] 청소담당 페이지
+[3] 비품 페이지
 ------------------ */
+
+
 /* 전체 패널 */
 .panel-supplies {
   display: flex;
@@ -80,6 +82,8 @@
 .item:hover .thumb img {
   transform: scale(1.1);
 }
+
+
 
 
 
@@ -166,3 +170,80 @@
 
 .stepper input:checked + .minus { display: inline-block; }
 .stepper input:checked + .minus + .plus { display: inline-block; }
+
+
+
+
+
+
+/* [2] 이용규칙 페이지 */
+.db_article {
+    display: flex;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    min-height: 57vh;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.db_article .rule_content {
+    display: flex;
+}
+
+
+
+
+
+/* [3] 청소담당 페이지 */
+.db_article .cleanup_content {
+    text-align: center;
+    width: 80%;
+    margin-top: 30px;
+    margin-bottom: 100px;
+}
+
+.db_article .cleanup_check .reset {
+    text-align: center;
+}
+
+.db_article .cleanup_check .cleanup_table {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    table-layout: fixed;
+    margin-bottom: 30px;
+}
+
+.db_article .cleanup_check .cleanup_table .item, .item th, .item td {
+    border: 2px solid rgb(27, 27, 27);
+    border-collapse: collapse;
+}
+
+.db_article .cleanup_check .cleanup_table .item th {
+    width: 100px;
+}
+
+.db_article .cleanup_check .cleanup_table .item td {
+    width: 200px;
+    height: 50px;
+}
+
+.db_article .cleanup_check .cleanup_table .item:first-child {
+    margin-right: 5%;
+}
+
+.db_article .cleanup_check .cleanup_table .item:last-child {
+    margin-left: 5%;
+}
+
+
+
+
+
+
+/* [3] 비품 페이지 */
