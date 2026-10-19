@@ -12,6 +12,16 @@
   flex-direction: column;
   gap: 32px;
 }
+.panel-title mark {
+  background-color: #FF7D01;   /* 부족 배지와 같은 주황 */
+  color: #0B0B0F;
+  padding: 0 4px;
+  border-radius: 4px;
+}
+.panel-title strong {
+  color: #17171C;
+  text-decoration: underline;  /* Week5 text-decoration */
+}
 
 .panel-title h2 {
   font-size: 28px;
@@ -36,6 +46,15 @@
   font-family: "JetBrains Mono", monospace;
 }
 
+.supply-group .cnt{
+  font-size:14px;
+  font-family: "Pretendard", sans-serif;
+  width: 64px;
+  text-align: center;
+  
+}
+
+
 /* 그리드를 3열 고정, 가운데 정렬 */
 .supply-grid {
   display: grid;
@@ -47,7 +66,7 @@
 }
 
 /* 품목 카드 */
-.supply-grid .item {
+.supply-grid .supply-item {
   background: #17171C;
   border-radius: 12px;
   padding: 14px;
@@ -65,7 +84,7 @@
   aspect-ratio: 1 / 1;
   border-radius: 16px;
   overflow: hidden;
-  background: #1E1E24;
+  background: #f2f2fc;
 }
 .thumb img {
   width: 100%;
@@ -75,11 +94,11 @@
 }
 
 /* 호버 효과: 카드가 살짝 뜨고, 안쪽 이미지는 확대 */
-.item:hover {
+.supply-item:hover {
   transform: translateY(-4px);
   box-shadow: 0 10px 24px rgba(0,0,0,.4);
 }
-.item:hover .thumb img {
+.supply-item:hover .thumb img {
   transform: scale(1.1);
 }
 
@@ -100,76 +119,53 @@
   display: none; /* 기본은 숨김, 부족할 때만 보이게 아래서 켠다 */
 }
 
-.name {
+.supply-item .name {
   font-size: 14px;
   text-align: center;
   color: #F5F3EE;
 }
-.stepper {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 32px;
-  counter-reset: qty -1;
+ 
+.group-btn {
+  padding: 6px 16px;
+  border: 2px solid #17171C;
+  border-radius: 999px;          /* 알약 모양 */
+  background-color: #FFFFFF;
+  color: #17171C;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: "Pretendard", sans-serif;  /* button은 body 글꼴을 안 물려받음 */
 }
 
-/* 라디오는 화면에서 숨기되 포커스는 유지 (키보드 접근성) */
-.stepper input {
-  position: absolute;
-  opacity: 0;
-  pointer-events: none;
+.group-btn:hover {               /* 마우스 올렸을 때 */
+  background-color: #EDEDF2;
 }
 
-/* 라디오 하나당 카운터 1 증가 → 몇 번째 라디오인지 번호가 매겨짐 */
-.stepper input { counter-increment: qty; }
+.group-btn:active {              /* 누르고 있는 동안 */
+  background-color: #17171C;
+  color: #F5F3EE;
+}
 
-/* 라벨(−/+)은 전부 겹쳐서 숨겨두고, 체크된 라디오 옆의 것만 보이게 */
-.stepper label,
-.stepper .minus,
-.stepper .plus {
-  display: none;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: #0072CE;
+/* 수량 입력칸 */
+.supply-item label {
+  font-size: 12px;
+  color: #A3A3AB;
+}
+.supply-item .qty {
+  width: 64px;
+  padding: 4px 8px;
+  border: 1px solid #3A3A42;
+  border-radius: 8px;
+  background: #0B0B0F;
   color: #F5F3EE;
   text-align: center;
-  line-height: 28px;
-  cursor: pointer;
-  font-size: 16px;
 }
 
-/* 체크된 라디오 바로 다음 형제인 minus/plus 라벨만 보이기 */
-.stepper input:checked + .minus,
-.stepper input:checked ~ input:checked + .minus { display: inline-block; }
-.stepper input:checked + label.plus { display: inline-block; }
+/* 부족 배지: 기본 숨김, low 클래스가 있는 카드만 표시 */
+.thumb .badge { display: none; }
+.supply-item.low .badge { display: inline-block; }
+.supply-item.low .name { color: #FF7D01; }
 
-/* 숫자 표시: 체크된 라디오가 있으면 그 카운터 값을 .qty 앞에 보여줌 */
-.stepper input:checked ~ .qty {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 15px;
-  min-width: 28px;
-  text-align: center;
-}
-.stepper input:checked ~ .qty::before {
-  content: counter(qty);
-}
 
-/* off 상태(맨 처음/맨 끝 더미 버튼)는 항상 숨김 */
-.stepper .minus.off,
-.stepper .plus.off { display: none !important; }
-
-/* 수량이 부족 기준(class="low")일 때 카드에 부족 배지 켜기 */
-.item:has(.stepper input.low:checked) .badge {
-  display: inline-block;
-}
-.item:has(.stepper input.low:checked) .name {
-  color: #FF7D01;
-}
-
-.stepper input:checked + .minus { display: inline-block; }
-.stepper input:checked + .minus + .plus { display: inline-block; }
 
 
 
@@ -233,13 +229,6 @@
     height: 50px;
 }
 
-.db_article .cleanup_check .cleanup_table .item:first-child {
-    margin-right: 5%;
-}
-
-.db_article .cleanup_check .cleanup_table .item:last-child {
-    margin-left: 5%;
-}
 
 
 
