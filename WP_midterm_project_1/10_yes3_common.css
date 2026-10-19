@@ -72,7 +72,6 @@
 
 .main_menu_container .item a:hover, .main_menu_container .item a:active {  /*호버,클릭*/
     color: #a8bbf3;
-    font-size: 55px;
 }
 
 .main_menu_container .item a:focus {  /*포커스*/
@@ -148,8 +147,7 @@
 }
 
 .sub_menu_container .item a:hover, .sub_menu_container .item a:active {  /*호버,클릭*/
-    color: #000000;                 /*텍스트 색상 검은색*/
-    text-decoration: underline;       /*텍스트 밑줄 ㅇㅇ*/
+    color: #a8bbf3;
 }
 
 .sub_menu_container .item a:focus {    /*포커스*/
