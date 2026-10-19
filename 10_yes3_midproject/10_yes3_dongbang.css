@@ -18,8 +18,81 @@
     align-items: center;
 }
 
-.db_article .rule_content {
-    display: flex;
+/* 전체 패널 */
+.panel-supplies {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.panel-title h2 {
+  font-size: 28px;
+  margin-bottom: 4px;
+}
+.panel-title p {
+  font-size: 14px;
+  color: #A3A3AB;
+}
+
+/* 그룹(공구함 A / 아두이노 / 소모품) */
+.supply-group h3 {
+  font-size: 18px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.supply-group .count {
+  font-size: 12px;
+  color: #A3A3AB;
+  font-family: "JetBrains Mono", monospace;
+}
+
+/* 그리드를 3열 고정, 가운데 정렬 */
+.supply-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 640px;
+  margin: 0 auto;
+  list-style: none;
+}
+
+/* 품목 카드 */
+.supply-grid .item {
+  background: #17171C;
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+/* 썸네일: 정사각형 + 둥근 모서리 */
+.thumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #1E1E24;
+}
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform .3s ease;
+}
+
+/* 호버 효과: 카드가 살짝 뜨고, 안쪽 이미지는 확대 */
+.item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0,0,0,.4);
+}
+.item:hover .thumb img {
+  transform: scale(1.1);
 }
 
 
@@ -32,46 +105,85 @@
     width: 80%;
     margin-top: 30px;
     margin-bottom: 100px;
+.thumb .badge {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #FF7D01;
+  color: #0B0B0F;
+  display: none; /* 기본은 숨김, 부족할 때만 보이게 아래서 켠다 */
 }
 
-.db_article .cleanup_check {
-    display: flex;
-    width: 80%;
-    margin-bottom: 100px;
-    flex-direction: column;
+.name {
+  font-size: 14px;
+  text-align: center;
+  color: #F5F3EE;
+}
+.stepper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  counter-reset: qty -1;
 }
 
-.db_article .cleanup_check .reset {
-    text-align: center;
+/* 라디오는 화면에서 숨기되 포커스는 유지 (키보드 접근성) */
+.stepper input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
 }
 
-.db_article .cleanup_check .cleanup_table {
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-    justify-content: center;
-    table-layout: fixed;
-    margin-bottom: 30px;
+/* 라디오 하나당 카운터 1 증가 → 몇 번째 라디오인지 번호가 매겨짐 */
+.stepper input { counter-increment: qty; }
+
+/* 라벨(−/+)은 전부 겹쳐서 숨겨두고, 체크된 라디오 옆의 것만 보이게 */
+.stepper label,
+.stepper .minus,
+.stepper .plus {
+  display: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #0072CE;
+  color: #F5F3EE;
+  text-align: center;
+  line-height: 28px;
+  cursor: pointer;
+  font-size: 16px;
 }
 
-.db_article .cleanup_check .cleanup_table .item, .item th, .item td {
-    border: 2px solid rgb(27, 27, 27);
-    border-collapse: collapse;
+/* 체크된 라디오 바로 다음 형제인 minus/plus 라벨만 보이기 */
+.stepper input:checked + .minus,
+.stepper input:checked ~ input:checked + .minus { display: inline-block; }
+.stepper input:checked + label.plus { display: inline-block; }
+
+/* 숫자 표시: 체크된 라디오가 있으면 그 카운터 값을 .qty 앞에 보여줌 */
+.stepper input:checked ~ .qty {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 15px;
+  min-width: 28px;
+  text-align: center;
+}
+.stepper input:checked ~ .qty::before {
+  content: counter(qty);
 }
 
-.db_article .cleanup_check .cleanup_table .item th {
-    width: 100px;
+/* off 상태(맨 처음/맨 끝 더미 버튼)는 항상 숨김 */
+.stepper .minus.off,
+.stepper .plus.off { display: none !important; }
+
+/* 수량이 부족 기준(class="low")일 때 카드에 부족 배지 켜기 */
+.item:has(.stepper input.low:checked) .badge {
+  display: inline-block;
+}
+.item:has(.stepper input.low:checked) .name {
+  color: #FF7D01;
 }
 
-.db_article .cleanup_check .cleanup_table .item td {
-    width: 200px;
-    height: 50px;
-}
-
-.db_article .cleanup_check .cleanup_table .item:first-child {
-    margin-right: 5%;
-}
-
-.db_article .cleanup_check .cleanup_table .item:last-child {
-    margin-left: 5%;
-}
+.stepper input:checked + .minus { display: inline-block; }
+.stepper input:checked + .minus + .plus { display: inline-block; }
