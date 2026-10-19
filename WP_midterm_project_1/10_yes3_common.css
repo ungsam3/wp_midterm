@@ -29,7 +29,6 @@
     z-index: 0;
     width: 100%;
     height: 100%;
-    background-color: #000000;     /*배경색에 검은색 반투명하게 네비게이션 바 띄우는 거 어때*/
     flex-direction: row;             /*기준축은 행*/
     flex-wrap: nowrap;               /*줄바꿈 ㄴㄴ*/
     justify-content: flex-end;       /*오른쪽에 몰아서 정렬*/
@@ -224,6 +223,8 @@
 
 
 
+
+
 /* [4] 공통 footer */
 .footer_container {
     width: 100vw;
@@ -246,7 +247,3 @@
 .footer_container .content:first-child {
     flex-grow: 1;
 }
-
-
-
-
