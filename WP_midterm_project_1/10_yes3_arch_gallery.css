@@ -1,6 +1,4 @@
-body {
-    background: red !important;
-}
+
 /*marquee 컴포넌트*/
 .marquee-cotainer {
     display: flex;
