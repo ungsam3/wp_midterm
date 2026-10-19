@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>엉뚱한사람들</title>
+        <meta name="author1" content="강채린">
+        <meta name="author2" content="박세은">
+        <meta name="author3" content="김서진">
+        <link rel="stylesheet" href="10_yes3_common.css">
+        <link rel="stylesheet" href="10_yes3_main.css">
+        <link rel="stylesheet" href="10_yes3_dongbang.css">
+
+    </head>
+
+    <body>
+<!--메인1: 들어오면 보이는 진짜 메인 페이지--------------------->
+        <section class="main1">
+        <nav>
+            <div class="main_nav">
+                <div class="main_logo_box"><a href="10_yes3_index.html"><img id="main_logo_position" src="res/logo_white.png" alt="엉뚱로고"></a></div>
+                <div class="main_menu_container">
+                    <div class="item"><a href="10_yes3_arch_learning.html">아카이빙</a></div>
+                    <div class="item"><a href="10_yes3_db_equipment.html">동아리방</a></div>
+                    <div class="item"><a href="10_yes3_signin.html">로그인</a></div>
+                </div>
+            </div>
+        </nav>
+
+        <div>
+            <p>SMWU INVENTORS · SINCE 2002</p>
+            <p>엉뚱한사람들</p>
+            <p>숙명여자대학교 중앙발명동아리</p>
+        </div>
+
+        
+        <!--메인1 바닥에 있는 스티커 4개-->
+        <nav>
+            <a href="#aboutus">ABOUT US</a>
+            <a href="#history">HISTORY</a>
+            <a href="#inventors">INVENTORS</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeNgNcAfFI9_MN-Uo_KJ20WDAxeyqM0N_yebkrXAqnVE0hwQw/viewform " target="_blank">지원하기!</a>
+        </nav>
+
+        <span>SCROLL</span> <!--span으로 해놓고 css로 위치 잡는 게 편하다고 함-->
+        </section>
+
+<!--메인2:about us 소개, 주요활동 사진, 캘린더--------------------->
+        <section class="main2" id="aboutus">
+            <div class="main2_left">
+            <div class="main2_1">
+                <h2>엉뚱한사람들</h2>
+                <p>2002년 여대 최초로 만들어진 발명동아리로, 다양한 전공과 학년의 사람들이 모였습니다. 엉뚱하고 톡톡튀는 아이디어를 구현해보는 활동을 진행합니다. 또한, 각종 발명관련 대회를 참가하며 우수한 성과를 내기도 했습니다. </p> 
+            </div>
+
+            <div class = "main2_2">
+                <input type="radio" name="main_gallery" id="slide1" checked>
+                <input type="radio" name="main_gallery" id="slide2">
+                <input type="radio" name="main_gallery" id="slide3">
+                
+
+                <div class ="main_pictures">
+                    <img src="res/2024-homecoming.jpg" alt="2024-homecoming" width="450px" height="300px">
+                    <img src="res/2025-hangang-race.jpg" alt="2025-hangang-race" width="450px" height="300px">
+                    <img src="res/2026-claw-machine.jpg" alt="2026-claw-machine" width="450px" height="300px">
+                </div>
+
+                <div class="onslide1">
+                    <label for="slide3"> ⬅️ </label>
+                    <label for="slide2"> ➡️ </label>
+                </div>
+
+                <div class="onslide2">
+                    <label for="slide1"> ⬅️ </label>
+                    <label for="slide3"> ➡️ </label>
+                </div>
+
+                <div class="onslide3">
+                    <label for="slide2"> ⬅️ </label>
+                    <label for="slide1"> ➡️ </label>
+                </div>
+
+            </div>
+            </div>
+
+            <aside class="main2_3"> <!--캘린더 CSS Grid? 아니면 그냥 표노가다..-->
+                
+
+            </aside>
+    
+        </section>
+
+<!--메인3:history 활동 연혁----------------------------------------------->
+        <section class="main3" id="history">
+            <h2 class="main3_title">HISTORY</h2>
+
+            <div class="main3_factors">
+                <div class="main3_activities">
+                    <ol class="main3_activitylist">
+                        <li><span class="main3_year">2002년</span>여대 최초 발명동아리 엉뚱한사람들 창설</li>
+                        <li><span class="main3_year">2004년</span>전국대학발명동아리 경진대회 금상, 동상</li>
+                        <li><span class="main3_year">2005년</span>전국대학발명동아리 경진대회 은상</li>
+                        <li><span class="main3_year">2006년</span>전국대학발명동아리 경진대회 은상</li>
+                        <li><span class="main3_year">2010년</span>한강에서 종이배 타기 도전</li>
+                        <li><span class="main3_year">2019년</span>생활발명코리아 한국특허전략개발원장상 수상</li>
+                        <li><span class="main3_year">2023년</span>캠퍼스특허유니버시아드 우수상 수상</li>
+                        <li><span class="main3_year">2024년</span>캠퍼스특허유니버시아드 우수상 수상</li>
+                        <li><span class="main3_year">2024년</span>눈송이 페스티벌 우수상 수상</li>
+                        <li><span class="main3_year">2025년</span>생활발명코리아 한국발명진흥원장상 수상</li>
+                        <li><span class="main3_year">2026년</span>엉뚱한사람들 웹페이지 개설</li>
+                    </ol>
+
+                </div>
+
+                <figure ><img class="main3_ungsasong" src="res/ungsasong.png" alt="엉뚱한사람들눈송이"></figure>
+                </div>
+
+        </section>
+
+<!--메인4:inventors 활동 부원------------------------------------------------------>
+        <section class="main4" id="inventors">
+            <h2 class="main4_title">INVENTORS</h2>
+
+            <div class="organization">
+                <div class="org_executive">
+                    <span>임원진</span>
+                    <ul>
+                        <li><span class="role">회장</span> <span>박여주</span><span>23학번 경제학부</span></li>
+                        <li><span class="role">부회장</span><span>강남주</span><span>24학번 인공지능공학부</span></li>
+                        <li><span class="role">총무</span><span>유가가</span><span>26학번 기계시스템학부</span></li>
+                        <li><span class="role">기록부장</span><span>한나나</span><span>26학번 화학과</span></li>
+                        <li><span class="role">친목부장</span><span>유다다</span><span>25학번 법학부</span></li>
+                        <li><span class="role">홍보부장</span><span>박라라</span><span>21학번 컴퓨터과학전공</span></li>
+                    </ul>
+                </div>
+
+                <div class="org_inventors">
+                    <span>부원</span>
+                    <ul>
+                        <li><span>김땡땡</span><span>25학번 인공지능공학부</span></li>
+                        <li><span>이땡땡</span><span>23학번 지능형전자시스템전공</span></li>
+                        <li><span>김땡땡</span><span>22학번 사회심리학과</span></li>
+                        <li><span>이땡땡</span><span>24학번 화학과</span></li>
+                        <li><span>백땡땡</span><span>25학번 행정학과</span></li>
+                        <li><span>이땡땡</span><span>25학번 지능형전자시스템전공</span></li>
+                        <li><span>김땡땡</span><span>25학번 기계시스템학부</span></li>
+                        <li><span>남땡땡</span><span>25학번 인공지능공학부</span></li>
+                        <li><span>박땡땡</span><span>26학번 화공생명공학부</span></li>
+                        <li><span>김땡땡</span><span>26학번 인공지능공학부</span></li>
+                    </ul>
+
+                </div>
+                
+
+            </div>
+
+
+        </section>
+
+        <footer>
+            <div class="footer_container">
+                <div class="content">임원진1 | 이메일1 <br>임원진2 | 이메일2 </div>
+                <div class="content"><a href="https://www.instagram.com/smwu_inventors?cplk=d2Q0N3BrYjA4Y2l2">인스타</a></div>
+                <div class="content"><a href="https://www.youtube.com/@smwuinventors">유튜브</a></div>
+            </div>
+        </footer>
+        
+        
+    </body>
+</html>
+
