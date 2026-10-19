@@ -23,20 +23,29 @@ body {
 }
 
 .main1_title {
-    margin-top: 25vh;
+    margin-top: 16vh;
     text-align: center;
-    color: white;
+    
 }
 
 .title_line1 {
-    font-size: 24px;
-    letter-spacing: 2px;
+    font-size: 40px;
+    margin-bottom: 10px;
+    color: #e1e8ee;
 }
 
 .title_line2 {
-    font-size: 50px;
+    font-size: 160px;
     font-weight: bold;
-    margin: 10px 0;
+    margin: 10px;    
+}
+
+.ungdoong {
+    color: #ff8800;
+}
+
+.people {
+    color: #37a1ff;
 }
    
 /* 메인1 바닥에 있는 스티커 4개 */
@@ -109,8 +118,7 @@ body {
     transform: scale(1.5);
 }
 
-/* SCROLL 텍스트 */
-.main1 span {
+.main1_scroll {
     position: absolute;
     bottom: 20px;
     color: white;
@@ -128,7 +136,7 @@ body {
     justify-content: center;
     align-items: center;
     gap:10px;
-    background-color: #f8f9fa; /* 밝은 회색 배경 */
+    background-color:#14110C;
 }
 
 .main2_title {
@@ -137,6 +145,7 @@ body {
     font-weight: bold;
     margin-bottom: 30px;
     text-align: center;
+    color: #ffbc00;
 }
 
 .main2_factors {
@@ -158,11 +167,20 @@ body {
     height: auto;
     margin-bottom: 24px;
     text-align: center;
+    color: #f8f9fa;
 }
 
 .main2_1 h2 {
     font-size: 40px;
     margin-bottom: 20px;
+    color: #f8f9fa;
+}
+
+.aboutungsa {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #f8f9fa;
+    text-align: left;
 }
 
 
@@ -174,7 +192,6 @@ body {
     position: relative;
     width: 450px; 
     height: 300px; 
-    background-color: #ddd;
 }
 
 .main_pictures {
@@ -227,8 +244,7 @@ body {
     height: 60vh;
     min-width: 320px;
     min-height: 480px;
-    background-color: white;
-    border: 2px solid black;
+    background-color:#14110C;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -246,9 +262,10 @@ body {
     text-align: center;
     font-size: 22px;
     font-weight: bold;
+    color: #f8f9fa;
 }
  
-/* 캘린더 모양 css grid */
+/* 캘린더 css grid */
 .cal_week,
 .cal_days {
     display: grid;
@@ -260,7 +277,7 @@ body {
     line-height: 30px;
     text-align: center;
     font-weight: bold;
-    background-color: #f2f2f2;
+    color: #f8f9fa;
 }
  
 .cal_days div {
@@ -268,19 +285,23 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    color: #f8f9fa;
 }
 
+.cal_days .sun { color: red; }
+.cal_days .sat { color: blue; }
 
 /*hover*/
 .cal_days div:hover {
     background-color: #dbeafe;
+    color:#000;
 }
  
-.sun { color: red; }
-.sat { color: blue; }
+
  
 .cal_days div.empty:hover {
-    background-color: white;
+    background-color: transparent;
+    color:#000;
 }
 
 
@@ -288,7 +309,7 @@ body {
 .picnic, .ungbal {
     font-size: 16px;
     font-weight: bold;
-    color: black;
+    color:  #f8f9fa;
     margin-bottom: 3%;
     width: 80%;
     text-align: left;
@@ -316,6 +337,7 @@ body {
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
+    background-color:#14110C;
 }
 
 .main3_title {
@@ -324,6 +346,7 @@ body {
     font-weight: bold;
     margin-bottom: 8vh;
     text-align: center;
+    color: white;
 }
 
 .main3_factors {
@@ -347,7 +370,7 @@ body {
     list-style: none;
     position: relative;
     padding-left: 2vw;
-    border-left: 3px solid black; 
+    border-left: 3px solid orange; 
     margin-left: 0;
     width: 35vw;
 }
@@ -355,15 +378,21 @@ body {
 .main3 li {
     margin-bottom: 2vh;
     font-size: 18px;
+    color: #f8f9fa;
+}
+
+.main3 li:hover{
+    transform:scale(1.07) translateX(10px);
 }
 
 .main3_year {
-    color: black;
+    color: orange;
     font-weight: bold;
     margin-right: 1.5vw;
     display: inline-block;
     width: 60px;
 }
+
 
 
 .main3_ungsasong {
@@ -384,6 +413,7 @@ body {
     flex-direction: column;
     align-items: center;
     box-sizing: border-box;
+    background-color:#14110C;
 }
 
 .main4_title {
@@ -392,6 +422,7 @@ body {
     font-weight: bold;
     margin-bottom: 30px;
     text-align: center;
+    color: #0078d7;
 }
 
 
