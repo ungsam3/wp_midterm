@@ -7,8 +7,7 @@
     position: relative;
     margin: 8px calc(var(--gutter) * -1) 0;
     padding: 26px 0 34px;
-    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-            mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+
 }
 
 .scrolling-track {
@@ -27,50 +26,152 @@
 .marquee-cotainer:hover .scrolling-track {
     animation-play-state: paused;
 }
-.pill-group { display: flex; gap: 8px; flex-wrap: wrap; }
-.pill { min-height: 44px; padding: 0 18px; border-radius: 999px; border: 1px solid var(--line-strong); font-family: var(--font-mono); font-weight: 700; color: var(--sub); transition: all .2s; }
-.pill:hover { color: var(--cream); border-color: var(--cream); }
 
-.polaroid {
-  --tilt: -2deg; flex: none; width: clamp(200px, 26vw, 280px); padding: 10px 10px 0; background: var(--cream); color: var(--bg);
-  border-radius: 6px; transform: rotate(var(--tilt)); box-shadow: 0 18px 30px -14px rgba(0,0,0,.8);
-  transition: transform .3s var(--ease); text-align: left; display: block;
+/*연도 3개 알약*/
+.pill-group { 
+  display: flex; 
+  justify-content: center;
+  margin: 24px 0;
+  gap: 8px; 
+  flex-wrap: wrap; 
 }
-.polaroid:nth-child(even) { --tilt: 2.5deg; }
-.polaroid:nth-child(3n) { --tilt: -0.5deg; }
-.polaroid:hover, .polaroid:focus-visible { transform: rotate(0) scale(1.05); }
-.polaroid img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 2px; }
-.polaroid .cap { display: block; padding: 10px 4px 12px; font-size: .85rem; font-weight: 600; color: var(--bg); }
+.pill { 
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+  margin:0 6px;
+  min-height: 44px; 
+  padding: 0px 22px; 
+  border-radius: 999px; 
+  border: 1px solid #17171C;
+  font-weight: 700; 
+  text-decoration: none; 
+}
+.pill:hover { 
+  background-color: #17171C; 
+  color: #F5F3EE;
+}
 
+/*폴라로이드*/
+.polaroid {
+  flex: none; 
+  width: clamp(200px, 26vw, 280px); 
+  padding: 10px 10px 0; 
+  background: #F5F3EE;
+  color: #0B0B0F;
+  border-radius: 6px; 
+  transform: rotate(-2deg);
+  text-align: left; 
+  display: block;
+}
+.polaroid:nth-child(even) {
+   transform: rotate(2.5deg);
+  }
+.polaroid:nth-child(3n) {
+   transform: rotate(-0.5deg);
+  }
+.polaroid:hover, .polaroid:focus-visible {
+   transform: rotate(0) scale(1.05); 
+  }
+.polaroid img {
+   width: 100%; 
+   aspect-ratio: 4 / 3; 
+   object-fit: cover; 
+   border-radius: 2px; 
+  }
+.polaroid .cap { 
+  display: block; 
+  padding: 10px 4px 12px; 
+  font-size: .85rem; 
+  font-weight: 600; 
+  color:  #0B0B0F;
+}
+
+/*연도별 사진 모음*/
 #y2026, #y2025, #y2024 {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr)); gap: 12px; margin-top: 12px;
+  display: flex; 
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px; 
+  margin-top: 12px;
 }
 .pic-2026-each, .pic-2025-each, .pic-2024-each {
-  position: relative; border-radius: 14px; overflow: hidden; background: var(--surface);
+  position: relative; 
+  width: 220px;
+  margin: 6px;
+  border-radius: 14px; 
+  overflow: hidden; 
+  background: #17171C;
 }
-.pic-2026-each a, .pic-2025-each a, .pic-2024-each a { display: block; aspect-ratio: 1; overflow: hidden; }
+.pic-2026-each a, .pic-2025-each a, .pic-2024-each a { 
+  display: block; 
+  aspect-ratio: 1; 
+  overflow: hidden; 
+}
 .pic-2026-each img, .pic-2025-each img, .pic-2024-each img {
-  width: 100%; height: 100%; object-fit: cover; transition: transform .5s var(--ease);
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover; 
 }
-.pic-2026-each a:hover img, .pic-2025-each a:hover img, .pic-2024-each a:hover img { transform: scale(1.06); }
+.pic-2026-each a:hover img, .pic-2025-each a:hover img, .pic-2024-each a:hover img { 
+  transform: scale(1.06);
+}
 .pic-2026-each h3, .pic-2025-each h3, .pic-2024-each h3 {
-  padding: 8px 10px; font-size: .85rem; font-weight: 600; background: rgba(186, 186, 211, 0.7);
+  padding: 8px 10px; 
+  font-size: .85rem;
+  font-weight: 600; 
+  background: rgba(186, 186, 211, 0.7);
 }
 
+/*라이트박스*/
 .lightbox {
-  position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; padding: 20px;
-  background: rgba(6, 6, 9, 0.92); backdrop-filter: blur(8px);
-  opacity: 0; visibility: hidden; transition: opacity .3s, visibility .3s;
+  position: fixed; 
+  inset: 0; 
+  z-index: 200; 
+  display: grid; 
+  place-items: center; 
+  padding: 20px;
+  background: rgba(6, 6, 9, 0.92); 
+  opacity: 0; 
+  visibility: hidden; 
 }
-.lightbox:target { opacity: 1; visibility: visible; }
-.lightbox-picture { max-width: min(92vw, 1100px); padding: 14px; border-radius: 22px; background: #c9d2dc; }
-.lightbox-picture img { max-height: 72vh; width: auto; border-radius: 10px; display: block; }
+.lightbox:target { 
+  opacity: 1; 
+  visibility: visible; 
+}
+.lightbox-picture { 
+  max-width: min(92vw, 1100px); 
+  padding: 14px; 
+  border-radius: 22px; 
+  background: #c9d2dc; 
+  overflow: hidden;
+}
+.lightbox-picture img { 
+  max-width: 100%;
+  max-height: 72vh; 
+  width: auto; 
+  border-radius: 10px; 
+  display: block; 
+}
 .lightbox .close {
-  position: fixed; top: 18px; right: 18px; width: 52px; height: 52px; border-radius: 50%;
-  display: grid; place-items: center; background: rgba(245,243,238,.1); border: 1px solid var(--line-strong);
-  font-size: 1.3rem; color: var(--cream); transition: background .2s;
+  position: fixed; 
+  top: 18px; 
+  right: 18px; 
+  width: 52px; 
+  height: 52px; 
+  border-radius: 50%;
+  display: grid; 
+  place-items: center; 
+  background: rgba(245,243,238,.1); 
+  border: 1px solid #F5F3EE;
+  font-size: 1.3rem; 
+  color: #F5F3EE; 
+  text-decoration: none;
 }
-.lightbox .close:hover { background: var(--cream); color: var(--bg); }
+.lightbox .close:hover { 
+  background: #F5F3EE; 
+  color: #0B0B0F; 
+}
 
 
 /* 교육자료 */
@@ -134,7 +235,7 @@
   text-align: center;
 }
 
-.drive-row {
+.open {
   justify-content: center;   /* space-between 대신 */
 }
 .drive-title {
@@ -143,4 +244,3 @@
 .learning-note {
   text-align: center;        /* "구글 드라이브로 연결돼요"도 가운데 */
 }
-

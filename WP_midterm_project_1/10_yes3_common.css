@@ -66,17 +66,18 @@
 
 .main_menu_container .item a:link, .main_menu_container .item a:visited {  /*기본상태*/
     color: #ffffff;                /*텍스트 색상 흰색*/
+    opacity: 0.9;
     text-decoration: none;           /*텍스트 밑줄 ㄴㄴ*/
 }
 
 .main_menu_container .item a:hover, .main_menu_container .item a:active {  /*호버,클릭*/
-    color: #ffffff;                 /*텍스트 색상 흰색*/
-    text-decoration: underline;       /*텍스트 밑줄 ㅇㅇ*/
+    color: #a8bbf3;
+    font-size: 55px;
 }
 
 .main_menu_container .item a:focus {  /*포커스*/
-    color: #ffffff;                /*텍스트 색상 흰색*/
-    border: 0.5px solid #ffffff;   /*테두리 흰색 실선*/
+    color: #64639b;                /*텍스트 색상 흰색*/
+    border: 0.5px dotted #3b4561;   /*테두리 흰색 실선*/
 }
 
 /* [2-3] 로고 */
@@ -202,8 +203,12 @@
     padding-top: 30px;
     font-size: 40px;
     color: #ffffff;
+    opacity: 0.9;
     justify-content: center;
     text-align: center;
+    font-family: "Jua", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .sub_header .sub_menu_name {
@@ -223,11 +228,15 @@
     padding-top: 30px;
     font-size: 25px;
     color: #ffffff;
+    opacity: 0.9;
     justify-content: center;
     text-align: center;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    font-family: "Jua", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .sub_header .sub_menu_name .item a:link, .sub_header .sub_menu_name .item a:visited {
@@ -241,6 +250,8 @@
 }
 
 #sub_header_menu_now {
+    color: #bebce6;
+    opacity: 0.9;
     text-decoration: underline;
 }
 
@@ -262,11 +273,24 @@
 }
 
 .footer_container .content {
-    width: 70px;
+    width: 80px;
     height: 100%;
-    font-size: 15px;
+    font-size: 13px;
+    color: #313030;
+    flex-direction: row;
 } 
+
 
 .footer_container .content:first-child {
     flex-grow: 1;
+}
+
+.sns_icon {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.footer_container .content a:hover .sns_icon {
+    opacity: 0.8;     
 }
