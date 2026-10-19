@@ -174,7 +174,6 @@ body {
     position: relative;
     width: 450px; 
     height: 300px; 
-    overflow: hidden;
     background-color: #ddd;
 }
 
@@ -182,6 +181,7 @@ body {
     position: relative;
     width: 100%;
     height: 100%;
+    overflow: hidden;
 }
 
 .main_pictures img {
@@ -218,8 +218,8 @@ body {
     color: white;
     cursor: pointer;
 }
-.onslide1 label:nth-child(1), .onslide2 label:nth-child(1), .onslide3 label:nth-child(1) { left: 10px; }
-.onslide1 label:nth-child(2), .onslide2 label:nth-child(2), .onslide3 label:nth-child(2) { right: 10px; }
+.onslide1 label:nth-child(1), .onslide2 label:nth-child(1), .onslide3 label:nth-child(1) { left: -60px; color: rgba(128, 128, 128, 0.434); }
+.onslide1 label:nth-child(2), .onslide2 label:nth-child(2), .onslide3 label:nth-child(2) { right: -60px; color: rgba(128, 128, 128, 0.434); }
 
 /* 우측 캘린더 영역 */
 .main2_3 {
