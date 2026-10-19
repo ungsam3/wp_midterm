@@ -223,8 +223,10 @@ body {
 
 /* 우측 캘린더 영역 */
 .main2_3 {
-    width: 350px;
-    height: 480px;
+    width: 25vw;
+    height: 60vh;
+    min-width: 320px;
+    min-height: 480px;
     background-color: white;
     border: 2px solid black;
     display: flex;
@@ -233,20 +235,12 @@ body {
     justify-content: center;
 }
 .calendar {
-    width: 322px;
-    margin-bottom: 60px;
+    width: 90%;
+    margin-bottom: 8%;
 }
 
-.ungbal {
-    font-size: 10px;
-    color: black;
-    opacity:100;
-    margin-left: 4px;
-}
- 
-/* 년/월 제목 */
 .cal_title {
-    margin-bottom: 16px;
+    margin-bottom: 5%;
     height: 40px;
     line-height: 40px;
     text-align: center;
@@ -254,14 +248,13 @@ body {
     font-weight: bold;
 }
  
-/* 요일 줄, 날짜 칸 공통: 7칸 격자 */
+/* 캘린더 모양 css grid */
 .cal_week,
 .cal_days {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
  
-/* 요일 글자 */
 .cal_week div {
     height: 30px;
     line-height: 30px;
@@ -270,7 +263,6 @@ body {
     background-color: #f2f2f2;
 }
  
-/* 날짜 칸 */
 .cal_days div {
     height: 44px;
     display: flex;
@@ -278,31 +270,37 @@ body {
     justify-content: center;
 }
 
-.ungbal {
-    font-size: 10px;
-    color: black;
-    opacity:100;
-    
 
-    margin-left: 4px;
-}
-
-.ungbal:hover {
-    color: #ff6600;
-    text-decoration: underline;
-}
- 
+/*hover*/
 .cal_days div:hover {
     background-color: #dbeafe;
 }
  
-/* 일요일 = 빨강, 토요일 = 파랑 */
 .sun { color: red; }
 .sat { color: blue; }
  
-/* 1일 앞의 빈칸은 호버 효과 없음 */
 .cal_days div.empty:hover {
     background-color: white;
+}
+
+
+
+.picnic, .ungbal {
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 3%;
+    width: 80%;
+    text-align: left;
+
+}
+
+.cal_days div.cal_picnic:hover {
+    background-color: #ffbc00;
+}
+
+.cal_days div.cal_ungbal:hover {
+    background-color: #ffbc00;
 }
 
 
