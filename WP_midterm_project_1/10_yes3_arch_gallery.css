@@ -193,9 +193,12 @@
 
 .learning-note {
   text-align: right;
-  font-size: 13px;
+  font-size: 15px;
   color: #A3A3AB;
   margin-bottom: 24px;
+  font-family: "Jua", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .drive-list {
@@ -219,7 +222,7 @@
   text-decoration: none;            /* 링크 밑줄 제거 */
 }
 .open:hover {
-  border-color: #F5F3EE;            /* 마우스 올리면 테두리 밝게 */
+  border-color: #ced6ff92;            /* 마우스 올리면 테두리 밝게 */
 }
 
 .drive-title {
