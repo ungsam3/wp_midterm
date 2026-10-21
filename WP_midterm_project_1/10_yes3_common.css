@@ -269,6 +269,7 @@
 }
 
 .footer_container .content {
+    margin-top: 10px;
     width: 80px;
     height: 100%;
     font-size: 13px;
