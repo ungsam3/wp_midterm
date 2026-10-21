@@ -188,11 +188,16 @@
 
 .db_article .rule_content {
     display: flex;
+    font-family: "Dongle", sans-serif;
+    font-size: 25px;
+    font-weight: 400;
+    font-style: normal;
+    opacity: 60%;
 }
 
-
-
-
+ol li {
+  list-style-type: square;
+}
 
 /* [3] 청소담당 페이지 */
 .db_article .cleanup_content {
@@ -214,6 +219,15 @@
     justify-content: center;
     table-layout: fixed;
     margin-bottom: 30px;
+}
+
+.db_article .cleanup_check .cleanup_table .item:first-child {
+    margin-right: 30px;
+}
+
+.db_article .cleanup_check .cleanup_table .item:first-child {
+    border: 2px solid rgb(27, 27, 27);
+    border-collapse: collapse;
 }
 
 .db_article .cleanup_check .cleanup_table .item, .item th, .item td {

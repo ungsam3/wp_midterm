@@ -76,7 +76,6 @@
 
 .main_menu_container .item a:focus {  /*포커스*/
     color: #64639b;                /*텍스트 색상 흰색*/
-    border: 0.5px dotted #3b4561;   /*테두리 흰색 실선*/
 }
 
 /* [2-3] 로고 */
@@ -151,8 +150,7 @@
 }
 
 .sub_menu_container .item a:focus {    /*포커스*/
-    color: #000000;                 /*텍스트 색상 검은색*/
-    border: 0.5px solid #000000;    /*테두리 검은색 실선*/
+    color: #64639b; 
 }
 
 /* [3-3] 로고 */
@@ -172,7 +170,7 @@
 }
 
 .sub_logo_box a:hover, .sub_logo_box a:active {  /*호버,클릭*/
-    opacity: 0.8;               /*로고 투명도 80%*/
+    opacity: 0.7;               /*로고 투명도 80%*/
 }
 
 
