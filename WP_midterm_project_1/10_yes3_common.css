@@ -141,7 +141,7 @@
 }
 
 .sub_menu_container .item a:link, .sub_menu_container .item a:visited {  /*기본상태*/
-    color: #000000;                /*텍스트 색상 검은색*/
+    color: #41415e;                /*텍스트 색상 검은색*/
     text-decoration: none;           /*텍스트 밑줄 ㄴㄴ*/
 }
 
@@ -150,7 +150,7 @@
 }
 
 .sub_menu_container .item a:focus {    /*포커스*/
-    color: #64639b; 
+    color: #5c5ba0; 
 }
 
 /* [3-3] 로고 */
@@ -269,6 +269,7 @@
 }
 
 .footer_container .content {
+    margin-top: 10px;
     width: 80px;
     height: 100%;
     font-size: 13px;
