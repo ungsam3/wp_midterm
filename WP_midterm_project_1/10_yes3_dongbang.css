@@ -14,12 +14,7 @@
   flex-direction: column;
   gap: 32px;
 }
-.panel-title mark {
-  background-color: #FF7D01;   /* 부족 배지와 같은 주황 */
-  color: #0B0B0F;
-  padding: 0 4px;
-  border-radius: 4px;
-}
+
 .panel-title strong {
   color: #17171C;
   text-decoration: underline;  /* Week5 text-decoration */
@@ -30,8 +25,11 @@
   margin-bottom: 4px;
 }
 .panel-title p {
-  font-size: 14px;
-  color: #A3A3AB;
+  font-size: 20px;
+  font-family: "Jua", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  opacity: 80%;
 }
 
 /*소제목*/
@@ -75,7 +73,7 @@
 
 /* 품목 카드 */
 .supply-grid .supply-item {
-  background: #17171C;
+  background: #4e4e5c;
   border-radius: 12px;
   padding: 14px;
   display: flex;
