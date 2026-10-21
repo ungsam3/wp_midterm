@@ -129,17 +129,22 @@
   font-size: 14px;
   text-align: center;
   color: #F5F3EE;
+  font-family: "Jua", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
- 
+
 .group-btn {
   padding: 6px 16px;
-  border: 2px solid #17171C;
+  border: 2px solid #3c3c3f;
   border-radius: 999px;          /* 알약 모양 */
-  background-color: #FFFFFF;
+  background-color: #d4d3d3;
   color: #17171C;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 700;
-  font-family: "Pretendard", sans-serif;  /* button은 body 글꼴을 안 물려받음 */
+  font-family: "Jua", sans-serif;
+  font-weight: 400;
+  font-style: normal; /* button은 body 글꼴을 안 물려받음 */
 }
 
 .group-btn:hover {               /* 마우스 올렸을 때 */
@@ -184,6 +189,14 @@
     align-items: center;
 }
 
+#Jua_font {
+    font-family: "Jua", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 22px;
+    color: #404040;
+}
+
 .db_article .rule_content {
     display: flex;
     font-family: "Dongle", sans-serif;
@@ -203,6 +216,11 @@ ol li {
     width: 80%;
     margin-top: 30px;
     margin-bottom: 100px;
+    font-family: "Jua", sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    font-style: normal;
+    opacity: 75%;
 }
 
 .db_article .cleanup_check .reset {
