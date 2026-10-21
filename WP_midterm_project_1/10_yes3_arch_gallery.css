@@ -187,7 +187,7 @@
   max-width: 1180px;
   margin: 40px auto;           /* 가운데 정렬 */
   padding: 32px;
-  background: #0B0B0F;
+  background: #2f2f3f;
   border-radius: 24px;         /* 큰 상자 모서리 */
 }
 
@@ -213,7 +213,7 @@
   justify-content: space-between;   /* 제목은 왼쪽, 버튼은 오른쪽 */
   align-items: center;              /* 세로 가운데 */
   padding: 16px 16px 16px 28px;
-  background: #16171C;
+  background: #3c4053;
   border: 1px solid #2A2B31;
   border-radius: 999px;             /* 알약 모양 */
   text-decoration: none;            /* 링크 밑줄 제거 */
