@@ -20,11 +20,11 @@
     display: flex;
     width: 500px;
     box-sizing: border-box;
-    background-color: #8784b0;
+    background-color: #9491c6;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-radius: 10px;
+    border-radius: 30px;
     color: white;
     font-size: 30px;
 }

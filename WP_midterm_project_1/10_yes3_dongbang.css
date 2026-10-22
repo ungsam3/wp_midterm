@@ -14,12 +14,7 @@
   flex-direction: column;
   gap: 32px;
 }
-.panel-title mark {
-  background-color: #FF7D01;   /* 부족 배지와 같은 주황 */
-  color: #0B0B0F;
-  padding: 0 4px;
-  border-radius: 4px;
-}
+
 .panel-title strong {
   color: #17171C;
   text-decoration: underline;  /* Week5 text-decoration */
@@ -30,8 +25,11 @@
   margin-bottom: 4px;
 }
 .panel-title p {
-  font-size: 14px;
-  color: #A3A3AB;
+  font-size: 23px;
+  font-family: "Jua", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  opacity: 80%;
 }
 
 /*소제목*/
@@ -75,7 +73,7 @@
 
 /* 품목 카드 */
 .supply-grid .supply-item {
-  background: #17171C;
+  background: #4e4e5c;
   border-radius: 12px;
   padding: 14px;
   display: flex;
@@ -131,17 +129,22 @@
   font-size: 14px;
   text-align: center;
   color: #F5F3EE;
+  font-family: "Jua", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
- 
+
 .group-btn {
   padding: 6px 16px;
-  border: 2px solid #17171C;
+  border: 2px solid #3c3c3f;
   border-radius: 999px;          /* 알약 모양 */
-  background-color: #FFFFFF;
+  background-color: #d4d3d3;
   color: #17171C;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 700;
-  font-family: "Pretendard", sans-serif;  /* button은 body 글꼴을 안 물려받음 */
+  font-family: "Jua", sans-serif;
+  font-weight: 400;
+  font-style: normal; /* button은 body 글꼴을 안 물려받음 */
 }
 
 .group-btn:hover {               /* 마우스 올렸을 때 */
@@ -186,13 +189,26 @@
     align-items: center;
 }
 
-.db_article .rule_content {
-    display: flex;
+#Jua_font {
+    font-family: "Jua", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 22px;
+    color: #404040;
 }
 
+.db_article .rule_content {
+    display: flex;
+    font-family: "Dongle", sans-serif;
+    font-size: 25px;
+    font-weight: 400;
+    font-style: normal;
+    opacity: 60%;
+}
 
-
-
+ol li {
+  list-style-type: square;
+}
 
 /* [3] 청소담당 페이지 */
 .db_article .cleanup_content {
@@ -200,6 +216,11 @@
     width: 80%;
     margin-top: 30px;
     margin-bottom: 100px;
+    font-family: "Jua", sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    font-style: normal;
+    opacity: 75%;
 }
 
 .db_article .cleanup_check .reset {
@@ -214,6 +235,15 @@
     justify-content: center;
     table-layout: fixed;
     margin-bottom: 30px;
+}
+
+.db_article .cleanup_check .cleanup_table .item:first-child {
+    margin-right: 30px;
+}
+
+.db_article .cleanup_check .cleanup_table .item:first-child {
+    border: 2px solid rgb(27, 27, 27);
+    border-collapse: collapse;
 }
 
 .db_article .cleanup_check .cleanup_table .item, .item th, .item td {
