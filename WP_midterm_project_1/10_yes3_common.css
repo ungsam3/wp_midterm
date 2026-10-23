@@ -27,68 +27,44 @@
 
 
 
-/* [2] 메인 페이지 nav */
-/* [2-1] 로고와 메뉴바 부모요소 */
-.main_nav {            
-    position: relative;     /*로고와 메뉴바 쌓이는 거 높이 조정을 위해 추가한 부모요소*/
+/* [2] 메인 페이지 네비게이션 */
+.main_nav { 
+    display: flex;           
+    position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
-    height: 10vh;
+    height: 12vh;
+    flex-direction: row;
+    justify-content: flex-end;
+    z-index: 100;
 }
 
-/* [2-2] 메뉴바 */
-.main_menu_container {
-    display: flex;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 0;
-    width: 100%;
-    height: 100%;
-    flex-direction: row;             /*기준축은 행*/
-    flex-wrap: nowrap;               /*줄바꿈 ㄴㄴ*/
-    justify-content: flex-end;       /*오른쪽에 몰아서 정렬*/
-} 
-
-.main_menu_container .item {
-    margin-top: 5vh;
+.main_nav .item {
+    margin-top: 4vh;
     margin-right: 3vw;
     font-size: 50px;
     font-family: "Dongle", sans-serif;
     font-weight: 400;
     font-style: normal;
+    color: #ffffff;
 }
 
-.main_menu_container .item:last-child {
-    margin-right: 6vw;         /*마지막 아이템은 left 간격 따로 설정*/
+.main_nav .item:first-child {
+    flex-grow: 1;
+    margin-top: 2vh;
+    margin-left: 1vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
 }
 
-.main_menu_container .item a:link, .main_menu_container .item a:visited {  /*기본상태*/
-    color: #ffffff;                /*텍스트 색상 흰색*/
-    opacity: 0.9;
-    text-decoration: none;           /*텍스트 밑줄 ㄴㄴ*/
+.main_nav .item .main_logobox {
+    width: 90px;
+    height: 90px;
 }
 
-.main_menu_container .item a:hover, .main_menu_container .item a:active {  /*호버,클릭*/
-    color: #a8bbf3;
-}
-
-.main_menu_container .item a:focus {  /*포커스*/
-    color: #64639b;                /*텍스트 색상 흰색*/
-}
-
-/* [2-3] 로고 */
-.main_logo_box {
-    position: absolute;
-    top: 0;
-    left: 1vw;
-    width: 80px;
-    height: 80px;
-    z-index: 1;
-}
-
-#main_logo_position {
+#logo_position {
     width: 100%;
     height: 100%;
     object-fit: contain;    /*로고 원본 이미지 비율 유지하면서 box에 삽입*/
@@ -97,6 +73,24 @@
 .main_logo_box a:hover, .main_logo_box a:active {  /*호버,클릭*/
     opacity: 0.8;               /*로고 투명도 80%*/
 }
+
+.main_nav .item:last-child {
+    margin-right: 5vw;         /*마지막 아이템은 left 간격 따로 설정*/
+}
+
+.main_nav .item a:link, .main_nav .item a:visited {  /*기본상태*/
+    color: #ffffff;                /*텍스트 색상 흰색*/
+    text-decoration: none;           /*텍스트 밑줄 ㄴㄴ*/
+}
+
+.main_nav .item a:hover, .main_nav .item a:active {  /*호버,클릭*/
+    color: #a8bbf3;
+}
+
+.main_nav .item a:focus {  /*포커스*/
+    color: #64639b;                /*텍스트 색상 흰색*/
+}
+
 
 
 
