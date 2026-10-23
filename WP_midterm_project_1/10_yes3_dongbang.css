@@ -260,9 +260,20 @@ ol li {
     height: 50px;
 }
 
+.db_article .cleanup_check .cleanup_table .item .sweep1 {
+    position: absolute;
+    opacity: 0%;
+    width: 0;
+    height: 0;
+}
 
+.db_article .cleanup_check .cleanup_table .item .sweep1 + label {
+    background: url("./res/unchecked.png") no-repeat left center;
+    background-size: 22px 22px;
+}
 
-
-
-
+.db_article .cleanup_check .cleanup_table .item .sweep1:checked + label {
+    background: url("./res/checked.png") no-repeat left center;
+    background-size: 22px 22px;
+}
 
