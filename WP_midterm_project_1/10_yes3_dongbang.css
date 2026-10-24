@@ -260,9 +260,28 @@ ol li {
     height: 50px;
 }
 
+.db_article .cleanup_check .cleanup_table .item .cleanup_checking {
+    position: absolute;
+    opacity: 0%;
+    width: 0;
+    height: 0;
+}
 
+.db_article .cleanup_check .cleanup_table .item .cleanup_checking + label {
+    display: inline-block;   /* 크기를 가질 수 있게 */
+    width: 30px;
+    height: 30px;
+    background: url("./res/cleanup_no.png") no-repeat left center;
+    background-size: contain;
+}
 
+.db_article .cleanup_check .cleanup_table .item .cleanup_checking:checked + label {
+    background: url("./res/cleanup_done.png") no-repeat left center;
+    background-size: contain;
+}
 
-
-
-
+#icon_position {
+  width: 40%;
+  height: 40%;
+  object-fit: contain;
+}
