@@ -84,11 +84,12 @@
 }
 
 .main_nav .item a:hover, .main_nav .item a:active {  /*호버,클릭*/
-    color: #a8bbf3;
+    color: #ffdd00;
 }
 
 .main_nav .item a:focus {  /*포커스*/
-    color: #64639b;                /*텍스트 색상 흰색*/
+    color: #fff3a7;                /*텍스트 색상 흰색*/
+    text-decoration: blink;
 }
 
 
@@ -147,11 +148,11 @@
 }
 
 .sub_nav .item a:hover, .sub_nav .item a:active {  /*호버,클릭*/
-    color: #a8bbf3;
+    color: #003087;
 }
 
 .sub_nav .item a:focus {  /*포커스*/
-    color: #64639b;                /*텍스트 색상 흰색*/
+    color: #004ddd;                /*텍스트 색상 흰색*/
 }
 
 
