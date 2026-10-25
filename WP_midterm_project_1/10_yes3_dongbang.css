@@ -174,9 +174,21 @@
 
 
 
+
+
+
+
 /* ------------------ */
 /* 아래부터 seojin 담당(아래는 건드리지 말것) */
 /* ------------------ */
+
+/* 서브 페이지 공통 h1 */
+#subpage_title {
+    text-align: center;
+    font-family: "Jua", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
 
 /* 서브 페이지 공통 article */
 .db_article {
@@ -194,8 +206,8 @@
 
 
 /* [2] 이용규칙 페이지 */
-/* 이용규칙 목록 Jua체 */
-#Jua_font {
+/* 규칙 안내 목록 Jua체 */
+.db_article .rule_list {
     font-family: "Jua", sans-serif;
     font-weight: 400;
     font-style: normal;
@@ -203,11 +215,11 @@
     color: #404040;
 }
 
-ol li {
+.db_article .rule_list ol li {
   list-style-type: square;
 }
 
-/* 추가본문 Dongle체 */
+/* 규칙 준수 본문 Dongle체 */
 .db_article .rule_content {
     display: flex;
     font-family: "Dongle", sans-serif;
