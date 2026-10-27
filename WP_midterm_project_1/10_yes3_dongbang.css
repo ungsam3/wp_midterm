@@ -1,11 +1,11 @@
 /* 컴포넌트 */
-/* ---------------
-[1] 이용규칙 페이지
-[2] 청소담당 페이지
-[3] 비품 페이지
------------------- */
+/* ----------------------
+[1] 비품 페이지
+[2] 이용규칙 페이지 - seojin
+[3] 청소담당 페이지 - seojin
+------------------------- */
 
-/* [3] 비품 페이지 */
+/* [1] 비품 페이지 */
 /* 전체 패널 */
 #panel-supplies {
   max-width: 640px;          
@@ -174,8 +174,23 @@
 
 
 
-/* [2] 이용규칙 페이지 -- 푸터 임원진1 앞부분 잘려서 width vw->% */
 
+
+
+
+/* ------------------ */
+/* 아래부터 seojin 담당(아래는 건드리지 말것) */
+/* ------------------ */
+
+/* 서브 페이지 공통 h1 */
+#subpage_title {
+    text-align: center;
+    font-family: "Jua", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* 서브 페이지 공통 article */
 .db_article {
     display: flex;
     position: relative;
@@ -189,7 +204,10 @@
     align-items: center;
 }
 
-#Jua_font {
+
+/* [2] 이용규칙 페이지 */
+/* 규칙 안내 목록 Jua체 */
+.db_article .rule_list {
     font-family: "Jua", sans-serif;
     font-weight: 400;
     font-style: normal;
@@ -197,6 +215,11 @@
     color: #404040;
 }
 
+.db_article .rule_list ol li {
+  list-style-type: square;
+}
+
+/* 규칙 준수 본문 Dongle체 */
 .db_article .rule_content {
     display: flex;
     font-family: "Dongle", sans-serif;
@@ -206,11 +229,9 @@
     opacity: 60%;
 }
 
-ol li {
-  list-style-type: square;
-}
 
 /* [3] 청소담당 페이지 */
+/* [3-1] 본문(cleanup_content) */
 .db_article .cleanup_content {
     text-align: center;
     width: 80%;
@@ -223,11 +244,7 @@ ol li {
     opacity: 75%;
 }
 
-.db_article .cleanup_check .reset {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
+/* [3-2] 체크표(cleanup_check) */
 .db_article .cleanup_check .cleanup_table {
     display: flex;
     width: 100%;
@@ -260,9 +277,129 @@ ol li {
     height: 50px;
 }
 
+.db_article .cleanup_check .cleanup_table .item .cleanup_checking {
+    position: absolute;
+    opacity: 0%;
+    width: 0;
+    height: 0;
+}
 
+.db_article .cleanup_check .cleanup_table .item .cleanup_checking + label {
+    display: inline-block;   /* 크기를 가질 수 있게 */
+    width: 30px;
+    height: 30px;
+    background: url("./res/cleanup_no.png") no-repeat left center;
+    background-size: contain;
+}
 
+.db_article .cleanup_check .cleanup_table .item .cleanup_checking:hover + label {
+    width: 32px;
+    height: 32px;
+}
 
+.db_article .cleanup_check .cleanup_table .item .cleanup_checking:checked + label {
+    width: 32px;
+    height: 32px;
+  background: url("./res/cleanup_done.png") no-repeat left center;
+    background-size: contain;
+}
 
+.db_article .cleanup_check .reset {
+    text-align: center;
+    height: 50px;
+    margin-bottom: 30px;
+}
 
+.db_article .cleanup_check .reset .cleanup_checking_reset {
+    position: absolute;
+    opacity: 0%;
+    width: 0;
+    height: 0;
+}
 
+.db_article .cleanup_check .reset .cleanup_checking_reset + label {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background: url("./res/cleanup_reset.png") no-repeat left center;
+    background-size: contain;
+    opacity: 80%;
+}
+
+.db_article .cleanup_check .reset .cleanup_checking_reset:hover + label {
+    width: 27px;
+    height: 27px;
+}
+
+.db_article .cleanup_check .reset .cleanup_checking_reset:active + label {
+    width: 27px;
+    height: 27px;
+    opacity: 100%;
+}
+
+/* [3-3] 댓글창(cleanup_comment) */
+.db_article .cleanup_comment {
+    display: flex;
+    width: 90vw;
+    min-height: 30vh;
+    flex-direction: column;
+    font-family: "Jua", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.db_article .cleanup_comment .comment {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.db_article .cleanup_comment .comment .item {
+    width:30px;
+    min-height: 50px;
+}
+
+.db_article .cleanup_comment .comment .item:first-child {
+    width: 80px;
+}
+
+.db_article .cleanup_comment .comment .item:nth-child(2) {
+    flex-grow: 1;
+}
+
+.db_article .cleanup_comment .write_comment {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.db_article .cleanup_comment .write_comment .textarea {
+    width: 90vw;
+    min-height: 50px;
+    margin-bottom: 10px;
+    font-family: "Jua", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 15px;
+    opacity: 60%;
+    border-radius: 10px;
+    border: 3px solid #737373;
+}
+
+.db_article .cleanup_comment .write_comment .two_button {
+    display: flex;
+    width: 90vw;
+    min-height: 50px;
+    margin-bottom: 10vh;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.db_article .cleanup_comment .write_comment .two_button .item {
+    width: 60px;
+    height: 30px;
+}
+
+.db_article .cleanup_comment .write_comment .two_button .item:first-child {
+    margin-right: 10px;
+}

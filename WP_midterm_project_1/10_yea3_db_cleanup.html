@@ -11,15 +11,11 @@
         
     </head>
     <body>
-        <nav>
-            <div class="sub_nav">
-                <div class="sub_logo_box"><a href="10_yes3_index.html"><img id="sub_logo_position" src="./res/logo_black.png" alt="엉뚱로고"></a></div>
-                <div class="sub_menu_container">
-                    <div class="item"><a href="10_yes3_arch_learning.html">아카이빙</a></div>
-                    <div class="item"><a href="10_yes3_db_equipment.html">동아리방</a></div>
-                    <div class="item"><a href="10_yes3_signin.html">로그인</a></div>
-                </div>
-            </div>
+        <nav class="sub_nav">
+            <div class="item"><div class="sub_logobox"><a href="10_yes3_index.html"><img id="logo_position" src="./res/logo_black.png" alt="엉뚱로고"></a></div></div>
+            <div class="item"><a href="10_yes3_arch_learning.html">아카이빙</a></div>
+            <div class="item"><a href="10_yes3_db_equipment.html">동아리방</a></div>                    
+            <div class="item"><a href="10_yes3_signin.html">로그인</a></div>
         </nav>
         <header>
             <div class="sub_header">
@@ -34,14 +30,14 @@
             </div>
         </header>
         <article>
+            <h1 id="subpage_title">청소담당</h1>
             <div class="db_article">
-                <h1>청소담당</h1>
                 <div class="cleanup_content">
                     조 추첨과 역할 분담 모두 사다리 타기로 진행합니다.
                     <br>정해진 요일은 없으니 당번 주간 중 시간이 될 때 올라가서 청소하시면 된답니다. 완료 후 체크박스에 체크를 눌러주세요.
                     <br>
                     <br>쓸기 (1명)
-                    <br>: 동방에 비치된 청소기로 바닥을 꼼꼼히 밀어주세요! 청소가 씉나면 바깥 쓰레기통에 먼지통도 비워주세요.
+                    <br>: 동방에 비치된 청소기로 바닥을 꼼꼼히 밀어주세요! 청소가 끝나면 바깥 쓰레기통에 먼지통도 비워주세요.
                     <br>
                     <br>광내기 (2명)
                     <br>: 물티슈를 가지고 책상과 창틀, 전자레인지나 프린터 등등 먼지가 쌓일거 같은 곳은 구석구석 닦아주세요! 두 분이 일정을 맞춰서 같이 진행하세요.
@@ -60,19 +56,19 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <th>쓸기</th><td></td><th><input type="checkbox" name="청소완료" value="1조_쓸기"/></th>
+                                    <th>쓸기</th><td></td><th><input id="1_sweep" class="cleanup_checking" type="checkbox" name="청소완료" value="1조_쓸기" /><label for="1_sweep"></label></th>
                                 </tr>
                                 <tr>
-                                    <th>광내기1</th><td></td><th><input type="checkbox" name="청소완료" value="1조_광내기1"/></th>
+                                    <th>광내기1</th><td></td><th><input id="1_wipe1" class="cleanup_checking" type="checkbox" name="청소완료" value="1조_광내기1" /><label for="1_wipe1"></label></th>
                                 </tr>
                                 <tr>
-                                    <th>광내기2</th><td></td><th><input type="checkbox" name="청소완료" value="1조_광내기2"/></th>                                
+                                    <th>광내기2</th><td></td><th><input id="1_wipe2" class="cleanup_checking" type="checkbox" name="청소완료" value="1조_광내기2"/><label for="1_wipe2"></label></th>                                
                                 </tr>
                                 <tr>
-                                    <th>세탁하기1</th><td></td><th><input type="checkbox" name="청소완료" value="1조_세탁하기1"/></th>
+                                    <th>세탁하기1</th><td></td><th><input id="1_laundry1" class="cleanup_checking" type="checkbox" name="청소완료" value="1조_세탁하기1"/><label for="1_laundry1"></label></th>
                                 </tr>
                                 <tr>
-                                    <th>세탁하기2</th><td></td><th><input type="checkbox" name="청소완료" value="1조_세탁하기2"/></th>
+                                    <th>세탁하기2</th><td></td><th><input id="1_laundry2" class="cleanup_checking" type="checkbox" name="청소완료" value="1조_세탁하기2"/><label for="1_laundry2"></label></th>
                                 </tr>
                             </tbody>
                         </table>
@@ -85,27 +81,64 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <th>쓸기</th><td></td><th><input type="checkbox" name="청소완료" value="2조_쓸기"/></th>
+                                    <th>쓸기</th><td></td><th><input id="2_sweep" class="cleanup_checking" type="checkbox" name="청소완료" value="2조_쓸기"/><label for="2_sweep"></label></th>
                                 </tr>
                                 <tr>
-                                    <th>광내기1</th><td></td><th><input type="checkbox" name="청소완료" value="2조_광내기1"/></th>
+                                    <th>광내기1</th><td></td><th><input id="2_wipe1" class="cleanup_checking" type="checkbox" name="청소완료" value="2조_광내기1"/><label for="2_wipe1"></label></th>
                                 </tr>
                                 <tr>
-                                    <th>광내기2</th><td></td><th><input type="checkbox" name="청소완료" value="2조_광내기1"/></th>                                
+                                    <th>광내기2</th><td></td><th><input id="2_wipe2" class="cleanup_checking" type="checkbox" name="청소완료" value="2조_광내기1"/><label for="2_wipe2"></label></th>                                
                                 </tr>
                                 <tr>
-                                    <th>세탁하기1</th><td></td><th><input type="checkbox" name="청소완료" value="2조_세탁하기1"/></th>
+                                    <th>세탁하기1</th><td></td><th><input id="2_laundry1" class="cleanup_checking" type="checkbox" name="청소완료" value="2조_세탁하기1"/><label for="2_laundry1"></label></th>
                                 </tr>
                                 <tr>
-                                    <th>세탁하기2</th><td></td><th><input type="checkbox" name="청소완료" value="2조_세탁하기2"/></th>
+                                    <th>세탁하기2</th><td></td><th><input id="2_laundry2" class="cleanup_checking" type="checkbox" name="청소완료" value="2조_세탁하기2"/><label for="2_laundry2"></label></th>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                     <div class="reset">
-                        <input type="reset" value="초기화">
+                        <input id="all_reset" type="reset" class="cleanup_checking_reset" value="초기화"><label for="all_reset"></label>
                     </div>
                 </form>
+                <div class="cleanup_comment">
+                    <div class="comment">
+                        <div class="item">댓글창</div>
+                    </div>
+                    <div class="comment">
+                        <div class="item">프로필1</div>
+                        <div class="item">댓글</div>
+                        <div class="item">하트</div>
+                    </div>
+                    <div class="comment">
+                        <div class="item">프로필2</div>
+                        <div class="item">댓글</div>
+                        <div class="item">하트</div>
+                    </div>
+                    <div class="comment">
+                        <div class="item">프로필3</div>
+                        <div class="item">댓글</div>
+                        <div class="item">하트</div>
+                    </div>
+                    <div class="comment">
+                        <div class="item">프로필4</div>
+                        <div class="item">댓글</div>
+                        <div class="item">하트</div>
+                    </div>
+                    <div class="comment">
+                        <div class="item">프로필5</div>
+                        <div class="item">댓글</div>
+                        <div class="item">하트</div>
+                    </div>
+                    <form class="write_comment" name="댓글달기" method="GET" action="#">
+                        <textarea class="textarea" name="댓글란" rows="4" placeholder="청소부원을 응원해주세요!"></textarea>
+                        <div class="two_button">
+                            <button class="item" type="submit">댓글</button>
+                            <button class="item" type="reset">취소</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </article>
         <footer>
