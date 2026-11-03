@@ -271,3 +271,8 @@
 .learning-note {
   text-align: center;        /* "구글 드라이브로 연결돼요"도 가운데 */
 }
+
+/*커서*/
+* {
+    cursor: url('res/cursor_black.png') 2 2, auto;
+}
