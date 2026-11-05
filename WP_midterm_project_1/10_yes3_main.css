@@ -544,3 +544,7 @@ body {
  text-align: center;
 }
 
+/*로고 커서*/
+* {
+    cursor: url('res/cursor_white.png') 2 2, auto;
+}

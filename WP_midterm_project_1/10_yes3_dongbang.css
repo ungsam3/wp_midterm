@@ -403,3 +403,8 @@
 .db_article .cleanup_comment .write_comment .two_button .item:first-child {
     margin-right: 10px;
 }
+
+/*커서*/
+* {
+    cursor: url('res/cursor_black.png') 2 2, auto;
+}
