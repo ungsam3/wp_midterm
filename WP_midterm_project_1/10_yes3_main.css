@@ -140,13 +140,12 @@ body {
 }
 
 .main2_title {
-    background-color: #ffbc00;
+    background-color: transparent;
     font-size: 40px;
     font-weight: bold;
-    border-radius: 30px;
     margin-bottom: 30px;
     text-align: center;
-    color: black;
+    color: #ffbc00;
 }
 
 .main2_factors {
