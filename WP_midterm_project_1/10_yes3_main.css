@@ -494,6 +494,10 @@ body {
     box-sizing: border-box;
 }
 
+.org_executive li:hover{
+    background-color: #bbccdd;
+}
+
 .org_executive li:nth-child(1) { 
     margin-left: 175px; 
 }
@@ -505,6 +509,10 @@ body {
 
 .org_inventors ul {
     max-width: 1000px;
+}
+
+.org_inventors li:hover{
+    background-color: #bbccdd;
 }
 
 .org_inventors li {
