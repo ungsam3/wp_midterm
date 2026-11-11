@@ -95,69 +95,6 @@
 
 
 
-
-
-/* [3] 서브 페이지 네비게이션 */
-.sub_nav {  
-    display: flex;           
-    position: relative;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 10vh;
-    flex-direction: row;
-    justify-content: flex-end;
-}
-
-
-.sub_nav .item {
-    margin-top: 2vh;
-    margin-right: 3vw;
-    font-size: 40px;
-    font-family: "Dongle", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    color: #000000;
-}
-
-.sub_nav .item:first-child {
-    flex-grow: 1;
-    margin-top: 0.5vh;
-    margin-left: 1vw;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-}
-
-.sub_nav .item .sub_logobox {
-    width: 80px;
-    height: 80px;
-}
-
-.sub_logobox a:hover, .sub_logobox a:active {
-    opacity: 0.7;               
-}
-
-.sub_nav .item:last-child {
-    margin-right: 5vw;         /*마지막 아이템은 left 간격 따로 설정*/
-}
-
-.sub_nav .item a:link, .sub_nav .item a:visited {  /*기본상태*/
-    color: #000000;                /*텍스트 색상 흰색*/
-    text-decoration: none;           /*텍스트 밑줄 ㄴㄴ*/
-}
-
-.sub_nav .item a:hover, .sub_nav .item a:active {  /*호버,클릭*/
-    color: #003087;
-}
-
-.sub_nav .item a:focus {  /*포커스*/
-    color: #004ddd;                /*텍스트 색상 흰색*/
-}
-
-
-
-
 /* [4] 서브 페이지 header */
 .sub_header {
     position: relative;
