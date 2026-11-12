@@ -84,11 +84,11 @@
 }
 
 .main_nav .item a:hover, .main_nav .item a:active {  /*호버,클릭*/
-    color: #ffdd00;
+    color: #FDB813;
 }
 
 .main_nav .item a:focus {  /*포커스*/
-    color: #fff3a7;                /*텍스트 색상 흰색*/
+    color: #FDB813;                /*텍스트 색상 흰색*/
     text-decoration: blink;
 }
 
@@ -215,3 +215,165 @@
     opacity: 0.8;     
 }
 
+
+
+
+.ft {
+    position: relative;
+    overflow: hidden;              /* 로켓이 위로 날아가면 잘려서 사라지게 */
+    color: #dfe5ee;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.ft-stage {
+    position: relative;
+    height: 358px;             
+    background: url("res/footer-floor.png") no-repeat center top;
+}
+/* 안내 말풍선 */
+.ft-hint {
+    position: absolute;
+    top: 150px;
+    left: 50%;
+    width: 200px;
+    margin: 0 0 0 -100px;
+    padding: 8px 0;
+    border-radius: 30px;
+    background: #FDB813;
+    color: #14171d;
+    font-family: 'Jua', sans-serif;
+    font-size: 17px;
+    text-align: center;
+    box-shadow: 0 4px 0 #b9850a;
+}
+/* ---------- 발명품 위치 ---------- */
+/* 화면 가운데(left: 50%)를 기준으로 margin-left 만큼 옮겨요.
+   바닥 이미지도 가운데 기준이라, 화면 폭이 바뀌어도 같이 움직여요. */
+.ft-item {
+    position: absolute;
+    left: 50%;
+}
+
+.ft-item-robot  { top: 94px;  margin-left: -526px; width: 130px; }
+.ft-item-laptop { top: 222px; margin-left: -384px; width: 150px; }
+.ft-item-bulb   { top: 116px; margin-left: 254px;  width: 140px; }  /* 전구 이미지는 빛 때문에 여백 포함 */
+.ft-item-rocket { top: 66px;  margin-left: 435px;  width: 110px; }
+/* 버튼 기본 모양 없애기 */
+.ft-obj {
+    position: relative;
+    top: 0;
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+}
+.ft-obj img {
+    display: block;
+    width: 100%;                   /* 이미지는 2배 크기로 만들어서 선명하게 보여요 */
+}
+.ft-obj:hover {
+    top: -4px;                     /* 마우스를 올리면 살짝 떠오름 */
+}
+/* 바닥 그림자 */
+.ft-shadow {
+    position: absolute;
+    left: 4%;
+    bottom: -8px;
+    width: 92%;
+    height: 18px;
+    border-radius: 50%;
+    background: rgba(10, 12, 18, 0.5);
+}
+.ft-item-bulb .ft-shadow   { left: 22%; width: 56%; height: 14px; bottom: 11%; }
+.ft-item-rocket .ft-shadow { bottom: 12%; }   /* 로켓 이미지 아래쪽은 불꽃 자리라 그림자를 위로 */
+/* ---------- 애니메이션 (JS가 go 클래스를 붙이면 재생) ---------- */
+#ft-robot.go  { animation: ft-hop 0.9s; }
+#ft-rocket.go { animation: ft-launch 2.6s ease-in-out; }
+/* 로봇: 점프 */
+@keyframes ft-hop {
+    0%   { transform: translateY(0); }
+    45%  { transform: translateY(-48px); }
+    100% { transform: translateY(0); }
+}
+/* 로켓: 위로 날아갔다 다시 내려오기 */
+@keyframes ft-launch {
+    0%   { transform: translateY(0); }
+    50%  { transform: translateY(-460px); opacity: 1; }   /* 위로 올라가서 */
+    51%  { opacity: 0; }                                  /* 안 보이게 */
+    65%  { transform: translateY(-300px); opacity: 0; }   /* 위쪽으로 옮긴 다음 */
+    66%  { opacity: 1; }                                  /* 다시 보이게 */
+    100% { transform: translateY(0); }                    /* 내려와서 착륙 */
+}
+
+/* ---------- 아래쪽 글씨 영역 ---------- */
+/* footer-plate.png : 작은 철판 무늬 조각을 바둑판처럼 반복 */
+.ft-panel {
+    padding: 52px 96px 28px;
+    background: #161a21 url("res/footer-plate.png");
+}
+.ft-cols {
+    display: flex;
+    gap: 48px;
+}
+.ft-brand { flex: 1.5; }
+.ft-col   { flex: 1; }
+.ft-logo {
+    margin: 0 0 12px;
+    font-family: "Dongle", sans-serif;
+    font-size: 42px;
+}
+.ft-orange { color: #FF7A1A; }
+.ft-blue   { color: #3A9BFF; }
+.ft-sub {
+    margin: 0 0 8px;
+    font-size: 14px;
+    color: #a7b0bd;
+}
+.ft-apply {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 12px 22px;
+    border-radius: 30px;
+    background: #FF6A00;
+    color: #fff;
+    font-family: 'Jua', sans-serif;
+    font-size: 18px;
+    text-decoration: none;
+    box-shadow: 0 4px 0 #b44a00;
+}
+.ft-apply:hover { background: #ff7f26; }
+.ft-label {
+    margin: 0 0 18px;
+    font-family: 'Jua', sans-serif;
+    font-weight: normal;
+    font-size: 17px;
+    color: #FDB813;
+}
+.ft-col a {
+    display: block;
+    margin-bottom: 14px;
+    color: #dfe5ee;
+    font-size: 15px;
+    text-decoration: none;
+}
+.ft-col a:hover { color: #FDB813; }
+.ft-col p {
+    margin: 0 0 14px;
+    font-size: 15px;
+}
+.ft-key {
+    margin-right: 10px;
+    color: #8a94a3;
+}
+
+.ft-bottom {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    padding-top: 18px;
+    border-top: 1px solid #2c323d;
+    font-size: 13px;
+    color: #8a94a3;
+}
