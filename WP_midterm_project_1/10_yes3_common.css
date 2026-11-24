@@ -2,11 +2,9 @@
 
 /* 컴포넌트 */
 /* -------------------
-[1] 전체 폰트 스타일 설정
-[2] 메인 페이지 nav: .main_nav .main_menu_container(.item) / .main_nav .main_logo_box, #main_logo_position
-[3] 서브 페이지 nav: .sub_nav .sub_menu_container(.item) / .sub_nav .sub_logo_box, #sub_logo_position
-[4] 서브 페이지 header: .sub_header .menu_name / .sub_header .sub_menu_name .item / #sub_header_menu_now
-[5] 공통 footer: .footer_container(.content)
+[1] 전체 폰트 스타일 설정: 
+[2] nav: 
+[3] footer: 
 --------------------- */
 
 
@@ -92,145 +90,67 @@
     text-decoration: blink;
 }
 
-
-
-
-/* [4] 서브 페이지 header */
-.sub_header {
-    position: relative;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 200px;
-    background-color: #003087;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
+/* ---------- 네비게이션 드롭다운 ---------- */
+.main_nav .item {
+    position: relative;            /* 드롭다운 위치 기준 */
 }
 
-.sub_header .menu_name {
-    box-sizing: border-box;
-    width: 100%;
-    height: 50%;
-    padding-top: 30px;
-    font-size: 40px;
-    color: #ffffff;
-    opacity: 0.9;
-    justify-content: center;
+.main_nav .nav_title {             /* 메뉴 제목 (누르면 드롭다운 열림) */
+    cursor: pointer;
+    outline: none;
+}
+
+.main_nav .item:hover .nav_title,
+.main_nav .item:focus-within .nav_title {
+    color: #FDB813;
+}
+
+.main_nav .nav_dropdown {          /* 세부항목 목록 (평소엔 숨김) */
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);   /* 메뉴 제목 가운데 정렬 */
+    min-width: 140px;
+    margin: 0;
+    padding: 8px 0;
+    list-style: none;
+    background-color: rgba(0, 48, 135, 0.95);
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
     text-align: center;
-    font-family: "Jua", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-}
-
-.sub_header .sub_menu_name {
-    display: flex;
-    width: 50%;
-    height: 50%;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: center;
-}
-
-.sub_header .sub_menu_name .item {
-    box-sizing: border-box;
-    width: 30%;
-    height: 100%;
-    padding-top: 30px;
-    font-size: 25px;
-    color: #ffffff;
-    opacity: 0.9;
-    justify-content: center;
-    text-align: center;
-    overflow: hidden;
     white-space: nowrap;
-    text-overflow: ellipsis;
-    font-family: "Jua", sans-serif;
-    font-weight: 400;
-    font-style: normal;
 }
 
-.sub_header .sub_menu_name .item a:link, .sub_header .sub_menu_name .item a:visited {
-    color: #ffffff;
-    text-decoration: none;
+/* 마우스를 올리거나, 메뉴 제목을 클릭(포커스)하면 드롭다운 보이기 */
+.main_nav .item:hover .nav_dropdown,
+.main_nav .item:focus-within .nav_dropdown {
+    display: block;
 }
 
-.sub_header .sub_menu_name .item a:hover, .sub_header .sub_menu_name .item a:active {
-    color: #ffffff;
-    opacity: 0.8;
+.main_nav .nav_dropdown li a {
+    display: block;
+    padding: 2px 20px;
+    font-size: 34px;
 }
 
-#sub_header_menu_now {
-    color: #bebce6;
-    opacity: 0.9;
-    text-decoration: underline;
+.main_nav .nav_dropdown li a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
 }
-
-
-
 
 
 /* [4] 공통 footer */
-.footer_container {
-    width: 100vw;
-    height: 200px;
-    background-color: #a19c9c;
-    display: flex;
-    box-sizing: border-box;
-    padding: 10px;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: flex-start;
-}
-
-.footer_container .content {
-    margin-top: 10px;
-    margin-left: 10px;
-    width: 80px;
-    height: 100%;
-    font-size: 17px;
-    color: #313030a3;
-    flex-direction: row;
-    font-family: "Jua", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-} 
-
-
-.footer_container .content:first-child {
-    flex-grow: 1;
-}
-
-
-.sns_icon {
-    width: 40px;
-    height: 40px;
-    object-fit: contain;
-}
-
-.footer_container .content a:hover .sns_icon {
-    opacity: 0.8;     
-}
-
-
-
-
 .ft {
     position: relative;
     overflow: hidden;              /* 로켓이 위로 날아가면 잘려서 사라지게 */
     color: #dfe5ee;
     font-family: 'Noto Sans KR', sans-serif;
 }
-
 .ft-stage {
     position: relative;
     height: 358px;             
     background: url("res/footer-floor.png") no-repeat center top;
 }
-/* 안내 말풍선 */
 .ft-hint {
     position: absolute;
     top: 150px;
@@ -253,7 +173,6 @@
     position: absolute;
     left: 50%;
 }
-
 .ft-item-robot  { top: 94px;  margin-left: -526px; width: 130px; }
 .ft-item-laptop { top: 222px; margin-left: -384px; width: 150px; }
 .ft-item-bulb   { top: 116px; margin-left: 254px;  width: 140px; }  /* 전구 이미지는 빛 때문에 여백 포함 */
@@ -367,7 +286,6 @@
     margin-right: 10px;
     color: #8a94a3;
 }
-
 .ft-bottom {
     display: flex;
     justify-content: space-between;
