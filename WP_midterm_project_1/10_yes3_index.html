@@ -13,8 +13,26 @@
 </head>
 
 <body>
+    <!--배경 장식용 SVG 필터: 크레용 질감 / 전구 빛번짐 (화면에는 안 보임)-->
+    <svg class="deco-defs" aria-hidden="true">
+        <filter id="crayon" x="-10%" y="-10%" width="120%" height="120%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" seed="4" result="noise"/>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" result="rough"/>
+            <feColorMatrix in="noise" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -2.4 1.75" result="grain"/>
+            <feComposite in="rough" in2="grain" operator="in"/>
+        </filter>
+        <filter id="bulb-glow" x="-100%" y="-100%" width="300%" height="300%">
+            <feGaussianBlur stdDeviation="4" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+    </svg>
+
     <!--메인1: 들어오면 보이는 진짜 메인 페이지--------------------->
     <section class="main1">
+        <!--배경 장식: 별-->
+        <div class="deco" aria-hidden="true">
+            <i class="star">✦</i><i class="star">★</i><i class="star">✧</i><i class="star">✦</i>
+        </div>
         <nav class="main_nav">
             <div class="item"><div class="main_logobox"><a href="10_yes3_index.html"><img id="logo_position" src="./res/logo_white.png" alt="엉뚱로고"></a></div></div>
             <div class="item">
@@ -64,6 +82,12 @@
 
     <!--메인2:about us 소개, 주요활동 사진, 캘린더--------------------->
     <section class="main2" id="aboutus">
+        <!--배경 장식: 별 / 전구 테두리 네온사인 / 크레용 글씨-->
+        <div class="deco" aria-hidden="true">
+            <i class="star">★</i><i class="star">✦</i><i class="star">✧</i><i class="star">★</i><i class="star">✦</i>
+            <span class="neon-sign neon-blue with-bulbs">INVENT!</span>
+            <span class="crayon crayon-yellow">엉사</span>
+        </div>
         <h2 class="main2_title">ABOUT US</h2>
 
         <div class="main2_factors">
@@ -182,6 +206,28 @@
 
     <!--메인3:history 활동 연혁----------------------------------------------->
     <section class="main3" id="history">
+        <!--배경 장식: 별 / 전구 줄 / 네온사인 / 크레용 글씨-->
+        <div class="deco" aria-hidden="true">
+            <i class="star">✦</i><i class="star">★</i><i class="star">✧</i><i class="star">✦</i>
+            <svg class="string-lights" viewBox="0 0 1200 140">
+                <path d="M0 8 Q600 110 1200 8" fill="none" stroke="#3a3f4b" stroke-width="3"/>
+                <g class="blink-a"><rect x="82" y="22" width="8" height="8" rx="2" fill="#3a3f4b"/><ellipse cx="86" cy="39" rx="7" ry="10" fill="#ffbc00" filter="url(#bulb-glow)"/></g>
+                <g class="blink-b"><rect x="167" y="33" width="8" height="8" rx="2" fill="#3a3f4b"/><ellipse cx="171" cy="50" rx="7" ry="10" fill="#37a1ff" filter="url(#bulb-glow)"/></g>
+                <g class="blink-a"><rect x="253" y="42" width="8" height="8" rx="2" fill="#3a3f4b"/><ellipse cx="257" cy="59" rx="7" ry="10" fill="#ff5fa2" filter="url(#bulb-glow)"/></g>
+                <g class="blink-b"><rect x="339" y="50" width="8" height="8" rx="2" fill="#3a3f4b"/><ellipse cx="343" cy="67" rx="7" ry="10" fill="#ff8800" filter="url(#bulb-glow)"/></g>
+                <g class="blink-a"><rect x="425" y="55" width="8" height="8" rx="2" fill="#3a3f4b"/><ellipse cx="429" cy="72" rx="7" ry="10" fill="#ffbc00" filter="url(#bulb-glow)"/></g>
+                <g class="blink-b"><rect x="510" y="58" width="8" height="8" rx="2" fill="#3a3f4b"/><ellipse cx="514" cy="75" rx="7" ry="10" fill="#37a1ff" filter="url(#bulb-glow)"/></g>
+                <g class="blink-a"><rect x="596" y="59" width="8" height="8" rx="2" fill="#3a3f4b"/><ellipse cx="600" cy="76" rx="7" ry="10" fill="#ff5fa2" filter="url(#bulb-glow)"/></g>
+                <g class="blink-b"><rect x="682" y="58" width="8" height="8" rx="2" fill="#3a3f4b"/><ellipse cx="686" cy="75" rx="7" ry="10" fill="#ff8800" filter="url(#bulb-glow)"/></g>
+                <g class="blink-a"><rect x="767" y="55" width="8" height="8" rx="2" fill="#3a3f4b"/><ellipse cx="771" cy="72" rx="7" ry="10" fill="#ffbc00" filter="url(#bulb-glow)"/></g>
+                <g class="blink-b"><rect x="853" y="50" width="8" height="8" rx="2" fill="#3a3f4b"/><ellipse cx="857" cy="67" rx="7" ry="10" fill="#37a1ff" filter="url(#bulb-glow)"/></g>
+                <g class="blink-a"><rect x="939" y="42" width="8" height="8" rx="2" fill="#3a3f4b"/><ellipse cx="943" cy="59" rx="7" ry="10" fill="#ff5fa2" filter="url(#bulb-glow)"/></g>
+                <g class="blink-b"><rect x="1025" y="33" width="8" height="8" rx="2" fill="#3a3f4b"/><ellipse cx="1029" cy="50" rx="7" ry="10" fill="#ff8800" filter="url(#bulb-glow)"/></g>
+                <g class="blink-a"><rect x="1110" y="22" width="8" height="8" rx="2" fill="#3a3f4b"/><ellipse cx="1114" cy="39" rx="7" ry="10" fill="#ffbc00" filter="url(#bulb-glow)"/></g>
+            </svg>
+            <span class="neon-sign neon-orange">HIGH SCORE</span>
+            <span class="crayon crayon-blue">엉뚱한 역사!</span>
+        </div>
         <h2 class="main3_title">HISTORY</h2>
 
         <div class="main3_factors">
@@ -209,6 +255,13 @@
 
     <!--메인4:inventors 활동 부원------------------------------------------------------>
     <section class="main4" id="inventors">
+        <!--배경 장식: 별 / 전구 테두리 네온사인 / 크레용 글씨 / INSERT COIN-->
+        <div class="deco" aria-hidden="true">
+            <i class="star">★</i><i class="star">✦</i><i class="star">✧</i><i class="star">★</i>
+            <span class="neon-sign neon-pink with-bulbs">PLAYER SELECT</span>
+            <span class="crayon crayon-orange">엉사 ♥</span>
+            <span class="insert-coin">INSERT COIN</span>
+        </div>
         <h2 class="main4_title">INVENTORS</h2>
 
         <div class="organization">
