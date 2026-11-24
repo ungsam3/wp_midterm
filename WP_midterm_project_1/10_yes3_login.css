@@ -1,8 +1,70 @@
 /* 컴포넌트 */
-/* ---------------
-[1] 로그인 페이지 :
-[2] 회원가입 페이지 :
------------------- */
+/* -----------------
+    [1] 로그인 페이지
+    [2] 회원가입 페이지
+    ----------------- */
+
+.login-header {
+    display: flex;
+    position: relative;
+    width: 100vw;
+    height: 50vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-header .item {
+    height: 70px;
+    color: #ffffff;
+    font-family: "Dongle", sans-serif;
+    font-size: 30px;
+    font-weight: 400;
+}
+
+.login-header #orange {
+    color: #ff8800;
+    font-family: "Dongle", sans-serif;
+    font-size: 100px;
+    font-weight: 400;
+}
+
+.login-header #blue {
+    color: #37a1ff;
+    font-family: "Dongle", sans-serif;
+    font-size: 100px;
+    font-weight: 400;
+}
+
+.login-header #white {
+    color: #ffffff;
+    font-family: "Dongle", sans-serif;
+    font-size: 50px;
+    font-weight: 400;
+}
+
+
+
+body {
+    background-color: #060B1E;
+    margin: 0;
+    padding: 0;
+}
+
+.dbeq_1 {
+    position: relative;
+    top: 0;
+    left: 0;
+    background-image: url("res/sub_image.jpg");
+    background-attachment: scroll;
+    background-position: center;
+    background-size: cover;
+    width: 100%; 
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 /* [1] 로그인 및 회원가입 페이지 */
 .login_article {
