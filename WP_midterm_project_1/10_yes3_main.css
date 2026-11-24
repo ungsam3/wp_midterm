@@ -1,9 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Gaegu:wght@700&family=Press+Start+2P&display=swap'); /* 크레용 글씨, 오락실 픽셀 글씨 */
+
 body {
     margin: 0; 
     padding: 0; 
     width: 100%; 
     height: 100%; 
     box-sizing: border-box;
+    background-color: #060B1E; /* 동아리방 페이지와 같은 남색 바탕 */
 }
 
 /*--메인1------------------------------------------*/
@@ -11,10 +14,13 @@ body {
     position: relative;
     top: 0;
     left: 0;
-    background-image: url(res/mainpagedesign.png); 
-    background-attachment: fixed;
-    background-position: center;
-    background-size: cover;
+    /* 위: 배경 이미지 / 아래쪽(SCROLL 부근)으로 갈수록 남색(#060B1E)으로 자연스럽게 */
+    background-image:
+        linear-gradient(to bottom, rgba(6, 11, 30, 0) 55%, rgba(6, 11, 30, 0.7) 82%, #060B1E 100%),
+        url(res/mainpagedesign.png);
+    background-attachment: scroll, fixed;
+    background-position: center, center;
+    background-size: 100% 100%, cover;
     width: 100%; 
     height: 100vh;
     display: flex;
@@ -130,13 +136,19 @@ body {
 /*--메인2: ABOUT US--------------------------------*/
 .main2 {
     width: 100%; 
-    height: 100vh;
+    min-height: 100vh; /* 좁은 화면에서 캘린더가 아래로 내려가도 넘치지 않게 */
+    padding: 12vh 0 8vh; /* 위: nav에 가리지 않게 */
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap:10px;
-    background-color:#14110C;
+    /* 동아리방 화면처럼 남색 바탕 + 은은한 파란/주황 빛 */
+    background:
+        radial-gradient(420px circle at 12% 50%, rgba(10, 60, 130, 0.35), transparent 70%),
+        radial-gradient(380px circle at 88% 55%, rgba(120, 80, 20, 0.18), transparent 70%),
+        #060B1E;
 }
 
 .main2_title {
@@ -153,17 +165,24 @@ body {
     flex-direction: row;
     align-items: center; 
     justify-content: center;
-    gap: 8vw; /* 왼쪽 영역과 오른쪽 캘린더 사이의 간격 */
+    flex-wrap: wrap; /* 화면이 좁으면 캘린더가 아래 줄로 */
+    column-gap: max(8vw, 90px); /* 왼쪽 영역과 오른쪽 캘린더 사이의 간격 */
+    row-gap: 40px;
+    padding: 0 60px; /* 사진 양옆 ◀ ▶ 화살표 자리 */
+    box-sizing: border-box;
+    max-width: 100%;
 }
 
 .main2_left {
     display: flex;
     flex-direction: column;
+    max-width: 100%;
 }
 
 .main2_1 {
     background-color: transparent; 
     width: 450px; 
+    max-width: 100%;
     height: auto;
     margin-bottom: 24px;
     text-align: center;
@@ -191,7 +210,8 @@ body {
 .main2_2 {
     position: relative;
     width: 450px; 
-    height: 300px; 
+    max-width: 100%;
+    aspect-ratio: 3 / 2; /* 450x300 비율 유지하면서 좁은 화면에선 같이 줄어듦 */
 }
 
 .main_pictures {
@@ -204,8 +224,8 @@ body {
 .main_pictures img {
     position: absolute;
     top: 0; left: 0;
-    width: 450px;
-    height: 300px;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     opacity: 0; 
 }
@@ -243,8 +263,9 @@ body {
     width: 25vw;
     height: 60vh;
     min-width: 320px;
+    max-width: 100%;
     min-height: 480px;
-    background-color:#14110C;
+    background-color: transparent;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -288,8 +309,11 @@ body {
     color: #f8f9fa;
 }
 
+.cal_week .sun { color: red; }
+.cal_week .sat { color: #4da3ff; }
+
 .cal_days .sun { color: red; }
-.cal_days .sat { color: blue; }
+.cal_days .sat { color: #4da3ff; }
 
 /*hover*/
 .cal_days div:hover {
@@ -337,7 +361,7 @@ body {
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    background-color:#14110C;
+    background: linear-gradient(to bottom, #060B1E 0%, #0b0f1c 100%);
 }
 
 .main3_title {
@@ -407,13 +431,14 @@ body {
 .main4 {
     background-color: #f8f9fa;
     width: 100%; 
-    height: 100vh;
+    min-height: 100vh; /* 화면이 좁아져 줄이 늘어나도 내용이 넘치지 않게 */
     padding-top: 8vh;
+    padding-bottom: 8vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     box-sizing: border-box;
-    background-color:#14110C;
+    background: linear-gradient(to bottom, #0b0f1c 0%, #121620 100%);
 }
 
 .main4_title {
@@ -474,11 +499,12 @@ body {
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex;
-    flex-wrap: wrap;
+    /* 3칸 grid: 임원진 6명이 3명씩 2줄로 나란히 */
+    display: grid;
+    grid-template-columns: repeat(3, 160px);
     justify-content: center;
     gap: 15px;
-    width: 685px; 
+    width: auto;
     max-width: 100%;
 }
 
@@ -498,11 +524,11 @@ body {
     background-color: #bbccdd;
 }
 
-.org_executive li:nth-child(1) { 
-    margin-left: 175px; 
-}
-.org_executive li:nth-child(2) { 
-    margin-right: 175px; 
+/* 화면이 아주 좁을 때: 임원진 2칸씩 (3줄) */
+@media (max-width: 680px) {
+    .org_executive ul {
+        grid-template-columns: repeat(2, 160px);
+    }
 }
 
 
@@ -547,4 +573,214 @@ body {
 /*로고 커서*/
 * {
     cursor: url('res/cursor_white.png') 2 2, auto;
+}
+
+
+/*---index 전용: nav / footer 색 이어지게------------------------*/
+/* nav: 위쪽만 살짝 어둡게, 아래로 투명하게 사라짐 (스크롤해도 경계선 없음) */
+.main_nav {
+    background: linear-gradient(to bottom, rgba(6, 11, 30, 0.8) 0%, rgba(6, 11, 30, 0) 100%);
+}
+
+/* footer 바닥 그림 뒤가 흰색으로 비지 않도록 INVENTORS 끝 색 → footer 패널 색 그라데이션 */
+.ft-stage {
+    background:
+        url("res/footer-floor.png") no-repeat center top,
+        linear-gradient(to bottom, #121620 0%, #161a21 100%);
+}
+
+
+/*===============================================================
+  배경 장식 (오락실 느낌): 네온사인 / 크레용 글씨 / 별 / 전구
+  - .deco 안의 요소들은 글자·사진 "뒤"에 깔리고, 클릭도 안 막아요
+================================================================*/
+.main2, .main3, .main4 {
+    position: relative;
+    isolation: isolate;          /* 장식(z-index:-1)이 섹션 배경 위, 내용 아래에 오도록 */
+}
+
+.deco {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    overflow: hidden;
+    z-index: -1;
+    pointer-events: none;        /* 장식이 버튼/링크 클릭을 막지 않게 */
+}
+
+/* main1은 안에 고정 nav가 있어서 isolation을 쓰면 nav가 아래 섹션에 가려짐 → 별만 z-index 0으로 */
+.main1 .deco {
+    z-index: 0;
+}
+
+/* SVG 필터 정의용 (화면에 자리 차지 X) */
+.deco-defs {
+    position: absolute;
+    width: 0; height: 0;
+}
+
+/* ---------- 별 (반짝반짝) ---------- */
+.star {
+    position: absolute;
+    font-style: normal;
+    font-size: 22px;
+    color: #ffe27a;
+    text-shadow: 0 0 6px rgba(255, 210, 90, 0.9), 0 0 16px rgba(255, 170, 40, 0.6);
+    animation: twinkle 3s ease-in-out infinite;
+}
+.star:nth-of-type(2) { animation-delay: 0.8s; font-size: 16px; color: #9fd0ff; text-shadow: 0 0 8px rgba(55, 161, 255, 0.9); }
+.star:nth-of-type(3) { animation-delay: 1.6s; font-size: 28px; }
+.star:nth-of-type(4) { animation-delay: 0.4s; font-size: 14px; }
+.star:nth-of-type(5) { animation-delay: 2.2s; font-size: 20px; color: #ffb3d6; text-shadow: 0 0 8px rgba(255, 95, 162, 0.9); }
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.35; transform: scale(0.8) rotate(0deg); }
+    50%      { opacity: 1;    transform: scale(1.15) rotate(15deg); }
+}
+
+/* 섹션별 별 위치 */
+.main1 .star:nth-of-type(1) { top: 22%; left: 7%; }
+.main1 .star:nth-of-type(2) { top: 16%; right: 22%; }
+.main1 .star:nth-of-type(3) { top: 52%; left: 12%; }
+.main1 .star:nth-of-type(4) { top: 48%; right: 9%; }
+
+.main2 .star:nth-of-type(1) { top: 14%; right: 12%; }
+.main2 .star:nth-of-type(2) { top: 38%; left: 4%; }
+.main2 .star:nth-of-type(3) { bottom: 14%; left: 20%; }
+.main2 .star:nth-of-type(4) { top: 60%; right: 4%; }
+.main2 .star:nth-of-type(5) { bottom: 6%; right: 30%; }
+
+.main3 .star:nth-of-type(1) { top: 30%; left: 5%; }
+.main3 .star:nth-of-type(2) { top: 55%; right: 4%; }
+.main3 .star:nth-of-type(3) { bottom: 10%; right: 14%; }
+.main3 .star:nth-of-type(4) { bottom: 20%; left: 3%; }
+
+.main4 .star:nth-of-type(1) { top: 30%; right: 8%; }
+.main4 .star:nth-of-type(2) { top: 50%; left: 6%; }
+.main4 .star:nth-of-type(3) { bottom: 22%; left: 14%; }
+.main4 .star:nth-of-type(4) { top: 12%; right: 26%; }
+
+/* ---------- 네온사인 ---------- */
+.neon-sign {
+    position: absolute;
+    padding: 12px 26px;
+    border: 3px solid currentColor;
+    border-radius: 14px;
+    font-family: "Jua", sans-serif;
+    font-size: 30px;
+    letter-spacing: 3px;
+    white-space: nowrap;
+    animation: neon-flicker 7s infinite;
+}
+/* 네온 색: 글자는 하얗게 빛나고 테두리·번짐은 각 색으로 */
+.neon-blue {
+    color: #37a1ff;
+    text-shadow: 0 0 2px #fff, 0 0 8px #37a1ff, 0 0 20px #37a1ff, 0 0 40px #37a1ff;
+    box-shadow: 0 0 8px #37a1ff, 0 0 24px rgba(55, 161, 255, 0.6), inset 0 0 12px rgba(55, 161, 255, 0.6);
+}
+.neon-orange {
+    color: #ff8800;
+    text-shadow: 0 0 2px #fff, 0 0 8px #ff8800, 0 0 20px #ff8800, 0 0 40px #ff8800;
+    box-shadow: 0 0 8px #ff8800, 0 0 24px rgba(255, 136, 0, 0.6), inset 0 0 12px rgba(255, 136, 0, 0.6);
+}
+.neon-pink {
+    color: #ff5fa2;
+    text-shadow: 0 0 2px #fff, 0 0 8px #ff5fa2, 0 0 20px #ff5fa2, 0 0 40px #ff5fa2;
+    box-shadow: 0 0 8px #ff5fa2, 0 0 24px rgba(255, 95, 162, 0.6), inset 0 0 12px rgba(255, 95, 162, 0.6);
+}
+
+/* 가끔 지지직- 깜빡이는 네온 */
+@keyframes neon-flicker {
+    0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
+    20%, 24%, 55%                     { opacity: 0.35; }
+}
+
+/* 오락실 간판처럼 전구 테두리 (두 겹이 번갈아 깜빡) */
+.with-bulbs::before,
+.with-bulbs::after {
+    content: "";
+    position: absolute;
+    top: -16px; left: -16px; right: -16px; bottom: -16px;
+    border-radius: 22px;
+    background:
+        radial-gradient(circle, #fff3c4 0 3px, rgba(255, 200, 80, 0.55) 4px, transparent 6px) 0 0 / 24px 12px repeat-x,
+        radial-gradient(circle, #fff3c4 0 3px, rgba(255, 200, 80, 0.55) 4px, transparent 6px) 0 100% / 24px 12px repeat-x,
+        radial-gradient(circle, #fff3c4 0 3px, rgba(255, 200, 80, 0.55) 4px, transparent 6px) 0 0 / 12px 24px repeat-y,
+        radial-gradient(circle, #fff3c4 0 3px, rgba(255, 200, 80, 0.55) 4px, transparent 6px) 100% 0 / 12px 24px repeat-y;
+    animation: bulb-chase 1s steps(1) infinite;
+}
+.with-bulbs::after {
+    background-position: 12px 0, 12px 100%, 0 12px, 100% 12px;  /* 반 칸씩 어긋난 전구 */
+    animation-delay: 0.5s;
+}
+@keyframes bulb-chase {
+    0%   { opacity: 1; }
+    50%  { opacity: 0.15; }
+}
+
+/* 섹션별 네온 위치 */
+.main2 .neon-sign { top: 17%; left: 5%; transform: rotate(-6deg); }
+.main3 .neon-sign { top: 16%; right: 6%; transform: rotate(4deg); font-size: 24px; }
+.main4 .neon-sign { top: 14%; left: 5%; transform: rotate(-4deg); font-size: 24px; }
+
+/* ---------- 크레용 글씨 ---------- */
+.crayon {
+    position: absolute;
+    font-family: "Gaegu", "Jua", sans-serif;
+    font-weight: 700;
+    font-size: 76px;
+    line-height: 1;
+    white-space: nowrap;
+    filter: url(#crayon);                     /* 거친 크레용 질감 */
+    text-decoration: underline wavy;          /* 크레용으로 쓱쓱 그은 밑줄 */
+    text-decoration-thickness: 4px;
+    text-underline-offset: 14px;
+    opacity: 0.9;
+}
+.crayon-yellow { color: #ffbc00; }
+.crayon-blue   { color: #6db8ff; }
+.crayon-orange { color: #ff8a2a; }
+
+.main2 .crayon { bottom: 9%; right: 5%; transform: rotate(-8deg); }
+.main3 .crayon { bottom: 7%; left: 4%; transform: rotate(5deg); font-size: 56px; }
+.main4 .crayon { bottom: 12%; right: 6%; transform: rotate(7deg); }
+
+/* ---------- 전구 줄 (HISTORY 위쪽) ---------- */
+.string-lights {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+}
+.string-lights .blink-a { animation: bulb-chase 1.4s steps(1) infinite; }
+.string-lights .blink-b { animation: bulb-chase 1.4s steps(1) infinite 0.7s; }
+
+/* ---------- INSERT COIN (오락실 픽셀 글씨) ---------- */
+.insert-coin {
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: "Press Start 2P", monospace;
+    font-size: 16px;
+    letter-spacing: 2px;
+    color: #ffbc00;
+    text-shadow: 0 0 8px rgba(255, 188, 0, 0.8);
+    animation: coin-blink 1.2s steps(1) infinite;
+}
+@keyframes coin-blink {
+    0%  { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* 화면이 좁으면 큰 장식(네온·크레용)은 내용과 겹치니까 숨기고 별·전구만 */
+@media (max-width: 1200px) {
+    .neon-sign, .crayon { display: none; }
+}
+
+/* '움직임 줄이기' 설정을 켠 사용자에겐 애니메이션 끄기 */
+@media (prefers-reduced-motion: reduce) {
+    .star, .neon-sign, .with-bulbs::before, .with-bulbs::after,
+    .string-lights g, .insert-coin { animation: none; }
 }
