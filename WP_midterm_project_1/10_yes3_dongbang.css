@@ -24,26 +24,10 @@
   --board-w: 240px;     /* 대여 현황 보드 폭 */
 }
 
-body {
-  background-color: #060B1E;
-  margin: 0;
-  padding: 0;
-}
-
 /* ===== 상단 배너 ===== */
+/* 배경 사진·남색 body는 10_yes3_bg.css, 높이만 여기서 */
 .dbeq_1 {
-  position: relative;
-  top: 0;
-  left: 0;
-  background-image: url("res/sub_image.jpg");
-  background-attachment: scroll;
-  background-position: center;
-  background-size: cover;
-  width: 100%;
   height: 150px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 /* ===== 제목 + 검색창 한 줄 ===== */
