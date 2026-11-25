@@ -248,7 +248,13 @@
 
             </div>
 
-            <figure><img class="main3_ungsasong" src="res/ungsasong.png" alt="엉뚱한사람들눈송이"></figure>
+            <!--눈송이: 누르면 녹고, 다시 누르면 다시 얼어붙음 (숨긴 체크박스 + label, JS 없음)-->
+            <figure class="snow">
+                <input type="checkbox" id="snow-melt" class="snow-toggle">
+                <label for="snow-melt" class="snow-label" title="눈송이를 눌러보세요!">
+                    <img class="main3_ungsasong" src="res/ungsasong.png" alt="엉뚱한사람들눈송이">
+                </label>
+            </figure>
         </div>
 
     </section>
@@ -260,7 +266,6 @@
             <i class="star">★</i><i class="star">✦</i><i class="star">✧</i><i class="star">★</i>
             <span class="neon-sign neon-pink with-bulbs">PLAYER SELECT</span>
             <span class="crayon crayon-orange">엉사 ♥</span>
-            <span class="insert-coin">INSERT COIN</span>
         </div>
         <h2 class="main4_title">INVENTORS</h2>
 
@@ -298,6 +303,14 @@
 
         </div>
 
+
+    <!--누르면 후원 페이지(BUY US A COIN)로 이동-->
+        <a class="insert-coin with-bulbs" href="10_yes3_coin.html">
+            <svg class="coin-gear coin-gear-left" viewBox="0 0 40 40" aria-hidden="true"><circle class="gear-teeth" cx="20" cy="20" r="16"/><circle class="gear-body" cx="20" cy="20" r="10"/></svg>
+            <span class="coin-text">INSERT US COIN</span>
+            <svg class="coin-gear coin-gear-right" viewBox="0 0 40 40" aria-hidden="true"><circle class="gear-teeth" cx="20" cy="20" r="16"/><circle class="gear-body" cx="20" cy="20" r="10"/></svg>
+            <i class="coin-star" aria-hidden="true">✦</i><i class="coin-star" aria-hidden="true">★</i><i class="coin-star" aria-hidden="true">✧</i>
+        </a>
 
     </section>
    
@@ -355,6 +368,7 @@
             </div>
         </div>
     </footer>
+
 </body>
 
 </html>
