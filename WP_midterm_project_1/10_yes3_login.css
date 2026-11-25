@@ -2,102 +2,297 @@
 /* -----------------
     [1] 로그인 페이지
     [2] 회원가입 페이지
+    (비품 / 교육자료 페이지와 같은 디자인으로 통일)
     ----------------- */
 
+/* ===== 공통 변수 (learning / 비품 페이지와 동일) ===== */
+:root {
+  --navy: #060B1E;
+  --panel: #101734;
+  --panel-2: #172044;
+  --line: rgba(255, 255, 255, 0.12);
+  --orange: #FF8A00;
+  --yellow: #FFBB00;
+  --blue: #2F9BFF;
+  --text: #F5F3EE;
+  --muted: #A9B0C8;
+}
+
+body {
+  background-color: #060B1E;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== 상단 배너 (사진만, 비품 페이지와 같은 높이) ===== */
+.dbeq_1 {
+  position: relative;
+  top: 0;
+  left: 0;
+  background-image: url("res/sub_image.jpg");
+  background-attachment: scroll;
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== 오른쪽 칸 안 문구 (로그인 / 회원가입 페이지) ===== */
+/* 문구는 칸 위쪽에, 버튼은 문구 아래 고정 간격 → 칸 중간 살짝 아래 */
 .login-header {
-    display: flex;
-    position: relative;
-    width: 100vw;
-    height: 50vh;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .login-header .item {
-    height: 70px;
-    color: #ffffff;
-    font-family: "Dongle", sans-serif;
-    font-size: 30px;
-    font-weight: 400;
+  margin: 0;
+  color: var(--text);
+  font-family: "Jua", sans-serif;   /* 문구 전체 Jua */
+  font-size: 50px;
+  line-height: 1.2;
+  white-space: nowrap;         /* 자동 줄바꿈 없음 (회원가입은 <br>로만 나눔) */
+  word-break: keep-all;        /* 단어 중간에서 줄바꿈 안 되게 */
+  font-weight: 400;
+  letter-spacing: 0;
 }
 
 .login-header #orange {
-    color: #ff8800;
-    font-family: "Dongle", sans-serif;
-    font-size: 100px;
-    font-weight: 400;
+  color: var(--orange);
 }
-
 .login-header #blue {
-    color: #37a1ff;
-    font-family: "Dongle", sans-serif;
-    font-size: 100px;
-    font-weight: 400;
+  color: var(--blue);
 }
 
 .login-header #white {
-    color: #ffffff;
-    font-family: "Dongle", sans-serif;
-    font-size: 50px;
-    font-weight: 400;
+  color: var(--text);
+  font-family: "Jua", sans-serif;
+  font-size: 40px;
+  font-weight: 400;
 }
 
-
-
-body {
-    background-color: #060B1E;
-    margin: 0;
-    padding: 0;
+/* ===== 본문 ===== */
+article {
+  padding-top: 0;
 }
 
-.dbeq_1 {
-    position: relative;
-    top: 0;
-    left: 0;
-    background-image: url("res/sub_image.jpg");
-    background-attachment: scroll;
-    background-position: center;
-    background-size: cover;
-    width: 100%; 
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+/* ===== 페이지 제목 (비품 페이지 제목과 같은 스타일, 조금 더 크게) ===== */
+/* 폭을 판넬 두 개 폭(520 + 64 + 520)과 맞춰서 왼쪽 판넬 왼쪽 끝에 제목이 오도록 */
+.board-head {
+  width: 88%;
+  max-width: 1104px;
+  margin: 24px auto 0;
+  box-sizing: border-box;
+}
+.board-head h1 {
+  margin: 0;
+  text-align: left;
+  font-family: "Jua", sans-serif;
+  font-weight: 400;
+  color: var(--text);
+  font-size: 56px;
+  letter-spacing: 2px;
+  text-shadow: 0 0 24px rgba(47, 155, 255, 0.55);
+}
+.board-head h1::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 6px;
+  margin-top: 12px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--orange), var(--yellow));
 }
 
-/* [1] 로그인 및 회원가입 페이지 */
+/* 판넬 두 개를 화면 중앙선 기준 왼쪽 / 오른쪽에 나란히 배치 */
 .login_article {
-    display: flex;
-    position: relative;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    min-height: 57vh;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;        /* 오른쪽 빈 판넬이 왼쪽 판넬과 같은 높이 */
+  gap: 64px;                   /* 왼쪽 칸 ↔ 오른쪽 문구 간격 */
+  width: 88%;
+  max-width: 1180px;
+  margin: 24px auto 80px;
+  box-sizing: border-box;
 }
 
+/* ===== 로그인 / 회원가입 판넬 (오른쪽 빈 판넬도 같은 스타일) ===== */
 .login_article .signinup_item {
-    display: flex;
-    width: 500px;
-    box-sizing: border-box;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius: 30px;
-    color: rgb(0, 0, 0);
-    font-size: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1 1 0;                 /* 두 판넬 폭을 똑같이 → 왼쪽 판넬이 중앙선 왼편에 고정 */
+  min-width: 0;
+  max-width: 520px;
+  box-sizing: border-box;
+  padding: 40px 44px 36px;
+  color: var(--text);
+  font-family: "Jua", sans-serif;
+  font-weight: 400;
+  border-radius: 28px;
+  border: 1px solid var(--line);
+  background:
+    radial-gradient(circle at 0% 0%, rgba(47, 155, 255, 0.20), transparent 45%),
+    radial-gradient(circle at 100% 0%, rgba(255, 187, 0, 0.16), transparent 45%),
+    var(--panel);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
 }
 
-.login_article .signinup_item .sign_table {
-    table-layout: fixed;
-    width: 80%;
-    height: 150px;
+/* 판넬 맨 위 포인트 선 (제목 밑줄과 같은 그라데이션) */
+.login_article .signinup_item::before {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 5px;
+  margin-bottom: 18px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--orange), var(--yellow));
 }
 
+/* 오른쪽은 칸 모양 없이 문구 + 버튼만 (배경·테두리·그림자 제거) */
+.login_article .signinup_side {
+  padding-left: 0;
+  padding-right: 0;
+  border: none;
+  background: none;
+  box-shadow: none;
+}
+.login_article .signinup_side::before {
+  visibility: hidden;          /* 막대는 숨기되 자리는 남겨서 문구 높이를 왼쪽 칸과 맞춤 */
+}
+
+/* 표 구조는 그대로 두고, 한 줄씩 쌓이는 폼처럼 보이게 */
+.login_article .sign_table,
+.login_article .sign_table tbody,
+.login_article .sign_table tr,
+.login_article .sign_table td,
+.login_article .sign_table th {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0;
+  text-align: left;
+}
+.login_article .sign_table {
+  border-collapse: collapse;
+}
+.login_article .sign_table tbody tr {
+  margin-bottom: 18px;
+}
+
+/* 항목 이름 (학번, 비밀번호 ...) */
+.login_article .sign_table td.dongle-regular {
+  margin-bottom: 8px;
+  font-family: "Jua", sans-serif;
+  font-size: 16px;
+  color: var(--muted);
+}
+
+/* 입력칸 */
+.login_article .sign_table input[type="text"],
+.login_article .sign_table input[type="password"],
+.login_article .sign_table input[type="email"] {
+  width: 100%;
+  height: 50px;
+  box-sizing: border-box;
+  padding: 0 22px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  font-family: "Jua", sans-serif;
+  font-size: 17px;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.login_article .sign_table input::placeholder { color: #7F88A8; }
+.login_article .sign_table input[type="text"]:focus,
+.login_article .sign_table input[type="password"]:focus,
+.login_article .sign_table input[type="email"]:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(47, 155, 255, 0.25);
+}
+
+/* 초기화 버튼 (보기 / 취소 버튼과 같은 회색 알약) */
 #td_reset {
-    text-align: end;
+  margin-top: 12px;
+  text-align: right !important;
+}
+#td_reset input[type="reset"] {
+  height: 42px;
+  padding: 0 24px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #3c4053;
+  color: var(--text);
+  font-family: "Jua", sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+#td_reset input[type="reset"]:hover {
+  border-color: var(--yellow);
+  color: var(--yellow);
+}
+
+/* 로그인 / 회원가입 버튼 (오른쪽 칸 문구 아래, 검색 버튼처럼 아래 음영만) */
+.login_article input[type="submit"] {
+  margin-top: 40px;            /* 문구와 버튼 사이 간격 (회원가입) */
+  width: 50%;
+  height: 54px;
+  border: none;
+  border-radius: 999px;
+  background: var(--orange);
+  color: #fff;
+  font-family: "Jua", sans-serif;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 0 #ff8a0098;
+  transition: background 0.15s;
+}
+/* 로그인 페이지 버튼: 문구가 한 줄이라 간격을 조금 더 */
+.login_article input[form="signin-form"] {
+  margin-top: 70px;
+}
+.login_article input[type="submit"]:hover {
+  background: #ff9a1f;
+}
+
+/* 버튼 아래 회원가입 링크 (연하고 작게) */
+.login-header .side-link {
+  margin-top: 14px;
+  font-family: "Jua", sans-serif;
+  font-size: 14px;
+  color: var(--muted);
+  opacity: 0.8;
+  text-decoration: none;
+  transition: color 0.15s, opacity 0.15s;
+}
+.login-header .side-link:hover {
+  color: var(--yellow);
+  opacity: 1;
+  text-decoration: underline;
+}
+
+/* ===== 반응형 ===== */
+@media (max-width: 900px) {
+  /* 좁은 화면에서는 위아래로 쌓기 */
+  .login_article {
+    flex-direction: column;
+    align-items: center;
+  }
+  .login_article .signinup_item { width: 100%; flex: none; }
+  .login_article .signinup_side { min-height: 240px; }
+  .board-head { max-width: 520px; }   /* 쌓인 판넬 왼쪽 끝에 맞춤 */
+}
+@media (max-width: 720px) {
+  .login_article .signinup_item { padding: 28px 22px; }
+  .login-header .item { font-size: 28px; }   /* 한 줄 유지되게 더 작게 */
 }
 
 /*커서*/

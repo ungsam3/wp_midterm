@@ -12,41 +12,41 @@
         <link rel="icon" href="./res/logo_black.png" type="image/png">
     </head>
     <body>
+        <nav class="main_nav">
+            <div class="item"><div class="main_logobox"><a href="10_yes3_index.html"><img id="logo_position" src="./res/logo_white.png" alt="엉뚱로고"></a></div></div>
+            <div class="item">
+                <span class="nav_title" tabindex="0">아카이빙</span>
+                <ul class="nav_dropdown">
+                    <li><a href="10_yes3_arch_learning.html">교육자료</a></li>
+                    <li><a href="10_yes3_arch_gallery.html">갤러리</a></li>
+                </ul>
+            </div>
+            <div class="item">
+                <span class="nav_title" tabindex="0">동아리방</span>
+                <ul class="nav_dropdown">
+                    <li><a href="10_yes3_db_equipment.html">비품</a></li>
+                    <li><a href="10_yes3_db_rule.html">이용규칙</a></li>
+                    <li><a href="10_yea3_db_cleanup.html">청소담당</a></li>
+                </ul>
+            </div>
+            <div class="item">
+                <span class="nav_title" tabindex="0">로그인</span>
+                <ul class="nav_dropdown">
+                    <li><a href="10_yes3_signin.html">로그인</a></li>
+                    <li><a href="10_yes3_signup.html">회원가입</a></li>
+                </ul>
+            </div>
+        </nav>
         <section class="dbeq_1">
-            <nav class="main_nav">
-                <div class="item"><div class="main_logobox"><a href="10_yes3_index.html"><img id="logo_position" src="./res/logo_white.png" alt="엉뚱로고"></a></div></div>
-                <div class="item">
-                    <span class="nav_title" tabindex="0">아카이빙</span>
-                    <ul class="nav_dropdown">
-                        <li><a href="10_yes3_arch_learning.html">교육자료</a></li>
-                        <li><a href="10_yes3_arch_gallery.html">갤러리</a></li>
-                    </ul>
-                </div>
-                <div class="item">
-                    <span class="nav_title" tabindex="0">동아리방</span>
-                    <ul class="nav_dropdown">
-                        <li><a href="10_yes3_db_equipment.html">비품</a></li>
-                        <li><a href="10_yes3_db_rule.html">이용규칙</a></li>
-                        <li><a href="10_yea3_db_cleanup.html">청소담당</a></li>
-                    </ul>
-                </div>
-                <div class="item">
-                    <span class="nav_title" tabindex="0">로그인</span>
-                    <ul class="nav_dropdown">
-                        <li><a href="10_yes3_signin.html">로그인</a></li>
-                        <li><a href="10_yes3_signup.html">회원가입</a></li>
-                    </ul>
-                </div>
-            </nav>
-        <header class="login-header">
-            <p class="item">숙명여대자대학교 중앙발명동아리</p>
-            <p class="item"><span id="orange">엉뚱한</span> <span id="blue">사람들</span></p>
-            <p class="item">당신은 엉뚱한 사람인가요?</p>
-        </header>
         </section>
         <article>
+            <!-- 페이지 제목 (왼쪽 판넬 위) -->
+            <div class="board-head">
+                <h1>로그인</h1>
+            </div>
+
             <div class="login_article">
-                <form class="signinup_item" name="로그인" method="GET" action="#">
+                <form class="signinup_item" id="signin-form" name="로그인" method="GET" action="#">
                     <table class="sign_table">
                         <tbody>
                             <tr>
@@ -57,14 +57,16 @@
                             </tr>
                         </tbody>
                     </table>
-                    <table class="sign_table">
-                        <tfoot>
-                            <tr>
-                                <th colspan="3"><input type="submit" value="로그인" /></th>
-                            </tr>
-                        </tfoot>
-                    </table>
                 </form>
+                <!-- 오른쪽 판넬 (문구 + 버튼) -->
+                <div class="signinup_item signinup_side">
+                    <div class="login-header">
+                        <p class="item">당신은 <span id="orange">엉뚱한</span> <span id="blue">사람</span>인가요?</p>
+                        <!-- form 속성으로 왼쪽 폼과 연결 (칸 밖에 있어도 제출됨) -->
+                        <input type="submit" form="signin-form" value="YES" />
+                        <a class="side-link" href="10_yes3_signup.html">아직 엉뚱한 사람이 아니라면?</a>
+                    </div>
+                </div>
             </div>
         </article>
         <footer class="ft">
@@ -86,7 +88,6 @@
                     <div class="ft-shadow"></div>
                     <button type="button" id="ft-rocket" class="ft-obj"><img id="ft-rocket-img" src="res/footer-rocket.png" alt="로켓"></button>
                 </div>
-            </div>
             </div>
             <div class="ft-panel">
                 <div class="ft-cols">
@@ -118,7 +119,6 @@
                 <div class="ft-bottom">
                     <span>© 2026 엉뚱한 사람들 · SMWU INVENTORS</span>
                     <span>숙명여자대학교 중앙발명동아리</span>
-                </div>
                 </div>
             </div>
         </footer>
