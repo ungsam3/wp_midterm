@@ -206,19 +206,7 @@
   background: linear-gradient(to bottom, rgba(6, 11, 30, 0.8) 0%, rgba(6, 11, 30, 0) 100%);
 }
 
-/* 서브 헤더: 파란색 → 아래로 갈수록 남색 바탕으로 자연스럽게 */
-.sub_header {
-  background:
-    radial-gradient(500px circle at 10% 0%, rgba(10, 70, 150, 0.45), transparent 70%),
-    radial-gradient(400px circle at 92% 0%, rgba(120, 80, 20, 0.25), transparent 70%),
-    linear-gradient(to bottom, #0a2a5e 0%, #060B1E 100%);
-}
-
-/* 본문: 남색 → footer 패널 색으로 천천히 */
-article {
-  background: linear-gradient(to bottom, #060B1E 0%, #0b0f1c 60%, #121620 100%);
-  padding-bottom: 40px;
-}
+/* 서브 헤더·본문 배경은 10_yes3_bg.css (메인 페이지와 같은 배경) */
 
 /* 어두운 바탕에서 글씨 보이게 */
 .sub_article h1 {
