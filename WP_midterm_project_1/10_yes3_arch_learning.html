@@ -42,49 +42,105 @@
         <article>
 
             <section class="learning_1">
-                <div class="sub_article">
-                    <h1>교육자료</h1>
-                </div>
-
+                <div class="sub_article"></div>
             </section>
 
             <section class="learning2">
+                <!-- 리스트 박스 위 제목 -->
+                <div class="board-head">
+                    <h1>교육 자료</h1>
+                </div>
 
-            <div class="panel" id="panel-learning">
-                <div class="learning-box">
-                <p class="learning-note">구글 드라이브로 연결돼요</p>
-                <ul class="drive-list">
-                    <li>
-                        <a class="open" href="https://drive.google.com/drive/folders/1cUaWEb0Jf134ETkfA45HFFSG1HL7Ku5G?usp=drive_link">
-                            <span class="drive-title">특허 교육자료</span>
-                            <span class="drive-btn">드라이브 열기↗️</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="open" href="https://drive.google.com/drive/folders/1ATqzTY3tQ5YU0mgKghelyCNqags-QEtE?usp=drive_link">
-                            <span class="drive-title">2026 교육자료</span>
-                            <span class="drive-btn">드라이브 열기↗️</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="open" href="https://drive.google.com/drive/folders/1qW_vB7kvEs-DdVodLGqZxVjvIYKnI5Rf?usp=drive_link">
-                            <span class="drive-title">2025 교육자료</span>
-                            <span class="drive-btn">드라이브 열기↗️</span>
-                        </a>
-                    </li>
-                    <li>
+                <div class="panel" id="panel-learning">
+                    <div class="learning-box">
+                        <!-- 전체 건수 + 검색 -->
+                        <div class="board-top">
+                            <p class="total-count">전체 <b id="total-count">0</b>건</p>
+                            <form class="search-form" id="search-form">
+                                <select class="sel" id="search-category" aria-label="검색 분류">
+                                    <option value="all">전체</option>
+                                    <option value="patent">특허</option>
+                                    <option value="making">메이킹</option>
+                                    <option value="activity">활동지</option>
+                                </select>
+                                <input class="search-input" id="search-keyword" type="text" placeholder="검색어를 입력해주세요.">
+                                <button class="search-btn" type="submit">검색</button>
+                            </form>
+                        </div>
 
-                        <a class="open" href="https://drive.google.com/drive/folders/1DZfPGWCGGI3FrmtZresivsYjymiW19N_?usp=drive_link">
-                            <span class="drive-title">2025 교육자료</span>
-                            <span class="drive-btn">드라이브 열기↗️</span>
-                        </a>
-                    </li>
-                </ul>
+                        <!-- 보기 필터 + 자료 작성하기 -->
+                        <div class="board-filter">
+                            <div class="view-filter">
+                                <select class="sel" id="per-page" aria-label="표시 개수">
+                                    <option value="10">10개씩</option>
+                                    <option value="20">20개씩</option>
+                                </select>
+                                <select class="sel" id="sort-order" aria-label="정렬">
+                                    <option value="latest">최신순</option>
+                                    <option value="oldest">등록순</option>
+                                </select>
+                                <button type="button" class="view-btn" id="view-btn">보기</button>
+                            </div>
+                            <button type="button" class="write-btn" id="open-modal">자료 작성하기</button>
+                        </div>
 
-            </div>
+                        <!-- 목록 -->
+                        <ul class="drive-list" id="post-list"></ul>
 
+                        <!-- 페이지 이동 -->
+                        <div class="pager">
+                            <button type="button" class="pg-btn" id="pg-first" aria-label="처음">&laquo;</button>
+                            <button type="button" class="pg-btn" id="pg-prev" aria-label="이전">&lsaquo;</button>
+                            <input class="pg-input" id="pg-input" type="number" min="1" value="1">
+                            <span class="pg-total">/ <span id="pg-total">1</span></span>
+                            <button type="button" class="pg-go" id="pg-go">이동</button>
+                            <button type="button" class="pg-btn" id="pg-next" aria-label="다음">&rsaquo;</button>
+                            <button type="button" class="pg-btn" id="pg-last" aria-label="마지막">&raquo;</button>
+                        </div>
+
+                    </div>
+                </div>
             </section>
         </article>
+
+        <!-- 자료 작성 모달 -->
+        <div class="modal" id="write-modal" aria-hidden="true">
+            <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+                <div class="modal-head">
+                    <h2 id="modal-title">새 <span>자료</span> 작성</h2>
+                    <button type="button" class="modal-close" id="close-modal" aria-label="닫기">✕</button>
+                </div>
+                <form id="write-form">
+                    <div class="field-row">
+                        <div class="field">
+                            <label for="w-category">분류</label>
+                            <select id="w-category">
+                                <option value="patent">특허</option>
+                                <option value="making">메이킹</option>
+                                <option value="activity">활동지</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="w-author">작성자</label>
+                            <input id="w-author" type="text" placeholder="예) 박ㅇㅇ" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="w-title">제목</label>
+                        <input id="w-title" type="text" placeholder="제목을 입력해주세요." required>
+                    </div>
+                    <div class="field">
+                        <label for="w-content">내용</label>
+                        <textarea id="w-content" placeholder="자료 설명이나 링크를 적어주세요."></textarea>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-cancel" id="cancel-modal">취소</button>
+                        <button type="submit" class="btn-submit">등록하기</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
         <footer class="ft">
             <div class="ft-stage">
                 <p class="ft-hint">발명품을 눌러보세요!</p>
@@ -104,7 +160,6 @@
                     <div class="ft-shadow"></div>
                     <button type="button" id="ft-rocket" class="ft-obj"><img id="ft-rocket-img" src="res/footer-rocket.png" alt="로켓"></button>
                 </div>
-            </div>
             </div>
             <div class="ft-panel">
                 <div class="ft-cols">
@@ -137,9 +192,221 @@
                     <span>© 2026 엉뚱한 사람들 · SMWU INVENTORS</span>
                     <span>숙명여자대학교 중앙발명동아리</span>
                 </div>
-                </div>
             </div>
         </footer>
+
+        <script>
+        (function () {
+            var CAT_LABEL = { patent: '특허', making: '메이킹', activity: '활동지' };
+
+            // ---- 샘플 데이터 (id가 클수록 늦게 등록) ----
+            var posts = [];
+            var authors = ['박ㅇㅇ', '이ㅇㅇ', '김ㅇㅇ'];
+
+            // 제목마다 [분류, 제목] 을 직접 지정
+            var items = [
+                ['making',   '3D 프린터 기초 사용법'],
+                ['making',   'CAD 세미나 자료'],
+                ['making',   '아두이노 핸즈온 실습 자료'],
+                ['patent',   '선행기술조사 방법'],
+                ['making',   '숙명창작소 사용 방법'],
+                ['activity', '엉뚱한 발명대회 제작 활동지'],
+                ['patent',   '특허청 KIPRIS 검색법'],
+                ['activity', 'Invention TOOLKIT'],
+                ['activity', '디자인 씽킹 활동지'],
+                ['activity', '엉뚱한 발명대회 준비 활동지'],
+                ['making',   '라즈베리파이 시작하기'],
+                ['making',   '프로토타입 제작 체크리스트'],
+                ['activity', '생활발명코리아 1차 활동지'],
+                ['patent',   '청구항 작성 연습'],
+                ['making',   '3D 프린팅 워크샵 Tinkercad'],
+                ['making',   '3D 프린팅 워크샵 AutoCAD'],
+                ['making',   '3D 프린팅 워크샵 MeshMixer'],
+                ['making',   '트리즈 발명원리'],
+                ['activity', '엉뚱한 발명대회 심사표'],
+                ['making',   '변박사 제작 후기'],
+                ['making',   '음성인식 기반 인형 뽑기 프로젝트'],
+                ['activity', '생활발명코리아 2차 활동지'],
+                ['activity', '생활발명코리아 중간 발표 템플릿'],
+                ['patent',   'WINTELIPS 사용 방법']
+            ];
+            for (var i = 0; i < items.length; i++) {
+                var month = 6 + Math.floor(i / 6);
+                var day = 1 + (i * 4) % 27;
+                posts.push({
+                    id: i + 1,
+                    category: items[i][0],
+                    title: items[i][1],
+                    author: authors[i % authors.length],
+                    date: '2026-' + pad(month) + '-' + pad(day),
+                    views: (i * 7) % 40,
+                    content: '다운로드하여 사용하세요'
+                });
+            }
+            var nextId = posts.length + 1;
+
+            // ---- 상태 ----
+            var state = { category: 'all', keyword: '', perPage: 10, sort: 'latest', page: 1 };
+
+            // ---- 요소 ----
+            var $ = function (id) { return document.getElementById(id); };
+            var listEl = $('post-list');
+            var totalEl = $('total-count');
+            var pgInput = $('pg-input');
+            var pgTotal = $('pg-total');
+
+            function pad(n) { return n < 10 ? '0' + n : '' + n; }
+            function today() {
+                var d = new Date();
+                return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+            }
+            function esc(s) {
+                return String(s).replace(/[&<>"']/g, function (c) {
+                    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+                });
+            }
+
+            function getFiltered() {
+                var kw = state.keyword.toLowerCase();
+                var result = posts.filter(function (p) {
+                    var catOk = state.category === 'all' || p.category === state.category;
+                    var kwOk = !kw || p.title.toLowerCase().indexOf(kw) > -1 || p.author.indexOf(kw) > -1;
+                    return catOk && kwOk;
+                });
+                result.sort(function (a, b) {
+                    if (state.sort === 'latest') {
+                        return a.date < b.date ? 1 : a.date > b.date ? -1 : b.id - a.id;
+                    }
+                    return a.id - b.id; // 등록순
+                });
+                return result;
+            }
+
+            function render() {
+                var data = getFiltered();
+                var totalPages = Math.max(1, Math.ceil(data.length / state.perPage));
+                if (state.page > totalPages) state.page = totalPages;
+                if (state.page < 1) state.page = 1;
+
+                var start = (state.page - 1) * state.perPage;
+                var pageData = data.slice(start, start + state.perPage);
+
+                totalEl.textContent = data.length;
+                pgTotal.textContent = totalPages;
+                pgInput.value = state.page;
+                pgInput.max = totalPages;
+
+                $('pg-first').disabled = $('pg-prev').disabled = state.page === 1;
+                $('pg-next').disabled = $('pg-last').disabled = state.page === totalPages;
+
+                if (!pageData.length) {
+                    listEl.innerHTML = '<li class="empty">검색 결과가 없어요.</li>';
+                    return;
+                }
+
+                listEl.innerHTML = pageData.map(function (p) {
+                    return '<li data-id="' + p.id + '">' +
+                        '<div class="post">' +
+                            '<span class="post-author">' + esc(p.author) + '</span>' +
+                            '<div class="post-main">' +
+                                '<div class="post-title"><span class="tag tag-' + p.category + '">' + CAT_LABEL[p.category] + '</span>' + esc(p.title) + '</div>' +
+                                '<div class="post-meta">' +
+                                    '<span>작성일 : ' + p.date + '</span>' +
+                                    '<span class="views">조회수 : <b>' + p.views + '</b>회</span>' +
+                                '</div>' +
+                            '</div>' +
+                        '</div>' +
+                        '<div class="post-detail">' + esc(p.content || '내용이 없습니다.') + '</div>' +
+                    '</li>';
+                }).join('');
+            }
+
+            // ---- 글 클릭 → 조회수 +1, 내용 펼치기 ----
+            listEl.addEventListener('click', function (e) {
+                var li = e.target.closest('li[data-id]');
+                if (!li) return;
+                var post = posts.filter(function (p) { return p.id === Number(li.dataset.id); })[0];
+                if (!post) return;
+                post.views += 1;
+                li.querySelector('.views b').textContent = post.views;
+                li.classList.toggle('open-detail');
+            });
+
+            // ---- 검색 ----
+            $('search-form').addEventListener('submit', function (e) {
+                e.preventDefault();
+                state.category = $('search-category').value;
+                state.keyword = $('search-keyword').value.trim();
+                state.page = 1;
+                render();
+            });
+
+            // ---- 보기 필터 ----
+            $('view-btn').addEventListener('click', function () {
+                state.perPage = Number($('per-page').value);
+                state.sort = $('sort-order').value;
+                state.page = 1;
+                render();
+            });
+
+            // ---- 페이지 이동 ----
+            function totalPagesNow() {
+                return Math.max(1, Math.ceil(getFiltered().length / state.perPage));
+            }
+            $('pg-first').addEventListener('click', function () { state.page = 1; render(); });
+            $('pg-prev').addEventListener('click', function () { state.page--; render(); });
+            $('pg-next').addEventListener('click', function () { state.page++; render(); });
+            $('pg-last').addEventListener('click', function () { state.page = totalPagesNow(); render(); });
+            function goPage() {
+                var n = parseInt(pgInput.value, 10);
+                state.page = isNaN(n) ? 1 : n;
+                render();
+            }
+            $('pg-go').addEventListener('click', goPage);
+            pgInput.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter') goPage();
+            });
+
+            // ---- 모달 ----
+            var modal = $('write-modal');
+            function openModal() {
+                modal.classList.add('show');
+                modal.setAttribute('aria-hidden', 'false');
+                $('w-title').focus();
+            }
+            function closeModal() {
+                modal.classList.remove('show');
+                modal.setAttribute('aria-hidden', 'true');
+                $('write-form').reset();
+            }
+            $('open-modal').addEventListener('click', openModal);
+            $('close-modal').addEventListener('click', closeModal);
+            $('cancel-modal').addEventListener('click', closeModal);
+            modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && modal.classList.contains('show')) closeModal();
+            });
+
+            $('write-form').addEventListener('submit', function (e) {
+                e.preventDefault();
+                posts.push({
+                    id: nextId++,
+                    category: $('w-category').value,
+                    title: $('w-title').value.trim(),
+                    author: $('w-author').value.trim(),
+                    date: today(),
+                    views: 0,
+                    content: $('w-content').value.trim()
+                });
+                state.page = 1;
+                state.sort = 'latest';
+                $('sort-order').value = 'latest';
+                closeModal();
+                render();
+            });
+
+            render();
+        })();
+        </script>
     </body>
 </html>
-
