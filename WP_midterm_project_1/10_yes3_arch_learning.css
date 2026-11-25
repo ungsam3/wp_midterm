@@ -139,20 +139,27 @@ article.learning2 {
 
 .search_btn {
   flex: none;
+  width: 56px;
   height: 56px;
-  padding: 0 32px;
-  border-radius: 999px;
+  padding: 0;
+  border-radius: 50%;
   border: none;
   background-color: var(--blue);
-  color: #17171C;
-  font-family: "Jua", sans-serif;
-  font-size: 18px;
-  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   box-shadow: 0 4px 0 #37a2ff98;
   cursor: pointer;
   transition: background 0.15s;
 }
 .search_btn:hover { background-color: #5bb4ff; }
+
+.search_btn img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  display: block;
+}
 
 /* ===== 본문 레이아웃 (비품 페이지의 .wrap과 동일, 판넬이 전체 폭 사용) ===== */
 article > .wrap {
@@ -212,12 +219,12 @@ article > .wrap {
   color: #fff;
   font-size: 20px;
   cursor: pointer;
-  box-shadow: 0 8px 22px rgba(255, 138, 0, 0.35);
+  box-shadow: 0 4px 0 rgba(255, 138, 0, 0.35);
   transition: transform 0.15s, box-shadow 0.15s;
 }
 .write-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(255, 138, 0, 0.5);
+  background-color: #ff9a1f;
 }
 
 /* ===== 보기 필터 ===== */
@@ -257,12 +264,13 @@ article > .wrap {
   padding: 0 24px;
   border: 1px solid var(--line);
   border-radius: 999px;
-  background: #3c4053;
+  background: #51556c;
+  box-shadow: 0 4px 0 rgba(108, 113, 138, 0.35);
   color: var(--text);
   font-size: 16px;
   cursor: pointer;
 }
-.view-btn:hover { border-color: var(--yellow); }
+.view-btn:hover { background-color: #5b5f7a; }
 
 /* ===== 목록 ===== */
 .drive-list {
