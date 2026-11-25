@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>BUY US A COIN - 엉뚱한사람들</title>
+    <meta name="author1" content="강채린">
+    <meta name="author2" content="박세은">
+    <meta name="author3" content="김서진">
+    <link rel="icon" href="./res/logo_black.png" type="image/png">
+    <link rel="stylesheet" href="10_yes3_coin.css">
+</head>
+
+<body>
+    <!--배경에 반짝이는 픽셀 별-->
+    <div class="pixel-stars" aria-hidden="true">
+        <i></i><i></i><i></i><i></i><i></i><i></i>
+    </div>
+
+    <!--오락기(게임 콘솔)-->
+    <main class="arcade">
+
+        <!--오락기 맨 위 간판-->
+        <div class="arcade-marquee">
+            <span>SMWU ARCADE</span>
+        </div>
+
+        <!--화면: NEXT를 누르면 주소가 #account가 되면서 계좌 화면으로 바뀜 (JS 없이 :target)-->
+        <div class="screen">
+
+            <!--2번 화면: 계좌 정보 (:target 일 때만 보임, 1번 화면보다 앞에 있어야 ~ 선택자로 1번을 숨길 수 있음)-->
+            <section class="scr scr-account" id="account">
+                <p class="hud"><span>1UP</span><span>CREDIT 01</span></p>
+
+                <h2 class="scr-title">THANK YOU,<br>PLAYER!</h2>
+
+                <dl class="account">
+                    <dt>BANK</dt>
+                    <dd>KAKAO BANK</dd>
+
+                    <dt>ACCOUNT NO.</dt>
+                    <dd class="account-num">11111-1111-1111</dd>
+
+                    <dt>ACCOUNT HOLDER</dt>
+                    <dd>SMWU INVENTORS</dd>
+                </dl>
+
+                <div class="scr-buttons">
+                    <a class="pixel-btn" href="#start">◀ BACK</a>
+                    <a class="pixel-btn pixel-btn-yellow" href="10_yes3_index.html#inventors">EXIT ▶</a>
+                </div>
+            </section>
+
+            <!--1번 화면: BUY US A COIN (처음 보이는 화면)-->
+            <section class="scr scr-start" id="start">
+                <p class="hud"><span>1UP</span><span>CREDIT 00</span></p>
+
+                <div class="dialog">
+                    <p class="dialog-title">BUY US A COIN?</p>
+                    <p class="dialog-ko">엉뚱한 사람들에게 100원 기부해 주세요!</p>
+                    <a class="pixel-btn pixel-btn-blink" href="#account">NEXT ▶</a>
+                </div>
+            </section>
+
+            <!--화면 위 주사선(CRT 느낌)-->
+            <div class="scanlines" aria-hidden="true"></div>
+        </div>
+
+        <!--조이스틱 + 버튼 (장식)-->
+        <div class="controls" aria-hidden="true">
+            <div class="joystick"><span></span></div>
+            <div class="buttons">
+                <span class="btn-red"></span>
+                <span class="btn-blue"></span>
+            </div>
+        </div>
+
+        <!--동전 넣는 곳 (장식)-->
+        <div class="coin-slot" aria-hidden="true">
+            <span>100₩</span>
+        </div>
+    </main>
+</body>
+
+</html>

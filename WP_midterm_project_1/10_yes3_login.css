@@ -107,6 +107,11 @@ article {
   margin-top: 12px;
   border-radius: 999px;
   background: linear-gradient(90deg, var(--orange), var(--yellow));
+
+
+/* 배경 사진은 10_yes3_bg.css, 높이만 여기서 */
+.dbeq_1 {
+    height: 100vh;
 }
 
 /* 판넬 두 개를 화면 중앙선 기준 왼쪽 / 오른쪽에 나란히 배치 */

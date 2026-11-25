@@ -7,6 +7,20 @@ body {
     height: 100%; 
     box-sizing: border-box;
     background-color: #060B1E; /* 동아리방 페이지와 같은 남색 바탕 */
+    font-family: "Jua", sans-serif; /* 본문 기본: 주아체 */
+    font-synthesis: none;           /* 주아/동글은 굵은 글꼴이 없어서, bold여도 번지게 가짜로 굵히지 않게 */
+}
+
+/* 제목: 동글체 (동글체는 글자가 작게 보여서 크기를 키움) */
+.main2_title, .main3_title, .main4_title, .main2_1 h2 {
+    font-family: "Dongle", sans-serif;
+    font-weight: 400;
+    line-height: 1;
+}
+
+/* footer 글씨도 주아체로 (common.css의 Noto Sans KR는 불러오지 않아서 기본 글꼴로 나왔음) */
+.ft {
+    font-family: "Jua", sans-serif;
 }
 
 /*--메인1------------------------------------------*/
@@ -153,7 +167,7 @@ body {
 
 .main2_title {
     background-color: transparent;
-    font-size: 40px;
+    font-size: 80px;
     font-weight: bold;
     margin-bottom: 30px;
     text-align: center;
@@ -190,7 +204,7 @@ body {
 }
 
 .main2_1 h2 {
-    font-size: 40px;
+    font-size: 72px;
     margin-bottom: 20px;
     color: #f8f9fa;
 }
@@ -366,7 +380,7 @@ body {
 
 .main3_title {
     background-color: transparent;
-    font-size: 40px;
+    font-size: 80px;
     font-weight: bold;
     margin-bottom: 8vh;
     text-align: center;
@@ -426,6 +440,105 @@ body {
     object-fit: contain;
 }
 
+/* ---------- 눈송이 녹는 연출 ----------
+   숨긴 체크박스(#snow-melt)를 label(눈송이 그림)로 켜고 끔
+   - 켜짐(:checked): 아래로 주저앉으며 녹고 → 물웅덩이 + 물방울
+   - 꺼짐: 통통 튀며 다시 얼어붙음 */
+.snow-toggle {                      /* 체크박스는 안 보이게 */
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.snow-label {
+    position: relative;
+    display: inline-block;
+}
+
+.snow-label .main3_ungsasong {
+    display: block;
+    transform-origin: 50% 100%;     /* 발밑을 기준으로 주저앉기 */
+    /* 다시 얼어붙을 때: 통통 튀며 원래대로 */
+    transition: transform 0.8s cubic-bezier(0.2, 1.6, 0.4, 1),
+                filter 0.6s,
+                opacity 0.3s;
+}
+
+/* 마우스 올리면 덜덜 떨기 (눌러보라는 신호) */
+.snow-toggle:not(:checked) + .snow-label:hover .main3_ungsasong {
+    animation: snow-shiver 0.4s ease-in-out infinite;
+}
+@keyframes snow-shiver {
+    0%, 100% { transform: rotate(0deg); }
+    25%      { transform: rotate(-2deg); }
+    75%      { transform: rotate(2deg); }
+}
+
+/* 녹는 중: 납작하게 퍼지면서 흐려지고 사라짐 */
+.snow-toggle:checked + .snow-label .main3_ungsasong {
+    transform: scale(1.35, 0.05);
+    filter: blur(4px) saturate(0.4) brightness(1.4);
+    opacity: 0;
+    transition: transform 1.6s cubic-bezier(0.6, 0, 0.9, 0.6),
+                filter 1.2s ease-in,
+                opacity 0.5s ease-in 1.2s;      /* 거의 다 녹은 뒤 사라짐 */
+}
+
+/* 물웅덩이: 녹기 시작하면 발밑에서 퍼짐 */
+.snow-label::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -10px;
+    width: 110%;
+    height: 50px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse at center,
+                rgba(200, 230, 255, 0.9) 0%,
+                rgba(120, 180, 255, 0.45) 55%,
+                transparent 72%);
+    transform: translateX(-50%) scale(0);
+    transition: transform 0.4s ease-in;
+}
+.snow-toggle:checked + .snow-label::after {
+    transform: translateX(-50%) scale(1);
+    transition: transform 1s ease-out 0.6s;
+    animation: puddle-shine 2.4s ease-in-out 1.6s infinite;
+}
+@keyframes puddle-shine {               /* 웅덩이가 살짝 일렁임 */
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.7; }
+}
+
+/* 물방울: 녹는 동안 뚝뚝 떨어짐 */
+.snow-label::before {
+    content: "";
+    position: absolute;
+    left: 46%;
+    top: 45%;
+    width: 14px;
+    height: 20px;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    background-color: rgba(190, 225, 255, 0.95);
+    opacity: 0;
+    z-index: 1;
+}
+.snow-toggle:checked + .snow-label::before {
+    animation: snow-drip 0.7s ease-in 3;
+}
+@keyframes snow-drip {
+    0%   { opacity: 1; transform: translateY(0) scale(1); }
+    90%  { opacity: 1; transform: translateY(20vw) scale(0.8); }
+    100% { opacity: 0; transform: translateY(20vw) scale(0.4); }
+}
+
+/* 키보드로 이동했을 때도 눈송이가 선택된 게 보이게 */
+.snow-toggle:focus-visible + .snow-label {
+    outline: 3px dashed #4fc3ff;
+    outline-offset: 8px;
+}
+
 
 /*---메인4: INVENTORS--------------------------------------------*/
 .main4 {
@@ -466,13 +579,29 @@ body {
     width: 100%;
 }
 
+/* ---------- 조직도: 감성술집 네온 + 오락실 캐릭터 선택 카드 ----------
+   (HTML 구조는 그대로, 모양·색만)
+   --neon: 카드마다 네온 색 (테두리·빛번짐·이름 빛·직책 배지에 같이 쓰임) */
+
+/* 소제목(임원진 / 부원): 술집 네온 간판 */
 .org_executive > span, .org_inventors > span {
-    background-color: #003366;
-    color: white;
-    padding: 5px 30px;
-    border-radius: 20px;
-    font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 26px;
+    padding: 6px 30px;
+    border: 2px solid #ffb347;
+    border-radius: 999px;
+    background-color: rgba(255, 179, 71, 0.08);
+    color: #fff3dc;
+    font-size: 20px;
+    letter-spacing: 4px;
+    text-shadow: 0 0 6px #ffb347, 0 0 14px #ff8800;
+    box-shadow: 0 0 10px rgba(255, 179, 71, 0.6), inset 0 0 10px rgba(255, 179, 71, 0.35);
+}
+.org_inventors > span {
+    border-color: #4fc3ff;
+    background-color: rgba(79, 195, 255, 0.08);
+    color: #e3f6ff;
+    text-shadow: 0 0 6px #4fc3ff, 0 0 14px #0078d7;
+    box-shadow: 0 0 10px rgba(79, 195, 255, 0.6), inset 0 0 10px rgba(79, 195, 255, 0.35);
 }
 
 .org_executive ul, .org_inventors ul {
@@ -482,18 +611,90 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 15px;
+    gap: 18px;
 }
 
+/* 카드 공통: 어두운 유리 + 네온 테두리 + 옛날 화면 주사선 */
 .org_executive li, .org_inventors li {
-    background-color: #e9ecef;
-    padding: 15px;
-    border-radius: 10px;
+    --neon: #4fc3ff;
+    position: relative;
+    padding: 18px 12px 14px;
+    border: 2px solid var(--neon);
+    border-radius: 16px;
+    background:
+        repeating-linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 0 1px, transparent 1px 3px),  /* 주사선 */
+        radial-gradient(120% 80% at 50% 0%, rgba(255, 255, 255, 0.08), transparent 60%),          /* 유리 반사광 */
+        linear-gradient(160deg, #1a1f38 0%, #0e1224 100%);                                         /* 어두운 바탕 */
+    color: #f5f3ee;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    box-shadow:
+        0 0 6px var(--neon),
+        0 0 18px -4px var(--neon),
+        inset 0 0 14px -6px var(--neon),
+        0 10px 20px rgba(0, 0, 0, 0.5);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
+
+/* 마우스 올리면: 카드가 떠오르고 네온이 지직- 하고 더 밝게 켜짐 */
+.org_executive li:hover, .org_inventors li:hover {
+    transform: translateY(-6px) scale(1.04);
+    box-shadow:
+        0 0 10px var(--neon),
+        0 0 30px var(--neon),
+        inset 0 0 20px -4px var(--neon),
+        0 16px 28px rgba(0, 0, 0, 0.6);
+    animation: card-neon-on 0.5s steps(1);
+}
+@keyframes card-neon-on {
+    0%   { filter: brightness(1.6); }
+    20%  { filter: brightness(0.8); }
+    40%  { filter: brightness(1.5); }
+    60%  { filter: brightness(1); }
+}
+
+/* 마우스 올리면 왼쪽 위에 오락실 "1P" 표시 */
+.org_executive li::before, .org_inventors li::before {
+    content: "1P";
+    position: absolute;
+    top: -12px;
+    left: -10px;
+    padding: 4px 6px;
+    font-family: "Press Start 2P", monospace;
+    font-size: 9px;
+    color: #ffffff;
+    background-color: #ff3b3b;
+    border: 2px solid #000000;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 0.2s, transform 0.2s;
+}
+.org_executive li:hover::before, .org_inventors li:hover::before {
+    opacity: 1;
+    transform: scale(1) rotate(-8deg);
+}
+
+/* 임원진: 따뜻한 호박색 조명, 회장은 금색 + 왕관 */
+.org_executive li { --neon: #ffb347; }
+.org_executive li:nth-child(1) { --neon: #ffd23f; }
+.org_executive li:nth-child(1)::after {
+    content: "♛";
+    position: absolute;
+    top: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 24px;
+    color: #ffd23f;
+    text-shadow: 0 0 8px #ffd23f;
+}
+
+/* 부원: 술집 네온사인처럼 파랑 → 분홍 → 보라 → 민트 돌아가며 */
+.org_inventors li:nth-child(4n+1) { --neon: #4fc3ff; }
+.org_inventors li:nth-child(4n+2) { --neon: #ff5fa2; }
+.org_inventors li:nth-child(4n+3) { --neon: #b48cff; }
+.org_inventors li:nth-child(4n+4) { --neon: #5fffc4; }
 
 .org_executive ul {
     list-style: none;
@@ -503,25 +704,14 @@ body {
     display: grid;
     grid-template-columns: repeat(3, 160px);
     justify-content: center;
-    gap: 15px;
+    gap: 18px;
     width: auto;
     max-width: 100%;
 }
 
 .org_executive li {
-    background-color: #e9ecef;
-    padding: 15px;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
     width: 160px;
     box-sizing: border-box;
-}
-
-.org_executive li:hover{
-    background-color: #bbccdd;
 }
 
 /* 화면이 아주 좁을 때: 임원진 2칸씩 (3줄) */
@@ -531,40 +721,43 @@ body {
     }
 }
 
-
-
 .org_inventors ul {
     max-width: 1000px;
-}
-
-.org_inventors li:hover{
-    background-color: #bbccdd;
 }
 
 .org_inventors li {
     width: 150px;
 }
 
+/* 직책: 네온 색 배지 */
 .role {
+    display: inline-block;
+    margin-bottom: 8px;
+    padding: 2px 10px;
+    border-radius: 999px;
+    background-color: var(--neon);
+    color: #0b0f1c;
     font-size: 12px;
-    font-weight: bold;
-    margin-bottom: 5px;
+    box-shadow: 0 0 8px var(--neon);
 }
 
+/* 이름: 하얗게 빛나는 글씨 */
 .org_executive li span:nth-child(2),
 .org_inventors li span:nth-child(1) {
-    font-size: 16px;
-    font-weight: bold;
     margin-bottom: 5px;
+    font-size: 18px;
+    color: #ffffff;
+    text-shadow: 0 0 6px var(--neon);
 }
 
+/* 학번·학과: 흐린 글씨 */
 .org_executive li span:nth-child(3),
 .org_inventors li span:nth-child(2) {
     font-size: 11px;
-    color: #555;
+    color: rgba(245, 243, 238, 0.6);
 }
 .main4_title{
-     font-size: 32px;
+     font-size: 80px;
  font-weight: bold;
  margin-bottom: 50px;
  text-align: center;
@@ -756,24 +949,88 @@ body {
 .string-lights .blink-a { animation: bulb-chase 1.4s steps(1) infinite; }
 .string-lights .blink-b { animation: bulb-chase 1.4s steps(1) infinite 0.7s; }
 
-/* ---------- INSERT COIN (오락실 픽셀 글씨) ---------- */
+/* ---------- INSERT US COIN: 전구 테두리 네온 간판 + 톱니바퀴 + 별 ----------
+   (배경의 네온사인들과 같은 감성. 전구 테두리는 위의 .with-bulbs 재사용) */
 .insert-coin {
-    position: absolute;
-    bottom: 5%;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: "Press Start 2P", monospace;
-    font-size: 16px;
-    letter-spacing: 2px;
-    color: #ffbc00;
-    text-shadow: 0 0 8px rgba(255, 188, 0, 0.8);
-    animation: coin-blink 1.2s steps(1) infinite;
+    position: relative;                  /* 전구 테두리·별 위치 기준 */
+    display: inline-flex;
+    align-items: center;
+    gap: 18px;
+    margin-top: 90px;                    /* 조직도 아래로 충분히 띄워서 안 겹치게 */
+    padding: 16px 34px;
+    border: 3px solid #ffb347;
+    border-radius: 18px;
+    background-color: rgba(255, 179, 71, 0.06);
+    font-family: "Jua", sans-serif;
+    font-size: 30px;
+    letter-spacing: 4px;
+    white-space: nowrap;
+    color: #fff3dc;
+    text-decoration: none;
+    text-shadow: 0 0 6px #ffb347, 0 0 16px #ff8800;
+    box-shadow:
+        0 0 10px rgba(255, 179, 71, 0.6),
+        0 0 30px rgba(255, 136, 0, 0.3),
+        inset 0 0 14px rgba(255, 179, 71, 0.35);
+    animation: neon-flicker 7s infinite;     /* 가끔 지지직 (네온사인과 같은 효과) */
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
-@keyframes coin-blink {
-    0%  { opacity: 1; }
-    50% { opacity: 0; }
+.insert-coin:hover, .insert-coin:focus-visible {   /* 마우스 올리면 불이 더 밝게 + 살짝 커짐 */
+    animation: none;
+    transform: scale(1.06);
+    color: #ffffff;
+    box-shadow:
+        0 0 14px rgba(255, 179, 71, 0.9),
+        0 0 44px rgba(255, 136, 0, 0.5),
+        inset 0 0 20px rgba(255, 179, 71, 0.5);
 }
 
+/* 톱니바퀴: 양옆에서 서로 반대로 빙글빙글 (발명동아리 느낌) */
+.coin-gear {
+    width: 1.1em;
+    height: 1.1em;
+    color: #ffd23f;
+    filter: drop-shadow(0 0 5px #ffb347);
+    animation: gear-spin 6s linear infinite;
+}
+.coin-gear-right {
+    animation-direction: reverse;
+}
+.insert-coin:hover .coin-gear {          /* 마우스 올리면 더 빨리 돎 */
+    animation-duration: 1.5s;
+}
+.gear-teeth {                            /* 굵은 점선 원 = 톱니 12개 */
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 6;
+    stroke-dasharray: 4.19 4.19;
+}
+.gear-body {                             /* 가운데 고리 */
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 6;
+}
+@keyframes gear-spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+/* 간판 주변 반짝이는 별 */
+.coin-star {
+    position: absolute;
+    font-style: normal;
+    font-size: 18px;
+    color: #ffe27a;
+    text-shadow: 0 0 8px rgba(255, 210, 90, 0.9);
+    animation: twinkle 2.6s ease-in-out infinite;
+}
+.coin-star:nth-of-type(1) { top: -44px; left: 8%; }
+.coin-star:nth-of-type(2) { top: -40px; right: 6%; font-size: 14px; animation-delay: 0.9s; }
+.coin-star:nth-of-type(3) { bottom: -46px; left: 52%; font-size: 22px; animation-delay: 1.7s; color: #9fd0ff; text-shadow: 0 0 8px rgba(55, 161, 255, 0.9); }
+
+@media (max-width: 680px) {
+    .insert-coin { font-size: 18px; gap: 10px; padding: 12px 20px; }
+}
 /* 화면이 좁으면 큰 장식(네온·크레용)은 내용과 겹치니까 숨기고 별·전구만 */
 @media (max-width: 1200px) {
     .neon-sign, .crayon { display: none; }
@@ -782,5 +1039,5 @@ body {
 /* '움직임 줄이기' 설정을 켠 사용자에겐 애니메이션 끄기 */
 @media (prefers-reduced-motion: reduce) {
     .star, .neon-sign, .with-bulbs::before, .with-bulbs::after,
-    .string-lights g, .insert-coin { animation: none; }
+    .string-lights g, .insert-coin, .coin-gear, .coin-star { animation: none; }
 }
