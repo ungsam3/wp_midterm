@@ -1,4 +1,4 @@
-<!Doctype html>
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
@@ -10,7 +10,6 @@
         <link rel="stylesheet" href="10_yes3_common.css">
         <link rel="stylesheet" href="10_yes3_bg.css">
         <link rel="stylesheet" href="10_yes3_dongbang.css">
-        
     </head>
     <body>
         <nav class="main_nav">
@@ -38,130 +37,152 @@
                 </ul>
             </div>
         </nav>
-        <header>
-            <div class="sub_header">
-                <div class="menu_name">동아리방</div>
-                <div class="sub_menu_name">
-                    <div class="item"><a href="10_yes3_db_equipment.html">비품</a></div>
-                    <div class="item">|</div>
-                    <div class="item"><a href="10_yes3_db_rule.html">이용규칙</a></div>
-                    <div class="item">|</div>
-                    <div class="item"><a id="sub_header_menu_now" href="10_yea3_db_cleanup.html">청소담당</a></div>
-                </div>
+
+        <!-- 배너: 사진만 (교육자료 페이지와 동일 높이) -->
+        <section class="cleanup_1"></section>
+
+        <article class="cleanup2">
+
+            <!-- 제목 (교육자료 페이지의 board-head와 동일 구조) -->
+            <div class="board-head">
+                <h1>청소담당</h1>
             </div>
-        </header>
-        <article>
-            <h1 id="subpage_title">청소담당</h1>
-            <div class="db_article">
-                <div class="cleanup_content">
-                    조 추첨과 역할 분담 모두 사다리 타기로 진행합니다.
-                    <br>정해진 요일은 없으니 당번 주간 중 시간이 될 때 올라가서 청소하시면 된답니다. 완료 후 체크박스에 체크를 눌러주세요.
-                    <br>
-                    <br>쓸기 (1명)
-                    <br>: 동방에 비치된 청소기로 바닥을 꼼꼼히 밀어주세요! 청소가 끝나면 바깥 쓰레기통에 먼지통도 비워주세요.
-                    <br>
-                    <br>광내기 (2명)
-                    <br>: 물티슈를 가지고 책상과 창틀, 전자레인지나 프린터 등등 먼지가 쌓일거 같은 곳은 구석구석 닦아주세요! 두 분이 일정을 맞춰서 같이 진행하세요.
-                    <br>
-                    <br>세탁하기 (2명)
-                    <br>: 동아리방 소파 커버와 담요, 수면 의자의 커버 쿠션을 벗겨서 세탁소에서 빨래 및 건조해주세요! 회비 카드를 들고가서 결제하시면 됩니다. 두 분이 일정을 맞춰서 같이 진행하세요.
-                </div>
-                <form class="cleanup_check" name="청소하기" method="GET" action="#">
-                    <div class="cleanup_table">
-                        <table class="item">
-                            <caption>1조 2026.10.01~2026.10.12</caption>
-                            <thead>
-                                <tr>
-                                    <th>역할</th><th>이름</th><th>완료</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th>쓸기</th><td></td><th><input id="1_sweep" class="cleanup_checking" type="checkbox" name="청소완료" value="1조_쓸기" /><label for="1_sweep"></label></th>
-                                </tr>
-                                <tr>
-                                    <th>광내기1</th><td></td><th><input id="1_wipe1" class="cleanup_checking" type="checkbox" name="청소완료" value="1조_광내기1" /><label for="1_wipe1"></label></th>
-                                </tr>
-                                <tr>
-                                    <th>광내기2</th><td></td><th><input id="1_wipe2" class="cleanup_checking" type="checkbox" name="청소완료" value="1조_광내기2"/><label for="1_wipe2"></label></th>                                
-                                </tr>
-                                <tr>
-                                    <th>세탁하기1</th><td></td><th><input id="1_laundry1" class="cleanup_checking" type="checkbox" name="청소완료" value="1조_세탁하기1"/><label for="1_laundry1"></label></th>
-                                </tr>
-                                <tr>
-                                    <th>세탁하기2</th><td></td><th><input id="1_laundry2" class="cleanup_checking" type="checkbox" name="청소완료" value="1조_세탁하기2"/><label for="1_laundry2"></label></th>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <table class="item">
-                            <caption>2조 2026.10.28~2026.11.13</caption>
-                            <thead>
-                                <tr>
-                                    <th>역할</th><th>이름</th><th>완료</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th>쓸기</th><td></td><th><input id="2_sweep" class="cleanup_checking" type="checkbox" name="청소완료" value="2조_쓸기"/><label for="2_sweep"></label></th>
-                                </tr>
-                                <tr>
-                                    <th>광내기1</th><td></td><th><input id="2_wipe1" class="cleanup_checking" type="checkbox" name="청소완료" value="2조_광내기1"/><label for="2_wipe1"></label></th>
-                                </tr>
-                                <tr>
-                                    <th>광내기2</th><td></td><th><input id="2_wipe2" class="cleanup_checking" type="checkbox" name="청소완료" value="2조_광내기1"/><label for="2_wipe2"></label></th>                                
-                                </tr>
-                                <tr>
-                                    <th>세탁하기1</th><td></td><th><input id="2_laundry1" class="cleanup_checking" type="checkbox" name="청소완료" value="2조_세탁하기1"/><label for="2_laundry1"></label></th>
-                                </tr>
-                                <tr>
-                                    <th>세탁하기2</th><td></td><th><input id="2_laundry2" class="cleanup_checking" type="checkbox" name="청소완료" value="2조_세탁하기2"/><label for="2_laundry2"></label></th>
-                                </tr>
-                            </tbody>
-                        </table>
+
+            <div class="wrap">
+
+                <!-- 큰 판넬: 캘린더 + 조 배정 + 체크리스트 -->
+                <section class="c-panel" id="panel-cleanup">
+
+                    <p class="c-note">
+                        조 추첨과 역할 분담 모두 사다리 타기로 진행합니다. 청소는 격주로 진행돼요. 당번 조가 1주일 동안 청소하고, 1주일은 쉬었다가 다음 조가 이어받아요. (1조 → 2조 → 3조 → 4조)<br>
+                        정해진 요일은 없으니 당번 주간 중 시간이 될 때 올라가서 청소하시면 된답니다. 완료 후 체크박스에 체크를 눌러주세요.
+                    </p>
+
+                    <!-- 캘린더 (JS가 채움) -->
+                    <div class="c-sec">
+                        <h2>청소 일정표</h2>
+                        <div class="c-cal-area">
+                            <div class="c-carousel">
+                                <div class="c-car-head">
+                                    <button type="button" class="c-car-btn" id="cal-prev" aria-label="이전 달">&lsaquo;</button>
+                                    <h3 id="cal-title"></h3>
+                                    <button type="button" class="c-car-btn" id="cal-next" aria-label="다음 달">&rsaquo;</button>
+                                </div>
+                                <div class="c-car-view"><div class="c-car-track" id="cal-track"></div></div>
+                                <div class="c-car-dots" id="cal-dots"></div>
+                            </div>
+                            <div class="c-legend-wrap">
+                                <ul class="c-legend" id="cal-legend"></ul>
+                                
+                            </div>
+                        </div>
                     </div>
-                    <div class="reset">
-                        <input id="all_reset" type="reset" class="cleanup_checking_reset" value="초기화"><label for="all_reset"></label>
+
+                    <!-- 역할 안내 -->
+                    <div class="c-sec">
+                        <h2>역할 안내</h2>
+                        <div class="c-roles">
+                            <div class="c-role">
+                                <h3>쓸기 <span class="c-cnt">1명</span></h3>
+                                <p>동방에 비치된 청소기로 바닥을 꼼꼼히 밀어주세요! 청소가 끝나면 바깥 쓰레기통에 먼지통도 비워주세요.</p>
+                            </div>
+                            <div class="c-role">
+                                <h3>광내기 <span class="c-cnt">2명</span></h3>
+                                <p>물티슈를 가지고 책상과 창틀, 전자레인지나 프린터 등등 먼지가 쌓일 거 같은 곳은 구석구석 닦아주세요! 두 분이 일정을 맞춰서 같이 진행하세요.</p>
+                            </div>
+                            <div class="c-role">
+                                <h3>세탁하기 <span class="c-cnt">2명</span></h3>
+                                <p>동아리방 소파 커버와 담요, 수면 의자의 커버 쿠션을 벗겨서 세탁소에서 빨래 및 건조해주세요! 회비 카드를 들고 가서 결제하시면 됩니다. 두 분이 일정을 맞춰서 같이 진행하세요.</p>
+                            </div>
+                        </div>
                     </div>
-                </form>
-                <div class="cleanup_comment">
-                    <div class="comment">
-                        <div class="item">댓글창</div>
-                    </div>
-                    <div class="comment">
-                        <div class="item">프로필1</div>
-                        <div class="item">댓글</div>
-                        <div class="item">하트</div>
-                    </div>
-                    <div class="comment">
-                        <div class="item">프로필2</div>
-                        <div class="item">댓글</div>
-                        <div class="item">하트</div>
-                    </div>
-                    <div class="comment">
-                        <div class="item">프로필3</div>
-                        <div class="item">댓글</div>
-                        <div class="item">하트</div>
-                    </div>
-                    <div class="comment">
-                        <div class="item">프로필4</div>
-                        <div class="item">댓글</div>
-                        <div class="item">하트</div>
-                    </div>
-                    <div class="comment">
-                        <div class="item">프로필5</div>
-                        <div class="item">댓글</div>
-                        <div class="item">하트</div>
-                    </div>
-                    <form class="write_comment" name="댓글달기" method="GET" action="#">
-                        <textarea class="textarea" name="댓글란" rows="4" placeholder="청소부원을 응원해주세요!"></textarea>
-                        <div class="two_button">
-                            <button class="item" type="submit">댓글</button>
-                            <button class="item" type="reset">취소</button>
+
+                    <!-- 조 배정 결과 + 체크리스트 -->
+                    <form class="c-sec" id="check-form" name="청소하기" method="GET" action="#">
+                        <h2>조 배정 결과 &amp; 체크리스트</h2>
+                        <div class="c-teams">
+
+                            <div class="c-team" data-team="1">
+                                <div class="c-team-head"><span class="c-dot g1"></span><h3>1조</h3><span class="c-badge-now">이번주 당번</span></div>
+                                <table>
+                                    <thead><tr><th>역할</th><th>이름</th><th class="c-done">완료</th></tr></thead>
+                                    <tbody>
+                                        <tr><th>쓸기</th><td>강ㅇㅇ</td><td class="c-done"><input id="g1_sweep" type="checkbox" name="청소완료" value="1조_쓸기" aria-label="1조 쓸기 완료"><label class="c-check" for="g1_sweep"></label></td></tr>
+                                        <tr><th>광내기1</th><td>김ㅇㅇ</td><td class="c-done"><input id="g1_wipe1" type="checkbox" name="청소완료" value="1조_광내기1" aria-label="1조 광내기1 완료"><label class="c-check" for="g1_wipe1"></label></td></tr>
+                                        <tr><th>광내기2</th><td>박ㅇㅇ</td><td class="c-done"><input id="g1_wipe2" type="checkbox" name="청소완료" value="1조_광내기2" aria-label="1조 광내기2 완료"><label class="c-check" for="g1_wipe2"></label></td></tr>
+                                        <tr><th>세탁하기1</th><td>이ㅇㅇ</td><td class="c-done"><input id="g1_laundry1" type="checkbox" name="청소완료" value="1조_세탁하기1" aria-label="1조 세탁하기1 완료"><label class="c-check" for="g1_laundry1"></label></td></tr>
+                                        <tr><th>세탁하기2</th><td>한ㅇㅇ</td><td class="c-done"><input id="g1_laundry2" type="checkbox" name="청소완료" value="1조_세탁하기2" aria-label="1조 세탁하기2 완료"><label class="c-check" for="g1_laundry2"></label></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="c-team" data-team="2">
+                                <div class="c-team-head"><span class="c-dot g2"></span><h3>2조</h3><span class="c-badge-now">이번주 당번</span></div>
+                                <table>
+                                    <thead><tr><th>역할</th><th>이름</th><th class="c-done">완료</th></tr></thead>
+                                    <tbody>
+                                        <tr><th>쓸기</th><td>유ㅇㅇ</td><td class="c-done"><input id="g2_sweep" type="checkbox" name="청소완료" value="2조_쓸기" aria-label="2조 쓸기 완료"><label class="c-check" for="g2_sweep"></label></td></tr>
+                                        <tr><th>광내기1</th><td>최ㅇㅇ</td><td class="c-done"><input id="g2_wipe1" type="checkbox" name="청소완료" value="2조_광내기1" aria-label="2조 광내기1 완료"><label class="c-check" for="g2_wipe1"></label></td></tr>
+                                        <tr><th>광내기2</th><td>정ㅇㅇ</td><td class="c-done"><input id="g2_wipe2" type="checkbox" name="청소완료" value="2조_광내기2" aria-label="2조 광내기2 완료"><label class="c-check" for="g2_wipe2"></label></td></tr>
+                                        <tr><th>세탁하기1</th><td>김ㅇㅇ</td><td class="c-done"><input id="g2_laundry1" type="checkbox" name="청소완료" value="2조_세탁하기1" aria-label="2조 세탁하기1 완료"><label class="c-check" for="g2_laundry1"></label></td></tr>
+                                        <tr><th>세탁하기2</th><td>윤ㅇㅇ</td><td class="c-done"><input id="g2_laundry2" type="checkbox" name="청소완료" value="2조_세탁하기2" aria-label="2조 세탁하기2 완료"><label class="c-check" for="g2_laundry2"></label></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="c-team" data-team="3">
+                                <div class="c-team-head"><span class="c-dot g3"></span><h3>3조</h3><span class="c-badge-now">이번주 당번</span></div>
+                                <table>
+                                    <thead><tr><th>역할</th><th>이름</th><th class="c-done">완료</th></tr></thead>
+                                    <tbody>
+                                        <tr><th>쓸기</th><td>박ㅇㅇ</td><td class="c-done"><input id="g3_sweep" type="checkbox" name="청소완료" value="3조_쓸기" aria-label="3조 쓸기 완료"><label class="c-check" for="g3_sweep"></label></td></tr>
+                                        <tr><th>광내기1</th><td>임ㅇㅇ</td><td class="c-done"><input id="g3_wipe1" type="checkbox" name="청소완료" value="3조_광내기1" aria-label="3조 광내기1 완료"><label class="c-check" for="g3_wipe1"></label></td></tr>
+                                        <tr><th>광내기2</th><td>오ㅇㅇ</td><td class="c-done"><input id="g3_wipe2" type="checkbox" name="청소완료" value="3조_광내기2" aria-label="3조 광내기2 완료"><label class="c-check" for="g3_wipe2"></label></td></tr>
+                                        <tr><th>세탁하기1</th><td>한ㅇㅇ</td><td class="c-done"><input id="g3_laundry1" type="checkbox" name="청소완료" value="3조_세탁하기1" aria-label="3조 세탁하기1 완료"><label class="c-check" for="g3_laundry1"></label></td></tr>
+                                        <tr><th>세탁하기2</th><td>서ㅇㅇ</td><td class="c-done"><input id="g3_laundry2" type="checkbox" name="청소완료" value="3조_세탁하기2" aria-label="3조 세탁하기2 완료"><label class="c-check" for="g3_laundry2"></label></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="c-team" data-team="4">
+                                <div class="c-team-head"><span class="c-dot g4"></span><h3>4조</h3><span class="c-badge-now">이번주 당번</span></div>
+                                <table>
+                                    <thead><tr><th>역할</th><th>이름</th><th class="c-done">완료</th></tr></thead>
+                                    <tbody>
+                                        <tr><th>쓸기</th><td>이ㅇㅇ</td><td class="c-done"><input id="g4_sweep" type="checkbox" name="청소완료" value="4조_쓸기" aria-label="4조 쓸기 완료"><label class="c-check" for="g4_sweep"></label></td></tr>
+                                        <tr><th>광내기1</th><td>권ㅇㅇ</td><td class="c-done"><input id="g4_wipe1" type="checkbox" name="청소완료" value="4조_광내기1" aria-label="4조 광내기1 완료"><label class="c-check" for="g4_wipe1"></label></td></tr>
+                                        <tr><th>광내기2</th><td>황ㅇㅇ</td><td class="c-done"><input id="g4_wipe2" type="checkbox" name="청소완료" value="4조_광내기2" aria-label="4조 광내기2 완료"><label class="c-check" for="g4_wipe2"></label></td></tr>
+                                        <tr><th>세탁하기1</th><td>강ㅇㅇ</td><td class="c-done"><input id="g4_laundry1" type="checkbox" name="청소완료" value="4조_세탁하기1" aria-label="4조 세탁하기1 완료"><label class="c-check" for="g4_laundry1"></label></td></tr>
+                                        <tr><th>세탁하기2</th><td>송ㅇㅇ</td><td class="c-done"><input id="g4_laundry2" type="checkbox" name="청소완료" value="4조_세탁하기2" aria-label="4조 세탁하기2 완료"><label class="c-check" for="g4_laundry2"></label></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                        <div class="c-reset-row">
+                            <input type="reset" class="c-reset" value="체크 초기화">
                         </div>
                     </form>
-                </div>
+
+                </section>
+
+                <!-- 댓글 판넬 -->
+                <section class="c-panel" id="panel-comment">
+                    <div class="c-sec">
+                        <h2>청소당번 응원 댓글 <span class="c-count">(<b id="comment-count">0</b>)</span></h2>
+                        <ul class="c-comment-list" id="comment-list"></ul>
+
+                        <form class="c-comment-form" id="comment-form">
+                            <input type="text" id="c-name" placeholder="닉네임" maxlength="10">
+                            <textarea id="c-text" placeholder="청소부원을 응원해주세요!" required></textarea>
+                            <button type="submit" class="c-submit">댓글</button>
+                        </form>
+                    </div>
+                </section>
+
             </div>
         </article>
+
         <footer class="ft">
             <div class="ft-stage">
                 <p class="ft-hint">발명품을 눌러보세요!</p>
@@ -181,7 +202,6 @@
                     <div class="ft-shadow"></div>
                     <button type="button" id="ft-rocket" class="ft-obj"><img id="ft-rocket-img" src="res/footer-rocket.png" alt="로켓"></button>
                 </div>
-            </div>
             </div>
             <div class="ft-panel">
                 <div class="ft-cols">
@@ -214,9 +234,181 @@
                     <span>© 2026 엉뚱한 사람들 · SMWU INVENTORS</span>
                     <span>숙명여자대학교 중앙발명동아리</span>
                 </div>
-                </div>
             </div>
         </footer>
+
+        <script>
+        (function () {
+            var $ = function (id) { return document.getElementById(id); };
+
+            /* ================= 캘린더 (캐러셀) ================= */
+            // 1조 청소 시작일(월요일). 일정이 바뀌면 이 줄만 고치면 돼요. (월은 0부터: 7 = 8월)
+            // 청소는 1주일, 그 다음 1주일은 쉬고, 다음 조가 이어받아요.
+            var START = Date.UTC(2026, 7, 31);
+            var DAY = 86400000;
+            var TEAMS = 4;
+            var MONTHS = [[2026, 9], [2026, 10], [2026, 11], [2026, 12]];
+            var DOW = ['월', '화', '수', '목', '금', '토', '일'];
+
+            // 날짜 → 청소 주간이면 조 번호, 쉬는 주면 0
+            function cleanTeam(y, m, d) {
+                var w = Math.floor((Date.UTC(y, m - 1, d) - START) / (7 * DAY));
+                if (((w % 2) + 2) % 2 !== 0) return 0;
+                return (((w / 2) % TEAMS) + TEAMS) % TEAMS + 1;
+            }
+            function fmt(ms) {
+                var dt = new Date(ms);
+                return (dt.getUTCMonth() + 1) + '/' + dt.getUTCDate();
+            }
+
+            var now = new Date();
+            var ty = now.getFullYear(), tm = now.getMonth() + 1, td = now.getDate();
+            var currentTeam = cleanTeam(ty, tm, td);
+
+            // 월별 슬라이드 만들기 (월요일 시작 → 한 줄이 한 주)
+            var slidesHtml = '';
+            MONTHS.forEach(function (ym) {
+                var y = ym[0], m = ym[1];
+                var lead = (new Date(y, m - 1, 1).getDay() + 6) % 7;
+                var days = new Date(y, m, 0).getDate();
+                // 그 줄에서 이웃 칸이 청소 주간인지 (달 경계에서도 끝을 둥글게 하려고)
+                var teamAt = function (dd) { return (dd < 1 || dd > days) ? 0 : cleanTeam(y, m, dd); };
+
+                var html = '<div class="c-slide"><table><thead><tr>';
+                DOW.forEach(function (w) { html += '<th>' + w + '</th>'; });
+                html += '</tr></thead><tbody>';
+
+                for (var start = 1 - lead; start <= days; start += 7) {
+                    var row = '', team = 0;
+                    for (var c = 0; c < 7; c++) {
+                        var dd = start + c;
+                        if (dd < 1 || dd > days) { row += '<td></td>'; continue; }
+                        var t = cleanTeam(y, m, dd);
+                        var cls = [];
+                        if (t) {
+                            team = t;
+                            cls.push('hl', 'g' + t);
+                            if (c === 0 || !teamAt(dd - 1)) cls.push('hl-s');
+                            if (c === 6 || !teamAt(dd + 1)) cls.push('hl-e');
+                        }
+                        row += '<td class="' + cls.join(' ') + '">' + dd + '</td>';
+                    }
+                    html += '<tr>' + row + '</tr>';
+                }
+                html += '</tbody></table></div>';
+                slidesHtml += html;
+            });
+            $('cal-track').innerHTML = slidesHtml;
+
+            // 캐러셀: 이전/다음 버튼 + 점
+            var idx = 0;
+            MONTHS.forEach(function (ym, i) { if (ym[0] === ty && ym[1] === tm) idx = i; });
+            var dotsHtml = '';
+            MONTHS.forEach(function (ym, i) {
+                dotsHtml += '<button type="button" data-i="' + i + '" aria-label="' + ym[1] + '월"></button>';
+            });
+            $('cal-dots').innerHTML = dotsHtml;
+
+            function showMonth() {
+                $('cal-track').style.transform = 'translateX(-' + (idx * 100) + '%)';
+                $('cal-title').textContent = MONTHS[idx][0] + '년 ' + MONTHS[idx][1] + '월';
+                $('cal-prev').disabled = idx === 0;
+                $('cal-next').disabled = idx === MONTHS.length - 1;
+                var dots = $('cal-dots').children;
+                for (var i = 0; i < dots.length; i++) {
+                    dots[i].classList.toggle('on', i === idx);
+                }
+            }
+            $('cal-prev').addEventListener('click', function () { if (idx > 0) { idx--; showMonth(); } });
+            $('cal-next').addEventListener('click', function () { if (idx < MONTHS.length - 1) { idx++; showMonth(); } });
+            $('cal-dots').addEventListener('click', function (e) {
+                var b = e.target.closest('button');
+                if (!b) return;
+                idx = Number(b.getAttribute('data-i'));
+                showMonth();
+            });
+            showMonth();
+
+            // 범례: 조별 청소 주간 (월~일)
+            var periods = { 1: [], 2: [], 3: [], 4: [] };
+            var rangeStart = Date.UTC(2026, 8, 1), rangeEnd = Date.UTC(2026, 11, 31);
+            for (var w = 0; ; w += 2) {
+                var mon = START + w * 7 * DAY;
+                if (mon > rangeEnd) break;
+                if (mon + 6 * DAY < rangeStart) continue;
+                periods[(w / 2) % TEAMS + 1].push(fmt(mon) + ' ~ ' + fmt(mon + 6 * DAY));
+            }
+            var legendHtml = '';
+            for (var t = 1; t <= TEAMS; t++) {
+                legendHtml += '<li class="c-legend-item' + (t === currentTeam ? ' now' : '') + '"><span class="c-dot g' + t + '"></span><div><b>' + t + '조</b>' +
+                    periods[t].map(function (p) { return '<span class="period">' + p + '</span>'; }).join('') +
+                    '</div></li>';
+            }
+            $('cal-legend').innerHTML = legendHtml;
+
+            // 이번 주 당번 조 카드 강조
+            var teamCards = document.querySelectorAll('.c-team');
+            for (var k = 0; k < teamCards.length; k++) {
+                if (Number(teamCards[k].getAttribute('data-team')) === currentTeam) {
+                    teamCards[k].classList.add('now');
+                }
+            }
+
+            /* ================= 응원 댓글 ================= */
+            var comments = [
+                { name: '엉덩이사랑해', text: '엉사 2행시 해볼게요. 엉 엉덩이 사 사랑해', likes: 3, liked: false },
+                { name: '엉길동', text: '엉에 번쩍 뚱에 번쩍', likes: 1, liked: false }
+            ];
+            var listEl = $('comment-list');
+
+            function esc(s) {
+                return String(s).replace(/[&<>"']/g, function (c) {
+                    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+                });
+            }
+
+            function renderComments() {
+                $('comment-count').textContent = comments.length;
+                listEl.innerHTML = comments.map(function (c, i) {
+                    return '<li>' +
+                        '<span class="c-profile">' + esc(c.name.charAt(0)) + '</span>' +
+                        '<div class="c-comment-body">' +
+                            '<div class="who">' + esc(c.name) + '</div>' +
+                            '<div class="txt">' + esc(c.text) + '</div>' +
+                        '</div>' +
+                        '<button type="button" class="c-heart' + (c.liked ? ' on' : '') + '" data-i="' + i + '">' +
+                            (c.liked ? '♥' : '♡') + ' <b>' + c.likes + '</b></button>' +
+                    '</li>';
+                }).join('');
+            }
+
+            // 하트 토글
+            listEl.addEventListener('click', function (e) {
+                var btn = e.target.closest('.c-heart');
+                if (!btn) return;
+                var c = comments[Number(btn.getAttribute('data-i'))];
+                c.liked = !c.liked;
+                c.likes += c.liked ? 1 : -1;
+                renderComments();
+            });
+
+            // 댓글 등록
+            $('comment-form').addEventListener('submit', function (e) {
+                e.preventDefault();
+                var text = $('c-text').value.trim();
+                if (!text) return;
+                comments.push({
+                    name: $('c-name').value.trim() || '익명',
+                    text: text,
+                    likes: 0,
+                    liked: false
+                });
+                $('c-text').value = '';
+                renderComments();
+            });
+
+            renderComments();
+        })();
+        </script>
     </body>
 </html>
-

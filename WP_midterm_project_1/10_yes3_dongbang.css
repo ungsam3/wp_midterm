@@ -95,20 +95,28 @@
 }
 
 .search_btn {
+  flex: none;
+  width: 56px;
   height: 56px;
-  padding: 0 32px;
-  border-radius: 999px;
+  padding: 0;
+  border-radius: 50%;
   border: none;
   background-color: var(--blue);
-  color: #17171C;
-  font-family: "Jua", sans-serif;
-  font-size: 18px;
-  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   box-shadow: 0 4px 0 #37a2ff98;
   cursor: pointer;
   transition: background 0.15s;
 }
 .search_btn:hover { background-color: #5bb4ff; }
+
+.search_btn img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  display: block;
+}
 
 /* ===== 본문 레이아웃: 판넬(왼쪽) + 보드(오른쪽 끝) ===== */
 article {
@@ -608,177 +616,499 @@ article > .wrap {
 
 
 /* [3] 청소담당 페이지 */
-/* [3-1] 본문(cleanup_content) */
-.db_article .cleanup_content {
-    text-align: center;
-    width: 80%;
-    margin-top: 30px;
-    margin-bottom: 100px;
-    font-family: "Jua", sans-serif;
-    font-size: 20px;
-    font-weight: 400;
-    font-style: normal;
-    opacity: 75%;
+/* 교육자료(learning) 페이지와 같은 구조. 제목(.board-head h1)은 [1]과 공통 스타일을 쓰고,
+   나머지는 모두 .cleanup2 안에서만 적용돼서 다른 페이지에 영향이 없어요. */
+
+/* 조별 색상 */
+.cleanup2 {
+  --g1: #FF8A00;
+  --g2: #2F9BFF;
+  --g3: #FFBB00;
+  --g4: #3DDC97;
 }
 
-/* [3-2] 체크표(cleanup_check) */
-.db_article .cleanup_check .cleanup_table {
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-    justify-content: center;
-    table-layout: fixed;
-    margin-bottom: 30px;
+/* [3-1] 상단 배너 (learning_1과 동일) */
+.cleanup_1 {
+  position: relative;
+  background-image: url("res/sub_image.jpg");
+  background-attachment: scroll;
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 150px;
 }
 
-.db_article .cleanup_check .cleanup_table .item:first-child {
-    margin-right: 30px;
+/* 폰트 */
+.cleanup2,
+.cleanup2 button,
+.cleanup2 input,
+.cleanup2 textarea {
+  font-family: "Jua", sans-serif;
+  font-weight: 400;
 }
 
-.db_article .cleanup_check .cleanup_table .item:first-child {
-    border: 2px solid rgb(27, 27, 27);
-    border-collapse: collapse;
+/* [3-2] 제목 줄: [1]의 board-head는 오른쪽 보드 자리를 비워두므로 여기선 0으로 */
+.cleanup2 .board-head {
+  padding: 0;
 }
 
-.db_article .cleanup_check .cleanup_table .item, .item th, .item td {
-    border: 2px solid rgb(27, 27, 27);
-    border-collapse: collapse;
+/* [3-3] 본문: 판넬을 위아래로 쌓기 */
+.cleanup2 > .wrap {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 28px;
 }
 
-.db_article .cleanup_check .cleanup_table .item th {
-    width: 100px;
+/* 큰 판넬 (learning의 #panel-learning과 동일 스타일) */
+.cleanup2 .c-panel {
+  box-sizing: border-box;
+  padding: 36px 40px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+  color: var(--text);
+  border-radius: 28px;
+  border: 1px solid var(--line);
+  background:
+    radial-gradient(circle at 0% 0%, rgba(47, 155, 255, 0.20), transparent 45%),
+    radial-gradient(circle at 100% 0%, rgba(255, 187, 0, 0.16), transparent 45%),
+    var(--panel);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
 }
 
-.db_article .cleanup_check .cleanup_table .item td {
-    width: 200px;
-    height: 50px;
+/* 판넬 안 구역 제목 */
+.cleanup2 .c-sec h2 {
+  margin: 0 0 18px;
+  padding-bottom: 14px;
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--text);
+  border-bottom: 2px solid var(--blue);
 }
 
-.db_article .cleanup_check .cleanup_table .item .cleanup_checking {
-    position: absolute;
-    opacity: 0%;
-    width: 0;
-    height: 0;
+/* 안내 문구 */
+.cleanup2 .c-note {
+  margin: 0;
+  padding: 16px 22px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #D9DCEA;
+  font-size: 16px;
+  line-height: 1.8;
 }
 
-.db_article .cleanup_check .cleanup_table .item .cleanup_checking + label {
-    display: inline-block;   /* 크기를 가질 수 있게 */
-    width: 30px;
-    height: 30px;
-    background: url("./res/cleanup_no.png") no-repeat left center;
-    background-size: contain;
+/* 조 색 점 (캘린더 범례, 조 카드 공통) */
+.cleanup2 .c-dot {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+}
+.cleanup2 .c-dot.g1 { background: var(--g1); }
+.cleanup2 .c-dot.g2 { background: var(--g2); }
+.cleanup2 .c-dot.g3 { background: var(--g3); }
+.cleanup2 .c-dot.g4 { background: var(--g4); }
+
+/* [3-4] 캘린더 (캐러셀): 한 번에 한 달, 청소 주간은 형광펜 */
+.cleanup2 .c-cal-area {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 36px;
 }
 
-.db_article .cleanup_check .cleanup_table .item .cleanup_checking:hover + label {
-    width: 32px;
-    height: 32px;
+.cleanup2 .c-carousel {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 640px;
+  padding: 18px 22px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.05);
+}
+.cleanup2 .c-car-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.cleanup2 .c-car-head h3 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 400;
+  color: #fff;
+}
+.cleanup2 .c-car-btn {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+}
+.cleanup2 .c-car-btn:hover:not(:disabled) { border-color: var(--yellow); color: var(--yellow); }
+.cleanup2 .c-car-btn:disabled { opacity: 0.3; cursor: default; }
+
+.cleanup2 .c-car-view { overflow: hidden; }
+.cleanup2 .c-car-track {
+  display: flex;
+  transition: transform 0.4s ease;
+}
+.cleanup2 .c-slide { flex: 0 0 100%; min-width: 0; }
+
+.cleanup2 .c-slide table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0 6px;
+}
+.cleanup2 .c-slide th {
+  padding-bottom: 4px;
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--muted);
+  text-align: center;
+}
+.cleanup2 .c-slide th:nth-child(7) { color: #ff8c8c; }
+.cleanup2 .c-slide td {
+  height: 50px;
+  text-align: center;
+  font-size: 18px;
+  color: var(--text);
+}
+/* 청소 주간: 조별 색 형광펜 (얇은 띠가 숫자 한가운데를 지나감, 끝은 동글동글) */
+.cleanup2 .c-slide td.g1 { --hl: #B5691A; }
+.cleanup2 .c-slide td.g2 { --hl: #2A6FB0; }
+.cleanup2 .c-slide td.g3 { --hl: #B58A12; }
+.cleanup2 .c-slide td.g4 { --hl: #38A07A; }
+.cleanup2 .c-slide td.hl {
+  position: relative;
+  z-index: 0;
+}
+/* 띠: 숫자 아래에 놓여요. top = 위에서 내려온 위치, height = 두께 (칸 높이 기준 %) */
+.cleanup2 .c-slide td.hl::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 80%;
+  height: 22%;
+  left: 0;
+  right: -1px;               /* 칸 사이 이음선이 안 보이게 1px 겹침 */
+  background: var(--hl);
+}
+.cleanup2 .c-slide td.hl-s::before { border-radius: 999px 0 0 999px; }
+.cleanup2 .c-slide td.hl-e::before { border-radius: 0 999px 999px 0; right: 0; }
+/* 한 칸짜리 줄(시작이자 끝)은 양쪽 다 둥글게 */
+.cleanup2 .c-slide td.hl-s.hl-e::before { border-radius: 999px; }
+
+.cleanup2 .c-car-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+.cleanup2 .c-car-dots button {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+}
+.cleanup2 .c-car-dots button.on { background: var(--orange); }
+
+/* 범례 (조별 청소 주간) */
+.cleanup2 .c-legend-wrap { min-width: 220px; }
+.cleanup2 .c-legend {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.cleanup2 .c-legend-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.05);
+}
+.cleanup2 .c-legend-item .c-dot { margin-top: 5px; }
+.cleanup2 .c-legend-item b {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 18px;
+  font-weight: 400;
+}
+.cleanup2 .c-legend-item .period {
+  display: block;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.cleanup2 .c-legend-item.now {
+  border-color: var(--orange);
+  box-shadow: 0 0 20px rgba(255, 138, 0, 0.25);
 }
 
-.db_article .cleanup_check .cleanup_table .item .cleanup_checking:checked + label {
-    width: 32px;
-    height: 32px;
-  background: url("./res/cleanup_done.png") no-repeat left center;
-    background-size: contain;
+/* [3-5] 역할 안내 */
+.cleanup2 .c-roles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.cleanup2 .c-role {
+  padding: 18px 22px 20px;
+  border-radius: 20px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.05);
+}
+.cleanup2 .c-role h3 {
+  margin: 0 0 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--orange);
+}
+.cleanup2 .c-cnt {
+  padding: 2px 12px;
+  border-radius: 999px;
+  background: var(--yellow);
+  color: #0B0B0F;
+  font-size: 13px;
+}
+.cleanup2 .c-role p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.75;
+  color: #D9DCEA;
 }
 
-.db_article .cleanup_check .reset {
-    text-align: center;
-    height: 50px;
-    margin-bottom: 30px;
+/* [3-6] 조 배정 결과 + 체크리스트 */
+.cleanup2 .c-teams {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.cleanup2 .c-team {
+  padding: 20px 24px 22px;
+  border-radius: 20px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.05);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.cleanup2 .c-team.now {
+  border-color: var(--orange);
+  box-shadow: 0 0 24px rgba(255, 138, 0, 0.25);
+}
+.cleanup2 .c-team-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.cleanup2 .c-team-head h3 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 400;
+}
+.cleanup2 .c-badge-now {
+  display: none;
+  padding: 2px 12px;
+  border-radius: 999px;
+  background: var(--orange);
+  color: #fff;
+  font-size: 13px;
+}
+.cleanup2 .c-team.now .c-badge-now { display: inline-block; }
+
+.cleanup2 .c-team table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.cleanup2 .c-team th,
+.cleanup2 .c-team td {
+  padding: 10px 8px;
+  text-align: left;
+  font-size: 16px;
+  font-weight: 400;
+  border-bottom: 1px solid var(--line);
+}
+.cleanup2 .c-team thead th {
+  font-size: 14px;
+  color: var(--muted);
+  border-bottom: 2px solid var(--blue);
+}
+.cleanup2 .c-team tbody th { color: var(--yellow); width: 34%; }
+.cleanup2 .c-team tr:last-child th,
+.cleanup2 .c-team tr:last-child td { border-bottom: none; }
+.cleanup2 .c-team .c-done { text-align: center; width: 64px; }
+
+/* 체크박스: 눌렀을 때 빛나는 효과 */
+.cleanup2 .c-team input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.cleanup2 .c-check {
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  width: 28px;
+  height: 28px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  border: 2px solid #4e4e5c;
+  background: #17171C;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+.cleanup2 .c-check:hover { border-color: var(--yellow); }
+.cleanup2 .c-team input:checked + .c-check {
+  background: var(--yellow);
+  border-color: var(--yellow);
+  box-shadow: 0 0 10px 2px rgba(255, 187, 0, 0.85), 0 0 22px 6px rgba(255, 138, 0, 0.5);
+}
+.cleanup2 .c-team input:focus-visible + .c-check {
+  box-shadow: 0 0 0 3px rgba(47, 155, 255, 0.35);
 }
 
-.db_article .cleanup_check .reset .cleanup_checking_reset {
-    position: absolute;
-    opacity: 0%;
-    width: 0;
-    height: 0;
+.cleanup2 .c-reset-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
 }
-
-.db_article .cleanup_check .reset .cleanup_checking_reset + label {
-    display: inline-block;
-    width: 25px;
-    height: 25px;
-    background: url("./res/cleanup_reset.png") no-repeat left center;
-    background-size: contain;
-    opacity: 80%;
+.cleanup2 .c-reset {
+  height: 46px;
+  padding: 0 24px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #51556c;
+  box-shadow: 0 4px 0 rgba(108, 113, 138, 0.35);
+  color: var(--text);
+  font-size: 16px;
+  cursor: pointer;
 }
+.cleanup2 .c-reset:hover { background: #5b5f7a; }
 
-.db_article .cleanup_check .reset .cleanup_checking_reset:hover + label {
-    width: 27px;
-    height: 27px;
+/* [3-7] 응원 댓글 */
+.cleanup2 .c-count { font-size: 20px; color: var(--muted); }
+.cleanup2 .c-count b { color: var(--yellow); font-weight: 400; }
+
+.cleanup2 .c-comment-list {
+  list-style: none;
+  margin: 0 0 22px;
+  padding: 0;
 }
-
-.db_article .cleanup_check .reset .cleanup_checking_reset:active + label {
-    width: 27px;
-    height: 27px;
-    opacity: 100%;
+.cleanup2 .c-comment-list li {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 10px;
+  border-bottom: 1px solid var(--line);
 }
-
-/* [3-3] 댓글창(cleanup_comment) */
-.db_article .cleanup_comment {
-    display: flex;
-    width: 90vw;
-    min-height: 30vh;
-    flex-direction: column;
-    font-family: "Jua", sans-serif;
-    font-weight: 400;
-    font-style: normal;
+.cleanup2 .c-profile {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--yellow);
+  color: #0B0B0F;
+  font-size: 18px;
 }
-
-.db_article .cleanup_comment .comment {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
+.cleanup2 .c-comment-body { flex: 1; min-width: 0; }
+.cleanup2 .c-comment-body .who { font-size: 16px; color: var(--yellow); }
+.cleanup2 .c-comment-body .txt {
+  margin-top: 4px;
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--text);
+  word-break: break-all;
 }
-
-.db_article .cleanup_comment .comment .item {
-    width:30px;
-    min-height: 50px;
+.cleanup2 .c-heart {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: none;
+  color: var(--muted);
+  font-size: 15px;
+  cursor: pointer;
 }
+.cleanup2 .c-heart b { font-weight: 400; }
+.cleanup2 .c-heart:hover { border-color: #ff6b81; }
+.cleanup2 .c-heart.on { color: #ff6b81; border-color: #ff6b81; }
 
-.db_article .cleanup_comment .comment .item:first-child {
-    width: 80px;
+.cleanup2 .c-comment-form {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 12px;
 }
-
-.db_article .cleanup_comment .comment .item:nth-child(2) {
-    flex-grow: 1;
+.cleanup2 .c-comment-form input,
+.cleanup2 .c-comment-form textarea {
+  box-sizing: border-box;
+  padding: 12px 18px;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  font-size: 16px;
+  outline: none;
 }
-
-.db_article .cleanup_comment .write_comment {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+.cleanup2 .c-comment-form input { width: 160px; }
+.cleanup2 .c-comment-form textarea {
+  flex: 1;
+  min-width: 200px;
+  height: 56px;
+  resize: vertical;
 }
-
-.db_article .cleanup_comment .write_comment .textarea {
-    width: 90vw;
-    min-height: 50px;
-    margin-bottom: 10px;
-    font-family: "Jua", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 15px;
-    opacity: 60%;
-    border-radius: 10px;
-    border: 3px solid #737373;
+.cleanup2 .c-comment-form input:focus,
+.cleanup2 .c-comment-form textarea:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(47, 155, 255, 0.25);
 }
-
-.db_article .cleanup_comment .write_comment .two_button {
-    display: flex;
-    width: 90vw;
-    min-height: 50px;
-    margin-bottom: 10vh;
-    flex-direction: row;
-    justify-content: flex-end;
+.cleanup2 .c-submit {
+  flex: none;
+  height: 56px;
+  padding: 0 30px;
+  border: none;
+  border-radius: 999px;
+  background: var(--orange);
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0 4px 0 rgba(255, 138, 0, 0.35);
 }
+.cleanup2 .c-submit:hover { background: #ff9a1f; }
 
-.db_article .cleanup_comment .write_comment .two_button .item {
-    width: 60px;
-    height: 30px;
+/* [3-8] 반응형 */
+@media (max-width: 900px) {
+  .cleanup2 .c-roles,
+  .cleanup2 .c-teams { grid-template-columns: 1fr; }
 }
-
-.db_article .cleanup_comment .write_comment .two_button .item:first-child {
-    margin-right: 10px;
+@media (max-width: 720px) {
+  .cleanup2 .c-panel { padding: 24px 18px; }
+  .cleanup2 .c-slide td { height: 40px; font-size: 15px; }
+  .cleanup2 .c-comment-form input { width: 100%; }
 }
 
 /*커서*/
