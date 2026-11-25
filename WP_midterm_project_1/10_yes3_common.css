@@ -115,9 +115,10 @@
     margin: 0;
     padding: 8px 0;
     list-style: none;
-    background-color: rgba(0, 48, 135, 0.95);
+    background: #161a21 url("res/footer-plate.png");   /* footer 아래쪽과 같은 철판 무늬 */
+    border: 1px solid #2c323d;                          /* footer 구분선 색 */
     border-radius: 12px;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
     text-align: center;
     white-space: nowrap;
 }
@@ -130,8 +131,9 @@
 
 .main_nav .nav_dropdown li a {
     display: block;
-    padding: 2px 20px;
-    font-size: 34px;
+    padding: 8px 20px;
+    font-family: 'Jua', sans-serif;
+    font-size: 20px;               /* 주아체는 동글체보다 글자가 커서 34px → 20px */
 }
 
 .main_nav .nav_dropdown li a:hover {
