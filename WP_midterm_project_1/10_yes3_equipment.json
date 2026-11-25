@@ -1,0 +1,171 @@
+{
+  "data": "equipment",
+  "equipmentList": [
+    {
+      "id": "1",
+      "category": "공구함 A",
+      "name": "드라이버",
+      "count": 3,
+      "isLow": false,
+      "image": "./item/screwdriver.svg",
+      "alt": "스크류드라이버",
+      "description": "십자 및 일자 나사를 조이거나 풀 때 사용하는 기본 수공구입니다.",
+      "history": [
+        { "who": "강00", "date": "11/22" },
+        { "who": "김00", "date": "11/21" }
+      ]
+    },
+    {
+      "id": "2",
+      "category": "공구함 A",
+      "name": "니퍼",
+      "count": 2,
+      "isLow": false,
+      "image": "./item/nipper.svg",
+      "alt": "니퍼",
+      "description": "전선 피복을 벗기거나 소형 부품의 다리를 절단할 때 사용합니다.",
+      "history": [
+        { "who": "김00", "date": "11/21" },
+        { "who": "이00", "date": "11/20" }
+      ]
+    },
+    {
+      "id": "3",
+      "category": "공구함 A",
+      "name": "줄자",
+      "count": 1,
+      "isLow": true,
+      "image": "./item/tape-measure.svg",
+      "alt": "줄자",
+      "description": "프로토타입 제작 시 치수를 정밀하게 측정할 때 사용합니다.",
+      "history": [
+        { "who": "이00", "date": "11/20" }
+      ]
+    },
+    {
+      "id": "4",
+      "category": "아두이노",
+      "name": "점퍼선 (묶음)",
+      "count": 4,
+      "isLow": false,
+      "image": "./item/jumper-wire (1).svg",
+      "alt": "점퍼와이어",
+      "description": "점퍼선은 브레드보드로 아두이노 프로젝트를 만들 때 사용할 수 있어요.",
+      "history": [
+        { "who": "박00", "date": "11/19" },
+        { "who": "강00", "date": "11/18" }
+      ]
+    },
+    {
+      "id": "5",
+      "category": "아두이노",
+      "name": "아두이노 우노",
+      "count": 2,
+      "isLow": false,
+      "image": "./item/arduino.svg",
+      "alt": "아두이노 우노",
+      "description": "센서와 액추에이터를 제어하는 기본 마이크로컨트롤러 보드입니다.",
+      "history": [
+        { "who": "강00", "date": "11/22" },
+        { "who": "박00", "date": "11/19" }
+      ]
+    },
+    {
+      "id": "6",
+      "category": "아두이노",
+      "name": "브레드보드",
+      "count": 1,
+      "isLow": true,
+      "image": "./item/breadboard (1).svg",
+      "alt": "브래드보드",
+      "description": "납땜 없이 전자 회로를 빠르게 구성하고 테스트할 수 있는 기판입니다.",
+      "history": [
+        { "who": "김00", "date": "11/21" }
+      ]
+    },
+    {
+      "id": "7",
+      "category": "소모품",
+      "name": "LED (봉지)",
+      "count": 5,
+      "isLow": false,
+      "image": "./item/led.svg",
+      "alt": "LED 봉지",
+      "description": "회로 동작 상태 표시 및 조명 프로토타입 제작에 사용하는 발광 다이오드입니다.",
+      "history": [
+        { "who": "이00", "date": "11/20" }
+      ]
+    },
+    {
+      "id": "8",
+      "category": "소모품",
+      "name": "저항 키트",
+      "count": 2,
+      "isLow": false,
+      "image": "./item/resistor.svg",
+      "alt": "저항키트",
+      "description": "LED 보호 및 전압 분배를 위한 다양한 옴(Ω) 단위의 저항 세트입니다.",
+      "history": [
+        { "who": "박00", "date": "11/19" }
+      ]
+    },
+    {
+      "id": "9",
+      "category": "소모품",
+      "name": "케이블타이 (봉지)",
+      "count": 3,
+      "isLow": false,
+      "image": "./item/cable-tie.svg",
+      "alt": "케이블타이",
+      "description": "배선 정리 및 부품 고정을 위해 사용하는 소모품입니다.",
+      "history": [
+        { "who": "강00", "date": "11/22" }
+      ]
+    },
+    {
+      "id": "10",
+      "category": "아두이노",
+      "name": "USB 케이블",
+      "count": 2,
+      "isLow": false,
+      "image": "./item/cable-tie.svg",
+      "alt": "USB 케이블",
+      "description": "아두이노 보드와 PC를 연결하여 코드를 업로드할 때 사용합니다.",
+      "history": [
+        { "who": "김00", "date": "11/21" }
+      ]
+    },
+    {
+      "id": "11",
+      "category": "3D펜",
+      "name": "3D 펜 필라멘트(핑크)",
+      "count": 3,
+      "isLow": false,
+      "image": "./item/cable-tie.svg",
+      "alt": "3D 펜 필라멘트 핑크",
+      "description": "3D 펜 사용을 위한 필라멘트(핑크)입니다.",
+      "history": [
+        { "who": "강00", "date": "11/22" }
+      ]
+    },
+    {
+      "id": "12",
+      "category": "3D펜",
+      "name": "3D 펜 필라멘트(검정)",
+      "count": 3,
+      "isLow": false,
+      "image": "./item/cable-tie.svg",
+      "alt": "3D 펜 필라멘트 검정",
+      "description": "3D 펜 사용을 위한 필라멘트(검정)입니다.",
+      "history": [
+        { "who": "강00", "date": "11/22" }
+      ]
+    }
+  ],
+  "rentalList": [
+    { "who": "강00", "item": "드라이버", "quantity": 1 },
+    { "who": "김00", "item": "니퍼", "quantity": 2 },
+    { "who": "이00", "item": "줄자", "quantity": 1 },
+    { "who": "박00", "item": "점퍼선 (묶음)", "quantity": 3 }
+  ]
+}
