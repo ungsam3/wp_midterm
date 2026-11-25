@@ -13,7 +13,7 @@ body {
 
 /* 제목: 동글체 (동글체는 글자가 작게 보여서 크기를 키움) */
 .main2_title, .main3_title, .main4_title, .main2_1 h2 {
-    font-family: "Dongle", sans-serif;
+    font-family: "Jua", sans-serif;
     font-weight: 400;
     line-height: 1;
 }
@@ -167,7 +167,7 @@ body {
 
 .main2_title {
     background-color: transparent;
-    font-size: 80px;
+    font-size: 40px;
     font-weight: bold;
     margin-bottom: 30px;
     text-align: center;
@@ -204,7 +204,7 @@ body {
 }
 
 .main2_1 h2 {
-    font-size: 72px;
+    font-size: 40px;
     margin-bottom: 20px;
     color: #f8f9fa;
 }
@@ -217,60 +217,89 @@ body {
 }
 
 
-.main2_2 input[type="radio"] {
-    display: none;
-}
-
+/* ---------- 주요활동 사진 캐러셀 (JS: 10_yes3_main.js) ---------- */
 .main2_2 {
     position: relative;
-    width: 450px; 
+    width: 450px;
     max-width: 100%;
-    aspect-ratio: 3 / 2; /* 450x300 비율 유지하면서 좁은 화면에선 같이 줄어듦 */
+    aspect-ratio: 3 / 2;          /* 450x300 비율 유지, 좁은 화면에선 같이 줄어듦 */
+    outline: none;
 }
 
-.main_pictures {
-    position: relative;
+/* 한 장만 보이는 창 */
+.carousel_viewport {
     width: 100%;
     height: 100%;
     overflow: hidden;
+    touch-action: pan-y;          /* 세로 스크롤은 그대로, 가로 스와이프만 JS가 처리 */
 }
 
-.main_pictures img {
-    position: absolute;
-    top: 0; left: 0;
+/* 사진 3장을 가로로 이어붙인 줄 → JS가 translateX로 밀어줌 */
+.carousel_track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.5s ease;
+}
+
+.carousel_slide {
+    flex: 0 0 100%;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0; 
+    display: block;
+    user-select: none;
 }
 
-#slide1:checked ~ .main_pictures img:nth-child(1) { opacity: 1; z-index: 1; }
-#slide2:checked ~ .main_pictures img:nth-child(2) { opacity: 1; z-index: 1; }
-#slide3:checked ~ .main_pictures img:nth-child(3) { opacity: 1; z-index: 1; }
-
-
-.onslide1, .onslide2, .onslide3 {
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-#slide1:checked ~ .onslide1 { display: block; z-index: 2; }
-#slide2:checked ~ .onslide2 { display: block; z-index: 2; }
-#slide3:checked ~ .onslide3 { display: block; z-index: 2; }
-
-.onslide1 label, .onslide2 label, .onslide3 label {
+/* ◀ ▶ : 기존 label처럼 사진 바깥 양옆 (.main2_factors의 padding 60px 자리) */
+.carousel_btn {
     position: absolute;
     top: 45%;
+    padding: 0;
+    border: none;
+    background: none;
+    font: inherit;
     font-size: 30px;
-    color: white;
+    color: rgba(128, 128, 128, 0.434);
     cursor: pointer;
+    transition: color 0.2s;
 }
-.onslide1 label:nth-child(1), .onslide2 label:nth-child(1), .onslide3 label:nth-child(1) { left: -60px; color: rgba(128, 128, 128, 0.434); }
-.onslide1 label:nth-child(2), .onslide2 label:nth-child(2), .onslide3 label:nth-child(2) { right: -60px; color: rgba(128, 128, 128, 0.434); }
+.carousel_btn:hover,
+.carousel_btn:focus-visible { color: #ffbc00; }
+.carousel_prev { left: -60px; }
+.carousel_next { right: -60px; }
+
+/* 점 표시: 사진 안쪽 아래에 겹쳐서 (aspect-ratio 상자 밖으로 안 넘치게) */
+.carousel_dots {
+    position: absolute;
+    left: 0;
+    bottom: 12px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    z-index: 1;
+}
+.carousel_dots button {
+    width: 9px;
+    height: 9px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+.carousel_dots button.active {
+    background: #ffbc00;
+    transform: scale(1.3);
+    box-shadow: 0 0 6px rgba(255, 188, 0, 0.8);   /* 사이트 네온 톤 */
+}
+
+/* 키보드로 사진 영역에 들어왔을 때 표시 */
+.main2_2:focus-visible {
+    outline: 3px dashed #4fc3ff;
+    outline-offset: 6px;
+}
 
 /* 우측 캘린더 영역 */
 .main2_3 {
@@ -380,7 +409,7 @@ body {
 
 .main3_title {
     background-color: transparent;
-    font-size: 80px;
+    font-size: 40px;
     font-weight: bold;
     margin-bottom: 8vh;
     text-align: center;
@@ -579,29 +608,20 @@ body {
     width: 100%;
 }
 
-/* ---------- 조직도: 감성술집 네온 + 오락실 캐릭터 선택 카드 ----------
-   (HTML 구조는 그대로, 모양·색만)
-   --neon: 카드마다 네온 색 (테두리·빛번짐·이름 빛·직책 배지에 같이 쓰임) */
+/* ---------- 조직도: footer와 같은 톤 (네온 X) ----------
+   HTML 구조는 그대로. 색은 주황 · 흰색 · 남색만.
+   - 카드 바탕 = footer 아래쪽과 같은 철판 무늬(footer-plate.png) + 남색
+   - 직책 배지 = footer "지원하기!" 버튼과 같은 주황 알약
+   - 소제목 = footer MENU/COMMUNITY 같은 주황 글씨 */
 
-/* 소제목(임원진 / 부원): 술집 네온 간판 */
+/* 소제목(임원진 / 부원): footer 칸 제목처럼 주황 글씨 + 짧은 밑줄 */
 .org_executive > span, .org_inventors > span {
-    margin-bottom: 26px;
-    padding: 6px 30px;
-    border: 2px solid #ffb347;
-    border-radius: 999px;
-    background-color: rgba(255, 179, 71, 0.08);
-    color: #fff3dc;
+    margin-bottom: 22px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #FF8A00;
+    color: #FF8A00;
     font-size: 20px;
-    letter-spacing: 4px;
-    text-shadow: 0 0 6px #ffb347, 0 0 14px #ff8800;
-    box-shadow: 0 0 10px rgba(255, 179, 71, 0.6), inset 0 0 10px rgba(255, 179, 71, 0.35);
-}
-.org_inventors > span {
-    border-color: #4fc3ff;
-    background-color: rgba(79, 195, 255, 0.08);
-    color: #e3f6ff;
-    text-shadow: 0 0 6px #4fc3ff, 0 0 14px #0078d7;
-    box-shadow: 0 0 10px rgba(79, 195, 255, 0.6), inset 0 0 10px rgba(79, 195, 255, 0.35);
+    letter-spacing: 6px;
 }
 
 .org_executive ul, .org_inventors ul {
@@ -611,90 +631,36 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 18px;
+    gap: 16px;
 }
 
-/* 카드 공통: 어두운 유리 + 네온 테두리 + 옛날 화면 주사선 */
+/* 카드 공통: 남색 철판 바탕 + 얇은 테두리 */
 .org_executive li, .org_inventors li {
-    --neon: #4fc3ff;
     position: relative;
     padding: 18px 12px 14px;
-    border: 2px solid var(--neon);
-    border-radius: 16px;
-    background:
-        repeating-linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 0 1px, transparent 1px 3px),  /* 주사선 */
-        radial-gradient(120% 80% at 50% 0%, rgba(255, 255, 255, 0.08), transparent 60%),          /* 유리 반사광 */
-        linear-gradient(160deg, #1a1f38 0%, #0e1224 100%);                                         /* 어두운 바탕 */
-    color: #f5f3ee;
+    border: 1px solid #2c323d;
+    border-top: 3px solid #3a4a7a;          /* 부원: 남색 윗선 */
+    border-radius: 12px;
+    background: #141a2b url("res/footer-plate.png");
+    color: #ffffff;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    box-shadow:
-        0 0 6px var(--neon),
-        0 0 18px -4px var(--neon),
-        inset 0 0 14px -6px var(--neon),
-        0 10px 20px rgba(0, 0, 0, 0.5);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* 마우스 올리면: 카드가 떠오르고 네온이 지직- 하고 더 밝게 켜짐 */
+/* 임원진: 주황 윗선 */
+.org_executive li {
+    border-top-color: #FF8A00;
+}
+
+/* 마우스 올리면: 살짝 떠오르고 테두리 주황 + footer 버튼 같은 딱딱한 그림자 */
 .org_executive li:hover, .org_inventors li:hover {
-    transform: translateY(-6px) scale(1.04);
-    box-shadow:
-        0 0 10px var(--neon),
-        0 0 30px var(--neon),
-        inset 0 0 20px -4px var(--neon),
-        0 16px 28px rgba(0, 0, 0, 0.6);
-    animation: card-neon-on 0.5s steps(1);
+    transform: translateY(-4px);
+    border-color: #FF8A00;
+    box-shadow: 0 4px 0 #b44a00;
 }
-@keyframes card-neon-on {
-    0%   { filter: brightness(1.6); }
-    20%  { filter: brightness(0.8); }
-    40%  { filter: brightness(1.5); }
-    60%  { filter: brightness(1); }
-}
-
-/* 마우스 올리면 왼쪽 위에 오락실 "1P" 표시 */
-.org_executive li::before, .org_inventors li::before {
-    content: "1P";
-    position: absolute;
-    top: -12px;
-    left: -10px;
-    padding: 4px 6px;
-    font-family: "Press Start 2P", monospace;
-    font-size: 9px;
-    color: #ffffff;
-    background-color: #ff3b3b;
-    border: 2px solid #000000;
-    opacity: 0;
-    transform: scale(0.5);
-    transition: opacity 0.2s, transform 0.2s;
-}
-.org_executive li:hover::before, .org_inventors li:hover::before {
-    opacity: 1;
-    transform: scale(1) rotate(-8deg);
-}
-
-/* 임원진: 따뜻한 호박색 조명, 회장은 금색 + 왕관 */
-.org_executive li { --neon: #ffb347; }
-.org_executive li:nth-child(1) { --neon: #ffd23f; }
-.org_executive li:nth-child(1)::after {
-    content: "♛";
-    position: absolute;
-    top: -22px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 24px;
-    color: #ffd23f;
-    text-shadow: 0 0 8px #ffd23f;
-}
-
-/* 부원: 술집 네온사인처럼 파랑 → 분홍 → 보라 → 민트 돌아가며 */
-.org_inventors li:nth-child(4n+1) { --neon: #4fc3ff; }
-.org_inventors li:nth-child(4n+2) { --neon: #ff5fa2; }
-.org_inventors li:nth-child(4n+3) { --neon: #b48cff; }
-.org_inventors li:nth-child(4n+4) { --neon: #5fffc4; }
 
 .org_executive ul {
     list-style: none;
@@ -704,7 +670,7 @@ body {
     display: grid;
     grid-template-columns: repeat(3, 160px);
     justify-content: center;
-    gap: 18px;
+    gap: 16px;
     width: auto;
     max-width: 100%;
 }
@@ -729,35 +695,33 @@ body {
     width: 150px;
 }
 
-/* 직책: 네온 색 배지 */
+/* 직책: footer "지원하기!"와 같은 주황 알약 */
 .role {
     display: inline-block;
     margin-bottom: 8px;
     padding: 2px 10px;
     border-radius: 999px;
-    background-color: var(--neon);
-    color: #0b0f1c;
+    background-color: #FF6A00;
+    color: #ffffff;
     font-size: 12px;
-    box-shadow: 0 0 8px var(--neon);
 }
 
-/* 이름: 하얗게 빛나는 글씨 */
+/* 이름: 흰 글씨 */
 .org_executive li span:nth-child(2),
 .org_inventors li span:nth-child(1) {
     margin-bottom: 5px;
     font-size: 18px;
     color: #ffffff;
-    text-shadow: 0 0 6px var(--neon);
 }
 
-/* 학번·학과: 흐린 글씨 */
+/* 학번·학과: footer 보조 글씨와 같은 회색 */
 .org_executive li span:nth-child(3),
 .org_inventors li span:nth-child(2) {
     font-size: 11px;
-    color: rgba(245, 243, 238, 0.6);
+    color: #8a94a3;
 }
 .main4_title{
-     font-size: 80px;
+     font-size: 32px;
  font-weight: bold;
  margin-bottom: 50px;
  text-align: center;
@@ -1038,6 +1002,43 @@ body {
 
 /* '움직임 줄이기' 설정을 켠 사용자에겐 애니메이션 끄기 */
 @media (prefers-reduced-motion: reduce) {
-    .star, .neon-sign, .with-bulbs::before, .with-bulbs::after,
-    .string-lights g, .insert-coin, .coin-gear, .coin-star { animation: none; }
+    .title_line2, .people { animation: none; }
+    .carousel_track { transition: none; }
 }
+
+
+/*===============================================================
+  footer 감성술집 톤 맞추기 (메인 페이지에서만 덮어씀, common.css는 그대로)
+  - 밝은 철판 바닥·원색 발명품이 혼자 튀지 않도록:
+    바닥 위에 어둑한 안개 + 호박색/하늘색 조명을 깔고, 발명품은 채도 낮추고 은은하게 빛나게
+================================================================*/
+.ft-stage::before {                      /* 바닥 위 어둑한 안개 + 양쪽 네온 조명 */
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(ellipse 30% 45% at 28% 80%, rgba(255, 170, 60, 0.20), transparent 70%),
+        radial-gradient(ellipse 30% 45% at 74% 80%, rgba(79, 195, 255, 0.18), transparent 70%),
+        linear-gradient(to bottom, rgba(18, 22, 32, 0) 0%, rgba(6, 11, 30, 0.55) 62%, rgba(6, 11, 30, 0.78) 100%);
+}
+
+.ft-item, .ft-hint {                     /* 발명품·안내는 안개 위로 */
+    z-index: 1;
+}
+
+.ft-obj img {                            /* 발명품: 원색을 살짝 죽이고 조명 받은 듯 은은한 빛 */
+    filter: saturate(0.75) brightness(0.92) drop-shadow(0 0 10px rgba(255, 190, 90, 0.35));
+    transition: filter 0.25s;
+}
+.ft-obj:hover img {                      /* 마우스 올리면 불이 들어온 듯 */
+    filter: saturate(1) brightness(1.05) drop-shadow(0 0 16px rgba(255, 200, 110, 0.7));
+}
+
+.ft-shadow {                             /* 그림자 대신 발밑 조명 웅덩이 */
+    background: radial-gradient(ellipse at center, rgba(255, 190, 90, 0.28), rgba(6, 11, 30, 0.5) 60%, transparent 75%);
+}
+
+

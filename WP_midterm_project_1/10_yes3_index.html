@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="10_yes3_common.css">
     <link rel="stylesheet" href="10_yes3_main.css">
     <script src="10_yes3_auth.js"></script>
+    <script src="10_yes3_main.js" defer></script>
 </head>
 
 <body>
@@ -98,35 +99,22 @@
                     <p class="aboutungsa">2002년 여대 최초로 만들어진 발명동아리로, 다양한 전공과 학년의 사람들이 모였습니다. 엉뚱하고 톡톡튀는 아이디어를 구현해보는 활동을 진행합니다. 또한, 각종 발명관련
                         대회를 참가하며 우수한 성과를 내고 있습니다. </p>
                 </div>
-
-                <div class="main2_2">
-                    <input type="radio" name="main_gallery" id="slide1" checked>
-                    <input type="radio" name="main_gallery" id="slide2">
-                    <input type="radio" name="main_gallery" id="slide3">
-
-
-                    <div class="main_pictures">
-                        <img src="res/2024-homecoming.jpg" alt="2024-homecoming">
-                        <img src="res/2024-cpu-award.jpg" alt="2024-cpu-award">
-                        <img src="res/2026-claw-machine.jpg" alt="2026-claw-machine">
+                <div class="main2_2 carousel" aria-roledescription="carousel" aria-label="주요 활동 사진" tabindex="0">
+                    <div class="carousel_viewport">
+                        <div class="carousel_track">
+                            <img class="carousel_slide" src="res/2024-homecoming.jpg" alt="2024 홈커밍" draggable="false">
+                            <img class="carousel_slide" src="res/2024-cpu-award.jpg" alt="2024 CPU 수상" draggable="false">
+                            <img class="carousel_slide" src="res/2026-claw-machine.jpg" alt="2026 인형뽑기 기계" draggable="false">
+                        </div>
                     </div>
 
-                    <div class="onslide1">
-                        <label for="slide3"> ◀ </label>
-                        <label for="slide2"> ▶ </label>
-                    </div>
+                    <button type="button" class="carousel_btn carousel_prev" aria-label="이전 사진">◀</button>
+                    <button type="button" class="carousel_btn carousel_next" aria-label="다음 사진">▶</button>
 
-                    <div class="onslide2">
-                        <label for="slide1"> ◀ </label>
-                        <label for="slide3"> ▶ </label>
-                    </div>
-
-                    <div class="onslide3">
-                        <label for="slide2"> ◀ </label>
-                        <label for="slide1"> ▶ </label>
-                    </div>
-
+                    <div class="carousel_dots"></div>
                 </div>
+
+                
             </div>
 
             <aside class="main2_3"> <!--캘린더 CSS Grid? 아니면 그냥 표노가다..-->
