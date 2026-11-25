@@ -302,18 +302,6 @@ article > .wrap {
   color: var(--muted);
   margin: 0 8px 0 4px;
 }
-.pg-go {
-  height: 44px;
-  padding: 0 20px;
-  border: none;
-  border-radius: 12px;
-  background: var(--blue);
-  color: #fff;
-  font-family: "Jua", sans-serif;
-  font-size: 16px;
-  cursor: pointer;
-}
-.pg-go:hover { background: #1b86ee; }
 
 /* ===== 대여 현황 보드 (aside) ===== */
 .rental-board {

@@ -1,4 +1,4 @@
-<!Doctype html>
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
@@ -8,7 +8,6 @@
         <meta name="author3" content="김서진">
         <link rel="icon" href="./res/logo_black.png" type="image/png">
         <link rel="stylesheet" href="./10_yes3_common.css">
-        <link rel="stylesheet" href="./10_yes3_bg.css">
         <link rel="stylesheet" href="./10_yes3_arch_learning.css">
     </head>
     <body>
@@ -37,71 +36,67 @@
                 </ul>
             </div>
         </nav>
-        <header>
-            
-        </header>
-        <article>
 
-            <section class="learning_1">
-                <div class="sub_article"></div>
-            </section>
+        <!-- 배너: 사진만 (비품 페이지와 동일 높이) -->
+        <section class="learning_1"></section>
 
-            <section class="learning2">
-                <!-- 리스트 박스 위 제목 -->
-                <div class="board-head">
-                    <h1>교육 자료</h1>
-                </div>
+        <article class="learning2">
 
-                <div class="panel" id="panel-learning">
-                    <div class="learning-box">
-                        <!-- 전체 건수 + 검색 -->
-                        <div class="board-top">
-                            <p class="total-count">전체 <b id="total-count">0</b>건</p>
-                            <form class="search-form" id="search-form">
-                                <select class="sel" id="search-category" aria-label="검색 분류">
-                                    <option value="all">전체</option>
-                                    <option value="patent">특허</option>
-                                    <option value="making">메이킹</option>
-                                    <option value="activity">활동지</option>
-                                </select>
-                                <input class="search-input" id="search-keyword" type="text" placeholder="검색어를 입력해주세요.">
-                                <button class="search-btn" type="submit">검색</button>
-                            </form>
-                        </div>
+            <!-- 제목(왼쪽) + 검색창(판넬 오른쪽 끝에 맞춤) -->
+            <div class="board-head">
+                <h1>교육 자료</h1>
+                <form class="search_dbeq" id="search-form">
+                    <select class="search_sel" id="search-category" aria-label="검색 분류">
+                        <option value="all">전체</option>
+                        <option value="making">메이킹</option>
+                        <option value="patent">특허</option>
+                        <option value="activity">활동지</option>
+                    </select>
+                    <input type="text" class="search" id="search-keyword" placeholder="검색어를 입력해주세요.">
+                    <button type="submit" class="search_btn">검색</button>
+                </form>
+            </div>
 
-                        <!-- 보기 필터 + 자료 작성하기 -->
-                        <div class="board-filter">
-                            <div class="view-filter">
-                                <select class="sel" id="per-page" aria-label="표시 개수">
-                                    <option value="10">10개씩</option>
-                                    <option value="20">20개씩</option>
-                                </select>
-                                <select class="sel" id="sort-order" aria-label="정렬">
-                                    <option value="latest">최신순</option>
-                                    <option value="oldest">등록순</option>
-                                </select>
-                                <button type="button" class="view-btn" id="view-btn">보기</button>
-                            </div>
-                            <button type="button" class="write-btn" id="open-modal">자료 작성하기</button>
-                        </div>
+            <div class="wrap">
+                <!-- 교육자료 큰 판넬 -->
+                <section class="panel" id="panel-learning">
 
-                        <!-- 목록 -->
-                        <ul class="drive-list" id="post-list"></ul>
-
-                        <!-- 페이지 이동 -->
-                        <div class="pager">
-                            <button type="button" class="pg-btn" id="pg-first" aria-label="처음">&laquo;</button>
-                            <button type="button" class="pg-btn" id="pg-prev" aria-label="이전">&lsaquo;</button>
-                            <input class="pg-input" id="pg-input" type="number" min="1" value="1">
-                            <span class="pg-total">/ <span id="pg-total">1</span></span>
-                            <button type="button" class="pg-go" id="pg-go">이동</button>
-                            <button type="button" class="pg-btn" id="pg-next" aria-label="다음">&rsaquo;</button>
-                            <button type="button" class="pg-btn" id="pg-last" aria-label="마지막">&raquo;</button>
-                        </div>
-
+                    <!-- 전체 건수 + 자료 작성하기 (검색창이 있던 자리) -->
+                    <div class="board-top">
+                        <p class="total-count">전체 <b id="total-count">0</b>건</p>
+                        <button type="button" class="write-btn" id="open-modal">자료 작성하기</button>
                     </div>
-                </div>
-            </section>
+
+                    <!-- 보기 필터 -->
+                    <div class="board-filter">
+                        <div class="view-filter">
+                            <select class="sel" id="per-page" aria-label="표시 개수">
+                                <option value="10">10개씩</option>
+                                <option value="20">20개씩</option>
+                            </select>
+                            <select class="sel" id="sort-order" aria-label="정렬">
+                                <option value="latest">최신순</option>
+                                <option value="oldest">등록순</option>
+                            </select>
+                            <button type="button" class="view-btn" id="view-btn">보기</button>
+                        </div>
+                    </div>
+
+                    <!-- 목록 -->
+                    <ul class="drive-list" id="post-list"></ul>
+
+                    <!-- 페이지 이동 -->
+                    <div class="pager">
+                        <button type="button" class="pg-btn" id="pg-first" aria-label="처음">&laquo;</button>
+                        <button type="button" class="pg-btn" id="pg-prev" aria-label="이전">&lsaquo;</button>
+                        <input class="pg-input" id="pg-input" type="number" min="1" value="1">
+                        <span class="pg-total">/ <span id="pg-total">1</span></span>
+                        <button type="button" class="pg-btn" id="pg-next" aria-label="다음">&rsaquo;</button>
+                        <button type="button" class="pg-btn" id="pg-last" aria-label="마지막">&raquo;</button>
+                    </div>
+
+                </section>
+            </div>
         </article>
 
         <!-- 자료 작성 모달 -->
@@ -200,6 +195,8 @@
         (function () {
             var CAT_LABEL = { patent: '특허', making: '메이킹', activity: '활동지' };
 
+            function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
             // ---- 샘플 데이터 (id가 클수록 늦게 등록) ----
             var posts = [];
             var authors = ['박ㅇㅇ', '이ㅇㅇ', '김ㅇㅇ'];
@@ -256,7 +253,6 @@
             var pgInput = $('pg-input');
             var pgTotal = $('pg-total');
 
-            function pad(n) { return n < 10 ? '0' + n : '' + n; }
             function today() {
                 var d = new Date();
                 return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
@@ -363,7 +359,6 @@
                 state.page = isNaN(n) ? 1 : n;
                 render();
             }
-            $('pg-go').addEventListener('click', goPage);
             pgInput.addEventListener('keydown', function (e) {
                 if (e.key === 'Enter') goPage();
             });
