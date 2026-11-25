@@ -138,6 +138,13 @@ body {
     transform: scale(1.5);
 }
 
+/* 스티커 4개 음영 (모양·색은 그대로, 그림자만)
+   아래쪽 딱딱한 그림자 = 각 색의 진한 색 (footer "지원하기!" 버튼과 같은 방식) + 바닥에 은은한 그림자 */
+.main2_sticker { box-shadow: 0 5px 0 #b9850a, 0 10px 18px rgba(0, 0, 0, 0.45); }
+.main3_sticker { box-shadow: 0 5px 0 #9aa3b0, 0 10px 18px rgba(0, 0, 0, 0.45); }
+.main4_sticker { box-shadow: 0 5px 0 #004f8f, 0 10px 18px rgba(0, 0, 0, 0.45); }
+.apply_sticker { box-shadow: 0 5px 0 #b44a00, 0 10px 18px rgba(0, 0, 0, 0.45); }
+
 .main1_scroll {
     position: absolute;
     bottom: 20px;
@@ -217,179 +224,310 @@ body {
 }
 
 
-/* ---------- 주요활동 사진 캐러셀 (JS: 10_yes3_main.js) ---------- */
-.main2_2 {
-    position: relative;
+/* ---------- 주요활동 사진 캐러셀 (스크립트는 index.html 안 <script>) ----------
+   크기만 ABOUT US 왼쪽 칸(450px)에 맞춤: 40vw → 450px, 높이 30vw → 3:2 비율 */
+.carousel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.carousel-view {
     width: 450px;
     max-width: 100%;
-    aspect-ratio: 3 / 2;          /* 450x300 비율 유지, 좁은 화면에선 같이 줄어듦 */
-    outline: none;
-}
-
-/* 한 장만 보이는 창 */
-.carousel_viewport {
-    width: 100%;
-    height: 100%;
     overflow: hidden;
-    touch-action: pan-y;          /* 세로 스크롤은 그대로, 가로 스와이프만 JS가 처리 */
+    border-radius: 10px;
 }
 
-/* 사진 3장을 가로로 이어붙인 줄 → JS가 translateX로 밀어줌 */
-.carousel_track {
+.carousel-container {
     display: flex;
-    height: 100%;
-    transition: transform 0.5s ease;
+    transition: transform 0.5s ease-in-out;
 }
 
-.carousel_slide {
-    flex: 0 0 100%;
+.carousel-slide {
+    min-width: 100%;
+    aspect-ratio: 3 / 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* 이미지: 비율을 유지하면서 슬라이드 영역을 꽉 채움 */
+.carousel-slide img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
-    user-select: none;
 }
 
-/* ◀ ▶ : 기존 label처럼 사진 바깥 양옆 (.main2_factors의 padding 60px 자리) */
-.carousel_btn {
-    position: absolute;
-    top: 45%;
-    padding: 0;
-    border: none;
-    background: none;
-    font: inherit;
-    font-size: 30px;
-    color: rgba(128, 128, 128, 0.434);
-    cursor: pointer;
-    transition: color 0.2s;
-}
-.carousel_btn:hover,
-.carousel_btn:focus-visible { color: #ffbc00; }
-.carousel_prev { left: -60px; }
-.carousel_next { right: -60px; }
-
-/* 점 표시: 사진 안쪽 아래에 겹쳐서 (aspect-ratio 상자 밖으로 안 넘치게) */
-.carousel_dots {
-    position: absolute;
-    left: 0;
-    bottom: 12px;
-    width: 100%;
+.carousel-control {
+    margin-top: 10px;
     display: flex;
-    justify-content: center;
-    gap: 8px;
-    z-index: 1;
+    justify-content: space-between;
+    width: 100px;
 }
-.carousel_dots button {
-    width: 9px;
-    height: 9px;
-    padding: 0;
+
+.control-btn {
+    background-color: lightgray;
     border: none;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.5);
+    width: 30px;
+    height: 30px;
+    font-size: 1rem;
+    font-weight: bold;
     cursor: pointer;
-    transition: background 0.2s, transform 0.2s;
-}
-.carousel_dots button.active {
-    background: #ffbc00;
-    transform: scale(1.3);
-    box-shadow: 0 0 6px rgba(255, 188, 0, 0.8);   /* 사이트 네온 톤 */
 }
 
-/* 키보드로 사진 영역에 들어왔을 때 표시 */
-.main2_2:focus-visible {
-    outline: 3px dashed #4fc3ff;
-    outline-offset: 6px;
+.control-btn:hover {
+    background-color: rgb(236, 236, 236);
 }
 
-/* 우측 캘린더 영역 */
+/* 우측 캘린더 영역 (JS: 10_yes3_main.js)
+   - 날짜 칸 = 숨긴 radio + label, 고른 날짜는 주황
+   - 점(•): 그날 일정 / 밑줄(―): 주간 일정(○주차) / 빨간 날: 공휴일 */
 .main2_3 {
     width: 25vw;
-    height: 60vh;
-    min-width: 320px;
+    min-width: 340px;
     max-width: 100%;
-    min-height: 480px;
-    background-color: transparent;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
 }
 .calendar {
-    width: 90%;
-    margin-bottom: 8%;
+    width: 100%;
 }
 
-.cal_title {
-    margin-bottom: 5%;
-    height: 40px;
-    line-height: 40px;
-    text-align: center;
-    font-size: 22px;
-    font-weight: bold;
-    color: #f8f9fa;
+/* 화면 읽기 프로그램용 (눈에는 안 보임) */
+.cal_sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
 }
- 
-/* 캘린더 css grid */
+
+/* 제목 줄: ◀ 2026년 10월 ▶ */
+.cal_head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 4%;
+}
+.cal_arrow {
+    padding: 4px 10px;
+    border: none;
+    background: none;
+    font: inherit;
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.45);
+    cursor: pointer;
+}
+.cal_arrow:hover:not(:disabled) { color: #ffbc00; }
+.cal_arrow:disabled { opacity: 0.2; cursor: default; }
+
+.cal_title {
+    padding: 4px 14px;
+    border: none;
+    border-radius: 999px;
+    background: none;
+    font: inherit;
+    font-size: 22px;
+    color: #f8f9fa;
+    cursor: pointer;
+}
+.cal_title:hover,
+.cal_title[aria-expanded="true"] { background: rgba(255, 255, 255, 0.08); }
+
+/* 연도·월 고르는 창 */
+.cal_picker {
+    margin: 0 0 14px;
+    padding: 14px;
+    border: 1px solid #2c323d;
+    border-radius: 12px;
+    background: #141a2b url("res/footer-plate.png");
+}
+.cal_picker[hidden] { display: none; }
+.cal_year {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #ffffff;
+}
+.cal_months {                          /* 1월~12월 표 (4칸 x 3줄) */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+}
+.cal_months input { position: absolute; opacity: 0; width: 0; height: 0; }
+.cal_months label {
+    display: block;
+    padding: 7px 0;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 15px;
+    color: #dfe5ee;
+    cursor: pointer;
+}
+.cal_months label:hover { background: rgba(255, 255, 255, 0.08); }
+.cal_months input:checked + label { background: #FF6A00; color: #ffffff; }
+.cal_months input:focus-visible + label { outline: 2px dashed #4fc3ff; }
+
+/* 요일 · 날짜 칸 (CSS grid 7칸) */
 .cal_week,
 .cal_days {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(7, 1fr);
 }
- 
 .cal_week div {
     height: 30px;
     line-height: 30px;
     text-align: center;
-    font-weight: bold;
     color: #f8f9fa;
 }
- 
-.cal_days div {
-    height: 44px;
+.cal_week .sun { color: red; }
+.cal_week .sat { color: #4da3ff; }
+
+.cal_days input { position: absolute; opacity: 0; width: 0; height: 0; }
+.cal_days label {
+    position: relative;
+    height: 42px;
+    margin: 1px;
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #f8f9fa;
+    cursor: pointer;
 }
+.cal_days label.sat { color: #4da3ff; }
+.cal_days label.sun,
+.cal_days label.holiday { color: red; }      /* 토요일이어도 공휴일이면 빨강 */
+.cal_days label.today { box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.5); }
+.cal_days label:hover { background: #dbeafe; color: #000; }
+.cal_days input:checked + label { background: #FF6A00; color: #ffffff; }
+.cal_days input:focus-visible + label { outline: 2px dashed #4fc3ff; outline-offset: 1px; }
 
-.cal_week .sun { color: red; }
-.cal_week .sat { color: #4da3ff; }
-
-.cal_days .sun { color: red; }
-.cal_days .sat { color: #4da3ff; }
-
-/*hover*/
-.cal_days div:hover {
-    background-color: #dbeafe;
-    color:#000;
+/* 일정 표시: 점(그날 일정) / 밑줄(주간 일정) */
+.cal_days label.has_event::after {
+    content: "";
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    margin-left: -2.5px;
+    border-radius: 50%;
+    background: #ffbc00;
 }
- 
-
- 
-.cal_days div.empty:hover {
-    background-color: transparent;
-    color:#000;
+.cal_days label.has_week::before {
+    content: "";
+    position: absolute;
+    bottom: 2px;
+    left: 6px;
+    right: 6px;
+    height: 2px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.25);
 }
+.cal_days input:checked + label.has_event::after { background: #ffffff; }
 
-
-
-.picnic, .ungbal {
-    font-size: 16px;
-    font-weight: bold;
-    color:  #f8f9fa;
-    margin-bottom: 3%;
-    width: 80%;
-    text-align: left;
-
+/* 고른 날짜의 일정 목록 + 추가 form */
+.cal_detail {
+    margin-top: 16px;
+    padding: 16px;
+    border: 1px solid #2c323d;
+    border-top: 3px solid #FF8A00;
+    border-radius: 12px;
+    background: #141a2b url("res/footer-plate.png");
 }
-
-.cal_days div.cal_picnic:hover {
-    background-color: #ffbc00;
+.cal_detail_title {
+    margin: 0 0 10px;
+    font-size: 17px;
+    color: #ffffff;
 }
-
-.cal_days div.cal_ungbal:hover {
-    background-color: #ffbc00;
+.cal_events {
+    list-style: none;
+    margin: 0 0 12px;
+    padding: 0;
+    max-height: 150px;
+    overflow-y: auto;
 }
+.cal_events li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 0;
+    border-bottom: 1px solid #2c323d;
+    font-size: 15px;
+    color: #dfe5ee;
+}
+.cal_events li.empty { color: #8a94a3; border-bottom: none; }
+.cal_events .tag {                     /* 작은 꼬리표: 주간 / 희망자만 / 공휴일 / 내 일정 */
+    flex: none;
+    padding: 1px 8px;
+    border-radius: 999px;
+    font-size: 11px;
+    background: #2c323d;
+    color: #dfe5ee;
+}
+.cal_events .tag.optional { background: #FDB813; color: #14171d; }
+.cal_events .tag.holiday  { background: #c0392b; color: #ffffff; }
+.cal_events .tag.mine     { background: #FF6A00; color: #ffffff; }
+.cal_events .range { margin-left: auto; font-size: 12px; color: #8a94a3; }
+.cal_events .delete {
+    margin-left: auto;
+    padding: 0 4px;
+    border: none;
+    background: none;
+    font: inherit;
+    color: #8a94a3;
+    cursor: pointer;
+}
+.cal_events .delete:hover { color: #FF6A00; }
+
+.cal_add {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.cal_add input[type="text"] {
+    flex: 1;
+    min-width: 0;
+    padding: 8px 12px;
+    border: 1px solid #2c323d;
+    border-radius: 999px;
+    background: rgba(6, 11, 30, 0.6);
+    font: inherit;
+    font-size: 14px;
+    color: #ffffff;
+}
+.cal_add input[type="text"]::placeholder { color: #8a94a3; }
+.cal_add input[type="text"]:focus { outline: none; border-color: #FF8A00; }
+.cal_optional {
+    flex: none;
+    font-size: 13px;
+    color: #dfe5ee;
+    cursor: pointer;
+}
+.cal_submit {                          /* footer "지원하기!"와 같은 주황 버튼 */
+    flex: none;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 999px;
+    background: #FF6A00;
+    font: inherit;
+    font-size: 14px;
+    color: #ffffff;
+    box-shadow: 0 3px 0 #b44a00;
+    cursor: pointer;
+}
+.cal_submit:hover { background: #ff7f26; }
+.cal_submit:active { transform: translateY(3px); box-shadow: none; }
 
 
 

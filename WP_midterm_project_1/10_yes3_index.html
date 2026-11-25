@@ -99,31 +99,83 @@
                     <p class="aboutungsa">2002년 여대 최초로 만들어진 발명동아리로, 다양한 전공과 학년의 사람들이 모였습니다. 엉뚱하고 톡톡튀는 아이디어를 구현해보는 활동을 진행합니다. 또한, 각종 발명관련
                         대회를 참가하며 우수한 성과를 내고 있습니다. </p>
                 </div>
-                <div class="main2_2 carousel" aria-roledescription="carousel" aria-label="주요 활동 사진" tabindex="0">
-                    <div class="carousel_viewport">
-                        <div class="carousel_track">
-                            <img class="carousel_slide" src="res/2024-homecoming.jpg" alt="2024 홈커밍" draggable="false">
-                            <img class="carousel_slide" src="res/2024-cpu-award.jpg" alt="2024 CPU 수상" draggable="false">
-                            <img class="carousel_slide" src="res/2026-claw-machine.jpg" alt="2026 인형뽑기 기계" draggable="false">
+                <!--주요활동 사진 캐러셀 (‹ › 버튼, 스크립트는 바로 아래 <script>)-->
+                <div class="carousel">
+                    <div class="carousel-view">
+                        <div class="carousel-container">
+                            <div class="carousel-slide">
+                                <img src="res/2024-homecoming.jpg" alt="2024 Homecoming">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="res/2026-claw-machine.jpg" alt="2026 Claw Machine">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="res/2024-cpu-award.jpg" alt="2024 CPU">
+                            </div>
                         </div>
                     </div>
+                    <div class="carousel-control">
+                        <button class="control-btn" id="prevBtn">&#8249;</button>
+                        <button class="control-btn" id="nextBtn">&#8250;</button>
+                    </div>
 
-                    <button type="button" class="carousel_btn carousel_prev" aria-label="이전 사진">◀</button>
-                    <button type="button" class="carousel_btn carousel_next" aria-label="다음 사진">▶</button>
+                    <script>
+                        const track = document.querySelector(".carousel-container");
+                        let currentIndex = 0;
+                        const prevBtn = document.querySelector("#prevBtn");
+                        const nextBtn = document.querySelector("#nextBtn");
 
-                    <div class="carousel_dots"></div>
+                        function updateSlide() {
+                            const width = track.offsetWidth;
+                            const distance = -currentIndex * width;
+                            track.style.transform = "translateX(" + distance + "px)";
+                        }
+
+                        nextBtn.addEventListener("click", function() {
+                            currentIndex = currentIndex + 1;
+                            if (currentIndex > 2) {
+                                currentIndex = 0;
+                            }
+                            updateSlide();
+                        });
+
+                        prevBtn.addEventListener("click", function() {
+                            currentIndex = currentIndex - 1;
+                            if (currentIndex < 0) {
+                                currentIndex = 2;
+                            }
+                            updateSlide();
+                        });
+                    </script>
                 </div>
 
                 
             </div>
 
-            <aside class="main2_3"> <!--캘린더 CSS Grid? 아니면 그냥 표노가다..-->
-                
+            <!--캘린더 (JS: 10_yes3_main.js가 날짜 칸을 만들고 일정을 보여줌)
+                - 날짜 하나하나가 radio input → 고르면 아래에 그날 일정이 나오고, 일정을 추가할 수 있는 form
+                - 제목(◀ 2026년 10월 ▶)을 누르면 연도(◀ ▶)와 월(1~12월 표)을 고르는 창이 열림-->
+            <aside class="main2_3">
+                <form class="calendar" id="cal_form" autocomplete="off">
 
-                <div class="calendar">
-                    <div class="cal_title">2026년 10월</div>
+                    <div class="cal_head">
+                        <button type="button" class="cal_arrow" id="cal_prev" aria-label="이전 달">◀</button>
+                        <button type="button" class="cal_title" id="cal_title" aria-expanded="false" aria-controls="cal_picker">2026년 10월</button>
+                        <button type="button" class="cal_arrow" id="cal_next" aria-label="다음 달">▶</button>
+                    </div>
 
-                    <div class="cal_week">
+                    <!--연도 · 월 고르기 (제목 누르면 열림)-->
+                    <fieldset class="cal_picker" id="cal_picker" hidden>
+                        <legend class="cal_sr">연도와 월 선택</legend>
+                        <div class="cal_year">
+                            <button type="button" class="cal_arrow" id="cal_year_prev" aria-label="이전 해">◀</button>
+                            <span id="cal_year_label">2026년</span>
+                            <button type="button" class="cal_arrow" id="cal_year_next" aria-label="다음 해">▶</button>
+                        </div>
+                        <div class="cal_months" id="cal_months"></div>
+                    </fieldset>
+
+                    <div class="cal_week" aria-hidden="true">
                         <div class="sun">일</div>
                         <div>월</div>
                         <div>화</div>
@@ -133,60 +185,22 @@
                         <div class="sat">토</div>
                     </div>
 
-                    <!-- 2026년 10월 1일은 목요일 → 앞에 빈칸 4개 -->
-                    <div class="cal_days">
-                        <div class="empty"></div>
-                        <div class="empty"></div>
-                        <div class="empty"></div>
-                        <div class="empty"></div>
+                    <!--날짜 칸 (radio input + label)은 JS가 채움-->
+                    <div class="cal_days" id="cal_days" role="radiogroup" aria-label="날짜 선택"></div>
 
-                        <div>1</div>
-                        <div class="cal_picnic">2</div>
-                        <div class="sat">3</div>
+                    <!--고른 날짜의 일정 + 일정 추가-->
+                    <div class="cal_detail">
+                        <p class="cal_detail_title" id="cal_detail_title">날짜를 골라주세요</p>
+                        <ul class="cal_events" id="cal_events"></ul>
 
-                        <div class="sun">4</div>
-                        <div>5</div>
-                        <div>6</div>
-                        <div>7</div>
-                        <div>8</div>
-                        <div>9</div>
-                        <div class="sat">10</div>
-
-                        <div class="sun">11</div>
-                        <div>12</div>
-                        <div>13</div>
-                        <div>14</div>
-                        <div>15</div>
-                        <div>16</div>
-                        <div class="sat">17</div>
-
-                        <div class="sun">18</div>
-                        <div>19</div>
-                        <div>20</div>
-                        <div>21</div>
-                        <div>22</div>
-                        <div>23</div>
-                        <div class="sat">24</div>
-
-                        <div class="sun">25</div>
-                        <div>26</div>
-                        <div>27</div>
-                        <div>28</div>
-                        <div>29</div>
-                        <div class="cal_ungbal">30</div>
-                        <div class="sat">31</div>
+                        <div class="cal_add">
+                            <label class="cal_sr" for="cal_input">일정 이름</label>
+                            <input type="text" id="cal_input" name="title" placeholder="일정 추가" maxlength="30" required>
+                            <label class="cal_optional"><input type="checkbox" id="cal_optional" name="optional"> 희망자만</label>
+                            <button type="submit" class="cal_submit">추가</button>
+                        </div>
                     </div>
-                </div>
-
-                <div class="picnic">10/2 한강피크닉</div>
-
-                <div class="ungbal"> 10/30 엉뚱한발명대회</div>
-                
-
-
-
-
-
+                </form>
             </aside>
 
         </div>
