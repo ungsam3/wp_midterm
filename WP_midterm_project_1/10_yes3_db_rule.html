@@ -10,6 +10,8 @@
         <link rel="stylesheet" href="10_yes3_common.css">
         <link rel="stylesheet" href="10_yes3_bg.css">
         <link rel="stylesheet" href="10_yes3_dongbang.css">
+        <script src="10_yes3_auth.js"></script>
+        <script>checkLogin();</script>
     </head>
     <body>
         <nav class="main_nav">
@@ -29,7 +31,7 @@
                     <li><a href="10_yea3_db_cleanup.html">청소담당</a></li>
                 </ul>
             </div>
-            <div class="item">
+            <div class="item" id="nav_auth">
                 <span class="nav_title" tabindex="0">로그인</span>
                 <ul class="nav_dropdown">
                     <li><a href="10_yes3_signin.html">로그인</a></li>
@@ -122,6 +124,7 @@
                 </div>
             </div>
         </footer>
+        <script>renderNav();</script>
     </body>
 </html>
 

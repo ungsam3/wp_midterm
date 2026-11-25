@@ -11,6 +11,8 @@
         <link rel="stylesheet" href="10_yes3_bg.css">
         <link rel="stylesheet" href="10_yes3_login.css">
         <link rel="icon" href="./res/logo_black.png" type="image/png">
+        <script src="10_yes3_auth.js"></script>
+        <script>checkLoggedOut();</script>
     </head>
     <body>
         <nav class="main_nav">
@@ -30,7 +32,7 @@
                     <li><a href="10_yea3_db_cleanup.html">청소담당</a></li>
                 </ul>
             </div>
-            <div class="item">
+            <div class="item" id="nav_auth">
                 <span class="nav_title" tabindex="0">로그인</span>
                 <ul class="nav_dropdown">
                     <li><a href="10_yes3_signin.html">로그인</a></li>
@@ -51,14 +53,14 @@
             </div>
 
             <div class="login_article">
-                <form class="signinup_item" id="signin-form" name="로그인" method="GET" action="#">
+                <form class="signinup_item" id="signin-form" name="로그인" method="GET" action="#" onsubmit="loginUser(event)">
                     <table class="sign_table">
                         <tbody>
                             <tr>
-                                <td class="dongle-regular">학번</td><th><input type="text" name="학번" placeholder="2600000" required/></th>
+                                <td class="dongle-regular">학번</td><th><input type="text" id="signin_id" name="학번" placeholder="2600000" required/></th>
                             </tr>
                             <tr>
-                                <td class="dongle-regular">비밀번호</td><th><input type="password" name="비밀번호" placeholder="Bat3Soup!" required/></th><td id="td_reset" rowspan="2"><input type="reset" value="초기화" /></td>
+                                <td class="dongle-regular">비밀번호</td><th><input type="password" id="signin_pw" name="비밀번호" placeholder="Bat3Soup!" required/></th><td id="td_reset" rowspan="2"><input type="reset" value="초기화" /></td>
                             </tr>
                         </tbody>
                     </table>
@@ -124,5 +126,6 @@
                 </div>
             </div>
         </footer>
+        <script>renderNav();</script>
     </body>
 </html>
