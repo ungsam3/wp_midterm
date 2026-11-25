@@ -1,350 +1,256 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Jua&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dongle&family=Jua&display=swap');
 
 /* 컴포넌트 */
 /* -------------------
-[0] 픽셀 글꼴 (pixel2)
+후원 페이지 (메인의 INSERT US COIN에서 연결)
+- footer 디자인과 맞춤: 위는 철판 바닥 + 발명품(로봇·톱니바퀴·전구), 아래는 철판 무늬 판넬
+- 네온 없음. 색은 사이트에 이미 있는 색만 사용
+  남색 #060B1E / 판넬 #161a21 / 테두리 #2c323d / 글씨 #dfe5ee, 보조 #8a94a3
+  주황 #FF6A00(그림자 #b44a00) / 노랑 #FDB813 / 파랑 #3A9BFF
 [1] 페이지 배경
-[2] 오락기 몸체 / 간판
-[3] 화면 (1번: BUY US A COIN / 2번: 계좌 정보)
-[4] 픽셀 버튼
-[5] 조이스틱·버튼·동전 투입구 (장식)
+[2] 카드
+[3] 위쪽 무대 (바닥 + 아이콘)
+[4] 아래 판넬 (1번: BUY US A COIN / 2번: 계좌 정보)
+[5] 버튼
 --------------------- */
 
 
-/* [0] 픽셀 글꼴
-   pixel2.zip 압축을 풀어서 글꼴 파일을 res/fonts/ 에 넣고, 아래 파일 이름을 맞춰주면 적용돼요.
-   파일이 없으면 Press Start 2P(영어) / 주아체(한글)로 대신 보여요. */
-@font-face {
-    font-family: "Pixel2";
-    src: url("res/fonts/pixel2.ttf") format("truetype");
-}
-
-/* [1] 페이지 배경: GAME OVER 그림과 같은 진회색 + 픽셀 격자 */
+/* [1] 페이지 배경: 서브 페이지 첫 화면과 같은 사진 + 남색 */
 body {
     margin: 0;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #2b2b2b;
-    background-image:
-        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-    background-size: 16px 16px;           /* 16px 픽셀 격자 */
-    font-family: "Pixel2", "Press Start 2P", "Jua", monospace;
-    color: #ffffff;
-    overflow-x: hidden;
+    background: #060B1E url("res/sub_image.jpg") center / cover no-repeat fixed;
+    font-family: "Jua", sans-serif;
+    color: #dfe5ee;
 }
 
 * {
     cursor: url('res/cursor_white.png') 2 2, auto;
 }
 
-/* 반짝이는 픽셀 별 (네모 점이 깜빡) */
-.pixel-stars i {
-    position: fixed;
-    width: 8px;
-    height: 8px;
-    background-color: #ffd23f;
-    box-shadow: 8px 0 #ffd23f, -8px 0 #ffd23f, 0 8px #ffd23f, 0 -8px #ffd23f;  /* + 모양 픽셀 별 */
-    animation: pixel-blink 1.6s steps(1) infinite;
-}
-.pixel-stars i:nth-child(1) { top: 12%; left: 10%; }
-.pixel-stars i:nth-child(2) { top: 30%; right: 12%; animation-delay: 0.4s; background-color: #4fc3ff; box-shadow: 8px 0 #4fc3ff, -8px 0 #4fc3ff, 0 8px #4fc3ff, 0 -8px #4fc3ff; }
-.pixel-stars i:nth-child(3) { bottom: 18%; left: 16%; animation-delay: 0.8s; }
-.pixel-stars i:nth-child(4) { bottom: 10%; right: 20%; animation-delay: 1.2s; background-color: #ff6bb5; box-shadow: 8px 0 #ff6bb5, -8px 0 #ff6bb5, 0 8px #ff6bb5, 0 -8px #ff6bb5; }
-.pixel-stars i:nth-child(5) { top: 60%; left: 6%; animation-delay: 0.2s; background-color: #7dff6b; box-shadow: 8px 0 #7dff6b, -8px 0 #7dff6b, 0 8px #7dff6b, 0 -8px #7dff6b; }
-.pixel-stars i:nth-child(6) { top: 8%; right: 30%; animation-delay: 1s; }
 
-@keyframes pixel-blink {
-    0%  { opacity: 1; }
-    50% { opacity: 0.1; }
-}
-
-
-/* [2] 오락기 몸체 */
-.arcade {
-    position: relative;
-    width: 560px;
+/* [2] 카드 */
+.coin-card {
+    width: 520px;
     max-width: calc(100% - 32px);
     margin: 40px 0;
-    padding: 0 28px 28px;
-    box-sizing: border-box;
-    background: linear-gradient(to bottom, #3a3a46, #1d1d24);
-    border: 6px solid #0d0d10;
-    border-radius: 24px 24px 12px 12px;
-    box-shadow: 12px 12px 0 #0d0d10;        /* 딱딱한 픽셀 그림자 */
-}
-
-/* 맨 위 간판 */
-.arcade-marquee {
-    margin: 0 -28px 24px;
-    padding: 16px 0;
-    text-align: center;
-    background: linear-gradient(to bottom, #ff8800, #ff5a00);
-    border-bottom: 6px solid #0d0d10;
-    border-radius: 18px 18px 0 0;
-}
-.arcade-marquee span {
-    font-size: 22px;
-    letter-spacing: 4px;
-    color: #fff6d6;
-    text-shadow: 3px 3px 0 #7a2a00;
-}
-
-
-/* [3] 화면 */
-.screen {
-    position: relative;
-    height: 560px;
     overflow: hidden;
-    border: 6px solid #0d0d10;
-    border-radius: 14px;
-    background-color: #2b2b2b;
-    box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.8);
+    border: 1px solid #2c323d;
+    border-radius: 18px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
 }
 
-/* 1번·2번 화면은 같은 자리에 겹쳐 있음 */
-.scr {
+
+/* [3] 위쪽 무대: footer 바닥 그림 위에 발명품 세 개 */
+.coin-stage {
+    position: relative;
+    height: 210px;
+    background: url("res/footer-floor.png") center bottom / 1180px auto no-repeat, #121620;
+}
+
+.coin-icon {
     position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    box-sizing: border-box;
-    padding: 18px;
+    bottom: 34px;
+}
+
+/* 로봇: 마우스 올리면 폴짝 */
+.coin-robot {
+    left: 13%;
+    width: 92px;
+}
+.coin-robot img {
+    display: block;
+    width: 100%;
+}
+.coin-robot:hover {
+    animation: robot-hop 0.6s ease-out;
+}
+@keyframes robot-hop {
+    0%, 100% { transform: translateY(0); }
+    45%      { transform: translateY(-26px); }
+}
+
+/* 톱니바퀴: footer 그림체(굵은 검정 외곽선 + 노랑), 천천히 회전 */
+.coin-gear {
+    left: 50%;
+    bottom: 46px;
+    width: 96px;
+    margin-left: -48px;
+}
+.coin-gear svg {
+    display: block;
+    width: 100%;
+    animation: gear-spin 10s linear infinite;
+}
+.gear-body path {
+    fill: #FDB813;
+    stroke: #14171d;
+    stroke-width: 4;
+    stroke-linejoin: round;
+}
+.gear-body circle {
+    fill: #161a21;
+    stroke: #14171d;
+    stroke-width: 4;
+}
+.coin-gear:hover svg {
+    animation-duration: 2s;              /* 마우스 올리면 빨리 돎 */
+}
+@keyframes gear-spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+/* 전구: 평소엔 꺼짐, 마우스 올리거나 계좌 화면(#account)이면 켜짐 */
+.coin-bulb {
+    right: 13%;
+    width: 84px;
+    height: 90px;
+    background: url("res/footer-bulb.png") center bottom / contain no-repeat;
+}
+.coin-bulb:hover,
+.coin-card:has(#account:target) .coin-bulb {
+    background-image: url("res/footer-bulb-on.png");
+}
+
+
+/* [4] 아래 판넬: footer 아래쪽과 같은 철판 무늬 */
+.coin-panel {
+    position: relative;
+    padding: 34px 40px 36px;
+    background: #161a21 url("res/footer-plate.png");
+    border-top: 1px solid #2c323d;
+}
+
+.coin-screen {
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
 }
 
-/* 1번 화면: GAME OVER 그림 배경 */
-.scr-start {
-    justify-content: space-between;
-    background: url("res/gameover.png") center top / cover no-repeat;
-    image-rendering: pixelated;             /* 확대해도 픽셀이 또렷하게 */
-}
-
-/* 2번 화면: 평소엔 숨김 → 주소가 #account일 때 보임, 1번 화면은 숨김 */
-.scr-account {
+/* 2번 화면: 평소엔 숨김 → 주소가 #account일 때 보이고, 1번 화면은 숨김 */
+.coin-account {
     display: none;
-    justify-content: center;
-    gap: 26px;
-    background:
-        linear-gradient(rgba(10, 10, 14, 0.88), rgba(10, 10, 14, 0.88)),
-        url("res/gameover.png") center top / cover no-repeat;
-    image-rendering: pixelated;
 }
-.scr-account:target {
+.coin-account:target {
     display: flex;
 }
-.scr-account:target ~ .scr-start {
+.coin-account:target ~ .coin-start {
     display: none;
 }
 
-/* 화면 위쪽 점수판 */
-.hud {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
+/* 작은 영어 제목: footer MENU/CONTACT 칸 제목과 같은 노랑 */
+.coin-label {
     margin: 0;
-    font-size: 12px;
-    color: #ff4b4b;
-    text-shadow: 2px 2px 0 #000;
-}
-.hud span:last-child {
-    color: #ffffff;
-}
-.scr-account .hud {
-    position: absolute;
-    top: 18px;
-    left: 0;
-    padding: 0 18px;
-    box-sizing: border-box;
+    font-size: 15px;
+    letter-spacing: 3px;
+    color: #FDB813;
 }
 
-/* 1번 화면 아래 대화상자 (옛날 게임 말풍선) */
-.dialog {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 18px 16px 20px;
-    text-align: center;
-    background-color: #000000;
-    border: 4px solid #ffffff;
-    box-shadow: 0 0 0 4px #000000;          /* 테두리 바깥 검은 줄 = 픽셀 창 */
-}
-.dialog-title {
-    margin: 0 0 12px;
-    font-size: 24px;
-    color: #ffd23f;
-    text-shadow: 3px 3px 0 #b33a00;
-}
-.dialog-ko {
-    margin: 0 0 18px;
-    font-family: "Pixel2", "Jua", sans-serif;
-    font-size: 18px;
-    color: #ffffff;
-}
-
-/* 2번 화면 글씨 */
-.scr-title {
-    margin: 0;
-    text-align: center;
-    font-size: 26px;
-    line-height: 1.5;
+/* 큰 제목: 동글체 */
+.coin-title {
+    margin: 4px 0 10px;
+    font-family: "Dongle", sans-serif;
     font-weight: 400;
-    color: #7dff6b;
-    text-shadow: 3px 3px 0 #0f5a00;
+    font-size: 72px;
+    line-height: 1;
+    color: #ffffff;
+}
+
+.coin-text {
+    margin: 0 0 26px;
+    font-size: 18px;
+    color: #dfe5ee;
+}
+.coin-100 {
+    color: #FF7A1A;
 }
 
 /* 계좌 정보: 영어 + 기울임 */
 .account {
     width: 100%;
-    margin: 0;
-    padding: 18px 20px;
+    margin: 6px 0 0;
+    padding: 18px 22px;
     box-sizing: border-box;
-    border: 4px dashed #4fc3ff;
+    text-align: left;
     font-style: italic;
+    background-color: rgba(6, 11, 30, 0.6);
+    border: 1px solid #2c323d;
+    border-left: 4px solid #FF6A00;
+    border-radius: 10px;
 }
 .account dt {
-    margin-top: 14px;
-    font-size: 11px;
-    color: #4fc3ff;
+    margin-top: 12px;
+    font-size: 13px;
+    color: #8a94a3;
 }
 .account dt:first-child {
     margin-top: 0;
 }
 .account dd {
-    margin: 8px 0 0;
-    font-size: 17px;
+    margin: 2px 0 0;
+    font-size: 20px;
     color: #ffffff;
-    letter-spacing: 1px;
 }
 .account .account-num {
-    font-size: 20px;
-    color: #ffd23f;
-    user-select: all;                       /* 한 번 누르면 계좌번호 전체 선택 → Ctrl+C */
+    font-size: 24px;
+    letter-spacing: 1px;
+    color: #3A9BFF;
+    user-select: all;                    /* 한 번 누르면 계좌번호 전체 선택 → Ctrl+C */
 }
 
-.scr-buttons {
+.coin-tip {
+    margin: 10px 0 24px;
+    font-size: 13px;
+    color: #8a94a3;
+}
+
+
+/* [5] 버튼: footer "지원하기!"와 같은 주황 알약 + 딱딱한 그림자 */
+.coin-buttons {
     display: flex;
-    gap: 16px;
+    gap: 14px;
 }
-
-/* CRT 주사선 */
-.scanlines {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    pointer-events: none;                   /* 버튼 클릭 안 막게 */
-    background: repeating-linear-gradient(to bottom, rgba(0, 0, 0, 0.18) 0 2px, transparent 2px 4px);
-}
-
-
-/* [4] 픽셀 버튼 */
-.pixel-btn {
+.coin-btn {
     display: inline-block;
-    padding: 12px 18px;
-    font-family: "Pixel2", "Press Start 2P", monospace;
-    font-size: 14px;
-    color: #000000;
-    background-color: #ffffff;
+    padding: 12px 26px;
+    border-radius: 30px;
+    background: #FF6A00;
+    color: #ffffff;
+    font-size: 18px;
     text-decoration: none;
-    border: 4px solid #000000;
-    box-shadow: 4px 4px 0 #6b6b6b;
+    box-shadow: 0 4px 0 #b44a00;
 }
-.pixel-btn:hover {
-    background-color: #4fc3ff;
+.coin-btn:hover {
+    background: #ff7f26;
 }
-.pixel-btn:active {
-    transform: translate(4px, 4px);
+.coin-btn:active {
+    transform: translateY(4px);
     box-shadow: none;
 }
-.pixel-btn-yellow {
-    background-color: #ffd23f;
+.coin-btn-gray {                         /* 보조 버튼: 어두운 회색 */
+    background: #2c323d;
+    color: #dfe5ee;
+    box-shadow: 0 4px 0 #14171d;
 }
-.pixel-btn-blink {
-    animation: pixel-blink 1s steps(1) infinite;
-}
-.pixel-btn-blink:hover {
-    animation: none;
+.coin-btn-gray:hover {
+    background: #3a414e;
 }
 
-
-/* [5] 조이스틱·버튼·동전 투입구 (장식) */
-.controls {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 24px;
-    padding: 18px 40px;
-    background-color: #14141a;
-    border: 4px solid #0d0d10;
-    border-radius: 10px;
-}
-.joystick {
-    position: relative;
-    width: 56px;
-    height: 56px;
-}
-.joystick::before {                          /* 받침 */
-    content: "";
-    position: absolute;
-    bottom: 0; left: 0;
-    width: 56px; height: 20px;
-    border-radius: 50%;
-    background-color: #000000;
-}
-.joystick span {                             /* 막대 + 공 */
-    position: absolute;
-    bottom: 10px; left: 24px;
-    width: 8px; height: 34px;
-    background-color: #9a9aa5;
-}
-.joystick span::before {
-    content: "";
-    position: absolute;
-    top: -18px; left: -10px;
-    width: 28px; height: 28px;
-    border-radius: 50%;
-    background-color: #ff3b3b;
-    box-shadow: inset -4px -4px 0 #a80000;
-}
-.buttons {
-    display: flex;
-    gap: 18px;
-}
-.buttons span {
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    border: 3px solid #000000;
-}
-.btn-red  { background-color: #ff3b3b; box-shadow: inset -4px -4px 0 #a80000; }
-.btn-blue { background-color: #3b8bff; box-shadow: inset -4px -4px 0 #0040a8; }
-
-.coin-slot {
-    display: flex;
-    justify-content: center;
-    margin-top: 18px;
-}
-.coin-slot span {
-    padding: 10px 16px;
-    font-size: 11px;
-    color: #ffd23f;
-    background-color: #000000;
-    border: 3px solid #ffd23f;
-    border-radius: 6px;
-    box-shadow: inset 0 0 0 3px #000, inset 0 0 0 5px #5a4a00;
-    animation: pixel-blink 1.2s steps(1) infinite;
-}
 
 /* 좁은 화면 */
-@media (max-width: 600px) {
-    .screen { height: 480px; }
-    .dialog-title { font-size: 18px; }
-    .scr-title { font-size: 20px; }
+@media (max-width: 560px) {
+    .coin-panel { padding: 28px 22px 30px; }
+    .coin-title { font-size: 56px; }
+    .coin-robot { left: 6%; }
+    .coin-bulb  { right: 6%; }
 }
 
-/* '움직임 줄이기' 설정을 켠 사용자에겐 깜빡임 끄기 */
+/* '움직임 줄이기' 설정을 켠 사용자에겐 애니메이션 끄기 */
 @media (prefers-reduced-motion: reduce) {
-    .pixel-stars i, .pixel-btn-blink, .coin-slot span { animation: none; }
+    .coin-gear svg, .coin-robot:hover { animation: none; }
 }
