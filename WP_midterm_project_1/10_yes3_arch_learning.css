@@ -320,7 +320,6 @@ body {
   border: none;
   border-bottom: 3px solid var(--orange);
   outline: none;
-  -moz-appearance: textfield;
 }
 .pg-input::-webkit-outer-spin-button,
 .pg-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
@@ -454,4 +453,4 @@ body {
 
 /*커서*/
 * {
-    cursor: url('res/cursor_black.png') 2 2, auto;}
+    cursor: url('res/cursor_white.png') 2 2, auto;}
