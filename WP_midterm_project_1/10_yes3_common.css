@@ -241,7 +241,7 @@
 .ft-logo {
     margin: 0 0 12px;
     font-family: "Dongle", sans-serif;
-    font-size: 42px;
+    font-size: 50px;
 }
 .ft-orange { color: #FF7A1A; }
 .ft-blue   { color: #3A9BFF; }
@@ -267,7 +267,7 @@
     margin: 0 0 18px;
     font-family: 'Jua', sans-serif;
     font-weight: normal;
-    font-size: 17px;
+    font-size: 20px;
     color: #FDB813;
 }
 .ft-col a {
@@ -282,9 +282,23 @@
     margin: 0 0 14px;
     font-size: 15px;
 }
-.ft-key {
-    margin-right: 10px;
+.ft-key {                     /* 분류 이름 칸 너비를 고정해서 오른쪽 내용이 같은 열에 오게 */
+    display: inline-block;
+    width: 5.5em;
     color: #8a94a3;
+}
+.ft-col:has(.ft-sep) { flex: 1.4; }   /* NAVIGATE 칸: 링크가 한 줄에 들어가도록 조금 넓게 */
+.ft-col p:has(.ft-sep) {      /* NAVIGATE: 분류 | 링크 | 구분선 | 링크 ... 를 고정 열로 맞춤 */
+    display: grid;
+    grid-template-columns: 5.5em 1.2em 4em 1.2em 4em 1.2em auto;
+}
+.ft-col p a {
+    display: inline;
+    margin: 0;
+}
+.ft-sep {
+    text-align: center;
+    color: #4a5260;
 }
 .ft-bottom {
     display: flex;
