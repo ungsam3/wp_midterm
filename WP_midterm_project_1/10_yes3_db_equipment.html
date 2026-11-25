@@ -1,4 +1,4 @@
-<!Doctype html>
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
@@ -10,217 +10,170 @@
         <link rel="stylesheet" href="10_yes3_common.css">
         <link rel="stylesheet" href="10_yes3_bg.css">
         <link rel="stylesheet" href="10_yes3_dongbang.css">
-        <link rel="icon" href="./res/logo_black.png" type="image/png"> 이거 head에 집어넣기
     </head>
 
     <body>
-        <section class="dbeq_1">
-            <nav class="main_nav">
-                <div class="item"><div class="main_logobox"><a href="10_yes3_index.html"><img id="logo_position" src="./res/logo_white.png" alt="엉뚱로고"></a></div></div>
-                <div class="item">
-                    <span class="nav_title" tabindex="0">아카이빙</span>
-                    <ul class="nav_dropdown">
-                        <li><a href="10_yes3_arch_learning.html">교육자료</a></li>
-                        <li><a href="10_yes3_arch_gallery.html">갤러리</a></li>
-                    </ul>
-                </div>
-                <div class="item">
-                    <span class="nav_title" tabindex="0">동아리방</span>
-                    <ul class="nav_dropdown">
-                        <li><a href="10_yes3_db_equipment.html">비품</a></li>
-                        <li><a href="10_yes3_db_rule.html">이용규칙</a></li>
-                        <li><a href="10_yea3_db_cleanup.html">청소담당</a></li>
-                    </ul>
-                </div>
-                <div class="item">
-                    <span class="nav_title" tabindex="0">로그인</span>
-                    <ul class="nav_dropdown">
-                        <li><a href="10_yes3_signin.html">로그인</a></li>
-                        <li><a href="10_yes3_signup.html">회원가입</a></li>
-                    </ul>
-                </div>
-            </nav>
 
+        <nav class="main_nav">
+            <div class="item"><div class="main_logobox"><a href="10_yes3_index.html"><img id="logo_position" src="./res/logo_white.png" alt="엉뚱로고"></a></div></div>
+            <div class="item">
+                <span class="nav_title" tabindex="0">아카이빙</span>
+                <ul class="nav_dropdown">
+                    <li><a href="10_yes3_arch_learning.html">교육자료</a></li>
+                    <li><a href="10_yes3_arch_gallery.html">갤러리</a></li>
+                </ul>
+            </div>
+            <div class="item">
+                <span class="nav_title" tabindex="0">동아리방</span>
+                <ul class="nav_dropdown">
+                    <li><a href="10_yes3_db_equipment.html">비품</a></li>
+                    <li><a href="10_yes3_db_rule.html">이용규칙</a></li>
+                    <li><a href="10_yea3_db_cleanup.html">청소담당</a></li>
+                </ul>
+            </div>
+            <div class="item">
+                <span class="nav_title" tabindex="0">로그인</span>
+                <ul class="nav_dropdown">
+                    <li><a href="10_yes3_signin.html">로그인</a></li>
+                    <li><a href="10_yes3_signup.html">회원가입</a></li>
+                </ul>
+            </div>
+        </nav>
 
-        <div class="about_dbeq">
-                <p>동아리방 비품을 확인하세요</p>
+        <!-- 배너: 사진만 -->
+        <section class="dbeq_1"></section>
+
+        <article>
+
+            <!-- 제목(왼쪽) + 검색창(판넬 오른쪽 끝에 맞춤) -->
+            <div class="board-head">
+                <h1>동아리방 비품</h1>
                 <div class="search_dbeq">
                     <input type="text" class="search" placeholder="비품을 검색하세요">
                     <button type="button" class="search_btn">검색</button>
                 </div>
-                <div class="filter-buttons">
-                    <button type="button" class="filter-btn active">전체</button>
-                    <button type="button" class="filter-btn">공구함 A</button>
-                    <button type="button" class="filter-btn">공구함 B</button>
-                    <button type="button" class="filter-btn">아두이노</button>
-                    <button type="button" class="filter-btn">소모품</button>
-                    <button type="button" class="filter-btn">3D펜</button>
-                    <button type="button" class="filter-btn">3D프린터</button>
-                    <button type="button" class="filter-btn">드론</button>
-
-                </div>  
-        </div>
-
-        </section>
-
-        <section class ="dbeq_2">
-           
-        </section>
-        <article>
-
+            </div>
 
             <div class="wrap">
-     <!-- 비품 (캔바 p.11) -->
-                <section class="panel" id="panel-supplies" >
+                <!-- 비품 큰 판넬 -->
+                <section class="panel" id="panel-supplies">
+
+                    <!-- 필터 버튼 -->
+                    <div class="filter-buttons">
+                        <button type="button" class="filter-btn active">전체</button>
+                        <button type="button" class="filter-btn">공구함 A</button>
+                        <button type="button" class="filter-btn">공구함 B</button>
+                        <button type="button" class="filter-btn">아두이노</button>
+                        <button type="button" class="filter-btn">소모품</button>
+                        <button type="button" class="filter-btn">3D펜</button>
+                        <button type="button" class="filter-btn">3D프린터</button>
+                        <button type="button" class="filter-btn">드론</button>
+                    </div>
+
+                    <!-- 비품 카드: 하나의 그리드에서 한 줄에 5개씩 -->
                     <section class="supply-group">
                         <ul class="supply-grid">
-                        <li class="supply-item" data-count="3">
-                            <div class="thumb"><img src="./item/screwdriver.svg" alt="스크류드라이버" loading="lazy"><span class="badge">부족</span></div>
-                            <div class="name">드라이버</div>
-                        </li>
-                        <li class="supply-item" data-count="2">
-                            <div class="thumb"><img src="./item/nipper.svg" alt="니퍼" loading="lazy"><span class="badge">부족</span></div>
-                            <div class="name">니퍼</div>
-                        </li>
-                        <li class="supply-item" data-count="1">
-                            <div class="thumb"><img src="./item/tape-measure.svg" alt="줄자" loading="lazy"><span class="badge">부족</span></div>
-                            <div class="name">줄자</div>
-                        </li>
 
-                        <li class="supply-item" data-count="4">
-                            <div class="thumb"><img src="./item/jumper-wire (1).svg" alt="점퍼와이어" loading="lazy"><span class="badge">부족</span></div>
-                            <div class="name">점퍼선 (묶음)</div>
-                        </li>
-                    
+                            <!-- 1~6 -->
+                            <li class="supply-item" data-count="3"><div class="thumb"><img src="./item/screwdriver.svg" alt="스크류드라이버" loading="lazy"><span class="badge">부족</span></div><div class="name">드라이버</div></li>
+                            <li class="supply-item" data-count="2"><div class="thumb"><img src="./item/nipper.svg" alt="니퍼" loading="lazy"><span class="badge">부족</span></div><div class="name">니퍼</div></li>
+                            <li class="supply-item" data-count="1"><div class="thumb"><img src="./item/tape-measure.svg" alt="줄자" loading="lazy"><span class="badge">부족</span></div><div class="name">줄자</div></li>
+                            <li class="supply-item" data-count="4"><div class="thumb"><img src="./item/jumper-wire (1).svg" alt="점퍼와이어" loading="lazy"><span class="badge">부족</span></div><div class="name">점퍼선 (묶음)</div></li>
+                            <li class="supply-item" data-count="2"><div class="thumb"><img src="./item/jumper-wire (1).svg" alt="점퍼와이어" loading="lazy"><span class="badge">부족</span></div><div class="name">점퍼선 (묶음)</div></li>
+                            <li class="supply-item" data-count="2"><div class="thumb"><img src="./item/jumper-wire (1).svg" alt="점퍼와이어" loading="lazy"><span class="badge">부족</span></div><div class="name">점퍼선 (묶음)</div></li>
+
+                            <!-- 7~12 -->
+                            <li class="supply-item" data-count="2"><div class="thumb"><img src="./item/arduino.svg" alt="아두이노 우노" loading="lazy"><span class="badge">부족</span></div><div class="name">아두이노 우노</div></li>
+                            <li class="supply-item" data-count="1"><div class="thumb"><img src="./item/breadboard (1).svg" alt="브래드보드" loading="lazy"><span class="badge">부족</span></div><div class="name">브레드보드</div></li>
+                            <li class="supply-item" data-count="3"><div class="thumb"><img src="./item/jumper-wire (1).svg" alt="점퍼와이어" loading="lazy"><span class="badge">부족</span></div><div class="name">점퍼선 (묶음)</div></li>
+                            <li class="supply-item" data-count="2"><div class="thumb"><img src="./item/jumper-wire (1).svg" alt="점퍼와이어" loading="lazy"><span class="badge">부족</span></div><div class="name">점퍼선 (묶음)</div></li>
+                            <li class="supply-item" data-count="2"><div class="thumb"><img src="./item/jumper-wire (1).svg" alt="점퍼와이어" loading="lazy"><span class="badge">부족</span></div><div class="name">점퍼선 (묶음)</div></li>
+                            <li class="supply-item" data-count="2"><div class="thumb"><img src="./item/jumper-wire (1).svg" alt="점퍼와이어" loading="lazy"><span class="badge">부족</span></div><div class="name">점퍼선 (묶음)</div></li>
+
+                            <!-- 13~18 -->
+                            <li class="supply-item" data-count="5"><div class="thumb"><img src="./item/led.svg" alt="LED 봉지" loading="lazy"><span class="badge">부족</span></div><div class="name">LED (봉지)</div></li>
+                            <li class="supply-item" data-count="2"><div class="thumb"><img src="./item/resistor.svg" alt="저항키트" loading="lazy"><span class="badge">부족</span></div><div class="name">저항 키트</div></li>
+                            <li class="supply-item" data-count="3"><div class="thumb"><img src="./item/cable-tie.svg" alt="케이블타이" loading="lazy"><span class="badge">부족</span></div><div class="name">케이블타이 (봉지)</div></li>
+                            <li class="supply-item" data-count="2"><div class="thumb"><img src="./item/jumper-wire (1).svg" alt="점퍼와이어" loading="lazy"><span class="badge">부족</span></div><div class="name">점퍼선 (묶음)</div></li>
+                            <li class="supply-item" data-count="2"><div class="thumb"><img src="./item/jumper-wire (1).svg" alt="점퍼와이어" loading="lazy"><span class="badge">부족</span></div><div class="name">점퍼선 (묶음)</div></li>
+                            <li class="supply-item" data-count="2"><div class="thumb"><img src="./item/jumper-wire (1).svg" alt="점퍼와이어" loading="lazy"><span class="badge">부족</span></div><div class="name">점퍼선 (묶음)</div></li>
+
+                            <!-- 19~24 -->
+                            <li class="supply-item" data-count="3"><div class="thumb"><img src="./item/screwdriver.svg" alt="스크류드라이버" loading="lazy"><span class="badge">부족</span></div><div class="name">드라이버</div></li>
+                            <li class="supply-item" data-count="2"><div class="thumb"><img src="./item/nipper.svg" alt="니퍼" loading="lazy"><span class="badge">부족</span></div><div class="name">니퍼</div></li>
+                            <li class="supply-item" data-count="1"><div class="thumb"><img src="./item/tape-measure.svg" alt="줄자" loading="lazy"><span class="badge">부족</span></div><div class="name">줄자</div></li>
+                            <li class="supply-item" data-count="4"><div class="thumb"><img src="./item/jumper-wire (1).svg" alt="점퍼와이어" loading="lazy"><span class="badge">부족</span></div><div class="name">점퍼선 (묶음)</div></li>
+                            <li class="supply-item" data-count="2"><div class="thumb"><img src="./item/jumper-wire (1).svg" alt="점퍼와이어" loading="lazy"><span class="badge">부족</span></div><div class="name">점퍼선 (묶음)</div></li>
+                            <li class="supply-item" data-count="2"><div class="thumb"><img src="./item/jumper-wire (1).svg" alt="점퍼와이어" loading="lazy"><span class="badge">부족</span></div><div class="name">점퍼선 (묶음)</div></li>
+
+                            <!-- 25~30 -->
+                            <li class="supply-item" data-count="2"><div class="thumb"><img src="./item/arduino.svg" alt="아두이노 우노" loading="lazy"><span class="badge">부족</span></div><div class="name">아두이노 우노</div></li>
+                            <li class="supply-item" data-count="1"><div class="thumb"><img src="./item/breadboard (1).svg" alt="브래드보드" loading="lazy"><span class="badge">부족</span></div><div class="name">브레드보드</div></li>
+                            <li class="supply-item" data-count="3"><div class="thumb"><img src="./item/jumper-wire (1).svg" alt="점퍼와이어" loading="lazy"><span class="badge">부족</span></div><div class="name">점퍼선 (묶음)</div></li>
+                            <li class="supply-item" data-count="2"><div class="thumb"><img src="./item/jumper-wire (1).svg" alt="점퍼와이어" loading="lazy"><span class="badge">부족</span></div><div class="name">점퍼선 (묶음)</div></li>
+                            <li class="supply-item" data-count="2"><div class="thumb"><img src="./item/jumper-wire (1).svg" alt="점퍼와이어" loading="lazy"><span class="badge">부족</span></div><div class="name">점퍼선 (묶음)</div></li>
+                            <li class="supply-item" data-count="2"><div class="thumb"><img src="./item/jumper-wire (1).svg" alt="점퍼와이어" loading="lazy"><span class="badge">부족</span></div><div class="name">점퍼선 (묶음)</div></li>
+
+                            <!-- 31~36 -->
+                            <li class="supply-item" data-count="5"><div class="thumb"><img src="./item/led.svg" alt="LED 봉지" loading="lazy"><span class="badge">부족</span></div><div class="name">LED (봉지)</div></li>
+                            <li class="supply-item" data-count="2"><div class="thumb"><img src="./item/resistor.svg" alt="저항키트" loading="lazy"><span class="badge">부족</span></div><div class="name">저항 키트</div></li>
+                            <li class="supply-item" data-count="3"><div class="thumb"><img src="./item/cable-tie.svg" alt="케이블타이" loading="lazy"><span class="badge">부족</span></div><div class="name">케이블타이 (봉지)</div></li>
+                            <li class="supply-item" data-count="2"><div class="thumb"><img src="./item/jumper-wire (1).svg" alt="점퍼와이어" loading="lazy"><span class="badge">부족</span></div><div class="name">점퍼선 (묶음)</div></li>
+                            <li class="supply-item" data-count="2"><div class="thumb"><img src="./item/jumper-wire (1).svg" alt="점퍼와이어" loading="lazy"><span class="badge">부족</span></div><div class="name">점퍼선 (묶음)</div></li>
+                            <li class="supply-item" data-count="2"><div class="thumb"><img src="./item/jumper-wire (1).svg" alt="점퍼와이어" loading="lazy"><span class="badge">부족</span></div><div class="name">점퍼선 (묶음)</div></li>
+
+                            <!-- 37~42 -->
+                            <li class="supply-item" data-count="5"><div class="thumb"><img src="./item/led.svg" alt="LED 봉지" loading="lazy"><span class="badge">부족</span></div><div class="name">LED (봉지)</div></li>
+                            <li class="supply-item" data-count="2"><div class="thumb"><img src="./item/resistor.svg" alt="저항키트" loading="lazy"><span class="badge">부족</span></div><div class="name">저항 키트</div></li>
+                            <li class="supply-item" data-count="3"><div class="thumb"><img src="./item/cable-tie.svg" alt="케이블타이" loading="lazy"><span class="badge">부족</span></div><div class="name">케이블타이 (봉지)</div></li>
+                            <li class="supply-item" data-count="2"><div class="thumb"><img src="./item/jumper-wire (1).svg" alt="점퍼와이어" loading="lazy"><span class="badge">부족</span></div><div class="name">점퍼선 (묶음)</div></li>
+                            <li class="supply-item" data-count="2"><div class="thumb"><img src="./item/jumper-wire (1).svg" alt="점퍼와이어" loading="lazy"><span class="badge">부족</span></div><div class="name">점퍼선 (묶음)</div></li>
+                            <li class="supply-item" data-count="2"><div class="thumb"><img src="./item/jumper-wire (1).svg" alt="점퍼와이어" loading="lazy"><span class="badge">부족</span></div><div class="name">점퍼선 (묶음)</div></li>
+
+                            <!-- 43~48 -->
+                            <li class="supply-item" data-count="5"><div class="thumb"><img src="./item/led.svg" alt="LED 봉지" loading="lazy"><span class="badge">부족</span></div><div class="name">LED (봉지)</div></li>
+                            <li class="supply-item" data-count="2"><div class="thumb"><img src="./item/resistor.svg" alt="저항키트" loading="lazy"><span class="badge">부족</span></div><div class="name">저항 키트</div></li>
+                            <li class="supply-item" data-count="3"><div class="thumb"><img src="./item/cable-tie.svg" alt="케이블타이" loading="lazy"><span class="badge">부족</span></div><div class="name">케이블타이 (봉지)</div></li>
+                            <li class="supply-item" data-count="2"><div class="thumb"><img src="./item/jumper-wire (1).svg" alt="점퍼와이어" loading="lazy"><span class="badge">부족</span></div><div class="name">점퍼선 (묶음)</div></li>
+                            <li class="supply-item" data-count="2"><div class="thumb"><img src="./item/jumper-wire (1).svg" alt="점퍼와이어" loading="lazy"><span class="badge">부족</span></div><div class="name">점퍼선 (묶음)</div></li>
+                            <li class="supply-item" data-count="2"><div class="thumb"><img src="./item/jumper-wire (1).svg" alt="점퍼와이어" loading="lazy"><span class="badge">부족</span></div><div class="name">점퍼선 (묶음)</div></li>
+
+                            <!-- 49~54 -->
+                            <li class="supply-item" data-count="5"><div class="thumb"><img src="./item/led.svg" alt="LED 봉지" loading="lazy"><span class="badge">부족</span></div><div class="name">LED (봉지)</div></li>
+                            <li class="supply-item" data-count="2"><div class="thumb"><img src="./item/resistor.svg" alt="저항키트" loading="lazy"><span class="badge">부족</span></div><div class="name">저항 키트</div></li>
+                            <li class="supply-item" data-count="3"><div class="thumb"><img src="./item/cable-tie.svg" alt="케이블타이" loading="lazy"><span class="badge">부족</span></div><div class="name">케이블타이 (봉지)</div></li>
+                            <li class="supply-item" data-count="2"><div class="thumb"><img src="./item/jumper-wire (1).svg" alt="점퍼와이어" loading="lazy"><span class="badge">부족</span></div><div class="name">점퍼선 (묶음)</div></li>
+                            <li class="supply-item" data-count="2"><div class="thumb"><img src="./item/jumper-wire (1).svg" alt="점퍼와이어" loading="lazy"><span class="badge">부족</span></div><div class="name">점퍼선 (묶음)</div></li>
+                            <li class="supply-item" data-count="2"><div class="thumb"><img src="./item/jumper-wire (1).svg" alt="점퍼와이어" loading="lazy"><span class="badge">부족</span></div><div class="name">점퍼선 (묶음)</div></li>
+
+                            <!-- 55~60 -->
+                            <li class="supply-item" data-count="5"><div class="thumb"><img src="./item/led.svg" alt="LED 봉지" loading="lazy"><span class="badge">부족</span></div><div class="name">LED (봉지)</div></li>
+                            <li class="supply-item" data-count="2"><div class="thumb"><img src="./item/resistor.svg" alt="저항키트" loading="lazy"><span class="badge">부족</span></div><div class="name">저항 키트</div></li>
+                            <li class="supply-item" data-count="3"><div class="thumb"><img src="./item/cable-tie.svg" alt="케이블타이" loading="lazy"><span class="badge">부족</span></div><div class="name">케이블타이 (봉지)</div></li>
+                            <li class="supply-item" data-count="2"><div class="thumb"><img src="./item/jumper-wire (1).svg" alt="점퍼와이어" loading="lazy"><span class="badge">부족</span></div><div class="name">점퍼선 (묶음)</div></li>
+                            <li class="supply-item" data-count="2"><div class="thumb"><img src="./item/jumper-wire (1).svg" alt="점퍼와이어" loading="lazy"><span class="badge">부족</span></div><div class="name">점퍼선 (묶음)</div></li>
+                            <li class="supply-item" data-count="2"><div class="thumb"><img src="./item/jumper-wire (1).svg" alt="점퍼와이어" loading="lazy"><span class="badge">부족</span></div><div class="name">점퍼선 (묶음)</div></li>
+
                         </ul>
                     </section>
 
-                    <section class="supply-group">
-                        <ul class="supply-grid">
-                        <li class="supply-item" data-count="2">
-                            <div class="thumb"><img src="./item/arduino.svg" alt="아두이노 우노" loading="lazy"><span class="badge">부족</span></div>
-                            <div class="name">아두이노 우노</div>
-                        </li>
-                        <li class="supply-item" data-count="1">
-                            <div class="thumb"><img src="./item/breadboard (1).svg" alt="브래드보드" loading="lazy"><span class="badge">부족</span></div>
-                            <div class="name">브레드보드</div>
-                        </li>
-                        <li class="supply-item" data-count="3">
-                            <div class="thumb"><img src="./item/jumper-wire (1).svg" alt="점퍼와이어" loading="lazy"><span class="badge">부족</span></div>
-                            <div class="name">점퍼선 (묶음)</div>
-                        </li>
+                    <!-- 페이지 이동 -->
+                    <div class="pager">
+                        <button type="button" class="pg-btn" id="pg-first" aria-label="처음">&laquo;</button>
+                        <button type="button" class="pg-btn" id="pg-prev" aria-label="이전">&lsaquo;</button>
+                        <input class="pg-input" id="pg-input" type="number" min="1" value="1">
+                        <span class="pg-total">/ <span id="pg-total">1</span></span>
+                        <button type="button" class="pg-go" id="pg-go">이동</button>
+                        <button type="button" class="pg-btn" id="pg-next" aria-label="다음">&rsaquo;</button>
+                        <button type="button" class="pg-btn" id="pg-last" aria-label="마지막">&raquo;</button>
+                    </div>
 
-                        <li class="supply-item" data-count="2">
-                            <div class="thumb"><img src="./item/jumper-wire (1).svg" alt="점퍼와이어" loading="lazy"><span class="badge">부족</span></div>
-                            <div class="name">점퍼선 (묶음)</div>
-                        </li>
-                        </ul>
-                    </section>
-
-                    <section class="supply-group">
-                        <ul class="supply-grid">
-                        <li class="supply-item" data-count="5">
-                            <div class="thumb"><img src="./item/led.svg" alt="LED 봉지" loading="lazy"><span class="badge">부족</span></div>
-                            <div class="name">LED (봉지)</div>
-                        </li>
-                        <li class="supply-item" data-count="2">
-                            <div class="thumb"><img src="./item/resistor.svg" alt="저항키트" loading="lazy"><span class="badge">부족</span></div>
-                            <div class="name">저항 키트</div>
-                            
-                        </li>
-                    
-                        
-                        <li class="supply-item" data-count="3">
-                            <div class="thumb"><img src="./item/cable-tie.svg" alt="케이블타이" loading="lazy"><span class="badge">부족</span></div>
-                            <div class="name">케이블타이 (봉지)</div>
-                        
-                        </li>
-                        <li class="supply-item" data-count="2">
-                            <div class="thumb"><img src="./item/jumper-wire (1).svg" alt="점퍼와이어" loading="lazy"><span class="badge">부족</span></div>
-                            <div class="name">점퍼선 (묶음)</div>
-                        </li>
-                        
-                        </ul>
-                    </section>
-
-                                        <section class="supply-group">
-                        <ul class="supply-grid">
-                        <li class="supply-item" data-count="3">
-                            <div class="thumb"><img src="./item/screwdriver.svg" alt="스크류드라이버" loading="lazy"><span class="badge">부족</span></div>
-                            <div class="name">드라이버</div>
-                        </li>
-                        <li class="supply-item" data-count="2">
-                            <div class="thumb"><img src="./item/nipper.svg" alt="니퍼" loading="lazy"><span class="badge">부족</span></div>
-                            <div class="name">니퍼</div>
-                        </li>
-                        <li class="supply-item" data-count="1">
-                            <div class="thumb"><img src="./item/tape-measure.svg" alt="줄자" loading="lazy"><span class="badge">부족</span></div>
-                            <div class="name">줄자</div>
-                        </li>
-
-                        <li class="supply-item" data-count="4">
-                            <div class="thumb"><img src="./item/jumper-wire (1).svg" alt="점퍼와이어" loading="lazy"><span class="badge">부족</span></div>
-                            <div class="name">점퍼선 (묶음)</div>
-                        </li>
-                    
-                        </ul>
-                    </section>
-
-                    <section class="supply-group">
-                        <ul class="supply-grid">
-                        <li class="supply-item" data-count="2">
-                            <div class="thumb"><img src="./item/arduino.svg" alt="아두이노 우노" loading="lazy"><span class="badge">부족</span></div>
-                            <div class="name">아두이노 우노</div>
-                        </li>
-                        <li class="supply-item" data-count="1">
-                            <div class="thumb"><img src="./item/breadboard (1).svg" alt="브래드보드" loading="lazy"><span class="badge">부족</span></div>
-                            <div class="name">브레드보드</div>
-                        </li>
-                        <li class="supply-item" data-count="3">
-                            <div class="thumb"><img src="./item/jumper-wire (1).svg" alt="점퍼와이어" loading="lazy"><span class="badge">부족</span></div>
-                            <div class="name">점퍼선 (묶음)</div>
-                        </li>
-
-                        <li class="supply-item" data-count="2">
-                            <div class="thumb"><img src="./item/jumper-wire (1).svg" alt="점퍼와이어" loading="lazy"><span class="badge">부족</span></div>
-                            <div class="name">점퍼선 (묶음)</div>
-                        </li>
-                        </ul>
-                    </section>
-
-                    <section class="supply-group">
-                        <ul class="supply-grid">
-                        <li class="supply-item" data-count="5">
-                            <div class="thumb"><img src="./item/led.svg" alt="LED 봉지" loading="lazy"><span class="badge">부족</span></div>
-                            <div class="name">LED (봉지)</div>
-                        </li>
-                        <li class="supply-item" data-count="2">
-                            <div class="thumb"><img src="./item/resistor.svg" alt="저항키트" loading="lazy"><span class="badge">부족</span></div>
-                            <div class="name">저항 키트</div>
-                            
-                        </li>
-                    
-                        
-                        <li class="supply-item" data-count="3">
-                            <div class="thumb"><img src="./item/cable-tie.svg" alt="케이블타이" loading="lazy"><span class="badge">부족</span></div>
-                            <div class="name">케이블타이 (봉지)</div>
-                        
-                        </li>
-                        <li class="supply-item" data-count="2">
-                            <div class="thumb"><img src="./item/jumper-wire (1).svg" alt="점퍼와이어" loading="lazy"><span class="badge">부족</span></div>
-                            <div class="name">점퍼선 (묶음)</div>
-                        </li>
-                        
-                        </ul>
-                    </section>
-
-                
                 </section>
 
-                
-                <aside class = "rental-board">
+                <!-- 대여 현황 보드 -->
+                <aside class="rental-board">
                     <h2>대여 현황</h2>
-                    <ul class = "rental-list">
+                    <ul class="rental-list">
                         <li><span class="who">강00</span>드라이버 - 1개</li>
                         <li><span class="who">김00</span>니퍼 - 2개</li>
                         <li><span class="who">이00</span>줄자 - 1개</li>
@@ -247,7 +200,7 @@
                 <!-- 이 영역이 스크롤됨 -->
                 <div class="modal-body">
                     <h4>비품 설명</h4>
-                    <p class="modal-desc"> 점퍼선은 브레드보드로 아두이노 프로젝트를 만들 때 사용할 수 있어요</p>
+                    <p class="modal-desc">점퍼선은 브레드보드로 아두이노 프로젝트를 만들 때 사용할 수 있어요</p>
 
                     <h4>대여 기록</h4>
                     <ul class="modal-history" id="modal-history"></ul>
@@ -256,8 +209,6 @@
                 <button type="button" class="modal-rent">대여하기</button>
             </div>
         </div>
-
-
 
         <footer class="ft">
             <div class="ft-stage">
@@ -278,7 +229,6 @@
                     <div class="ft-shadow"></div>
                     <button type="button" id="ft-rocket" class="ft-obj"><img id="ft-rocket-img" src="res/footer-rocket.png" alt="로켓"></button>
                 </div>
-            </div>
             </div>
             <div class="ft-panel">
                 <div class="ft-cols">
@@ -311,46 +261,84 @@
                     <span>© 2026 엉뚱한 사람들 · SMWU INVENTORS</span>
                     <span>숙명여자대학교 중앙발명동아리</span>
                 </div>
-                </div>
             </div>
         </footer>
 
         <script>
-  const modal = document.getElementById('supply-modal');
-  const historyList = document.getElementById('modal-history'); // history → historyList
+            const modal = document.getElementById('supply-modal');
+            const historyList = document.getElementById('modal-history');
 
-  document.querySelectorAll('.supply-item').forEach(card => {
-    card.addEventListener('click', e => {
-      const img = card.querySelector('.thumb img');
-      document.getElementById('modal-img').src = img.src;
-      document.getElementById('modal-img').alt = img.alt;
-      document.getElementById('modal-name').textContent = card.querySelector('.name').textContent;
+            document.querySelectorAll('.supply-item').forEach(card => {
+                card.addEventListener('click', () => {
+                    const img = card.querySelector('.thumb img');
+                    document.getElementById('modal-img').src = img.src;
+                    document.getElementById('modal-img').alt = img.alt;
+                    document.getElementById('modal-name').textContent = card.querySelector('.name').textContent;
 
-      // 남은 수량 표시
-      const count = card.dataset.count;
-      document.getElementById('modal-stock').textContent =
-      count !== undefined ? '동아리방 비치 개수: ' + count + '개' : '';
+                    // 남은 수량 표시
+                    const count = card.dataset.count;
+                    document.getElementById('modal-stock').textContent =
+                        count !== undefined ? '동아리방 비치 개수: ' + count + '개' : '';
 
-      const names = ['강00', '김00', '이00', '박00'];
-      historyList.innerHTML = names.map((n, i) =>
-        `<li><span>${n}</span><span>11/${String(22 - i).padStart(2, '0')}</span></li>`
-      ).join('');
+                    // 샘플 대여 기록 (나중에 진짜 데이터로 교체)
+                    const names = ['강00', '김00', '이00', '박00'];
+                    historyList.innerHTML = names.map((n, i) =>
+                        `<li><span>${n}</span><span>11/${String(22 - i).padStart(2, '0')}</span></li>`
+                    ).join('');
 
-      modal.classList.add('open');
-      modal.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-    });
-  });
+                    modal.classList.add('open');
+                    modal.setAttribute('aria-hidden', 'false');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
 
-  function closeModal() {
-    modal.classList.remove('open');
-    modal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-  }
-  modal.querySelector('.modal-close').addEventListener('click', closeModal);
-  modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-    </script>
+            function closeModal() {
+                modal.classList.remove('open');
+                modal.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+            }
+            modal.querySelector('.modal-close').addEventListener('click', closeModal);
+            modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+            document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+            // ---- 페이지 이동 (한 줄 5개 × 5줄 = 25개씩) ----
+            const PER_PAGE = 25;   // 5의 배수로 맞추면 마지막 줄이 안 비어요
+            const allItems = Array.from(document.querySelectorAll('.supply-item'));
+            const groups = Array.from(document.querySelectorAll('.supply-group'));
+            const pgInput = document.getElementById('pg-input');
+            let page = 1;
+            const totalPages = Math.max(1, Math.ceil(allItems.length / PER_PAGE));
+            document.getElementById('pg-total').textContent = totalPages;
+            pgInput.max = totalPages;
+
+            function renderPage() {
+                page = Math.min(Math.max(page, 1), totalPages);
+                const start = (page - 1) * PER_PAGE;
+                allItems.forEach((el, i) => {
+                    el.style.display = (i >= start && i < start + PER_PAGE) ? '' : 'none';
+                });
+                groups.forEach(g => {
+                    const hasVisible = Array.from(g.querySelectorAll('.supply-item'))
+                        .some(el => el.style.display !== 'none');
+                    g.style.display = hasVisible ? '' : 'none';
+                });
+                pgInput.value = page;
+                document.getElementById('pg-first').disabled = document.getElementById('pg-prev').disabled = page === 1;
+                document.getElementById('pg-next').disabled = document.getElementById('pg-last').disabled = page === totalPages;
+            }
+            document.getElementById('pg-first').addEventListener('click', () => { page = 1; renderPage(); });
+            document.getElementById('pg-prev').addEventListener('click', () => { page--; renderPage(); });
+            document.getElementById('pg-next').addEventListener('click', () => { page++; renderPage(); });
+            document.getElementById('pg-last').addEventListener('click', () => { page = totalPages; renderPage(); });
+            function goPage() {
+                const n = parseInt(pgInput.value, 10);
+                page = isNaN(n) ? 1 : n;
+                renderPage();
+            }
+            document.getElementById('pg-go').addEventListener('click', goPage);
+            pgInput.addEventListener('keydown', e => { if (e.key === 'Enter') goPage(); });
+            renderPage();
+        </script>
 
     </body>
 </html>
