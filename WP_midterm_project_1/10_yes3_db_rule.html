@@ -201,7 +201,7 @@
                             '<div class="txt">' + esc(r.text) + '</div>' +
                         '</div>' +
                         '<button type="button" class="c-heart' + (r.liked ? ' on' : '') + '" data-i="' + i + '">' +
-                            (r.liked ? '♥' : '♡') + ' <b>' + r.likes + '</b></button>' +
+                            '<img src="' + (r.liked ? 'res/filledheart.png' : 'res/heart.svg') + '" alt="좋아요"> <b>' + r.likes + '</b></button>' +
                     '</li>';
                 }).join('');
             }
