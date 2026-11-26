@@ -19,7 +19,7 @@
 }
 
 /* ===== 상단 배너 =====
-   바탕색·배경 사진은 10_yes3_bg.css에서 공통 관리, 여기서는 높이만 */
+   바탕색·배경 사진은 10_yes3_common.css에서 공통 관리, 여기서는 높이만 */
 .dbeq_1 {
   height: 45vh;                /* 교육자료 페이지(.learning_1)와 같은 높이 */
   box-sizing: border-box;

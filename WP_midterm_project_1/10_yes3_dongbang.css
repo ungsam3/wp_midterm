@@ -25,7 +25,7 @@
 }
 
 /* ===== 상단 배너 ===== */
-/* 배경 사진·남색 body는 10_yes3_bg.css, 높이만 여기서 */
+/* 배경 사진·남색 body는 10_yes3_common.css, 높이만 여기서 */
 .dbeq_1 {
   height: 150px;
 }
@@ -588,7 +588,7 @@ article > .wrap {
 
 
 /* [1-2] 이용규칙 판넬 (비품·교육자료·청소담당과 같은 판넬 디자인)
-   모두 .rule2 안에서만 적용됨. 서브 헤더·별 배경은 10_yes3_bg.css */
+   모두 .rule2 안에서만 적용됨. 위쪽 사진 배너(.dbeq_1)는 10_yes3_common.css */
 .rule2,
 .rule2 button,
 .rule2 input {

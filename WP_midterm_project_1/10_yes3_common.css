@@ -2,9 +2,10 @@
 
 /* 컴포넌트 */
 /* -------------------
-[1] 전체 폰트 스타일 설정: 
-[2] nav: 
-[3] footer: 
+[1] 전체 폰트 스타일 설정:
+[1-2] 바탕 · 서브 페이지 사진 배너 (예전 10_yes3_bg.css를 합침)
+[2] nav:
+[3] footer:
 --------------------- */
 
 
@@ -21,6 +22,34 @@
     font-family: "Jua", sans-serif;
     font-weight: 400;
     font-style: normal;
+}
+
+
+/* [1-2] 바탕 · 서브 페이지 사진 배너
+   (따로 있던 10_yes3_bg.css가 이것만 남아서 파일을 줄이려고 여기로 합침) */
+
+/* 전체 바탕: 남색 (메인은 10_yes3_main.css에서 같은 색으로 다시 지정) */
+body {
+    background-color: #060B1E;
+    margin: 0;
+    padding: 0;
+}
+
+/* 서브 페이지 맨 위 사진 배너 (sub_image.jpg)
+   .dbeq_1 = 비품·이용규칙·로그인·회원가입 / .learning_1 = 교육자료·갤러리 (청소담당 .cleanup_1은 dongbang.css)
+   높이(height)는 페이지마다 달라서 각 페이지 CSS에 있음 */
+.dbeq_1, .learning_1 {
+    position: relative;
+    top: 0;
+    left: 0;
+    background-image: url("res/sub_image.jpg");
+    background-attachment: scroll;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 
