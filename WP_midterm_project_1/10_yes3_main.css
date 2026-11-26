@@ -54,6 +54,31 @@ body {
     color: #e1e8ee;
 }
 
+/* 서브타이틀 파도타기: 새로고침하면 앞 글자부터 차례로 통 튀어 올랐다 내려옴 (한 번만)
+   글자마다 <span style="--i:번호">, 번호만큼 늦게 시작 */
+.wave_sr {                               /* 화면 읽기용 전체 문장 (화면엔 안 보임) */
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+.wave_letters span {
+    display: inline-block;               /* transform이 먹도록 */
+    white-space: pre;                    /* 띄어쓰기 칸도 글자처럼 유지 */
+    animation: sub-wave 0.7s ease-in-out both;
+    animation-delay: calc(0.4s + var(--i) * 0.05s);
+}
+@keyframes sub-wave {
+    0%   { transform: translateY(0);     color: #e1e8ee; }
+    40%  { transform: translateY(-16px); color: #ffbc00; }   /* 꼭대기에서 노랑으로 반짝 */
+    100% { transform: translateY(0);     color: #e1e8ee; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .wave_letters span { animation: none; }
+}
+
 .title_line2 {
     font-size: 160px;
     font-weight: bold;

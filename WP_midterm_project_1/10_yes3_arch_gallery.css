@@ -258,7 +258,7 @@
 /*---색 이어지게 (동아리방/메인과 같은 남색 흐름)------------------*/
 /* nav 배경은 10_yes3_common.css의 .nav_bg (모든 페이지 공통 blur 칸) */
 
-/* 서브 헤더·본문 배경은 10_yes3_bg.css (메인 페이지와 같은 배경) */
+/* 위쪽 사진 배너(.learning_1)는 10_yes3_bg.css + 10_yes3_arch_learning.css (교육자료와 같음) */
 
 /*---판넬 디자인 (교육자료·비품·이용규칙과 같은 판넬)------------------
    제목(.board-head)·.wrap·변수(--panel 등)는 10_yes3_arch_learning.css 것을 그대로 씀.
@@ -271,11 +271,6 @@
 }
 
 article.gallery2 { padding-top: 25px; }       /* 교육자료 article.learning2와 같은 위 여백 */
-
-/* 사진이 열려 있을 때(라이트박스 :target)만 article을 고정 nav(z-index 100)보다 위로.
-   bg.css가 article에 isolation: isolate를 줘서 라이트박스 z-index가 article 안에 갇히기 때문에,
-   이게 없으면 오른쪽 위 x 버튼이 nav 밑에 깔려서 안 눌림 */
-article.gallery2:has(.lightbox:target) { z-index: 101; }
 
 /* 판넬 2개를 위아래로 */
 .gallery2 > .wrap {
@@ -452,13 +447,6 @@ article.gallery2:has(.lightbox:target) { z-index: 101; }
 @media (max-width: 720px) {
   .gallery2 .panel { padding: 24px 18px; }
   .gallery2 #y2026, .gallery2 #y2025, .gallery2 #y2024 { grid-template-columns: repeat(2, 1fr); }
-}
-
-/* footer 바닥 그림 뒤 → 본문 끝 색에서 footer 패널 색으로 */
-.ft-stage {
-  background:
-    url("res/footer-floor.png") no-repeat center top,
-    linear-gradient(to bottom, #121620 0%, #161a21 100%);
 }
 
 /*커서: 어두운 바탕이라 흰색 커서로*/
