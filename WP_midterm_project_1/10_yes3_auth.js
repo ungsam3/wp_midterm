@@ -66,7 +66,7 @@ function registerUser(event) {
   // 학번 중복 확인
   for (const user of users) {
     if (user.studentId === studentId) {
-      alert('이미 가입된 학번이에요.');
+      alert('당신은 이미 엉뚱해요!');
       return;
     }
   }
@@ -114,7 +114,7 @@ function loginUser(event) {
   }
 
   // 반복문을 다 돌았는데 못 찾은 경우
-  alert('학번 또는 비밀번호가 틀렸어요.');
+  alert('틀렸어요! 잘못 누른 걸까요?');
 }
 
 

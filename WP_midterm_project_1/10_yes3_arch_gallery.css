@@ -201,10 +201,7 @@
 
 
 /*---색 이어지게 (동아리방/메인과 같은 남색 흐름)------------------*/
-/* nav: 위쪽만 살짝 어둡게, 아래로 투명하게 */
-.main_nav {
-  background: linear-gradient(to bottom, rgba(6, 11, 30, 0.8) 0%, rgba(6, 11, 30, 0) 100%);
-}
+/* nav 배경은 10_yes3_common.css의 .nav_bg (모든 페이지 공통 blur 칸) */
 
 /* 서브 헤더·본문 배경은 10_yes3_bg.css (메인 페이지와 같은 배경) */
 
