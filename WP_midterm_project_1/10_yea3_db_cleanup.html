@@ -469,6 +469,22 @@
                 { name: '엉덩이사랑해', text: '엉사 2행시 해볼게요. 엉 엉덩이 사 사랑해', likes: 3, liked: false },
                 { name: '엉길동', text: '엉에 번쩍 뚱에 번쩍', likes: 1, liked: false }
             ];
+
+            // 댓글 추가·삭제 결과는 localStorage에 저장 (처음엔 위 기본 댓글)
+            // 하트는 저장하지 않음: 내가 누른 하트(liked)는 빼고 원래 개수만 저장
+            var COMMENTS_KEY = 'cleanup_comments';
+            var savedComments = JSON.parse(localStorage.getItem(COMMENTS_KEY));
+            if (savedComments) {
+                comments = savedComments.map(function (c) {
+                    return { name: c.name, text: c.text, likes: c.likes, liked: false };
+                });
+            }
+            function saveComments() {
+                localStorage.setItem(COMMENTS_KEY, JSON.stringify(comments.map(function (c) {
+                    return { name: c.name, text: c.text, likes: c.likes - (c.liked ? 1 : 0) };
+                })));
+            }
+
             var listEl = $('comment-list');
 
             function esc(s) {
@@ -488,9 +504,21 @@
             '</div>' +
             '<button type="button" class="c-heart' + (c.liked ? ' on' : '') + '" data-i="' + i + '">' +
                 '<img src="' + (c.liked ? 'res/filledheart.png' : 'res/heart.svg') + '" alt="좋아요"> <b>' + c.likes + '</b></button>' +
+            // 삭제 버튼: 회장·동방장에게만, 항목 맨 끝
+            (isManager ? '<button type="button" class="c-del" data-i="' + i + '">삭제</button>' : '') +
         '</li>';
     }).join('');
 }
+
+            // 댓글 삭제 (회장·동방장만)
+            listEl.addEventListener('click', function (e) {
+                var del = e.target.closest('.c-del');
+                if (!del || !isManager) return;
+                if (!confirm('이 댓글을 삭제할까요?')) return;
+                comments.splice(Number(del.getAttribute('data-i')), 1);
+                saveComments();
+                renderComments();
+            });
 
             // 하트 토글
             listEl.addEventListener('click', function (e) {
@@ -514,6 +542,7 @@
                     liked: false
                 });
                 $('c-text').value = '';
+                saveComments();
                 renderComments();
             });
 

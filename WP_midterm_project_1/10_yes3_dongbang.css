@@ -1345,6 +1345,20 @@ article > .wrap {
 .cleanup2 .c-heart:hover { border-color: #ff6b81; }
 .cleanup2 .c-heart.on { color: #ff6b81; border-color: #ff6b81; }
 
+/* 댓글 삭제 버튼 (회장·동방장만, 하트 오른쪽 맨 끝) */
+.cleanup2 .c-del {
+  flex: none;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: #51556c;
+  color: var(--text);
+  font-family: "Jua", sans-serif;
+  font-size: 15px;
+  cursor: pointer;
+}
+.cleanup2 .c-del:hover { background: var(--orange); border-color: var(--orange); }
+
 .cleanup2 .c-comment-form {
   display: flex;
   align-items: stretch;
