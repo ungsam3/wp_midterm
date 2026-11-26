@@ -643,17 +643,18 @@ article > .wrap {
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
 }
 
-/* 판넬 안 구역 제목 (대여 현황 h2처럼 파란 밑줄) */
+/* 판넬 안 구역 제목: 가운데, 아래 파란 줄이 교육자료 목록 윗줄 역할 */
 .rule2 .r-sec h2 {
-  margin: 0 0 18px;
+  margin: 0;
   padding-bottom: 14px;
   font-size: 26px;
   font-weight: 400;
+  text-align: center;
   color: var(--text);
   border-bottom: 2px solid var(--blue);
 }
 
-/* 안내 문구 */
+/* 안내 문구 (가운데) */
 .rule2 .r-note {
   margin: 0;
   padding: 16px 22px;
@@ -662,6 +663,7 @@ article > .wrap {
   color: #D9DCEA;
   font-size: 18px;
   line-height: 1.8;
+  text-align: center;
 }
 
 /* 안내 문구 끝 눈송이: 3초마다 앞으로 꾸벅 인사, 마우스 올리면 더 깊게 한 번 */
@@ -687,69 +689,93 @@ article > .wrap {
   .rule2 .r-bow, .rule2 .r-bow:hover { animation: none; }
 }
 
-/* 규칙 카드 그리드 (비품 카드처럼 hover 때 떠오름) */
+/* 규칙 목록: 교육자료 목록(.drive-list)처럼 카드 테두리 없이 가는 줄로 행을 나눔, 1열 6줄
+   각 행의 [번호 + 문장] 묶음은 폭을 정해 가운데로 모음 (오른쪽이 휑하게 비지 않게)
+   번호 칸 폭이 같아서 6줄 모두 문장 시작 위치가 맞음 */
 .rule2 .r-grid {
   list-style: none;
   margin: 0;
   padding: 0;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
 }
 .rule2 .r-card {
-  position: relative;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 20px 22px 22px;
-  border-radius: 20px;
-  border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.05);
-  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  padding: 20px 14px;
+  border-bottom: 1px solid var(--line);
+  transition: background 0.15s;
 }
-.rule2 .r-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--yellow);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
-}
+.rule2 .r-card:hover { background: rgba(255, 255, 255, 0.05); }   /* 교육자료 행 hover와 같음 */
 .rule2 .r-num {
-  font-size: 30px;
+  flex: none;
+  width: 60px;
+  text-align: center;
+  font-size: 22px;
   line-height: 1;
-  color: var(--orange);
+  color: var(--yellow);                 /* 교육자료 작성자 칸처럼 노랑 */
 }
-.rule2 .r-tag {                       /* 대여자 칩과 같은 노랑 알약 */
-  position: absolute;
-  top: 20px;
-  right: 22px;
-  padding: 2px 12px;
-  border-radius: 999px;
-  background: var(--yellow);
-  color: #0B0B0F;
-  font-size: 13px;
-}
-.rule2 .r-card.ban .r-tag { background: var(--orange); color: #fff; }
 .rule2 .r-card p {
+  flex: 0 1 460px;                      /* 문장 칸 폭: 가장 긴 규칙이 한 줄에 들어가는 정도 */
   margin: 0;
-  font-size: 19px;
+  font-size: 20px;
   line-height: 1.5;
   color: var(--text);
 }
 
-/* 마지막 경고 문구 */
-.rule2 .r-warn {
-  margin: 0;
-  text-align: right;
-  font-size: 17px;
-  color: var(--muted);
+/* 판넬 2개 아래 여백을 줄이고 그 밑에 노란 띠 */
+.rule2 > .wrap { margin-bottom: 48px; }
+
+/* 맨 아래 노란 띠 marquee: "안그러면 회장이 못 들어오게 할거야미~"가 왼쪽으로 끝없이 흘러감
+   같은 문구 6개를 두 번(총 12개) 이어 붙이고, 트랙을 절반(-50%)만큼 옮기면 처음과 똑같아져서 끊김 없이 반복
+   (갤러리 폴라로이드 marquee와 같은 방식) */
+.rule2 .r-marquee {
+  overflow: hidden;
+  margin-bottom: 70px;
+  padding: 12px 0;
+  background: var(--yellow);
+  border-top: 4px solid #0B0B0F;
+  border-bottom: 4px solid #0B0B0F;
+}
+.rule2 .r-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: r-marquee 28s linear infinite;
+}
+.rule2 .r-marquee-track span {
+  flex: none;
+  padding: 0 36px;
+  font-size: 22px;
+  color: #0B0B0F;
+  white-space: nowrap;
+}
+.rule2 .r-marquee-track span::after {    /* 문구 사이 구분 별 */
+  content: "★";
+  margin-left: 72px;
+  color: var(--orange);
+}
+.rule2 .r-marquee:hover .r-marquee-track { animation-play-state: paused; }   /* 마우스 올리면 멈춤 */
+@keyframes r-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rule2 .r-marquee-track { animation: none; }
 }
 
-@media (max-width: 1100px) {
-  .rule2 .r-grid { grid-template-columns: repeat(2, 1fr); }
+/* 화면에는 안 보이고 화면 읽기 프로그램만 읽는 글씨 (marquee 문구를 한 번만 읽게) */
+.rule2 .r-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 }
+
 @media (max-width: 720px) {
   .rule2 .r-panel { padding: 24px 18px; }
-  .rule2 .r-grid { grid-template-columns: 1fr; }
+  .rule2 .r-card { gap: 12px; }
 }
 
 
