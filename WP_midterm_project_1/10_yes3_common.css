@@ -200,7 +200,7 @@ body {
     position: relative;
     overflow: hidden;              /* 로켓이 위로 날아가면 잘려서 사라지게 */
     color: #dfe5ee;
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Jua', sans-serif;
 }
 .ft-stage {
     position: relative;
