@@ -328,6 +328,39 @@ article > .wrap {
 }
 .post-meta .views b { color: var(--orange); font-weight: 400; }
 
+/* 인증 배지 (제목 바로 옆, 승인된 글만) */
+.cert-badge {
+  flex: none;
+  padding: 1px 10px;
+  border: 1.5px solid var(--blue);
+  border-radius: 999px;
+  font-size: 13px;
+  color: var(--blue);
+}
+.cert-badge[hidden] { display: none; }   /* display 지정이 hidden 속성을 덮지 않게 */
+
+/* 승인 / 승인취소 버튼 (회장·부회장만, 항목 오른쪽 끝) */
+.post-admin {
+  flex: none;
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+.post-admin button {
+  height: 34px;
+  padding: 0 16px;
+  border: none;
+  border-radius: 999px;
+  font-family: "Jua", sans-serif;
+  font-size: 15px;
+  color: #fff;
+  transition: transform 0.15s;
+}
+.post-admin button:hover { transform: translateY(-2px); }
+.approve-btn { background: var(--blue); box-shadow: 0 3px 0 rgba(47, 155, 255, 0.35); }
+.unapprove-btn { background: #3c4053; color: var(--text); box-shadow: 0 3px 0 rgba(60, 64, 83, 0.35); }
+.unapprove-btn:hover { background: #4b4f66; }
+
 .post-detail {
   display: none;
   margin: 0 14px 18px 132px;

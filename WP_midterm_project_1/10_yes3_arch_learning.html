@@ -233,6 +233,9 @@
                 ['activity', '생활발명코리아 중간 발표 템플릿'],
                 ['patent',   'WINTELIPS 사용 방법']
             ];
+            // 처음부터 미승인 상태인 샘플 (나머지는 승인 상태)
+            var UNAPPROVED_SAMPLES = ['음성인식 기반 인형 뽑기 프로젝트', '변박사 제작 후기'];
+
             for (var i = 0; i < items.length; i++) {
                 var month = 6 + Math.floor(i / 6);
                 var day = 1 + (i * 4) % 27;
@@ -243,10 +246,29 @@
                     author: authors[i % authors.length],
                     date: '2026-' + pad(month) + '-' + pad(day),
                     views: (i * 7) % 40,
-                    content: '다운로드하여 사용하세요'
+                    content: '다운로드하여 사용하세요',
+                    approved: UNAPPROVED_SAMPLES.indexOf(items[i][1]) === -1
                 });
             }
-            var nextId = posts.length + 1;
+
+            // ---- localStorage 저장 (글 목록 + 승인 상태 + 조회수) ----
+            // 한 번 저장된 뒤에는 위 샘플 대신 저장된 목록을 씀
+            // (샘플을 고쳤으면 개발자도구에서 'learning_posts' 키를 지워야 반영됨)
+            var STORAGE_KEY = 'learning_posts';
+            var saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+            if (saved) {
+                posts = saved;
+            }
+            function savePosts() {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(posts));
+            }
+
+            var nextId = 1;
+            posts.forEach(function (p) { if (p.id >= nextId) nextId = p.id + 1; });
+
+            // ---- 권한: 승인 / 승인취소 버튼은 회장·부회장만 (10_yes3_auth.js의 getRole) ----
+            var role = getRole();
+            var canApprove = role === 'president' || role === 'vice';
 
             // ---- 상태 ----
             var state = { category: 'all', keyword: '', perPage: 10, sort: 'latest', page: 1 };
@@ -311,12 +333,21 @@
                         '<div class="post">' +
                             '<span class="post-author">' + esc(p.author) + '</span>' +
                             '<div class="post-main">' +
-                                '<div class="post-title"><span class="tag tag-' + p.category + '">' + CAT_LABEL[p.category] + '</span>' + esc(p.title) + '</div>' +
+                                '<div class="post-title"><span class="tag tag-' + p.category + '">' + CAT_LABEL[p.category] + '</span>' + esc(p.title) +
+                                    // 인증 배지: 제목 바로 옆, 승인된 글만 보임
+                                    '<span class="cert-badge"' + (p.approved ? '' : ' hidden') + '>✔ 인증</span>' +
+                                '</div>' +
                                 '<div class="post-meta">' +
                                     '<span>작성일 : ' + p.date + '</span>' +
                                     '<span class="views">조회수 : <b>' + p.views + '</b>회</span>' +
                                 '</div>' +
                             '</div>' +
+                            // 승인 → 승인취소 (회장·부회장에게만, 상태와 관계없이 둘 다 보임)
+                            (canApprove ?
+                                '<div class="post-admin">' +
+                                    '<button type="button" class="approve-btn" data-act="approve">승인</button>' +
+                                    '<button type="button" class="unapprove-btn" data-act="unapprove">승인취소</button>' +
+                                '</div>' : '') +
                         '</div>' +
                         '<div class="post-detail">' + esc(p.content || '내용이 없습니다.') + '</div>' +
                     '</li>';
@@ -329,7 +360,20 @@
                 if (!li) return;
                 var post = posts.filter(function (p) { return p.id === Number(li.dataset.id); })[0];
                 if (!post) return;
+
+                // 승인 / 승인취소 버튼: 조회수 +1, 내용 펼치기 없이 배지만 바꿈
+                var adminBtn = e.target.closest('.post-admin button');
+                if (adminBtn) {
+                    if (!canApprove) return;
+                    post.approved = adminBtn.dataset.act === 'approve';
+                    li.querySelector('.cert-badge').hidden = !post.approved;
+                    savePosts();
+                    return;
+                }
+                if (e.target.closest('.post-admin')) return;   // 버튼 사이 빈 곳 클릭도 제외
+
                 post.views += 1;
+                savePosts();
                 li.querySelector('.views b').textContent = post.views;
                 li.classList.toggle('open-detail');
             });
@@ -397,8 +441,10 @@
                     author: $('w-author').value.trim(),
                     date: today(),
                     views: 0,
-                    content: $('w-content').value.trim()
+                    content: $('w-content').value.trim(),
+                    approved: false          // 관리자 글을 포함해 새 글은 모두 미승인으로 시작
                 });
+                savePosts();
                 state.page = 1;
                 state.sort = 'latest';
                 $('sort-order').value = 'latest';
