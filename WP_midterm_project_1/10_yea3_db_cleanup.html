@@ -373,19 +373,19 @@
             }
 
             function renderComments() {
-                $('comment-count').textContent = comments.length;
-                listEl.innerHTML = comments.map(function (c, i) {
-                    return '<li>' +
-                        '<span class="c-profile">' + esc(c.name.charAt(0)) + '</span>' +
-                        '<div class="c-comment-body">' +
-                            '<div class="who">' + esc(c.name) + '</div>' +
-                            '<div class="txt">' + esc(c.text) + '</div>' +
-                        '</div>' +
-                        '<button type="button" class="c-heart' + (c.liked ? ' on' : '') + '" data-i="' + i + '">' +
-                            (c.liked ? '♥' : '♡') + ' <b>' + c.likes + '</b></button>' +
-                    '</li>';
-                }).join('');
-            }
+    $('comment-count').textContent = comments.length;
+    listEl.innerHTML = comments.map(function (c, i) {
+        return '<li>' +
+            '<span class="c-profile">' + esc(c.name.charAt(0)) + '</span>' +
+            '<div class="c-comment-body">' +
+                '<div class="who">' + esc(c.name) + '</div>' +
+                '<div class="txt">' + esc(c.text) + '</div>' +
+            '</div>' +
+            '<button type="button" class="c-heart' + (c.liked ? ' on' : '') + '" data-i="' + i + '">' +
+                '<img src="' + (c.liked ? 'res/filledheart.png' : 'res/heart.svg') + '" alt="좋아요"> <b>' + c.likes + '</b></button>' +
+        '</li>';
+    }).join('');
+}
 
             // 하트 토글
             listEl.addEventListener('click', function (e) {
