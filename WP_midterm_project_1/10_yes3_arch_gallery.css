@@ -601,6 +601,201 @@ article.gallery2 { padding-top: 25px; }       /* 교육자료 article.learning2�
   .gallery2 #y2026, .gallery2 #y2025, .gallery2 #y2024 { grid-template-columns: repeat(2, 1fr); }
 }
 
+/*---오늘의 엉사 사진 (#panel-today)------------------
+   오른쪽 사진(누르면 라이트박스) + 왼쪽 날짜·제목(오른쪽 정렬). 사진·글은 갤러리 HTML 맨 아래 JS가 날짜로 골라 넣음 */
+.gallery2 .g-today {
+  display: flex;
+  flex-direction: row-reverse;                  /* 6주차 flex: 사진을 오른쪽, 글을 왼쪽으로 (HTML 순서는 그대로) */
+  align-items: center;
+  gap: 36px;
+}
+.gallery2 .today-info { text-align: right; }   /* 글도 오른쪽 사진 쪽으로 붙임 */
+.gallery2 .today-photo {
+  flex: none;
+  display: block;
+  width: 260px;
+  height: 180px;
+  border: 6px solid #111;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #0d0f14;
+  transform: rotate(2deg);                      /* 살짝 기울여 붙인 사진 느낌 (오른쪽에 있어서 반대로 기울임) */
+  box-shadow: 0 0 0 4px var(--yellow), 0 12px 26px rgba(0, 0, 0, 0.45);
+  transition: transform 0.2s;
+}
+.gallery2 .today-photo:hover { transform: rotate(0) scale(1.03); }
+.gallery2 .today-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.gallery2 .today-info { flex: 1; }
+.gallery2 .today-label {
+  display: inline-block;
+  margin: 0 0 10px;
+  padding: 4px 14px;
+  border-radius: 999px;
+  background: var(--yellow);
+  color: #1a1a1a;
+  font-size: 16px;
+}
+.gallery2 .today-date {
+  margin: 0;
+  font-size: 18px;
+  color: var(--muted);
+}
+.gallery2 .today-title {
+  margin: 4px 0 10px;
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--text);
+}
+.gallery2 .today-desc {
+  margin: 0;
+  font-size: 16px;
+  color: var(--muted);
+}
+@media (max-width: 720px) {
+  .gallery2 .g-today { flex-direction: column; gap: 22px; }
+  .gallery2 .today-info { text-align: center; }
+}
+
+/*---랜덤 추억 뽑기 기계 (#panel-gacha)------------------
+   왼쪽: 사진이 바뀌는 뽑기 창 / 오른쪽: 사진 이름 + 설명 + 레버 버튼
+   JS(갤러리 HTML 맨 아래)는 .gacha-machine에 class만 바꿈
+   - .spinning: 레버가 한 번 덜컹 당겨지고, 창이 살짝 흔들림
+   - .win: 멈춘 뒤 창 테두리가 노랗게 반짝, 창을 누르면 라이트박스 열림 */
+.gallery2 .gacha-machine {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  margin-top: 22px;
+}
+.gallery2 .gacha-window {
+  flex: none;
+  display: block;
+  width: 320px;
+  height: 230px;
+  border: 6px solid #111;                       /* 라이트박스 사진과 같은 굵은 검정 테두리 */
+  border-radius: 18px;
+  background: #0d0f14;
+  overflow: hidden;
+  box-shadow: 0 0 0 4px var(--orange), 0 14px 30px rgba(0, 0, 0, 0.45);
+}
+.gallery2 .gacha-window img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;                            /* 6주차: 사진 비율 유지하며 창을 꽉 채움 */
+}
+.gallery2 .gacha-window img[src$="logo_white.png"] {   /* 뽑기 전 로고는 작게 */
+  object-fit: contain;
+  padding: 40px;
+  box-sizing: border-box;
+  opacity: 0.5;
+}
+.gallery2 .gacha-side { flex: 1; }
+.gallery2 .gacha-cap {
+  margin: 0 0 8px;
+  font-size: 26px;
+  color: var(--yellow);
+}
+/* 당첨 사진 설명 멘트 (10_yes3_gallery.json의 desc) — 비어 있으면 자리도 차지하지 않음 */
+.gallery2 .gacha-ment {
+  margin: 0 0 14px;
+  padding: 12px 18px;
+  border-left: 4px solid var(--yellow);
+  border-radius: 0 12px 12px 0;
+  background: rgba(255, 255, 255, 0.06);
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--text);
+}
+.gallery2 .gacha-ment:empty { display: none; }
+.gallery2 .gacha-desc {
+  margin: 0 0 22px;
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+/* 레버: res/lever_orange.png(512x512)를 150px로 줄여서, 같은 그림을 위·아래 두 칸에 나눠 보여줌
+   - 위 칸 .lever-stick (0~88px): 막대 + 손잡이. 받침 가운데(72px, 100px)를 축으로 회전 → JS가 style.transform으로 각도 바꿈
+   - 아래 칸 .lever-base (88~150px): 받침. 그림을 88px 위로 올려서 아랫부분만 보이게, 고정
+   그림을 바꾸면 88px(받침 윗선)과 축 위치를 다시 맞춰야 함 */
+.gallery2 .gacha-lever-wrap {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.gallery2 .gacha-lever {
+  position: relative;
+  flex: none;
+  width: 150px;
+  height: 150px;
+  border-radius: 16px;
+  user-select: none;                            /* 끄는 동안 글자·그림이 파랗게 선택되지 않게 */
+}
+.gallery2 .gacha-lever:focus-visible { outline: 3px solid var(--yellow); outline-offset: 4px; }
+.gallery2 .gacha-lever img {
+  display: block;
+  width: 150px;
+  height: 150px;
+}
+.gallery2 .lever-stick,
+.gallery2 .lever-base {
+  position: absolute;
+  left: 0;
+  width: 150px;
+  overflow: hidden;                             /* 6주차: 칸 밖으로 나간 그림은 안 보이게 잘라냄 */
+}
+.gallery2 .lever-stick {
+  top: 0;
+  height: 88px;
+  transform-origin: 72px 100px;                 /* 받침 동그라미 가운데 = 회전 축 */
+  transition: transform 0.35s ease-out;
+}
+.gallery2 .lever-base {
+  top: 88px;
+  height: 62px;
+}
+.gallery2 .lever-base img { margin-top: -88px; }   /* 그림을 위로 올려 받침 부분만 */
+.gallery2 .lever-hint {
+  font-size: 18px;
+  color: var(--yellow);
+  animation: lever-hint 1.2s ease-in-out infinite;   /* 왼쪽으로 살짝살짝 움직이며 "당겨!" 신호 */
+}
+@keyframes lever-hint {
+  0%, 100% { transform: translateX(0); }
+  50%      { transform: translateX(-6px); }
+}
+
+/* 도는 중: 창 흔들림 */
+.gallery2 .gacha-machine.spinning .gacha-window { animation: gacha-shake 0.15s linear infinite; }
+@keyframes gacha-shake {
+  0%, 100% { transform: translateX(0) rotate(0); }
+  25%      { transform: translateX(-3px) rotate(-1deg); }
+  75%      { transform: translateX(3px) rotate(1deg); }
+}
+/* 당첨: 노란 테두리가 세 번 반짝 */
+.gallery2 .gacha-machine.win .gacha-window { animation: gacha-win 0.5s ease-in-out 3; }
+@keyframes gacha-win {
+  0%, 100% { box-shadow: 0 0 0 4px var(--orange), 0 14px 30px rgba(0, 0, 0, 0.45); }
+  50%      { box-shadow: 0 0 0 8px var(--yellow), 0 0 40px rgba(255, 187, 0, 0.6); }
+}
+.gallery2 .gacha-machine.win .gacha-window:hover { transform: scale(1.03); transition: transform 0.2s; }
+
+@media (max-width: 720px) {
+  .gallery2 .gacha-machine { flex-direction: column; gap: 20px; text-align: center; }
+  .gallery2 .gacha-window { width: 100%; max-width: 320px; }
+  .gallery2 .gacha-lever-wrap { justify-content: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gallery2 .lever-hint,
+  .gallery2 .gacha-machine.spinning .gacha-window,
+  .gallery2 .gacha-machine.win .gacha-window { animation: none; }
+}
+
 /*커서: 어두운 바탕이라 흰색 커서로*/
 * {
     cursor: url('res/cursor_white.png') 2 2, auto;
