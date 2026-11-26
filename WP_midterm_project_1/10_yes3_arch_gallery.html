@@ -142,27 +142,10 @@
                 <label class="pill" for="yr-2026">2026</label>
                 <label class="pill" for="yr-2025">2025</label>
                 <label class="pill" for="yr-2024">2024</label>
-                <!-- 관리자용 수정 버튼: 누르면 아래 #g-edit 모달이 열림 (사진 확대 창과 같은 :target 방식, JS 없음) -->
-                <a class="write-btn g-admin g-edit-btn" href="#g-edit">수정</a>
+                <!-- 관리자용 사진 추가 버튼 (비품 페이지 + 버튼과 같은 모양, 관리자에게만 보임. 아래 스크립트가 hidden을 풂) -->
+                <button type="button" class="g-add-btn" id="add-photo" hidden><img src="res/add.svg" alt="사진 추가하기"></button>
             </div>
 
-            <!-- 사진 관리 모달 (교육자료 작성 모달과 같은 디자인, 반투명 회색 둥근 상자)
-                 추가·삭제 버튼의 실제 기능과 권한 처리는 담당 팀원이 #add-photo, #delete-photo에 연결 -->
-            <div class="g-modal" id="g-edit" role="dialog" aria-modal="true" aria-labelledby="g-edit-title">
-                <a class="g-modal-bg" href="#" aria-label="닫기"></a>
-                <div class="g-modal-box">
-                    <div class="g-modal-head">
-                        <h2 id="g-edit-title">사진 <span>관리</span></h2>
-                        <a class="g-modal-close" href="#" aria-label="닫기">✕</a>
-                    </div>
-                    <p class="g-modal-desc">갤러리 사진을 추가하거나 삭제할 수 있어요.</p>
-                    <div class="g-modal-actions">
-                        <button type="button" class="btn-submit g-admin" id="add-photo">사진 추가</button>
-                        <button type="button" class="btn-cancel g-admin" id="delete-photo">사진 삭제</button>
-                    </div>
-                </div>
-            </div>
-            
             <!--연도별 사진 묶음-->
             <section id="y2026">
                 <div class="pic-2026-each">
@@ -426,6 +409,30 @@
             </div>
         </footer>
         <script>renderNav();</script>
+        <!-- 관리자 버튼 보이기 (회장·부회장·동방장, 10_yes3_auth.js의 getRole)
+             + 버튼(#add-photo)과 연도별 사진 카드마다 호버 시 보이는 삭제 버튼(.g-del-btn)
+             지금은 보이기만 하고, 실제 추가·삭제 기능은 아직 연결 안 함 -->
+        <script>
+            (function () {
+                var role = getRole();
+                var isAdmin = role === 'president' || role === 'vice' || role === 'dbmanager';
+                if (!isAdmin) return;
+
+                document.getElementById('add-photo').hidden = false;
+
+                // 연도별 사진 카드마다 삭제 버튼 넣기 (marquee·라이트박스는 건드리지 않음)
+                var cards = document.querySelectorAll('.pic-2026-each, .pic-2025-each, .pic-2024-each');
+                for (var i = 0; i < cards.length; i++) {
+                    var title = cards[i].querySelector('h3');
+                    var del = document.createElement('button');
+                    del.type = 'button';
+                    del.className = 'g-del-btn';
+                    del.innerText = '✕';
+                    del.setAttribute('aria-label', (title ? title.innerText.trim() + ' ' : '') + '사진 삭제');
+                    cards[i].appendChild(del);
+                }
+            })();
+        </script>
         <!-- 오늘의 엉사 사진 + 랜덤 추억 뽑기 기계
              사진 목록·설명 멘트는 10_yes3_gallery.json에 있음 (멘트는 "desc"만 고치면 됨)
              교안 범위: 13주차 fetch·JSON, 10주차 Date·Math.random·setTimeout·객체 배열,
