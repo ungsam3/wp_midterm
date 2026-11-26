@@ -160,6 +160,76 @@
       "history": [
         { "who": "강00", "date": "11/22" }
       ]
+    },
+    {
+      "id": "13",
+      "category": "아두이노",
+      "name": "아두이노 레오나르도",
+      "count": 2,
+      "isLow": false,
+      "image": "./item/arduino.svg",
+      "alt": "아두이노 레오나르도",
+      "description": "센서와 액추에이터를 제어하는 기본 마이크로컨트롤러 보드입니다.",
+      "history": [
+        { "who": "강00", "date": "11/22" },
+        { "who": "박00", "date": "11/19" }
+      ]
+    },
+    {
+      "id": "14",
+      "category": "아두이노",
+      "name": "아두이노 마이크로",
+      "count": 2,
+      "isLow": false,
+      "image": "./item/arduino.svg",
+      "alt": "아두이노 마이크로",
+      "description": "센서와 액추에이터를 제어하는 기본 마이크로컨트롤러 보드입니다.",
+      "history": [
+        { "who": "강00", "date": "11/22" },
+        { "who": "박00", "date": "11/19" }
+      ]
+    },
+    {
+      "id": "15",
+      "category": "아두이노",
+      "name": "아두이노 듀",
+      "count": 2,
+      "isLow": false,
+      "image": "./item/arduino.svg",
+      "alt": "아두이노 듀",
+      "description": "센서와 액추에이터를 제어하는 기본 마이크로컨트롤러 보드입니다.",
+      "history": [
+        { "who": "강00", "date": "11/22" },
+        { "who": "박00", "date": "11/19" }
+      ]
+    },
+    {
+      "id": "16",
+      "category": "아두이노",
+      "name": "아두이노 MKR",
+      "count": 2,
+      "isLow": false,
+      "image": "./item/arduino.svg",
+      "alt": "아두이노 MKR",
+      "description": "센서와 액추에이터를 제어하는 기본 마이크로컨트롤러 보드입니다.",
+      "history": [
+        { "who": "강00", "date": "11/22" },
+        { "who": "박00", "date": "11/19" }
+      ]
+    },
+    {
+      "id": "17",
+      "category": "아두이노",
+      "name": "ESP32",
+      "count": 2,
+      "isLow": false,
+      "image": "./item/arduino.svg",
+      "alt": "ESP32",
+      "description": "센서와 액추에이터를 제어하는 기본 마이크로컨트롤러 보드입니다.",
+      "history": [
+        { "who": "강00", "date": "11/22" },
+        { "who": "박00", "date": "11/19" }
+      ]
     }
   ],
   "rentalList": [

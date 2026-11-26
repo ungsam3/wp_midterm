@@ -49,7 +49,7 @@
 
             <!-- 제목(왼쪽) + 검색창(판넬 오른쪽 끝에 맞춤) -->
             <div class="board-head">
-                <h1>동아리방 비품</h1>
+                <h1>비품</h1>
                 <div class="search_dbeq">
                     <input type="text" class="search" id="search-input" placeholder="비품을 검색하세요">
                     <button type="button" class="search_btn" id="search-btn">
@@ -90,6 +90,12 @@
                             <li class="supply-item" data-id="10" data-count="2"><div class="thumb"><img src="./item/cable-tie.svg" alt="USB 케이블" loading="lazy"><span class="badge">부족</span></div><div class="name">USB 케이블</div></li>
                             <li class="supply-item" data-id="11" data-count="3"><div class="thumb"><img src="./item/cable-tie.svg" alt="3D 펜 필라멘트 핑크" loading="lazy"><span class="badge">부족</span></div><div class="name">3D 펜 필라멘트(핑크)</div></li>
                             <li class="supply-item" data-id="12" data-count="3"><div class="thumb"><img src="./item/cable-tie.svg" alt="3D 펜 필라멘트 검정" loading="lazy"><span class="badge">부족</span></div><div class="name">3D 펜 필라멘트(검정)</div></li>
+                            <li class="supply-item" data-id="13" data-count="3"><div class="thumb"><img src="./item/arduino.svg" alt="아두이노 레오나르도" loading="lazy"><span class="badge">부족</span></div><div class="name">아두이노 레오나르도</div></li>
+                            <li class="supply-item" data-id="14" data-count="3"><div class="thumb"><img src="./item/arduino.svg" alt="아두이노 마이크로" loading="lazy"><span class="badge">부족</span></div><div class="name">아두이노 마이크로</div></li>
+                            <li class="supply-item" data-id="15" data-count="3"><div class="thumb"><img src="./item/arduino.svg" alt="아두이노 듀" loading="lazy"><span class="badge">부족</span></div><div class="name">아두이노 듀</div></li>
+                            <li class="supply-item" data-id="16" data-count="3"><div class="thumb"><img src="./item/arduino.svg" alt="아두이노 MKR" loading="lazy"><span class="badge">부족</span></div><div class="name">아두이노 MKR</div></li>
+                            <li class="supply-item" data-id="17" data-count="3"><div class="thumb"><img src="./item/arduino.svg" alt="ESP32" loading="lazy"><span class="badge">부족</span></div><div class="name">ESP32</div></li>
+
                         </ul>
                     </section>
 
@@ -213,8 +219,18 @@
                     { id: "9", category: "소모품", name: "케이블타이 (봉지)", count: 3, isLow: false, image: "./item/cable-tie.svg", alt: "케이블타이", description: "배선 정리 및 부품 고정을 위해 사용하는 소모품입니다.", history: [{ who: "강00", date: "11/22" }] },
                     { id: "10", category: "아두이노", name: "USB 케이블", count: 2, isLow: false, image: "./item/cable-tie.svg", alt: "USB 케이블", description: "아두이노 보드와 PC를 연결하여 코드를 업로드할 때 사용합니다.", history: [{ who: "김00", date: "11/21" }] },
                     { id: "11", category: "3D펜", name: "3D 펜 필라멘트(핑크)", count: 3, isLow: false, image: "./item/cable-tie.svg", alt: "3D 펜 필라멘트 핑크", description: "3D 펜 사용을 위한 필라멘트(핑크)입니다.", history: [{ who: "강00", date: "11/22" }] },
-                    { id: "12", category: "3D펜", name: "3D 펜 필라멘트(검정)", count: 3, isLow: false, image: "./item/cable-tie.svg", alt: "3D 펜 필라멘트 검정", description: "3D 펜 사용을 위한 필라멘트(검정)입니다.", history: [{ who: "강00", date: "11/22" }] }
+                    { id: "12", category: "3D펜", name: "3D 펜 필라멘트(검정)", count: 3, isLow: false, image: "./item/cable-tie.svg", alt: "3D 펜 필라멘트 검정", description: "3D 펜 사용을 위한 필라멘트(검정)입니다.", history: [{ who: "강00", date: "11/22" }] },
+                    { id: "13", category: "아두이노", name: "라즈베리 파이", count: 2, isLow: false, image: "./item/arduino.svg", alt: "아두이노 우노", description: "센서와 액추에이터를 제어하는 기본 마이크로컨트롤러 보드입니다.", history: [{ who: "강00", date: "11/22" }, { who: "박00", date: "11/19" }] },
+                    { id: "14", category: "아두이노", name: "아두이노 메가", count: 2, isLow: false, image: "./item/arduino.svg", alt: "아두이노 우노", description: "센서와 액추에이터를 제어하는 기본 마이크로컨트롤러 보드입니다.", history: [{ who: "강00", date: "11/22" }, { who: "박00", date: "11/19" }] },
+                    { id: "15", category: "아두이노", name: "아두이노 나노", count: 2, isLow: false, image: "./item/arduino.svg", alt: "아두이노 우노", description: "센서와 액추에이터를 제어하는 기본 마이크로컨트롤러 보드입니다.", history: [{ who: "강00", date: "11/22" }, { who: "박00", date: "11/19" }] },
+                    { id: "16", category: "아두이노", name: "아두이노 레오나르도", count: 2, isLow: false, image: "./item/arduino.svg", alt: "아두이노 우노", description: "센서와 액추에이터를 제어하는 기본 마이크로컨트롤러 보드입니다.", history: [{ who: "강00", date: "11/22" }, { who: "박00", date: "11/19" }] },
+                    { id: "17", category: "아두이노", name: "아두이노 마이크로", count: 2, isLow: false, image: "./item/arduino.svg", alt: "아두이노 우노", description: "센서와 액추에이터를 제어하는 기본 마이크로컨트롤러 보드입니다.", history: [{ who: "강00", date: "11/22" }, { who: "박00", date: "11/19" }] },
+                    { id: "18", category: "아두이노", name: "아두이노 듀", count: 2, isLow: false, image: "./item/arduino.svg", alt: "아두이노 우노", description: "센서와 액추에이터를 제어하는 기본 마이크로컨트롤러 보드입니다.", history: [{ who: "강00", date: "11/22" }, { who: "박00", date: "11/19" }] },
+                    { id: "19", category: "아두이노", name: "아두이노 MKR", count: 2, isLow: false, image: "./item/arduino.svg", alt: "아두이노 우노", description: "센서와 액추에이터를 제어하는 기본 마이크로컨트롤러 보드입니다.", history: [{ who: "강00", date: "11/22" }, { who: "박00", date: "11/19" }] },
+                    { id: "20", category: "아두이노", name: "ESP32", count: 2, isLow: false, image: "./item/arduino.svg", alt: "아두이노 우노", description: "센서와 액추에이터를 제어하는 기본 마이크로컨트롤러 보드입니다.", history: [{ who: "강00", date: "11/22" }, { who: "박00", date: "11/19" }] },
+
                 ],
+
                 rentalList: [
                     { who: "강00", item: "드라이버", quantity: 1 },
                     { who: "김00", item: "니퍼", quantity: 2 },
