@@ -50,11 +50,11 @@
             </div>
 
             <div class="wrap">
-            <!-- 판넬 1: 흘러가는 폴라로이드 (marquee) -->
-            <section class="panel gallery" id="panel-gallery">
+            <!-- 맨 위: 판넬 상자 없이 흘러가는 필름 띠 (marquee 그대로, 모양은 gallery.css 맨 아래 "필름 띠")
+                 id="panel-gallery"는 footer 로켓·로봇 착륙 자리라 남겨 둠 -->
+            <section class="gallery g-film" id="panel-gallery">
 
                 <div class="panel-title" id="gallery"></div>
-                <h2 class="g-title">활동 사진</h2>
                 <div class="marquee-cotainer" >
                     <div class="scrolling-track">
                         <a class="polaroid" href="#photo-2026-summer-mt"><img src="res/2026-summer-mt.jpg" alt="여름 MT"><span class="cap">여름 MT</span></a>
@@ -100,6 +100,25 @@
                 <label class="pill" for="yr-2026">2026</label>
                 <label class="pill" for="yr-2025">2025</label>
                 <label class="pill" for="yr-2024">2024</label>
+                <!-- 관리자용 수정 버튼: 누르면 아래 #g-edit 모달이 열림 (사진 확대 창과 같은 :target 방식, JS 없음) -->
+                <a class="write-btn g-admin g-edit-btn" href="#g-edit">수정</a>
+            </div>
+
+            <!-- 사진 관리 모달 (교육자료 작성 모달과 같은 디자인, 반투명 회색 둥근 상자)
+                 추가·삭제 버튼의 실제 기능과 권한 처리는 담당 팀원이 #add-photo, #delete-photo에 연결 -->
+            <div class="g-modal" id="g-edit" role="dialog" aria-modal="true" aria-labelledby="g-edit-title">
+                <a class="g-modal-bg" href="#" aria-label="닫기"></a>
+                <div class="g-modal-box">
+                    <div class="g-modal-head">
+                        <h2 id="g-edit-title">사진 <span>관리</span></h2>
+                        <a class="g-modal-close" href="#" aria-label="닫기">✕</a>
+                    </div>
+                    <p class="g-modal-desc">갤러리 사진을 추가하거나 삭제할 수 있어요.</p>
+                    <div class="g-modal-actions">
+                        <button type="button" class="btn-submit g-admin" id="add-photo">사진 추가</button>
+                        <button type="button" class="btn-cancel g-admin" id="delete-photo">사진 삭제</button>
+                    </div>
+                </div>
             </div>
             
             <!--연도별 사진 묶음-->
