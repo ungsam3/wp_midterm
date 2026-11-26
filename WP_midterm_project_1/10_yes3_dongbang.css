@@ -562,6 +562,195 @@ article > .wrap {
 }
 
 
+/* [1-2] 이용규칙 판넬 (비품·교육자료·청소담당과 같은 판넬 디자인)
+   모두 .rule2 안에서만 적용됨. 서브 헤더·별 배경은 10_yes3_bg.css */
+.rule2,
+.rule2 button,
+.rule2 input {
+  font-family: "Jua", sans-serif;
+  font-weight: 400;
+}
+
+/* 제목: [1]의 board-head는 오른쪽 보드 자리를 비워두므로 여기선 0으로 */
+.rule2 .board-head { padding: 0; }
+
+.rule2 > .wrap {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* 큰 판넬 (#panel-supplies와 같은 스타일) */
+.rule2 .r-panel {
+  box-sizing: border-box;
+  padding: 36px 40px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+  color: var(--text);
+  border-radius: 28px;
+  border: 1px solid var(--line);
+  background:
+    radial-gradient(circle at 0% 0%, rgba(47, 155, 255, 0.20), transparent 45%),
+    radial-gradient(circle at 100% 0%, rgba(255, 187, 0, 0.16), transparent 45%),
+    var(--panel);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+}
+
+/* 판넬 안 구역 제목 (대여 현황 h2처럼 파란 밑줄) */
+.rule2 .r-sec h2 {
+  margin: 0 0 18px;
+  padding-bottom: 14px;
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--text);
+  border-bottom: 2px solid var(--blue);
+}
+
+/* 안내 문구 */
+.rule2 .r-note {
+  margin: 0;
+  padding: 16px 22px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #D9DCEA;
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+/* 규칙 카드 그리드 (비품 카드처럼 hover 때 떠오름) */
+.rule2 .r-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.rule2 .r-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 20px 22px 22px;
+  border-radius: 20px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.05);
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+.rule2 .r-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--yellow);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+}
+.rule2 .r-num {
+  font-size: 30px;
+  line-height: 1;
+  color: var(--orange);
+}
+.rule2 .r-tag {                       /* 대여자 칩과 같은 노랑 알약 */
+  position: absolute;
+  top: 20px;
+  right: 22px;
+  padding: 2px 12px;
+  border-radius: 999px;
+  background: var(--yellow);
+  color: #0B0B0F;
+  font-size: 13px;
+}
+.rule2 .r-card.ban .r-tag { background: var(--orange); color: #fff; }
+.rule2 .r-card p {
+  margin: 0;
+  font-size: 19px;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+/* 나가기 전 체크 표 (청소담당 체크리스트와 같은 표) */
+.rule2 .r-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.rule2 .r-table th,
+.rule2 .r-table td {
+  padding: 12px 10px;
+  text-align: left;
+  font-size: 17px;
+  font-weight: 400;
+  border-bottom: 1px solid var(--line);
+}
+.rule2 .r-table thead th {
+  font-size: 14px;
+  color: var(--muted);
+  border-bottom: 2px solid var(--blue);
+}
+.rule2 .r-table tbody th { color: var(--yellow); width: 22%; }
+.rule2 .r-table tbody tr { transition: background 0.15s; }
+.rule2 .r-table tbody tr:hover { background: rgba(255, 255, 255, 0.05); }
+.rule2 .r-table tr:last-child th,
+.rule2 .r-table tr:last-child td { border-bottom: none; }
+.rule2 .r-table .r-done { text-align: center; width: 64px; }
+
+/* 체크박스: 숨기고 label을 네모 칸으로 (누르면 노랗게 빛남) */
+.rule2 .r-table input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.rule2 .r-check {
+  display: inline-block;
+  vertical-align: middle;
+  width: 28px;
+  height: 28px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  border: 2px solid #4e4e5c;
+  background: #17171C;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+.rule2 .r-check:hover { border-color: var(--yellow); }
+.rule2 .r-table input:checked + .r-check {
+  background: var(--yellow);
+  border-color: var(--yellow);
+  box-shadow: 0 0 10px 2px rgba(255, 187, 0, 0.85), 0 0 22px 6px rgba(255, 138, 0, 0.5);
+}
+.rule2 .r-table input:focus-visible + .r-check {
+  box-shadow: 0 0 0 3px rgba(47, 155, 255, 0.35);
+}
+.rule2 .r-table tr:has(input:checked) td:not(.r-done) {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+/* 화면에는 안 보이고 스크린리더만 읽는 글씨 */
+.rule2 .r-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* 마지막 경고 문구 */
+.rule2 .r-warn {
+  margin: 0;
+  text-align: right;
+  font-size: 17px;
+  color: var(--muted);
+}
+
+@media (max-width: 1100px) {
+  .rule2 .r-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 720px) {
+  .rule2 .r-panel { padding: 24px 18px; }
+  .rule2 .r-grid { grid-template-columns: 1fr; }
+}
+
+
 
 /* ------------------ */
 /* 아래부터 seojin 담당(아래는 건드리지 말것) */

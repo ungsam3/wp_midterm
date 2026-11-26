@@ -94,19 +94,6 @@ header:has(.sub_header) + article {
         linear-gradient(to bottom, #060B1E 0%, #0b0f1c 60%, #121620 100%);
 }
 
-/* 이용규칙: 어두운 배경에서 글씨 보이게
-   (dongbang.css의 seojin 담당 부분은 건드리지 않고, 여기서 더 구체적인 선택자로 색만 덮어씀) */
-article #subpage_title {
-    color: #ffffff;
-}
-article .db_article .rule_list {
-    color: #dfe5ee;
-}
-article .db_article .rule_content {
-    color: #8a94a3;
-    opacity: 1;
-}
-
 
 /* [5] 갤러리·이용규칙 배경 장식: 메인처럼 반짝이는 별 + 크레용 "엉사"
    HTML은 그대로, article의 가상 요소로만 그림 (클릭 안 막음) */

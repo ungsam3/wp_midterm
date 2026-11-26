@@ -153,7 +153,7 @@
             </div>
 
             <!--캘린더 (JS: 10_yes3_main.js가 날짜 칸을 만들고 일정을 보여줌)
-                - 날짜 하나하나가 radio input → 고르면 아래에 그날 일정이 나오고, 일정을 추가할 수 있는 form
+                - 날짜 하나하나가 radio input → 고르면 아래에 그날 일정이 나옴 (보기 전용, 일정 추가·삭제 없음)
                 - 제목(◀ 2026년 10월 ▶)을 누르면 연도(◀ ▶)와 월(1~12월 표)을 고르는 창이 열림-->
             <aside class="main2_3">
                 <form class="calendar" id="cal_form" autocomplete="off">
@@ -188,17 +188,10 @@
                     <!--날짜 칸 (radio input + label)은 JS가 채움-->
                     <div class="cal_days" id="cal_days" role="radiogroup" aria-label="날짜 선택"></div>
 
-                    <!--고른 날짜의 일정 + 일정 추가-->
+                    <!--고른 날짜의 일정 (보기 전용)-->
                     <div class="cal_detail">
                         <p class="cal_detail_title" id="cal_detail_title">날짜를 골라주세요</p>
                         <ul class="cal_events" id="cal_events"></ul>
-
-                        <div class="cal_add">
-                            <label class="cal_sr" for="cal_input">일정 이름</label>
-                            <input type="text" id="cal_input" name="title" placeholder="일정 추가" maxlength="30" required>
-                            <label class="cal_optional"><input type="checkbox" id="cal_optional" name="optional"> 희망자만</label>
-                            <button type="submit" class="cal_submit">추가</button>
-                        </div>
                     </div>
                 </form>
             </aside>
