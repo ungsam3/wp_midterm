@@ -31,53 +31,19 @@ body {
 }
 
 
-/* [3] 서브 헤더 (갤러리 · 이용규칙 · 청소담당): 메인 첫 화면처럼
+/* [3] 서브 헤더 (갤러리 · 이용규칙): 메인 첫 화면처럼
    - 메인과 같은 배경 그림(mainpagedesign.png)이 아래로 갈수록 남색으로 흐려짐
-   - 위쪽 12vh는 고정 nav 자리 */
+   - 안의 글씨(메뉴 이름·하위 메뉴)는 사용자 요청으로 지움. 빈 칸이지만
+     아래 [4][5]의 header:has(.sub_header) 선택자가 이 칸을 기준으로 하니 지우면 안 됨 */
 .sub_header {
-    box-sizing: border-box;
     width: 100%;
     height: 340px;
-    padding-top: 12vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 14px;
     background-image:
         linear-gradient(to bottom, rgba(6, 11, 30, 0) 40%, rgba(6, 11, 30, 0.7) 80%, #060B1E 100%),
         url("res/mainpagedesign.png");
     background-attachment: scroll, fixed;
     background-position: center, center;
     background-size: 100% 100%, cover;
-}
-
-.sub_header .menu_name {               /* 큰 메뉴 이름 (아카이빙 / 동아리방): 메인 제목과 같은 동글체 */
-    font-family: "Dongle", sans-serif;
-    font-size: 72px;
-    line-height: 1;
-    color: #ffffff;
-}
-
-.sub_header .sub_menu_name {           /* 작은 메뉴: 교육자료 | 갤러리 ... */
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    font-family: "Jua", sans-serif;
-    font-size: 20px;
-    color: rgba(255, 255, 255, 0.4);    /* 가운데 | */
-}
-.sub_header .sub_menu_name a {
-    color: #dfe5ee;
-    text-decoration: none;
-}
-.sub_header .sub_menu_name a:hover {
-    color: #FDB813;
-}
-#sub_header_menu_now {                 /* 지금 보고 있는 메뉴 */
-    color: #FDB813;
-    text-decoration: underline;
-    text-underline-offset: 6px;
 }
 
 
@@ -92,19 +58,6 @@ header:has(.sub_header) + article {
         radial-gradient(420px circle at 12% 30%, rgba(10, 60, 130, 0.35), transparent 70%),
         radial-gradient(380px circle at 88% 45%, rgba(120, 80, 20, 0.18), transparent 70%),
         linear-gradient(to bottom, #060B1E 0%, #0b0f1c 60%, #121620 100%);
-}
-
-/* 이용규칙: 어두운 배경에서 글씨 보이게
-   (dongbang.css의 seojin 담당 부분은 건드리지 않고, 여기서 더 구체적인 선택자로 색만 덮어씀) */
-article #subpage_title {
-    color: #ffffff;
-}
-article .db_article .rule_list {
-    color: #dfe5ee;
-}
-article .db_article .rule_content {
-    color: #8a94a3;
-    opacity: 1;
 }
 
 
