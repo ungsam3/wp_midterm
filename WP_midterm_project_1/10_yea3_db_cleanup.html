@@ -8,6 +8,7 @@
         <meta name="author3" content="김서진">
         <link rel="icon" href="./res/logo_black.png" type="image/png">
         <link rel="stylesheet" href="10_yes3_common.css">
+        <link rel="stylesheet" href="10_yes3_bg.css">
         <link rel="stylesheet" href="10_yes3_dongbang.css">
         <script src="10_yes3_auth.js"></script>
         <script>checkLogin();</script>
@@ -177,7 +178,7 @@
 
                         <form class="c-comment-form" id="comment-form">
                             <input type="text" id="c-name" placeholder="닉네임" maxlength="10">
-                            <textarea id="c-text" placeholder="청소당번을 응원해주세요!" required></textarea>
+                            <textarea id="c-text" placeholder="청소부원을 응원해주세요!" required></textarea>
                             <button type="submit" class="c-submit">댓글</button>
                         </form>
                     </div>
@@ -249,13 +250,15 @@
             var START = Date.UTC(2026, 7, 31);
             var DAY = 86400000;
             var TEAMS = 4;
+            var ROUNDS = 2;                      // 조마다 청소하는 횟수
+            var WEEKS = TEAMS * ROUNDS * 2;      // 전체 일정 주 수 (청소 1주 + 휴식 1주)
             var MONTHS = [[2026, 9], [2026, 10], [2026, 11], [2026, 12]];
             var DOW = ['월', '화', '수', '목', '금', '토', '일'];
 
             // 날짜 → 청소 주간이면 조 번호, 쉬는 주면 0
             function cleanTeam(y, m, d) {
                 var w = Math.floor((Date.UTC(y, m - 1, d) - START) / (7 * DAY));
-                if (((w % 2) + 2) % 2 !== 0) return 0;
+                if (w >= WEEKS || ((w % 2) + 2) % 2 !== 0) return 0;
                 return (((w / 2) % TEAMS) + TEAMS) % TEAMS + 1;
             }
             function fmt(ms) {
@@ -334,7 +337,7 @@
             // 범례: 조별 청소 주간 (월~일)
             var periods = { 1: [], 2: [], 3: [], 4: [] };
             var rangeStart = Date.UTC(2026, 8, 1), rangeEnd = Date.UTC(2026, 11, 31);
-            for (var w = 0; ; w += 2) {
+            for (var w = 0; w < WEEKS; w += 2) {
                 var mon = START + w * 7 * DAY;
                 if (mon > rangeEnd) break;
                 if (mon + 6 * DAY < rangeStart) continue;
@@ -412,6 +415,5 @@
             renderComments();
         })();
         </script>
-        <script src="10_yes3_rocket.js"></script>  <!-- footer 로켓 → 판넬 위 착륙 -->
     </body>
 </html>
