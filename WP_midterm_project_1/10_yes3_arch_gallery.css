@@ -157,12 +157,65 @@
   position: relative;
   overflow: visible; 
 }
-.lightbox-picture img { 
+.lightbox-picture img {
   max-width: 100%;
-  max-height: 72vh; 
-  width: auto; 
-  border-radius: 10px; 
-  display: block; 
+  max-height: 72vh;
+  width: auto;
+  box-sizing: border-box;
+  border: 6px solid #0B0B0F;     /* 굵은 검정 테두리 (footer 그림의 굵은 외곽선 느낌) */
+  border-radius: 10px;
+  display: block;
+}
+
+/* 이전 / 다음 사진 (각 라이트박스 안 <a href="#photo-…">, :target으로 넘어감) */
+.lightbox .lb-prev,
+.lightbox .lb-next {
+  position: fixed;
+  top: 50%;
+  z-index: 3;
+  width: 56px;
+  height: 56px;
+  margin-top: -28px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(245,243,238,.1);
+  border: 1px solid #F5F3EE;
+  font-size: 2rem;
+  line-height: 1;
+  color: #F5F3EE;
+  text-decoration: none;
+  transition: background .2s, color .2s, border-color .2s;
+}
+.lightbox .lb-prev { left: 24px; }
+.lightbox .lb-next { right: 24px; }
+.lightbox .lb-prev:hover,
+.lightbox .lb-next:hover {
+  background: #FF8A00;
+  border-color: #FF8A00;
+  color: #fff;
+}
+/* 몇 번째 사진인지 (1 / 11) */
+.lightbox .lb-count {
+  position: fixed;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 4px 16px;
+  border-radius: 999px;
+  background: rgba(245,243,238,.1);
+  font-family: "Jua", sans-serif;
+  font-size: 15px;
+  color: #F5F3EE;
+}
+/* 넘길 때 사진이 옆에서 미끄러져 들어옴 */
+.lightbox:target .lightbox-picture { animation: lb-slide .35s ease-out; }
+@keyframes lb-slide {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lightbox:target .lightbox-picture { animation: none; }
 }
 .lightbox .close {
   position: fixed; 
@@ -188,12 +241,14 @@
 .lightbox-picture::before {
   content: "";
   position: absolute;
-  top: -40px;
-  left: -60px;
-  width: 260px;
-  height: 120px;
-  background: url("res/tape.png") no-repeat center / contain;
-  transform: rotate(-12deg);
+  /* 주황 만화풍 테이프 (res/scotch_tape_orange.png, 512×512 정사각형에 이미 기울어진 테이프가 가운데 있음)
+     → 회전 없이 정사각형 칸의 가운데가 사진 왼쪽 위 모서리에 오도록 */
+  top: -100px;
+  left: -90px;
+  width: 240px;
+  height: 240px;
+  background: url("res/scotch_tape_orange.png") no-repeat center / contain;
+  pointer-events: none;
   z-index: 2;
 }
 
