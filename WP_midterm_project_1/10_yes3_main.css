@@ -769,11 +769,11 @@ body {
 }
 
 /* 마우스 올리면: 살짝 떠오르고 테두리 주황 + footer 버튼 같은 딱딱한 그림자 */
-.org_executive li:hover, .org_inventors li:hover {
+/*.org_executive li:hover, .org_inventors li:hover {
     transform: translateY(-4px);
     border-color: #FF8A00;
     box-shadow: 0 4px 0 #b44a00;
-}
+}*/
 
 .org_executive ul {
     list-style: none;
@@ -817,6 +817,7 @@ body {
     background-color: #FF6A00;
     color: #ffffff;
     font-size: 12px;
+
 }
 
 /* 이름: 흰 글씨 */
