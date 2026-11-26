@@ -95,7 +95,8 @@
                             <button type="button" class="filter-btn">3D프린터</button>
                             <button type="button" class="filter-btn">드론</button>
                         </div>
-                        <button type="button" class="add-btn" id="add-supply"><img src="res/add.svg" alt="비품 추가하기"></button>
+                        <!-- 비품 추가: 회장·동방장에게만 보임 (아래 스크립트가 hidden을 풂) -->
+                        <button type="button" class="add-btn" id="add-supply" hidden><img src="res/add.svg" alt="비품 추가하기"></button>
                     </div>
 
                     <!-- 비품 카드: 하나의 그리드에서 한 줄에 5개씩 -->
@@ -130,6 +131,19 @@
                     <div class="modal-title">
                         <h3 id="modal-name"></h3>
                         <p id="modal-stock"></p>
+                        <!-- 비품 추가 모드에서만 보임: 필터 버튼에 맞는 분류 고르기 -->
+                        <p class="modal-cat-row" id="modal-cat-row" hidden>
+                            분류:
+                            <select id="modal-cat" aria-label="비품 분류">
+                                <option>공구함 A</option>
+                                <option>공구함 B</option>
+                                <option>아두이노</option>
+                                <option>소모품</option>
+                                <option>3D펜</option>
+                                <option>3D프린터</option>
+                                <option>드론</option>
+                            </select>
+                        </p>
                     </div>
                 </div>
 
@@ -271,13 +285,25 @@
             // '2026-11-22' → '2026.11.22'
             const formatDate = d => d.replaceAll('-', '.');
 
+            // 관리자가 직접 입력한 글에 <, > 같은 기호가 있어도 태그가 아니라 글자로 보이게
+            function escHtml(s) {
+                return String(s).replace(/[&<>"']/g, c =>
+                    ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+            }
+
             function renderList(id, list) {
                 document.getElementById(id).innerHTML = (list && list.length ? list : ['등록된 내용이 없습니다.'])
-                    .map(text => `<li>${text}</li>`).join('');
+                    .map(text => `<li>${escHtml(text)}</li>`).join('');
+            }
+
+            // 관리자가 추가한 비품 (localStorage에 JSON으로 저장, 기본 비품 뒤에 붙임)
+            const ADDED_KEY = 'added_equipment';
+            function getAddedEquipment() {
+                return JSON.parse(localStorage.getItem(ADDED_KEY)) || [];
             }
 
             function initWithData(data) {
-                allEquipment = data.equipmentList || [];
+                allEquipment = (data.equipmentList || []).concat(getAddedEquipment());
                 renderRentals(data.rentalList || []);
                 renderPage();
             }
@@ -334,10 +360,10 @@
                     gridEl.innerHTML = pageItems.map(item => `
                         <li class="supply-item${item.isLow ? ' low' : ''}" data-id="${item.id}" data-count="${item.count}">
                             <div class="thumb">
-                                <img src="${item.image}" alt="${item.alt}" loading="lazy">
+                                <img src="${item.image}" alt="${escHtml(item.alt)}" loading="lazy">
                                 <span class="badge">부족</span>
                             </div>
-                            <div class="name">${item.name}</div>
+                            <div class="name">${escHtml(item.name)}</div>
                         </li>
                     `).join('');
                 }
@@ -362,6 +388,8 @@
 
                 const item = allEquipment.find(eq => eq.id === card.dataset.id);
                 if (!item) return;
+
+                setAddMode(false);   // 비품 추가 모드였으면 보기 모드로 되돌림
 
                 document.getElementById('modal-img').src = item.image;
                 document.getElementById('modal-img').alt = item.alt;
@@ -444,6 +472,116 @@
                     goTop();
                 }
             });
+
+            // 9. 비품 추가 (회장·동방장만, 10_yes3_auth.js의 getRole)
+            //    상세 모달과 같은 창을 쓰고, 비품명·비치 개수·설명·사용 방법·유의 사항 칸을 바로 편집(contenteditable)
+            const supplyRole = getRole();
+            const canAddSupply = supplyRole === 'president' || supplyRole === 'dbmanager';
+            const addBtn = document.getElementById('add-supply');
+            const rentBtn = document.getElementById('modal-rent');
+            let addMode = false;
+
+            // 편집할 칸: 비품명, 비치 개수(숫자만), 비품 설명, 사용 방법 목록, 유의 사항 목록
+            const EDIT_IDS = ['modal-name', 'modal-count', 'modal-desc', 'modal-usage', 'modal-caution'];
+
+            function setAddMode(on) {
+                addMode = on;
+                EDIT_IDS.forEach(id => {
+                    const el = document.getElementById(id);
+                    if (!el) return;
+                    if (on) el.setAttribute('contenteditable', 'true');
+                    else el.removeAttribute('contenteditable');
+                });
+                modal.classList.toggle('add-mode', on);
+                document.getElementById('modal-cat-row').hidden = !on;
+                // 새 비품은 대여 기록이 없으니 숨김
+                document.getElementById('modal-history-title').hidden = on;
+                historyList.hidden = on;
+            }
+
+            function openAddModal() {
+                document.getElementById('modal-img').src = NO_IMAGE;
+                document.getElementById('modal-img').alt = '';
+                const nameEl = document.getElementById('modal-name');
+                nameEl.textContent = '';
+                nameEl.dataset.placeholder = '비품명을 입력하세요';
+                // "동아리방 비치 개수: N개" 형식 그대로, 숫자 칸만 편집
+                document.getElementById('modal-stock').innerHTML =
+                    '동아리방 비치 개수: <span id="modal-count" data-placeholder="0"></span>개';
+                const descEl = document.getElementById('modal-desc');
+                descEl.textContent = '';
+                descEl.dataset.placeholder = '비품 설명을 입력하세요';
+                // 목록은 빈 줄 하나로 시작, Enter를 누르면 다음 줄(번호·점)이 생김
+                document.getElementById('modal-usage').innerHTML = '<li data-placeholder="사용 방법을 입력하세요 (Enter로 다음 줄)"></li>';
+                document.getElementById('modal-caution').innerHTML = '<li data-placeholder="유의 사항을 입력하세요 (Enter로 다음 줄)"></li>';
+                document.getElementById('modal-cat').value = currentCategory === '전체' ? '공구함 A' : currentCategory;
+                rentBtn.textContent = '추가하기';
+
+                setAddMode(true);
+                modal.classList.add('open');
+                modal.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+                modal.querySelector('.modal-body').scrollTop = 0;
+                nameEl.focus();
+            }
+
+            // 비품명·개수 칸에서 Enter는 줄바꿈 대신 다음 칸으로
+            modal.addEventListener('keydown', e => {
+                if (!addMode || e.key !== 'Enter') return;
+                if (e.target.id === 'modal-name') { e.preventDefault(); document.getElementById('modal-count').focus(); }
+                if (e.target.id === 'modal-count') { e.preventDefault(); document.getElementById('modal-desc').focus(); }
+            });
+
+            // 목록 칸의 줄 글씨들 (빈 줄은 뺌)
+            function readList(id) {
+                return Array.from(document.getElementById(id).querySelectorAll('li'))
+                    .map(li => li.textContent.trim())
+                    .filter(text => text);
+            }
+
+            function saveNewSupply() {
+                const name = document.getElementById('modal-name').textContent.trim();
+                const countText = document.getElementById('modal-count').textContent.trim();
+                const count = Number(countText);
+                if (!name) { alert('비품명을 입력해주세요!'); document.getElementById('modal-name').focus(); return; }
+                if (countText === '' || !Number.isInteger(count) || count < 0) {
+                    alert('비치 개수는 0 이상의 숫자로 입력해주세요!');
+                    document.getElementById('modal-count').focus();
+                    return;
+                }
+
+                const newItem = {
+                    id: 'add-' + Date.now(),
+                    category: document.getElementById('modal-cat').value,
+                    name: name,
+                    count: count,
+                    isLow: count <= 1,                 // 1개 이하면 '부족' 배지
+                    image: NO_IMAGE,                   // 사진은 '이미지 준비중'
+                    alt: name,
+                    description: document.getElementById('modal-desc').textContent.trim(),
+                    usage: readList('modal-usage'),
+                    cautions: readList('modal-caution'),
+                    history: []
+                };
+
+                const added = getAddedEquipment();
+                added.push(newItem);
+                localStorage.setItem(ADDED_KEY, JSON.stringify(added));
+                allEquipment.push(newItem);
+
+                closeModal();
+                setAddMode(false);
+                renderPage();
+                alert('비품이 추가되었어요!');
+            }
+
+            // 모달 아래 버튼: 추가 모드일 때만 저장 (보기 모드의 대여하기는 원래대로 동작 없음)
+            rentBtn.addEventListener('click', () => { if (addMode) saveNewSupply(); });
+
+            if (canAddSupply) {
+                addBtn.hidden = false;
+                addBtn.addEventListener('click', openAddModal);
+            }
         </script>
 
         <script>renderNav();</script>

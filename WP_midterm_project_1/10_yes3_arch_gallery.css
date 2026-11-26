@@ -796,6 +796,68 @@ article.gallery2 { padding-top: 25px; }       /* 교육자료 article.learning2�
   .gallery2 .gacha-machine.win .gacha-window { animation: none; }
 }
 
+/* 관리자 버튼 (회장·부회장·동방장에게만 보임, 갤러리 html의 스크립트가 hidden을 풀거나 버튼을 넣음)
+   예전 "수정" 버튼(.g-edit-btn)과 사진 관리 모달(.g-modal) 스타일은 위에 남아 있지만 이제 안 씀 */
+
+/* + 사진 추가: 비품 페이지 .add-btn과 같은 모양, 연도 버튼 줄 오른쪽 끝 */
+.gallery2 .g-add-btn {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  height: 50px;
+  padding: 0 26px;
+  border: none;
+  border-radius: 999px;
+  background: var(--orange);
+  cursor: pointer;
+  box-shadow: 0 4px 0 rgba(255, 138, 0, 0.35);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.gallery2 .g-add-btn:hover {
+  transform: translateY(-2px);
+  background-color: #ff9a1f;
+}
+.gallery2 .g-add-btn img {
+  display: block;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.gallery2 .g-add-btn[hidden] { display: none; }   /* display 지정이 hidden 속성을 덮지 않게 */
+
+/* 사진 카드 삭제 버튼: 평소엔 숨김, 카드에 마우스를 올리면 사진 오른쪽 위에 나타남 */
+.gallery2 .g-del-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(3, 6, 18, 0.75);
+  color: #fff;
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.15s, transform 0.15s, background 0.15s;
+}
+.gallery2 .pic-2026-each:hover .g-del-btn,
+.gallery2 .pic-2025-each:hover .g-del-btn,
+.gallery2 .pic-2024-each:hover .g-del-btn,
+.gallery2 .g-del-btn:focus-visible {           /* 키보드로 이동했을 때도 보이게 */
+  opacity: 1;
+  transform: scale(1);
+}
+.gallery2 .g-del-btn:hover { background: var(--orange); }
+
 /*커서: 어두운 바탕이라 흰색 커서로*/
 * {
     cursor: url('res/cursor_white.png') 2 2, auto;
