@@ -10,6 +10,8 @@
         <link rel="stylesheet" href="10_yes3_common.css">
         <link rel="stylesheet" href="10_yes3_bg.css">
         <link rel="stylesheet" href="10_yes3_dongbang.css">
+        <script src="10_yes3_auth.js"></script>
+        <script>checkLogin();</script>
     </head>
     <body>
         <nav class="main_nav">
@@ -99,7 +101,7 @@
 
                     <!-- 조 배정 결과 + 체크리스트 -->
                     <form class="c-sec" id="check-form" name="청소하기" method="GET" action="#">
-                        <h2>조 배정 결과 &amp; 체크리스트</h2>
+                        <h2>조 배정 결과 &amp; 체크박스</h2>
                         <div class="c-teams">
 
                             <div class="c-team" data-team="1">
@@ -123,9 +125,9 @@
                                     <tbody>
                                         <tr><th>쓸기</th><td>유ㅇㅇ</td><td class="c-done"><input id="g2_sweep" type="checkbox" name="청소완료" value="2조_쓸기" aria-label="2조 쓸기 완료"><label class="c-check" for="g2_sweep"></label></td></tr>
                                         <tr><th>광내기1</th><td>최ㅇㅇ</td><td class="c-done"><input id="g2_wipe1" type="checkbox" name="청소완료" value="2조_광내기1" aria-label="2조 광내기1 완료"><label class="c-check" for="g2_wipe1"></label></td></tr>
-                                        <tr><th>광내기2</th><td>정ㅇㅇ</td><td class="c-done"><input id="g2_wipe2" type="checkbox" name="청소완료" value="2조_광내기2" aria-label="2조 광내기2 완료"><label class="c-check" for="g2_wipe2"></label></td></tr>
-                                        <tr><th>세탁하기1</th><td>김ㅇㅇ</td><td class="c-done"><input id="g2_laundry1" type="checkbox" name="청소완료" value="2조_세탁하기1" aria-label="2조 세탁하기1 완료"><label class="c-check" for="g2_laundry1"></label></td></tr>
-                                        <tr><th>세탁하기2</th><td>윤ㅇㅇ</td><td class="c-done"><input id="g2_laundry2" type="checkbox" name="청소완료" value="2조_세탁하기2" aria-label="2조 세탁하기2 완료"><label class="c-check" for="g2_laundry2"></label></td></tr>
+                                        <tr><th>광내기2</th><td>김ㅇㅇ</td><td class="c-done"><input id="g2_wipe2" type="checkbox" name="청소완료" value="2조_광내기2" aria-label="2조 광내기2 완료"><label class="c-check" for="g2_wipe2"></label></td></tr>
+                                        <tr><th>세탁하기1</th><td>이ㅇㅇ</td><td class="c-done"><input id="g2_laundry1" type="checkbox" name="청소완료" value="2조_세탁하기1" aria-label="2조 세탁하기1 완료"><label class="c-check" for="g2_laundry1"></label></td></tr>
+                                        <tr><th>세탁하기2</th><td>김ㅇㅇ</td><td class="c-done"><input id="g2_laundry2" type="checkbox" name="청소완료" value="2조_세탁하기2" aria-label="2조 세탁하기2 완료"><label class="c-check" for="g2_laundry2"></label></td></tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -135,11 +137,11 @@
                                 <table>
                                     <thead><tr><th>역할</th><th>이름</th><th class="c-done">완료</th></tr></thead>
                                     <tbody>
-                                        <tr><th>쓸기</th><td>박ㅇㅇ</td><td class="c-done"><input id="g3_sweep" type="checkbox" name="청소완료" value="3조_쓸기" aria-label="3조 쓸기 완료"><label class="c-check" for="g3_sweep"></label></td></tr>
-                                        <tr><th>광내기1</th><td>임ㅇㅇ</td><td class="c-done"><input id="g3_wipe1" type="checkbox" name="청소완료" value="3조_광내기1" aria-label="3조 광내기1 완료"><label class="c-check" for="g3_wipe1"></label></td></tr>
-                                        <tr><th>광내기2</th><td>오ㅇㅇ</td><td class="c-done"><input id="g3_wipe2" type="checkbox" name="청소완료" value="3조_광내기2" aria-label="3조 광내기2 완료"><label class="c-check" for="g3_wipe2"></label></td></tr>
-                                        <tr><th>세탁하기1</th><td>한ㅇㅇ</td><td class="c-done"><input id="g3_laundry1" type="checkbox" name="청소완료" value="3조_세탁하기1" aria-label="3조 세탁하기1 완료"><label class="c-check" for="g3_laundry1"></label></td></tr>
-                                        <tr><th>세탁하기2</th><td>서ㅇㅇ</td><td class="c-done"><input id="g3_laundry2" type="checkbox" name="청소완료" value="3조_세탁하기2" aria-label="3조 세탁하기2 완료"><label class="c-check" for="g3_laundry2"></label></td></tr>
+                                        <tr><th>쓸기</th><td>김ㅇㅇ</td><td class="c-done"><input id="g3_sweep" type="checkbox" name="청소완료" value="3조_쓸기" aria-label="3조 쓸기 완료"><label class="c-check" for="g3_sweep"></label></td></tr>
+                                        <tr><th>광내기1</th><td>이ㅇㅇ</td><td class="c-done"><input id="g3_wipe1" type="checkbox" name="청소완료" value="3조_광내기1" aria-label="3조 광내기1 완료"><label class="c-check" for="g3_wipe1"></label></td></tr>
+                                        <tr><th>광내기2</th><td>유ㅇㅇ</td><td class="c-done"><input id="g3_wipe2" type="checkbox" name="청소완료" value="3조_광내기2" aria-label="3조 광내기2 완료"><label class="c-check" for="g3_wipe2"></label></td></tr>
+                                        <tr><th>세탁하기1</th><td>이ㅇㅇ</td><td class="c-done"><input id="g3_laundry1" type="checkbox" name="청소완료" value="3조_세탁하기1" aria-label="3조 세탁하기1 완료"><label class="c-check" for="g3_laundry1"></label></td></tr>
+                                        <tr><th>세탁하기2</th><td>이ㅇㅇ</td><td class="c-done"><input id="g3_laundry2" type="checkbox" name="청소완료" value="3조_세탁하기2" aria-label="3조 세탁하기2 완료"><label class="c-check" for="g3_laundry2"></label></td></tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -149,11 +151,11 @@
                                 <table>
                                     <thead><tr><th>역할</th><th>이름</th><th class="c-done">완료</th></tr></thead>
                                     <tbody>
-                                        <tr><th>쓸기</th><td>이ㅇㅇ</td><td class="c-done"><input id="g4_sweep" type="checkbox" name="청소완료" value="4조_쓸기" aria-label="4조 쓸기 완료"><label class="c-check" for="g4_sweep"></label></td></tr>
-                                        <tr><th>광내기1</th><td>권ㅇㅇ</td><td class="c-done"><input id="g4_wipe1" type="checkbox" name="청소완료" value="4조_광내기1" aria-label="4조 광내기1 완료"><label class="c-check" for="g4_wipe1"></label></td></tr>
-                                        <tr><th>광내기2</th><td>황ㅇㅇ</td><td class="c-done"><input id="g4_wipe2" type="checkbox" name="청소완료" value="4조_광내기2" aria-label="4조 광내기2 완료"><label class="c-check" for="g4_wipe2"></label></td></tr>
-                                        <tr><th>세탁하기1</th><td>강ㅇㅇ</td><td class="c-done"><input id="g4_laundry1" type="checkbox" name="청소완료" value="4조_세탁하기1" aria-label="4조 세탁하기1 완료"><label class="c-check" for="g4_laundry1"></label></td></tr>
-                                        <tr><th>세탁하기2</th><td>송ㅇㅇ</td><td class="c-done"><input id="g4_laundry2" type="checkbox" name="청소완료" value="4조_세탁하기2" aria-label="4조 세탁하기2 완료"><label class="c-check" for="g4_laundry2"></label></td></tr>
+                                        <tr><th>쓸기</th><td>정ㅇㅇ</td><td class="c-done"><input id="g4_sweep" type="checkbox" name="청소완료" value="4조_쓸기" aria-label="4조 쓸기 완료"><label class="c-check" for="g4_sweep"></label></td></tr>
+                                        <tr><th>광내기1</th><td>박ㅇㅇ</td><td class="c-done"><input id="g4_wipe1" type="checkbox" name="청소완료" value="4조_광내기1" aria-label="4조 광내기1 완료"><label class="c-check" for="g4_wipe1"></label></td></tr>
+                                        <tr><th>광내기2</th><td>고ㅇㅇ</td><td class="c-done"><input id="g4_wipe2" type="checkbox" name="청소완료" value="4조_광내기2" aria-label="4조 광내기2 완료"><label class="c-check" for="g4_wipe2"></label></td></tr>
+                                        <tr><th>세탁하기1</th><td>백ㅇㅇ</td><td class="c-done"><input id="g4_laundry1" type="checkbox" name="청소완료" value="4조_세탁하기1" aria-label="4조 세탁하기1 완료"><label class="c-check" for="g4_laundry1"></label></td></tr>
+                                        <tr><th>세탁하기2</th><td>설ㅇㅇ</td><td class="c-done"><input id="g4_laundry2" type="checkbox" name="청소완료" value="4조_세탁하기2" aria-label="4조 세탁하기2 완료"><label class="c-check" for="g4_laundry2"></label></td></tr>
                                     </tbody>
                                 </table>
                             </div>
