@@ -258,7 +258,7 @@
 /*---색 이어지게 (동아리방/메인과 같은 남색 흐름)------------------*/
 /* nav 배경은 10_yes3_common.css의 .nav_bg (모든 페이지 공통 blur 칸) */
 
-/* 위쪽 사진 배너(.learning_1)는 10_yes3_bg.css + 10_yes3_arch_learning.css (교육자료와 같음) */
+/* 위쪽 사진 배너(.learning_1)는 10_yes3_common.css + 10_yes3_arch_learning.css (교육자료와 같음) */
 
 /*---판넬 디자인 (교육자료·비품·이용규칙과 같은 판넬)------------------
    제목(.board-head)·.wrap·변수(--panel 등)는 10_yes3_arch_learning.css 것을 그대로 씀.
