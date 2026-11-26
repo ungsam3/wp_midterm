@@ -25,7 +25,7 @@
 }
 
 /* ===== 상단 배너 ===== */
-/* 배경 사진·남색 body는 10_yes3_common.css, 높이만 여기서 */
+/* 배경 사진·남색 body는 10_yes3_bg.css, 높이만 여기서 */
 .dbeq_1 {
   height: 150px;
 }
@@ -35,7 +35,7 @@
   width: var(--page-side);
   max-width: var(--page-w);
   margin: 28px auto 0;
-  padding: 0 calc(var(--board-w) + 24px) 0 0;  /* 검색창이 판넬 오른쪽 끝에 맞음 */
+  padding: 0;                       /* 검색창이 교육자료 페이지와 같은 위치(오른쪽 끝) */
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
@@ -74,8 +74,22 @@
   margin-bottom: 4px;
 }
 
+/* 교육자료의 분류 선택 상자(.search_sel)와 같은 크기의 보이지 않는 빈자리 */
+.search_spacer {
+  flex: none;
+  height: 56px;
+  box-sizing: border-box;
+  padding: 0 22px;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  font-family: "Jua", sans-serif;
+  font-size: 18px;
+  visibility: hidden;
+}
+
 .search {
   flex-grow: 1;
+  min-width: 0;
   height: 56px;
   box-sizing: border-box;
   padding: 0 28px;
@@ -153,18 +167,47 @@ article > .wrap {
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
 }
 
-/* ===== 필터 버튼 (판넬 안 맨 위) ===== */
+/* ===== 상단: 비품 추가하기 (교육자료의 '자료 작성하기'와 동일) ===== */
+.supply-toolbar {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 32px;       /* 비품 카드와의 간격 */
+}
+.add-btn {
+  flex: none;
+  height: 50px;
+  padding: 0 30px;
+  border: none;
+  border-radius: 999px;
+  background: var(--orange);
+  color: #fff;
+  font-family: "Jua", sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 0 rgba(255, 138, 0, 0.35);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.add-btn:hover {
+  transform: translateY(-2px);
+  background-color: #ff9a1f;
+}
+
+/* ===== 필터 버튼 ===== */
 .filter-buttons {
+  flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 14px;
+  gap: 8px;
+  padding: 4px 0;            /* 첫 줄 높이를 추가 버튼(50px)과 맞춤 */
 }
 
 .filter-btn {
   height: 42px;
-  padding: 0 20px;
+  padding: 0 16px;
   border-radius: 999px;
   border: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.06);
@@ -399,10 +442,14 @@ article > .wrap {
     max-height: none;
     align-self: stretch;
   }
-  .board-head { justify-content: flex-start; padding-right: 0; }
+  .board-head { justify-content: flex-start; }
 }
 @media (max-width: 720px) {
   #panel-supplies { padding: 24px 18px; }
+  .search_dbeq { flex-wrap: wrap; }
+  .search { flex: 1; min-width: 140px; }
+  .supply-toolbar { flex-direction: column-reverse; align-items: stretch; margin-bottom: 18px; }
+  .add-btn { align-self: flex-end; }
   .supply-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
@@ -563,16 +610,13 @@ article > .wrap {
 
 
 /* [1-2] 이용규칙 판넬 (비품·교육자료·청소담당과 같은 판넬 디자인)
-   모두 .rule2 안에서만 적용됨. 위쪽 사진 배너(.dbeq_1)는 10_yes3_common.css */
+   모두 .rule2 안에서만 적용됨. 서브 헤더·별 배경은 10_yes3_bg.css */
 .rule2,
 .rule2 button,
 .rule2 input {
   font-family: "Jua", sans-serif;
   font-weight: 400;
 }
-
-/* 제목: [1]의 board-head는 오른쪽 보드 자리를 비워두므로 여기선 0으로 */
-.rule2 .board-head { padding: 0; }
 
 .rule2 > .wrap {
   flex-direction: column;
@@ -615,29 +659,6 @@ article > .wrap {
   color: #D9DCEA;
   font-size: 18px;
   line-height: 1.8;
-}
-
-/* 안내 문구 끝 눈송이: 3초마다 앞으로 꾸벅 인사, 마우스 올리면 더 깊게 한 번 */
-.rule2 .r-bow {
-  height: 44px;
-  margin-left: 6px;
-  vertical-align: middle;
-  transform-origin: 50% 100%;         /* 발끝 기준으로 숙임 */
-  animation: r-bow 3s ease-in-out infinite;
-}
-.rule2 .r-bow:hover { animation: r-bow-deep 0.9s ease-in-out; }
-/* 정면을 보고 있는 그림이라 윗부분이 앞(화면 쪽)으로 기울면서 살짝 납작해지는 걸로 인사 표현 */
-@keyframes r-bow {
-  0%, 60%, 100% { transform: perspective(200px) rotateX(0) translateY(0); }
-  72%           { transform: perspective(200px) rotateX(28deg) translateY(2px) scaleY(0.9); }
-  84%           { transform: perspective(200px) rotateX(0) translateY(0); }
-}
-@keyframes r-bow-deep {
-  0%, 100% { transform: perspective(200px) rotateX(0) scale(1); }
-  45%      { transform: perspective(200px) rotateX(40deg) translateY(3px) scale(1.1, 0.85); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .rule2 .r-bow, .rule2 .r-bow:hover { animation: none; }
 }
 
 /* 규칙 카드 그리드 (비품 카드처럼 hover 때 떠오름) */
@@ -687,6 +708,74 @@ article > .wrap {
   font-size: 19px;
   line-height: 1.5;
   color: var(--text);
+}
+
+/* 나가기 전 체크 표 (청소담당 체크리스트와 같은 표) */
+.rule2 .r-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.rule2 .r-table th,
+.rule2 .r-table td {
+  padding: 12px 10px;
+  text-align: left;
+  font-size: 17px;
+  font-weight: 400;
+  border-bottom: 1px solid var(--line);
+}
+.rule2 .r-table thead th {
+  font-size: 14px;
+  color: var(--muted);
+  border-bottom: 2px solid var(--blue);
+}
+.rule2 .r-table tbody th { color: var(--yellow); width: 22%; }
+.rule2 .r-table tbody tr { transition: background 0.15s; }
+.rule2 .r-table tbody tr:hover { background: rgba(255, 255, 255, 0.05); }
+.rule2 .r-table tr:last-child th,
+.rule2 .r-table tr:last-child td { border-bottom: none; }
+.rule2 .r-table .r-done { text-align: center; width: 64px; }
+
+/* 체크박스: 숨기고 label을 네모 칸으로 (누르면 노랗게 빛남) */
+.rule2 .r-table input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.rule2 .r-check {
+  display: inline-block;
+  vertical-align: middle;
+  width: 28px;
+  height: 28px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  border: 2px solid #4e4e5c;
+  background: #17171C;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+.rule2 .r-check:hover { border-color: var(--yellow); }
+.rule2 .r-table input:checked + .r-check {
+  background: var(--yellow);
+  border-color: var(--yellow);
+  box-shadow: 0 0 10px 2px rgba(255, 187, 0, 0.85), 0 0 22px 6px rgba(255, 138, 0, 0.5);
+}
+.rule2 .r-table input:focus-visible + .r-check {
+  box-shadow: 0 0 0 3px rgba(47, 155, 255, 0.35);
+}
+.rule2 .r-table tr:has(input:checked) td:not(.r-done) {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+/* 화면에는 안 보이고 스크린리더만 읽는 글씨 */
+.rule2 .r-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 }
 
 /* 마지막 경고 문구 */
@@ -791,11 +880,6 @@ article > .wrap {
   font-weight: 400;
 }
 
-/* [3-2] 제목 줄: [1]의 board-head는 오른쪽 보드 자리를 비워두므로 여기선 0으로 */
-.cleanup2 .board-head {
-  padding: 0;
-}
-
 /* [3-3] 본문: 판넬을 위아래로 쌓기 */
 .cleanup2 > .wrap {
   flex-direction: column;
@@ -830,6 +914,10 @@ article > .wrap {
   border-bottom: 2px solid var(--blue);
 }
 
+/* 청소 판넬 간격: 구역 사이, 제목 라인과 내용 사이 */
+.cleanup2 #panel-cleanup { gap: 72px; }
+.cleanup2 #panel-cleanup .c-sec h2 { margin-bottom: 36px; }
+
 /* 안내 문구 */
 .cleanup2 .c-note {
   margin: 0;
@@ -857,9 +945,9 @@ article > .wrap {
 .cleanup2 .c-cal-area {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: stretch;      /* 캘린더와 조별 일정 박스의 높이를 맞춤 */
   flex-wrap: wrap;
-  gap: 36px;
+  gap: 28px;
 }
 
 .cleanup2 .c-carousel {
@@ -968,27 +1056,36 @@ article > .wrap {
 .cleanup2 .c-car-dots button.on { background: var(--orange); }
 
 /* 범례 (조별 청소 주간) */
-.cleanup2 .c-legend-wrap { min-width: 220px; }
+.cleanup2 .c-legend-wrap {
+  display: flex;
+  flex-direction: column;
+  min-width: 220px;
+}
 .cleanup2 .c-legend {
   list-style: none;
   margin: 0;
   padding: 0;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
 }
 .cleanup2 .c-legend-item {
+  flex: 1;                   /* 4개 박스가 같은 높이로 위아래를 채움 */
   display: flex;
-  align-items: flex-start;
+  flex-wrap: wrap;
+  align-content: center;     /* 내용은 박스 세로 중앙 */
+  align-items: flex-start;   /* 색 점은 조 이름 줄에 맞춤 */
   gap: 12px;
-  padding: 12px 16px;
+  padding: 8px 16px;
   border-radius: 16px;
   border: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.05);
 }
-.cleanup2 .c-legend-item .c-dot { margin-top: 5px; }
+.cleanup2 .c-legend-item .c-dot { margin-top: 3px; }
 .cleanup2 .c-legend-item b {
   display: block;
+  line-height: 22px;         /* 점(16px)과 조 이름의 중앙을 맞춤 */
   margin-bottom: 2px;
   font-size: 18px;
   font-weight: 400;
@@ -1008,7 +1105,7 @@ article > .wrap {
 .cleanup2 .c-roles {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  gap: 28px;
 }
 .cleanup2 .c-role {
   padding: 18px 22px 20px;
@@ -1043,7 +1140,7 @@ article > .wrap {
 .cleanup2 .c-teams {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  gap: 28px;
 }
 .cleanup2 .c-team {
   padding: 20px 24px 22px;
@@ -1132,7 +1229,7 @@ article > .wrap {
 .cleanup2 .c-reset-row {
   display: flex;
   justify-content: flex-end;
-  margin-top: 16px;
+  margin-top: 36px;
 }
 .cleanup2 .c-reset {
   height: 46px;
@@ -1251,6 +1348,11 @@ article > .wrap {
 }
 @media (max-width: 720px) {
   .cleanup2 .c-panel { padding: 24px 18px; }
+  .cleanup2 #panel-cleanup { gap: 48px; }
+  .cleanup2 #panel-cleanup .c-sec h2 { margin-bottom: 24px; }
+  .cleanup2 .c-roles,
+  .cleanup2 .c-teams { gap: 20px; }
+  .cleanup2 .c-reset-row { margin-top: 24px; }
   .cleanup2 .c-slide td { height: 40px; font-size: 15px; }
   .cleanup2 .c-comment-form input { width: 100%; }
 }

@@ -8,6 +8,7 @@
         <meta name="author3" content="김서진">
         <link rel="icon" href="./res/logo_black.png" type="image/png">
         <link rel="stylesheet" href="10_yes3_common.css">
+        <link rel="stylesheet" href="10_yes3_bg.css">
         <link rel="stylesheet" href="10_yes3_dongbang.css">
         <script src="10_yes3_auth.js"></script>
         <script>checkLogin();</script>
@@ -52,6 +53,13 @@
             <div class="board-head">
                 <h1>비품</h1>
                 <div class="search_dbeq">
+                    <!-- 교육자료의 분류 선택 상자와 같은 폭의 빈자리 (보이지 않음, 검색바 길이 맞춤용) -->
+                    <select class="search_spacer" aria-hidden="true" tabindex="-1" disabled>
+                        <option>전체</option>
+                        <option>메이킹</option>
+                        <option>특허</option>
+                        <option>활동지</option>
+                    </select>
                     <input type="text" class="search" id="search-input" placeholder="비품을 검색하세요">
                     <button type="button" class="search_btn" id="search-btn">
                         <img src="res/search.png" alt="검색">
@@ -64,16 +72,19 @@
                 <!-- 비품 큰 판넬 -->
                 <section class="panel" id="panel-supplies">
 
-                    <!-- 필터 버튼 -->
-                    <div class="filter-buttons">
-                        <button type="button" class="filter-btn active">전체</button>
-                        <button type="button" class="filter-btn">공구함 A</button>
-                        <button type="button" class="filter-btn">공구함 B</button>
-                        <button type="button" class="filter-btn">아두이노</button>
-                        <button type="button" class="filter-btn">소모품</button>
-                        <button type="button" class="filter-btn">3D펜</button>
-                        <button type="button" class="filter-btn">3D프린터</button>
-                        <button type="button" class="filter-btn">드론</button>
+                    <!-- 필터 버튼(왼쪽) + 비품 추가하기(오른쪽) 한 줄 -->
+                    <div class="supply-toolbar">
+                        <div class="filter-buttons">
+                            <button type="button" class="filter-btn active">전체</button>
+                            <button type="button" class="filter-btn">공구함 A</button>
+                            <button type="button" class="filter-btn">공구함 B</button>
+                            <button type="button" class="filter-btn">아두이노</button>
+                            <button type="button" class="filter-btn">소모품</button>
+                            <button type="button" class="filter-btn">3D펜</button>
+                            <button type="button" class="filter-btn">3D프린터</button>
+                            <button type="button" class="filter-btn">드론</button>
+                        </div>
+                        <button type="button" class="add-btn" id="add-supply">비품 추가하기</button>
                     </div>
 
                     <!-- 비품 카드: 하나의 그리드에서 한 줄에 5개씩 -->
@@ -133,11 +144,11 @@
                     <h4>유의 사항</h4>
                     <ul class="modal-desc" id="modal-caution" style="padding-left: 38px; list-style: disc;"></ul>
 
-                    <h4>대여 기록</h4>
+                    <h4 id="modal-history-title">대여 기록</h4>
                     <ul class="modal-history" id="modal-history"></ul>
                 </div>
 
-                <button type="button" class="modal-rent">대여하기</button>
+                <button type="button" class="modal-rent" id="modal-rent">대여하기</button>
             </div>
         </div>
 
@@ -271,8 +282,8 @@
                 renderPage();
             }
 
-            // 1. Fetch API로 equipment.json 데이터 불러오기 (실패 시 FALLBACK_DATA로 자동 복구)
-            fetch('equipment.json')
+            // 1. Fetch API로 10_yes3_db_equipment.json 데이터 불러오기 (실패 시 FALLBACK_DATA로 자동 복구)
+            fetch('10_yes3_db_equipment.json')
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('HTTP 오류 상태: ' + response.status);
@@ -283,7 +294,7 @@
                     initWithData(data);
                 })
                 .catch(error => {
-                    console.warn('equipment.json 로드 실패 (로컬 CORS 또는 경로 문제), 기본 데이터로 표시합니다:', error.message);
+                    console.warn('10_yes3_db_equipment.json 로드 실패 (로컬 CORS 또는 경로 문제), 기본 데이터로 표시합니다:', error.message);
                     initWithData(FALLBACK_DATA);
                 });
 
@@ -361,13 +372,23 @@
                 renderList('modal-usage', item.usage);
                 renderList('modal-caution', item.cautions);
 
+                // 소모품은 대여가 아니라 사용: 문구를 바꾸고 반납 정보는 표시하지 않음
+                const isConsumable = item.category === '소모품';
+                const action = isConsumable ? '사용' : '대여';
+                document.getElementById('modal-history-title').textContent = action + ' 기록';
+                document.getElementById('modal-rent').textContent = action + '하기';
+
                 const records = item.history || [];
                 historyList.innerHTML = records.length
-                    ? records.map(h => `<li>
+                    ? records.map(h => {
+                        const returnLine = isConsumable ? ''
+                            : '<br>' + (h.returnDate ? '반납 ' + formatDate(h.returnDate) : '대여 중 (미반납)');
+                        return `<li>
                         <span>${h.who} (${h.quantity}개)</span>
-                        <span style="text-align: right; line-height: 1.7;">대여 ${formatDate(h.rentDate)}<br>${h.returnDate ? '반납 ' + formatDate(h.returnDate) : '대여 중 (미반납)'}</span>
-                    </li>`).join('')
-                    : '<li><span>대여 기록이 없습니다.</span><span>-</span></li>';
+                        <span style="text-align: right; line-height: 1.7;">${action} ${formatDate(h.rentDate)}${returnLine}</span>
+                    </li>`;
+                    }).join('')
+                    : `<li><span>${action} 기록이 없습니다.</span><span>-</span></li>`;
 
                 modal.classList.add('open');
                 modal.setAttribute('aria-hidden', 'false');
@@ -426,6 +447,5 @@
         </script>
 
         <script>renderNav();</script>
-        <script src="10_yes3_rocket.js"></script>  <!-- footer 로켓 → 판넬 위 착륙 -->
     </body>
 </html>
