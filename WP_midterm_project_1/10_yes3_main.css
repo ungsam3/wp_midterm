@@ -821,11 +821,8 @@ body {
 }
 
 
-/*---index 전용: nav / footer 색 이어지게------------------------*/
-/* nav: 위쪽만 살짝 어둡게, 아래로 투명하게 사라짐 (스크롤해도 경계선 없음) */
-.main_nav {
-    background: linear-gradient(to bottom, rgba(6, 11, 30, 0.8) 0%, rgba(6, 11, 30, 0) 100%);
-}
+/*---index 전용: footer 색 이어지게------------------------*/
+/* nav 뒤 blur 칸(.nav_bg)과 nav 글씨 위치는 10_yes3_common.css (모든 페이지 공통) */
 
 /* footer 바닥 그림 뒤가 흰색으로 비지 않도록 INVENTORS 끝 색 → footer 패널 색 그라데이션 */
 .ft-stage {

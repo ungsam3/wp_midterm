@@ -38,8 +38,39 @@
     z-index: 100;
 }
 
+/* nav 뒤 반투명 남색빛 검은 칸 + blur (모든 페이지 nav 바로 앞에 <div class="nav_bg">)
+   nav 안에 넣으면 .item:first-child / :last-child 선택자가 깨져서 nav 바로 앞 형제로 둠 */
+.nav_bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 12vh;                  /* .main_nav와 같은 높이 */
+    background: rgba(4, 8, 22, 0.45);   /* 검은색에 사이트 남색(#060B1E) 빛이 살짝 돌게 */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    /* 아래쪽을 서서히 완전 투명하게 (검은색과 blur가 같이 사라짐)
+       30%부터 넓게 흐려지고, 단계를 여러 개 둬서 끝이 선처럼 보이지 않게 부드럽게 */
+    mask-image: linear-gradient(to bottom,
+        #000 30%,
+        rgba(0, 0, 0, 0.85) 50%,
+        rgba(0, 0, 0, 0.55) 70%,
+        rgba(0, 0, 0, 0.25) 85%,
+        rgba(0, 0, 0, 0.08) 95%,
+        transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom,
+        #000 30%,
+        rgba(0, 0, 0, 0.85) 50%,
+        rgba(0, 0, 0, 0.55) 70%,
+        rgba(0, 0, 0, 0.25) 85%,
+        rgba(0, 0, 0, 0.08) 95%,
+        transparent 100%);
+    z-index: 99;                   /* nav(100) 바로 밑, 본문 위 */
+    pointer-events: none;          /* 클릭은 그대로 통과 */
+}
+
 .main_nav .item {
-    margin-top: 4vh;
+    margin-top: 2.5vh;             /* .nav_bg 진한 부분 안에 글씨가 오도록 (원래 4vh) */
     margin-right: 3vw;
     font-size: 50px;
     font-family: "Dongle", sans-serif;
@@ -50,7 +81,7 @@
 
 .main_nav .item:first-child {
     flex-grow: 1;
-    margin-top: 2vh;
+    margin-top: 1vh;               /* 로고(90px) 가운데가 메뉴 글씨 높이와 맞게 (원래 2vh) */
     margin-left: 1vw;
     display: flex;
     flex-direction: row;
