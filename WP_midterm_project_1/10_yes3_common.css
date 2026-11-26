@@ -2,9 +2,10 @@
 
 /* 컴포넌트 */
 /* -------------------
-[1] 전체 폰트 스타일 설정: 
-[2] nav: 
-[3] footer: 
+[1] 전체 폰트 스타일 설정:
+[1-2] 바탕 · 서브 페이지 사진 배너 (예전 10_yes3_bg.css를 합침)
+[2] nav:
+[3] footer:
 --------------------- */
 
 
@@ -21,6 +22,34 @@
     font-family: "Jua", sans-serif;
     font-weight: 400;
     font-style: normal;
+}
+
+
+/* [1-2] 바탕 · 서브 페이지 사진 배너
+   (따로 있던 10_yes3_bg.css가 이것만 남아서 파일을 줄이려고 여기로 합침) */
+
+/* 전체 바탕: 남색 (메인은 10_yes3_main.css에서 같은 색으로 다시 지정) */
+body {
+    background-color: #060B1E;
+    margin: 0;
+    padding: 0;
+}
+
+/* 서브 페이지 맨 위 사진 배너 (sub_image.jpg)
+   .dbeq_1 = 비품·이용규칙·로그인·회원가입 / .learning_1 = 교육자료·갤러리 (청소담당 .cleanup_1은 dongbang.css)
+   높이(height)는 페이지마다 달라서 각 페이지 CSS에 있음 */
+.dbeq_1, .learning_1 {
+    position: relative;
+    top: 0;
+    left: 0;
+    background-image: url("res/sub_image.jpg");
+    background-attachment: scroll;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 
@@ -322,3 +351,42 @@
     font-size: 13px;
     color: #8a94a3;
 }
+
+/*---footer 로켓 → 페이지 첫 판넬 위에 착륙 (서브 페이지 공통, JS는 10_yes3_rocket.js)------*/
+
+/* 날아가는 중인 로켓 그림 (화면에 고정) */
+.rocket-flying {
+  position: fixed;
+  z-index: 150;                 /* nav(100) 위로 지나감 */
+  pointer-events: none;
+}
+
+/* 떠난 뒤 footer 자리: 로켓과 그림자 숨김 */
+#ft-rocket.rocket-away { visibility: hidden; }
+.ft-item-rocket:has(.rocket-away) .ft-shadow { visibility: hidden; }
+
+/* 판넬 윗변 오른쪽에 앉은 로켓
+   이미지 아래쪽 약 18%가 빈 공간이라 그만큼 내려서 바닥(노즐)이 판넬 테두리에 닿게 */
+.rocket-landed {
+  position: absolute;
+  bottom: 100%;
+  right: 70px;
+  width: 90px;
+  padding: 0;
+  border: 0;
+  background: none;
+  transform: translateY(18%);
+  cursor: pointer;
+}
+.rocket-landed[hidden] { display: none; }
+.rocket-landed img { display: block; width: 100%; transition: transform 0.2s; }
+.rocket-landed:hover img { transform: translateY(-4px); }   /* footer 발명품처럼 살짝 떠오름 */
+.rocket-landed:focus-visible { outline: 2px dashed var(--blue); outline-offset: 4px; }
+
+/* 착륙 직후 찌그러졌다 펴지기 */
+.rocket-landed.just-landed img { animation: rocket-squash 0.35s ease-out; transform-origin: bottom center; }
+@keyframes rocket-squash {
+  0%   { transform: scale(1.12, 0.86); }
+  100% { transform: scale(1, 1); }
+}
+
