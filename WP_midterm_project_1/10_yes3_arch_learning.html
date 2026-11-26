@@ -408,5 +408,41 @@
         })();
         </script>
         <script>renderNav();</script>
+        <script>
+    (() => {
+        const panel = document.getElementById('panel-learning');
+
+        // 1. 판넬 높이를 최소 한 화면으로 유지 (목록이 적어도 푸터가 안 올라옴)
+        function keepPanelHeight() {
+            panel.style.minHeight = window.innerHeight + 'px';
+        }
+        window.addEventListener('resize', keepPanelHeight);
+        keepPanelHeight();
+
+        // 페이지 이동 버튼은 판넬 맨 아래에
+        const pager = panel.querySelector('.pager');
+        if (pager) pager.style.marginTop = 'auto';
+
+        // 2. 목록이 바뀌면 화면을 맨 위로
+        function goTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // 검색 버튼, 보기 버튼, 페이지 이동 버튼
+        document.addEventListener('click', e => {
+            if (e.target.closest('.search_btn, .view-btn, .pg-btn')) goTop();
+        });
+        // 분류·보기 선택 상자
+        document.addEventListener('change', e => {
+            if (e.target.matches('.search_sel, .sel')) goTop();
+        });
+        // 검색창, 페이지 번호 입력 후 Enter
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Enter' && e.target.matches('.search, .pg-input')) goTop();
+        });
+    })();
+    </script>
+
+
     </body>
 </html>
