@@ -291,3 +291,42 @@
     font-size: 13px;
     color: #8a94a3;
 }
+
+/*---footer 로켓 → 페이지 첫 판넬 위에 착륙 (서브 페이지 공통, JS는 10_yes3_rocket.js)------*/
+
+/* 날아가는 중인 로켓 그림 (화면에 고정) */
+.rocket-flying {
+  position: fixed;
+  z-index: 150;                 /* nav(100) 위로 지나감 */
+  pointer-events: none;
+}
+
+/* 떠난 뒤 footer 자리: 로켓과 그림자 숨김 */
+#ft-rocket.rocket-away { visibility: hidden; }
+.ft-item-rocket:has(.rocket-away) .ft-shadow { visibility: hidden; }
+
+/* 판넬 윗변 오른쪽에 앉은 로켓
+   이미지 아래쪽 약 18%가 빈 공간이라 그만큼 내려서 바닥(노즐)이 판넬 테두리에 닿게 */
+.rocket-landed {
+  position: absolute;
+  bottom: 100%;
+  right: 70px;
+  width: 90px;
+  padding: 0;
+  border: 0;
+  background: none;
+  transform: translateY(18%);
+  cursor: pointer;
+}
+.rocket-landed[hidden] { display: none; }
+.rocket-landed img { display: block; width: 100%; transition: transform 0.2s; }
+.rocket-landed:hover img { transform: translateY(-4px); }   /* footer 발명품처럼 살짝 떠오름 */
+.rocket-landed:focus-visible { outline: 2px dashed var(--blue); outline-offset: 4px; }
+
+/* 착륙 직후 찌그러졌다 펴지기 */
+.rocket-landed.just-landed img { animation: rocket-squash 0.35s ease-out; transform-origin: bottom center; }
+@keyframes rocket-squash {
+  0%   { transform: scale(1.12, 0.86); }
+  100% { transform: scale(1, 1); }
+}
+
