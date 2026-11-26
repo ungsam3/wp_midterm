@@ -456,17 +456,18 @@ article > .wrap {
   border: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.06);
   color: var(--text);
+  font-family: "Jua", sans-serif;
   font-size: 16px;
   outline: none;
 }
 .field select option { color: #F5F3EE;
-  background-color: #17171C; }
-.field textarea { height: 140px; resize: vertical; }
+  background-color: #17171C; font-family: "Jua", sans-serif; }
+.field textarea { height: 140px; resize: vertical; font-family: "Jua", sans-serif; }
 .field input:focus,
 .field select:focus,
 .field textarea:focus {
   border-color: var(--blue);
-  box-shadow: 0 0 0 3px rgba(47, 155, 255, 0.25);
+  box-shadow: 0 0 0 3px rgba(47, 155, 255, 0.25); font-family: "Jua", sans-serif;
 }
 .field-row { display: flex; gap: 14px; }
 .field-row .field { flex: 1; }
@@ -485,9 +486,11 @@ article > .wrap {
   border-radius: 999px;
   font-size: 17px;
   cursor: pointer;
+  font-family: "Jua", sans-serif;
 }
-.btn-cancel { background: #3c4053; color: var(--text); }
-.btn-submit { background: var(--orange); color: #fff; }
+.btn-cancel { background: #3c4053; color: var(--text); box-shadow: 0 4px 0 rgba(60, 64, 83, 0.35); }
+.btn-cancel:hover { background: #4b4f66; }
+.btn-submit { background: var(--orange); color: #fff; box-shadow: 0 4px 0 rgba(255, 138, 0, 0.35); }
 .btn-submit:hover { background: #ff9a1f; }
 
 /* ===== 반응형 (비품 페이지와 동일 기준) ===== */
