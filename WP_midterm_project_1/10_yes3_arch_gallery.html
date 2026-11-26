@@ -90,13 +90,18 @@
             <!-- 판넬 2: 연도 버튼 + 연도별 사진 -->
             <section class="panel g-panel" id="panel-years">
             <h2 class="g-title">연도별 사진</h2>
-            <!--연도별 버튼-->
-            <nav class="pill-group">
-                <a class="pill" href="#y2026">2026</a>
-                <a class="pill" href="#y2025">2025</a>
-                <a class="pill" href="#y2024">2024</a>
-            </nav>
-            <!--버튼 누르면 이동!-->
+            <!--연도 필터 (비품 페이지 필터처럼): 숨긴 radio + label, 고른 연도 사진만 보임 (CSS만, gallery.css)
+                radio가 아래 버튼·사진 묶음보다 앞에 있어야 :checked ~ 로 숨길 수 있음-->
+            <input type="radio" name="year" id="yr-all" class="yr-radio" checked>
+            <input type="radio" name="year" id="yr-2026" class="yr-radio">
+            <input type="radio" name="year" id="yr-2025" class="yr-radio">
+            <input type="radio" name="year" id="yr-2024" class="yr-radio">
+            <div class="pill-group">
+                <label class="pill" for="yr-all">전체</label>
+                <label class="pill" for="yr-2026">2026</label>
+                <label class="pill" for="yr-2025">2025</label>
+                <label class="pill" for="yr-2024">2024</label>
+            </div>
             
             <!--연도별 사진 묶음-->
             <section id="y2026">
@@ -328,6 +333,98 @@
             </div>
         </footer>
         <script>renderNav();</script>
+        <!-- footer 로켓 발사 (갤러리 전용)
+             로켓을 누르면 위로 쓩 날아가고 → 화면이 맨 위로 올라간 뒤 → "활동 사진" 판넬 윗변에 착륙.
+             착륙한 로켓을 누르면 다시 footer로 돌아감. 모양은 gallery.css의 "footer 로켓" 구역 -->
+        <script>
+        (function () {
+            const footerBtn = document.getElementById('ft-rocket');
+            const panel = document.getElementById('panel-gallery');
+            if (!footerBtn || !panel) return;
+            const footerImg = footerBtn.querySelector('img');
+            const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            let busy = false;
+
+            // 판넬 윗변에 앉을 로켓 (처음엔 숨김)
+            const landed = document.createElement('button');
+            landed.type = 'button';
+            landed.className = 'rocket-landed';
+            landed.setAttribute('aria-label', '로켓을 footer로 돌려보내기');
+            landed.innerHTML = '<img src="res/footer-rocket.png" alt="">';
+            landed.hidden = true;
+            panel.appendChild(landed);
+
+            // 화면에 고정된 채로 날아다니는 로켓 그림을 만들어서 keyframes대로 움직임
+            function fly(from, frames, duration, easing) {
+                const img = document.createElement('img');
+                img.src = footerImg.src;
+                img.alt = '';
+                img.className = 'rocket-flying';
+                img.style.left = from.left + 'px';
+                img.style.top = from.top + 'px';
+                img.style.width = from.width + 'px';
+                document.body.appendChild(img);
+                const anim = img.animate(frames, { duration: duration, easing: easing, fill: 'forwards' });
+                return anim.finished.then(function () { return img; });
+            }
+
+            function wait(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+
+            // 1) footer → 화면 위로 발사
+            footerBtn.addEventListener('click', function () {
+                if (busy || !landed.hidden) return;
+                busy = true;
+                const r = footerImg.getBoundingClientRect();
+
+                if (reduce) {                           // 움직임 줄이기 설정이면 바로 착륙
+                    footerBtn.classList.add('rocket-away');
+                    landed.hidden = false;
+                    panel.scrollIntoView();
+                    busy = false;
+                    return;
+                }
+
+                footerBtn.classList.add('rocket-away');
+                fly(r, [
+                    { transform: 'translateY(0)' },
+                    { transform: 'translateY(12px)', offset: 0.15 },       // 살짝 웅크렸다가
+                    { transform: 'translateY(' + (-r.bottom - 40) + 'px)' } // 쓩!
+                ], 750, 'cubic-bezier(.5,0,.9,.4)')
+                .then(function (img) {
+                    img.remove();
+                    // 2) 화면을 판넬 위까지 올리기
+                    landed.hidden = false;
+                    landed.style.visibility = 'hidden';                     // 자리만 잡고 아직 안 보이게
+                    const top = landed.getBoundingClientRect().top + window.scrollY - 130;
+                    window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+                    return wait(900);
+                })
+                .then(function () {
+                    // 3) 화면 위에서 내려와 판넬 윗변에 착륙
+                    const t = landed.getBoundingClientRect();
+                    return fly({ left: t.left, top: t.top, width: t.width }, [
+                        { transform: 'translateY(' + (-t.bottom - 40) + 'px)' },
+                        { transform: 'translateY(10px)', offset: 0.8 },          // 쿵
+                        { transform: 'translateY(0)' }
+                    ], 800, 'ease-out');
+                })
+                .then(function (img) {
+                    img.remove();
+                    landed.style.visibility = '';
+                    landed.classList.add('just-landed');
+                    busy = false;
+                });
+            });
+
+            // 착륙한 로켓 누르면 footer로 돌아감
+            landed.addEventListener('click', function () {
+                if (busy) return;
+                landed.hidden = true;
+                landed.classList.remove('just-landed');
+                footerBtn.classList.remove('rocket-away');
+            });
+        })();
+        </script>
     </body>
 </html>
 
