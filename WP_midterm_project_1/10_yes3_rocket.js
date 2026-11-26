@@ -1,121 +1,96 @@
-/* footer 로켓 발사 (서브 페이지 공통, 각 페이지 맨 아래에서 불러옴)
-   로켓을 누르면 위로 쓩 날아가고 → 화면이 위로 올라간 뒤 → 페이지 첫 판넬 윗변에 착륙.
-   착륙한 로켓을 누르면 다시 footer로 돌아감. 모양은 10_yes3_common.css의 "footer 로켓 착륙" 구역.
-   메인 페이지에는 착륙할 판넬이 없어서 불러오지 않음. */
-(function () {
-    // 착륙할 판넬: 페이지마다 처음 나오는 것 하나
-    const PADS = '#panel-gallery, #panel-learning, #panel-supplies, #panel-rule, #panel-cleanup, .signinup_item';
+/* footer 로켓·로봇 이륙 → 판넬 위 착륙 (서브 페이지 공통, 각 페이지 맨 아래에서 불러옴)
+   교안 범위만 사용:
+   - 움직임은 전부 CSS(@keyframes, transform)가 맡고, JS는 class를 바꾸고 시간을 맞추기만 함
+   - 모양·위치·애니메이션은 10_yes3_common.css 맨 아래 "footer 로켓·로봇" 구역
 
-    const footerBtn = document.getElementById('ft-rocket');
-    const panel = document.querySelector(PADS);
-    if (!footerBtn || !panel) return;
-    const footerImg = footerBtn.querySelector('img');
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let busy = false;
+   순서: footer 로켓 클릭 → [이륙] 위로 날아가 사라짐 → 화면을 맨 위로 올림
+         → [착륙] 판넬 위에서 쿵 내려앉음
+         착륙한 것을 클릭 → 아래로 날아가 사라짐 → 화면을 맨 아래(footer)로 내림 → footer 자리에 쿵 (이륙의 반대) */
 
-    // 로켓이 판넬 기준으로 자리 잡도록
-    if (getComputedStyle(panel).position === 'static') panel.style.position = 'relative';
+// 날아갈 발명품 목록 (10주차: 객체 배열)
+//  btnId: footer 버튼 id, img: 그림 파일, type: 착륙 모양 class 이름
+const FLYERS = [
+    { btnId: "ft-rocket", img: "res/footer-rocket.png", type: "lander-rocket", name: "로켓" },
+    { btnId: "ft-robot",  img: "res/footer-robot.png",  type: "lander-robot",  name: "로봇" }
+];
 
-    // 판넬 윗변에 앉을 로켓 (처음엔 숨김)
-    const landed = document.createElement('button');
-    landed.type = 'button';
-    landed.className = 'rocket-landed';
-    landed.setAttribute('aria-label', '로켓을 footer로 돌려보내기');
-    landed.innerHTML = '<img src="res/footer-rocket.png" alt="">';
-    landed.hidden = true;
-    panel.appendChild(landed);
+// 착륙할 판넬: 페이지마다 처음 나오는 것 하나 (11주차: querySelector + CSS 선택자)
+const landingPanel = document.querySelector(
+    "#panel-gallery, #panel-learning, #panel-supplies, #panel-rule, #panel-cleanup, .signinup_item"
+);
 
-    // 화면에 고정된 로켓 그림을 만들어서 keyframes대로 움직임
-    function fly(from, frames, duration, easing) {
-        const img = document.createElement('img');
-        img.src = footerImg.src;
-        img.alt = '';
-        img.className = 'rocket-flying';
-        img.style.left = from.left + 'px';
-        img.style.top = from.top + 'px';
-        img.style.width = from.width + 'px';
-        document.body.appendChild(img);
-        const anim = img.animate(frames, { duration: duration, easing: easing, fill: 'forwards' });
-        return anim.finished.then(function () { return img; });
-    }
+let isFlying = false;   // 하나가 날아가는 중이면 다른 클릭은 무시
 
-    function wait(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+// 발명품 하나에 이륙·착륙 기능을 붙이는 함수 (10주차: 함수 선언)
+function setupFlyer(flyer) {
+    const footerBtn = document.getElementById(flyer.btnId);   // 11주차: getElementById
+    if (!footerBtn || !landingPanel) return;
 
-    // 착륙 자리(가로 위치·크기) 정하기
-    // 로켓이 판넬 위 제목 줄(.board-head)과 높이가 겹치니까 제목·검색창을 가리지 않는 빈 곳에 앉힘
-    //  - 검색창이 있으면(교육자료·비품): 제목과 검색창 사이 빈 곳 가운데, 빈 곳이 좁으면 로켓을 작게
-    //  - 없으면: 판넬 오른쪽 위
-    function place() {
-        const p = panel.getBoundingClientRect();
-        const h1 = document.querySelector('.board-head h1');
-        const search = document.querySelector('.board-head .search_dbeq');
-        let w = 90, left;
-        if (search) {
-            const from = h1 ? h1.getBoundingClientRect().right : p.left;
-            const to = search.getBoundingClientRect().left;
-            w = Math.max(50, Math.min(90, to - from - 40));
-            left = (from + to) / 2 - w / 2;
-        } else {
-            left = p.right - 70 - w;
-        }
-        landed.style.width = w + 'px';
-        landed.style.left = (left - p.left) + 'px';
-        landed.style.right = 'auto';
-    }
-    window.addEventListener('resize', function () { if (!landed.hidden) place(); });
+    // 판넬 위에 앉을 버튼을 미리 만들어서 넣어 둠 (11주차: createElement, appendChild)
+    // 처음엔 CSS에서 display: none 이라 안 보임
+    const landed = document.createElement("button");
+    landed.setAttribute("type", "button");                    // 11주차: setAttribute
+    landed.setAttribute("class", "rocket-landed " + flyer.type);
+    landed.setAttribute("title", flyer.name + " 돌려보내기");
+    const img = document.createElement("img");
+    img.setAttribute("src", flyer.img);
+    img.setAttribute("alt", flyer.name);
+    landed.appendChild(img);
+    landingPanel.appendChild(landed);
 
-    footerBtn.addEventListener('click', function () {
-        if (busy || !landed.hidden) return;
-        busy = true;
-        footerBtn.classList.add('rocket-away');
+    // footer에서 누르면 이륙 (12주차: addEventListener)
+    footerBtn.addEventListener("click", () => {
+        if (isFlying) return;
+        isFlying = true;
 
-        if (reduce) {                                   // 움직임 줄이기 설정이면 바로 착륙
-            landed.hidden = false;
-            place();
-            panel.scrollIntoView();
-            busy = false;
-            return;
-        }
+        // 1) 이륙: class를 붙이면 CSS 애니메이션(ft-takeoff)이 위로 날려 보냄
+        footerBtn.setAttribute("class", "ft-obj takeoff");
 
-        // 1) footer → 화면 위로 발사
-        const r = footerImg.getBoundingClientRect();
-        fly(r, [
-            { transform: 'translateY(0)' },
-            { transform: 'translateY(12px)', offset: 0.15 },        // 살짝 웅크렸다가
-            { transform: 'translateY(' + (-r.bottom - 40) + 'px)' } // 쓩!
-        ], 750, 'cubic-bezier(.5,0,.9,.4)')
-        .then(function (img) {
-            img.remove();
-            // 2) 화면을 판넬 위까지 올리기
-            landed.hidden = false;
-            landed.style.visibility = 'hidden';                     // 자리만 잡고 아직 안 보이게
-            place();
-            const top = landed.getBoundingClientRect().top + window.scrollY - 130;
-            window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
-            return wait(900);
-        })
-        .then(function () {
-            // 3) 화면 위에서 내려와 판넬 윗변에 착륙
-            const t = landed.getBoundingClientRect();
-            return fly({ left: t.left, top: t.top, width: t.width }, [
-                { transform: 'translateY(' + (-t.bottom - 40) + 'px)' },
-                { transform: 'translateY(10px)', offset: 0.8 },          // 쿵
-                { transform: 'translateY(0)' }
-            ], 800, 'ease-out');
-        })
-        .then(function (img) {
-            img.remove();
-            landed.style.visibility = '';
-            landed.classList.add('just-landed');
-            busy = false;
-        });
+        // 2) 0.8초 뒤(이륙이 끝나면) 화면을 맨 위로 부드럽게 올림 (10주차: setTimeout, window 객체)
+        setTimeout(() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }, 800);
+
+        // 3) 1.6초 뒤 판넬 위에 착륙: class를 붙이면 CSS 애니메이션(ft-landing)이 위에서 내려앉힘
+        setTimeout(() => {
+            landed.setAttribute("class", "rocket-landed " + flyer.type + " landing");
+        }, 1600);
+
+        // 4) 착륙 애니메이션(0.8초)이 끝나면 다시 누를 수 있게
+        setTimeout(() => {
+            isFlying = false;
+        }, 2400);
     });
 
-    // 착륙한 로켓 누르면 footer로 돌아감
-    landed.addEventListener('click', function () {
-        if (busy) return;
-        landed.hidden = true;
-        landed.classList.remove('just-landed');
-        footerBtn.classList.remove('rocket-away');
+    // 착륙한 것을 누르면 이륙의 반대: 아래로 날아가 사라짐 → 화면이 footer까지 내려감 → footer 자리에 착륙
+    landed.addEventListener("click", () => {
+        if (isFlying) return;
+        isFlying = true;
+
+        // 1) 판넬 위에서 아래로 쓩 (CSS 애니메이션 ft-leave)
+        landed.setAttribute("class", "rocket-landed " + flyer.type + " landing leaving");
+
+        // 2) 0.7초 뒤 판넬 위 버튼은 숨기고, 화면을 맨 아래(footer)까지 부드럽게 내림
+        //    document.body.scrollHeight = 페이지 전체 높이 (11주차 DOM 속성)
+        setTimeout(() => {
+            landed.setAttribute("class", "rocket-landed " + flyer.type);
+            window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+        }, 700);
+
+        // 3) 1.5초 뒤 footer 자리에 위에서 내려와 착륙 (CSS 애니메이션 ft-return)
+        setTimeout(() => {
+            footerBtn.setAttribute("class", "ft-obj returning");
+        }, 1500);
+
+        // 4) 착륙(0.8초)이 끝나면 원래 상태로 정리하고 다시 누를 수 있게
+        setTimeout(() => {
+            footerBtn.setAttribute("class", "ft-obj");
+            isFlying = false;
+        }, 2300);
     });
-})();
+}
+
+// 목록에 있는 발명품마다 기능 붙이기 (10주차: for … of)
+for (const flyer of FLYERS) {
+    setupFlyer(flyer);
+}

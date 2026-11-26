@@ -292,7 +292,68 @@ article.gallery2 { padding-top: 25px; }       /* 교육자료 article.learning2�
     var(--panel);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
 }
-#panel-gallery { padding-bottom: 12px; }      /* marquee 아래 여백은 marquee padding이 맡음 */
+/*---맨 위 필름 띠 (판넬 상자 없이, marquee 움직임은 위쪽 원래 CSS 그대로)------------------
+   흰 폴라로이드 대신 검은 필름: 위아래 필름 구멍이 사진과 같이 흘러감 */
+.gallery2 .g-film .marquee-cotainer {
+  margin: 0;
+  padding: 0;
+  border-radius: 6px;
+  background: #0d0f14;                         /* 필름 바탕 */
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+}
+.gallery2 .g-film .scrolling-track {
+  position: relative;
+  gap: 0;                                      /* 칸 사이는 margin-right로 (아래 설명) */
+  padding: 34px 0;                             /* 위아래 34px는 필름 구멍 자리 */
+}
+/* 필름 구멍: 트랙(사진 줄) 위아래에 작은 네모를 반복해서 그림 → 사진과 같이 흘러감 */
+.gallery2 .g-film .scrolling-track::before,
+.gallery2 .g-film .scrolling-track::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background: repeating-linear-gradient(90deg,
+    transparent 0 10px,
+    rgba(245, 243, 238, 0.16) 10px 24px,        /* 은은한 회색 구멍 (흰색이 튀지 않게) */
+    transparent 24px 34px);
+}
+.gallery2 .g-film .scrolling-track::before { top: 11px; }
+.gallery2 .g-film .scrolling-track::after  { bottom: 11px; }
+
+/* 사진 칸: 흰 테두리·기울기 없이 필름 한 칸처럼 */
+.gallery2 .g-film .polaroid,
+.gallery2 .g-film .polaroid:nth-child(even),
+.gallery2 .g-film .polaroid:nth-child(3n) {
+  /* 칸 폭 258 + 간격 14 = 272 = 구멍 무늬 34px x 8
+     → 트랙이 절반(-50%, 사진 11칸)만큼 움직여 처음으로 돌아갈 때 사진도 구멍도 정확히 같은 자리라 튀지 않음 */
+  width: 258px;
+  margin-right: 14px;
+  padding: 0;
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
+  transform: none;
+}
+.gallery2 .g-film .polaroid img {
+  border-radius: 3px;
+  filter: saturate(0.9) brightness(0.92);      /* 필름 느낌으로 살짝 차분하게 */
+  transition: filter 0.25s, transform 0.25s;
+}
+.gallery2 .g-film .polaroid .cap {
+  padding: 8px 2px 0;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  color: var(--muted);
+}
+.gallery2 .g-film .polaroid:hover img,
+.gallery2 .g-film .polaroid:focus-visible img {
+  filter: none;
+  transform: scale(1.04);
+}
+.gallery2 .g-film .polaroid:hover .cap { color: var(--orange); }
 
 /* 판넬 안 구역 제목 (대여 현황·이용규칙 h2처럼 파란 밑줄) */
 .gallery2 .g-title {
@@ -307,6 +368,7 @@ article.gallery2 { padding-top: 25px; }       /* 교육자료 article.learning2�
 /* 연도 버튼: 비품 페이지 필터 버튼과 같은 알약 */
 .gallery2 .pill-group {
   justify-content: flex-start;
+  align-items: center;
   gap: 10px;
   margin: 20px 0 8px;
 }
@@ -379,6 +441,96 @@ article.gallery2 { padding-top: 25px; }       /* 교육자료 article.learning2�
 @keyframes yr-show {
   from { opacity: 0; transform: translateY(8px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+
+/* 관리자용 수정 버튼 + 사진 관리 모달 (모양만. 추가·삭제 기능과 "권한 있는 계정에게만 보이기"는 담당 팀원이 연결)
+   - 수정 a.g-edit-btn: 교육자료 "자료 작성하기"(.write-btn)와 같은 주황 알약, 연도 버튼 줄 오른쪽 끝
+   - 누르면 href="#g-edit"로 주소 끝이 #g-edit가 되고 → #g-edit:target 이 보임 (사진 확대 창과 같은 방식, JS 없음)
+   - 모달 안 버튼: 사진 추가 #add-photo(.btn-submit 주황), 사진 삭제 #delete-photo(.btn-cancel 회색) - 교육자료 모달 버튼 재사용
+   - 수정·추가·삭제 모두 .g-admin 클래스가 있어서 한 번에 숨기거나 보이게 할 수 있음 */
+.gallery2 .g-edit-btn {
+  margin-left: auto;                   /* 연도 버튼들은 왼쪽, 수정 버튼은 오른쪽 끝 */
+  display: inline-flex;                /* <a>라서 버튼처럼 보이게 */
+  align-items: center;
+  height: 44px;
+  padding: 0 28px;
+  font-size: 17px;
+  text-decoration: none;
+}
+
+/* 모달: 평소엔 숨김, 주소 끝이 #g-edit일 때만 화면 가운데 */
+.g-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;                       /* nav(100) 위 */
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-family: "Jua", sans-serif;
+}
+.g-modal:target { display: flex; }
+
+/* 뒤 배경: 어둡게 + 흐리게, 누르면 닫힘 */
+.g-modal-bg {
+  position: absolute;
+  inset: 0;
+  background: rgba(3, 6, 18, 0.6);
+  backdrop-filter: blur(6px);
+}
+
+/* 반투명 회색 둥근 상자 (교육자료 모달 .modal-box와 같은 크기·모서리·그림자) */
+.g-modal-box {
+  position: relative;                  /* 뒤 배경(.g-modal-bg) 위에 오도록 */
+  width: 100%;
+  max-width: 460px;
+  box-sizing: border-box;
+  padding: 32px 34px;
+  color: var(--text);
+  border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(90, 96, 118, 0.45); /* 투명한 회색 */
+  backdrop-filter: blur(14px);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.6);
+  animation: g-modal-pop 0.2s ease-out;
+}
+@keyframes g-modal-pop {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.g-modal-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+.g-modal-head h2 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 400;
+}
+.g-modal-head h2 span { color: var(--orange); }
+.g-modal-close {                       /* 교육자료 모달 닫기 버튼과 같은 동그라미 */
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text);
+  font-size: 18px;
+  text-decoration: none;
+}
+.g-modal-close:hover { background: var(--orange); }
+.g-modal-desc {
+  margin: 0 0 24px;
+  font-size: 16px;
+  color: #D9DCEA;
+}
+.g-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
 }
 
 /* 연도별 묶음: 한 줄에 4칸 그리드 + 연도 이름은 ::before로 */

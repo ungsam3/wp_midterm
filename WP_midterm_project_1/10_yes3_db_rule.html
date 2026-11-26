@@ -41,7 +41,8 @@
             </div>
         </nav>
         <section class="dbeq_1"></section>
-        <article class="rule2">
+        <!-- rule2: 이용규칙 전용 스타일 / cleanup2: 청소담당 응원댓글 판넬 스타일(.c-panel, .c-comment-…)을 그대로 같이 씀 -->
+        <article class="rule2 cleanup2">
 
             <!-- 제목 (비품·교육자료 페이지의 board-head와 같은 구조) -->
             <div class="board-head">
@@ -55,46 +56,62 @@
                     <!-- 끝에 눈송이 캐릭터가 꾸벅 인사 (메인 HISTORY 눈송이 그림 재사용) -->
                     <p class="r-note">동방은 공용공간입니다! 규칙 준수해주세요 <img class="r-bow" src="res/ungsasong.png" alt="꾸벅 인사하는 눈송이"></p>
 
-                    <!-- 규칙 카드: 한 줄에 3개씩 -->
+                    <!-- 규칙 목록: 교육자료 목록처럼 1열 6줄 -->
                     <div class="r-sec">
                         <h2>이용 규칙</h2>
                         <ol class="r-grid">
                             <li class="r-card">
                                 <span class="r-num">01</span>
-                                <span class="r-tag">청결</span>
                                 <p>식사한 자리는 본인이 치웁니다</p>
                             </li>
                             <li class="r-card">
                                 <span class="r-num">02</span>
-                                <span class="r-tag">청결</span>
                                 <p>음식 먹은 쓰레기는 본인이 치웁니다</p>
                             </li>
                             <li class="r-card">
                                 <span class="r-num">03</span>
-                                <span class="r-tag">전기</span>
                                 <p>자리 비울 시 에어컨 및 전등 모두 끕니다</p>
                             </li>
                             <li class="r-card">
                                 <span class="r-num">04</span>
-                                <span class="r-tag">정리</span>
                                 <p>담요 사용 후 잘 개서 제자리에 정리합니다</p>
                             </li>
-                            <li class="r-card ban">
+                            <li class="r-card">
                                 <span class="r-num">05</span>
-                                <span class="r-tag">금지</span>
                                 <p>장기간 노숙 행위 금지합니다</p>
                             </li>
-                            <li class="r-card ban">
+                            <li class="r-card">
                                 <span class="r-num">06</span>
-                                <span class="r-tag">금지</span>
                                 <p>장기간 개인물건 비치 행위 금지합니다</p>
                             </li>
                         </ol>
                     </div>
 
-                    <p class="r-warn">안그러면 회장이 못 들어오게 할거야미~</p>
-
                 </section>
+
+                <!-- 판넬 2: 고발 댓글 (청소담당 응원 댓글과 같은 디자인·데이터 처리, JS는 맨 아래 <script>) -->
+                <section class="c-panel" id="panel-report">
+                    <div class="c-sec">
+                        <h2>동방 고발 댓글 <span class="c-count">(<b id="report-count">0</b>)</span></h2>
+                        <ul class="c-comment-list" id="report-list"></ul>
+
+                        <form class="c-comment-form" id="report-form">
+                            <input type="text" id="report-name" placeholder="닉네임" maxlength="10">
+                            <textarea id="report-text" placeholder="규칙을 어긴 상황을 제보해주세요! (실명 대신 상황만)" maxlength="100" required></textarea>
+                            <button type="submit" class="c-submit">고발</button>
+                        </form>
+                    </div>
+                </section>
+            </div>
+
+            <!-- 맨 아래 노란 띠: 같은 문구를 두 번 이어 붙여서 왼쪽으로 계속 흘러가게 (CSS만, 갤러리 marquee와 같은 방식) -->
+            <div class="r-marquee">
+                <span class="r-sr">안그러면 회장이 못 들어오게 할거야미~</span>
+                <div class="r-marquee-track" aria-hidden="true">
+                    <!-- 앞 6개 = 뒤 6개 (절반만큼 움직이면 처음과 똑같아져서 끊김 없이 반복) -->
+                    <span>안그러면 회장이 못 들어오게 할거야미~</span><span>안그러면 회장이 못 들어오게 할거야미~</span><span>안그러면 회장이 못 들어오게 할거야미~</span><span>안그러면 회장이 못 들어오게 할거야미~</span><span>안그러면 회장이 못 들어오게 할거야미~</span><span>안그러면 회장이 못 들어오게 할거야미~</span>
+                    <span>안그러면 회장이 못 들어오게 할거야미~</span><span>안그러면 회장이 못 들어오게 할거야미~</span><span>안그러면 회장이 못 들어오게 할거야미~</span><span>안그러면 회장이 못 들어오게 할거야미~</span><span>안그러면 회장이 못 들어오게 할거야미~</span><span>안그러면 회장이 못 들어오게 할거야미~</span>
+                </div>
             </div>
         </article>
         <footer class="ft">
@@ -152,6 +169,71 @@
             </div>
         </footer>
         <script>renderNav();</script>
+        <!-- 고발 댓글: 청소담당 페이지 "응원 댓글"과 같은 방식으로 데이터 처리
+             (댓글 배열 → innerHTML로 목록 다시 그리기, 하트는 목록 하나에 이벤트를 걸고 data-i로 찾기,
+              청소담당처럼 따로 저장하지 않아서 새로고침하면 처음 예시 댓글로 돌아감) -->
+        <script>
+        (function () {
+            var $ = function (id) { return document.getElementById(id); };
+
+            /* ================= 고발 댓글 ================= */
+            var reports = [
+                { name: '정의의 엉사', text: '에어컨 켜놓고 나간 사람 찾습니다... 전기세 누가 내요', likes: 4, liked: false },
+                { name: '익명', text: '컵라면 국물 그대로 두고 간 분 자수하세요 🍜', likes: 2, liked: false }
+            ];
+            var listEl = $('report-list');
+
+            // 입력한 글에 <, > 같은 기호가 있어도 태그가 아니라 글자로 보이게 바꿈
+            function esc(s) {
+                return String(s).replace(/[&<>"']/g, function (c) {
+                    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+                });
+            }
+
+            // 댓글 목록 다시 그리기
+            function renderReports() {
+                $('report-count').textContent = reports.length;
+                listEl.innerHTML = reports.map(function (r, i) {
+                    return '<li>' +
+                        '<span class="c-profile">' + esc(r.name.charAt(0)) + '</span>' +
+                        '<div class="c-comment-body">' +
+                            '<div class="who">' + esc(r.name) + '</div>' +
+                            '<div class="txt">' + esc(r.text) + '</div>' +
+                        '</div>' +
+                        '<button type="button" class="c-heart' + (r.liked ? ' on' : '') + '" data-i="' + i + '">' +
+                            (r.liked ? '♥' : '♡') + ' <b>' + r.likes + '</b></button>' +
+                    '</li>';
+                }).join('');
+            }
+
+            // 하트 토글 (목록에 이벤트 하나만 걸고, 누른 버튼의 data-i로 몇 번째 댓글인지 찾음)
+            listEl.addEventListener('click', function (e) {
+                var btn = e.target.closest('.c-heart');
+                if (!btn) return;
+                var r = reports[Number(btn.getAttribute('data-i'))];
+                r.liked = !r.liked;
+                r.likes += r.liked ? 1 : -1;
+                renderReports();
+            });
+
+            // 고발 등록
+            $('report-form').addEventListener('submit', function (e) {
+                e.preventDefault();
+                var text = $('report-text').value.trim();
+                if (!text) return;
+                reports.push({
+                    name: $('report-name').value.trim() || '익명',
+                    text: text,
+                    likes: 0,
+                    liked: false
+                });
+                $('report-text').value = '';
+                renderReports();
+            });
+
+            renderReports();
+        })();
+        </script>
         <script src="10_yes3_rocket.js"></script>  <!-- footer 로켓 → 판넬 위 착륙 -->
     </body>
 </html>
