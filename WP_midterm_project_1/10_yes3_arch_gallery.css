@@ -279,6 +279,61 @@ article.gallery2:has(.lightbox:target) { z-index: 101; }
   color: var(--yellow);
 }
 
+/* 연도 필터: 숨긴 radio (label = 알약 버튼) */
+.gallery2 .yr-radio {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+/* 고른 버튼: 비품 페이지 .filter-btn.active와 같은 주황 */
+#yr-all:checked  ~ .pill-group .pill[for="yr-all"],
+#yr-2026:checked ~ .pill-group .pill[for="yr-2026"],
+#yr-2025:checked ~ .pill-group .pill[for="yr-2025"],
+#yr-2024:checked ~ .pill-group .pill[for="yr-2024"] {
+  background: var(--orange);
+  border-color: var(--orange);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(255, 138, 0, 0.35);
+}
+/* 키보드로 고를 때 테두리 */
+#yr-all:focus-visible  ~ .pill-group .pill[for="yr-all"],
+#yr-2026:focus-visible ~ .pill-group .pill[for="yr-2026"],
+#yr-2025:focus-visible ~ .pill-group .pill[for="yr-2025"],
+#yr-2024:focus-visible ~ .pill-group .pill[for="yr-2024"] {
+  outline: 2px dashed var(--blue);
+  outline-offset: 3px;
+}
+
+/* 다른 연도 숨기기
+   묶음(section)째 숨기면 그 안의 라이트박스도 같이 숨어서 marquee 폴라로이드를 눌러도 사진이 안 뜸.
+   그래서 묶음은 두고 안의 사진 카드·연도 알약(::before)만 숨기고 여백을 0으로 */
+#yr-2026:checked ~ #y2025, #yr-2026:checked ~ #y2024,
+#yr-2025:checked ~ #y2026, #yr-2025:checked ~ #y2024,
+#yr-2024:checked ~ #y2026, #yr-2024:checked ~ #y2025 {
+  margin: 0;
+  gap: 0;
+}
+#yr-2026:checked ~ #y2025 > .pic-2025-each, #yr-2026:checked ~ #y2024 > .pic-2024-each,
+#yr-2025:checked ~ #y2026 > .pic-2026-each, #yr-2025:checked ~ #y2024 > .pic-2024-each,
+#yr-2024:checked ~ #y2026 > .pic-2026-each, #yr-2024:checked ~ #y2025 > .pic-2025-each,
+#yr-2026:checked ~ #y2025::before, #yr-2026:checked ~ #y2024::before,
+#yr-2025:checked ~ #y2026::before, #yr-2025:checked ~ #y2024::before,
+#yr-2024:checked ~ #y2026::before, #yr-2024:checked ~ #y2025::before {
+  display: none;
+}
+
+/* 고른 연도 사진이 나타날 때 살짝 떠오르기 */
+.gallery2 .yr-radio:checked ~ section .pic-2026-each,
+.gallery2 .yr-radio:checked ~ section .pic-2025-each,
+.gallery2 .yr-radio:checked ~ section .pic-2024-each {
+  animation: yr-show 0.35s ease-out;
+}
+@keyframes yr-show {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 /* 연도별 묶음: 한 줄에 4칸 그리드 + 연도 이름은 ::before로 */
 .gallery2 #y2026,
 .gallery2 #y2025,
@@ -337,6 +392,45 @@ article.gallery2:has(.lightbox:target) { z-index: 101; }
   font-size: 16px;
   text-align: center;
   color: var(--text);
+}
+
+/*---footer 로켓 → "활동 사진" 판넬 위에 착륙 (JS는 gallery.html 맨 아래 <script>)------*/
+#panel-gallery { position: relative; }
+
+/* 날아가는 중인 로켓 그림 (화면에 고정) */
+.rocket-flying {
+  position: fixed;
+  z-index: 150;                 /* nav(100) 위로 지나감 */
+  pointer-events: none;
+}
+
+/* 떠난 뒤 footer 자리: 로켓과 그림자 숨김 */
+#ft-rocket.rocket-away { visibility: hidden; }
+.ft-item-rocket:has(.rocket-away) .ft-shadow { visibility: hidden; }
+
+/* 판넬 윗변 오른쪽에 앉은 로켓
+   이미지 아래쪽 약 18%가 빈 공간이라 그만큼 내려서 바닥(노즐)이 판넬 테두리에 닿게 */
+.rocket-landed {
+  position: absolute;
+  bottom: 100%;
+  right: 70px;
+  width: 90px;
+  padding: 0;
+  border: 0;
+  background: none;
+  transform: translateY(18%);
+  cursor: pointer;
+}
+.rocket-landed[hidden] { display: none; }
+.rocket-landed img { display: block; width: 100%; transition: transform 0.2s; }
+.rocket-landed:hover img { transform: translateY(-4px); }   /* footer 발명품처럼 살짝 떠오름 */
+.rocket-landed:focus-visible { outline: 2px dashed var(--blue); outline-offset: 4px; }
+
+/* 착륙 직후 찌그러졌다 펴지기 */
+.rocket-landed.just-landed img { animation: rocket-squash 0.35s ease-out; transform-origin: bottom center; }
+@keyframes rocket-squash {
+  0%   { transform: scale(1.12, 0.86); }
+  100% { transform: scale(1, 1); }
 }
 
 @media (max-width: 1100px) {
