@@ -65,6 +65,11 @@
                 <!-- 비품 큰 판넬 -->
                 <section class="panel" id="panel-supplies">
 
+                    <!-- 비품 추가하기 -->
+                    <div class="board-top">
+                        <button type="button" class="add-btn" id="add-supply">비품 추가하기</button>
+                    </div>
+
                     <!-- 필터 버튼 -->
                     <div class="filter-buttons">
                         <button type="button" class="filter-btn active">전체</button>
@@ -134,11 +139,11 @@
                     <h4>유의 사항</h4>
                     <ul class="modal-desc" id="modal-caution" style="padding-left: 38px; list-style: disc;"></ul>
 
-                    <h4>대여 기록</h4>
+                    <h4 id="modal-history-title">대여 기록</h4>
                     <ul class="modal-history" id="modal-history"></ul>
                 </div>
 
-                <button type="button" class="modal-rent">대여하기</button>
+                <button type="button" class="modal-rent" id="modal-rent">대여하기</button>
             </div>
         </div>
 
@@ -272,8 +277,8 @@
                 renderPage();
             }
 
-            // 1. Fetch API로 equipment.json 데이터 불러오기 (실패 시 FALLBACK_DATA로 자동 복구)
-            fetch('equipment.json')
+            // 1. Fetch API로 10_yes3_db_equipment.json 데이터 불러오기 (실패 시 FALLBACK_DATA로 자동 복구)
+            fetch('10_yes3_db_equipment.json')
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('HTTP 오류 상태: ' + response.status);
@@ -284,7 +289,7 @@
                     initWithData(data);
                 })
                 .catch(error => {
-                    console.warn('equipment.json 로드 실패 (로컬 CORS 또는 경로 문제), 기본 데이터로 표시합니다:', error.message);
+                    console.warn('10_yes3_db_equipment.json 로드 실패 (로컬 CORS 또는 경로 문제), 기본 데이터로 표시합니다:', error.message);
                     initWithData(FALLBACK_DATA);
                 });
 
@@ -362,13 +367,23 @@
                 renderList('modal-usage', item.usage);
                 renderList('modal-caution', item.cautions);
 
+                // 소모품은 대여가 아니라 사용: 문구를 바꾸고 반납 정보는 표시하지 않음
+                const isConsumable = item.category === '소모품';
+                const action = isConsumable ? '사용' : '대여';
+                document.getElementById('modal-history-title').textContent = action + ' 기록';
+                document.getElementById('modal-rent').textContent = action + '하기';
+
                 const records = item.history || [];
                 historyList.innerHTML = records.length
-                    ? records.map(h => `<li>
+                    ? records.map(h => {
+                        const returnLine = isConsumable ? ''
+                            : '<br>' + (h.returnDate ? '반납 ' + formatDate(h.returnDate) : '대여 중 (미반납)');
+                        return `<li>
                         <span>${h.who} (${h.quantity}개)</span>
-                        <span style="text-align: right; line-height: 1.7;">대여 ${formatDate(h.rentDate)}<br>${h.returnDate ? '반납 ' + formatDate(h.returnDate) : '대여 중 (미반납)'}</span>
-                    </li>`).join('')
-                    : '<li><span>대여 기록이 없습니다.</span><span>-</span></li>';
+                        <span style="text-align: right; line-height: 1.7;">${action} ${formatDate(h.rentDate)}${returnLine}</span>
+                    </li>`;
+                    }).join('')
+                    : `<li><span>${action} 기록이 없습니다.</span><span>-</span></li>`;
 
                 modal.classList.add('open');
                 modal.setAttribute('aria-hidden', 'false');
