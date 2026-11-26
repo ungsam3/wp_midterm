@@ -176,8 +176,11 @@ article > .wrap {
 }
 .add-btn {
   flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 50px;
-  padding: 0 30px;
+  padding: 0 26px;
   border: none;
   border-radius: 999px;
   background: var(--orange);
@@ -192,6 +195,12 @@ article > .wrap {
 .add-btn:hover {
   transform: translateY(-2px);
   background-color: #ff9a1f;
+}
+.add-btn img {
+  display: block;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
 }
 
 /* ===== 필터 버튼 ===== */
@@ -1325,6 +1334,12 @@ article > .wrap {
   color: var(--muted);
   font-size: 15px;
   cursor: pointer;
+}
+.cleanup2 .c-heart img {
+  display: block;
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
 }
 .cleanup2 .c-heart b { font-weight: 400; }
 .cleanup2 .c-heart:hover { border-color: #ff6b81; }
