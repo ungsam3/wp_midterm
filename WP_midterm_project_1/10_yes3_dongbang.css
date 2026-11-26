@@ -581,6 +581,9 @@ article > .wrap {
 .modal-history li {
   display: flex;
   justify-content: space-between;
+  align-items: center;       /* 이름을 날짜(1~2줄)의 세로 중앙에 맞춤 */
+  gap: 12px;
+  line-height: 1.7;
   padding: 12px 6px;
   border-bottom: 1px solid var(--line);
   font-family: "Jua", sans-serif;
@@ -868,7 +871,7 @@ article > .wrap {
 .cleanup2 > .wrap {
   flex-direction: column;
   align-items: stretch;
-  gap: 28px;
+  gap: 64px;                 /* 청소 판넬과 응원 댓글 판넬 사이 */
 }
 
 /* 큰 판넬 (learning의 #panel-learning과 동일 스타일) */
@@ -899,7 +902,7 @@ article > .wrap {
 }
 
 /* 청소 판넬 간격: 구역 사이, 제목 라인과 내용 사이 */
-.cleanup2 #panel-cleanup { gap: 72px; }
+.cleanup2 #panel-cleanup { gap: 104px; }
 .cleanup2 #panel-cleanup .c-sec h2 { margin-bottom: 36px; }
 
 /* 안내 문구 */
@@ -1229,19 +1232,21 @@ article > .wrap {
 .cleanup2 .c-reset:hover { background: #5b5f7a; }
 
 /* [3-7] 응원 댓글 */
+.cleanup2 #panel-comment { padding-top: 44px; padding-bottom: 48px; }
+.cleanup2 #panel-comment .c-sec h2 { margin-bottom: 24px; }
 .cleanup2 .c-count { font-size: 20px; color: var(--muted); }
 .cleanup2 .c-count b { color: var(--yellow); font-weight: 400; }
 
 .cleanup2 .c-comment-list {
   list-style: none;
-  margin: 0 0 22px;
+  margin: 0 0 36px;
   padding: 0;
 }
 .cleanup2 .c-comment-list li {
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 16px 10px;
+  padding: 22px 10px;
   border-bottom: 1px solid var(--line);
 }
 .cleanup2 .c-profile {
@@ -1313,6 +1318,9 @@ article > .wrap {
 }
 .cleanup2 .c-submit {
   flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 56px;
   padding: 0 30px;
   border: none;
@@ -1324,6 +1332,12 @@ article > .wrap {
   box-shadow: 0 4px 0 rgba(255, 138, 0, 0.35);
 }
 .cleanup2 .c-submit:hover { background: #ff9a1f; }
+.cleanup2 .c-submit img {
+  display: block;
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
 
 /* [3-8] 반응형 */
 @media (max-width: 900px) {
@@ -1332,7 +1346,9 @@ article > .wrap {
 }
 @media (max-width: 720px) {
   .cleanup2 .c-panel { padding: 24px 18px; }
-  .cleanup2 #panel-cleanup { gap: 48px; }
+  .cleanup2 > .wrap { gap: 40px; }
+  .cleanup2 #panel-comment { padding-top: 28px; padding-bottom: 32px; }
+  .cleanup2 #panel-cleanup { gap: 72px; }
   .cleanup2 #panel-cleanup .c-sec h2 { margin-bottom: 24px; }
   .cleanup2 .c-roles,
   .cleanup2 .c-teams { gap: 20px; }
