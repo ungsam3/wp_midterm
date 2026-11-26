@@ -86,6 +86,48 @@
                 </div>
             </section>
 
+            <!-- 판넬: 오늘의 엉사 사진 (날짜마다 다른 사진 한 장, JS는 맨 아래 <script>)
+                 사진을 누르면 아래 라이트박스(#photo-…)가 열림 -->
+            <section class="panel g-panel g-today" id="panel-today">
+                <a class="today-photo" id="today-link">
+                    <img id="today-img" src="res/logo_white.png" alt="오늘의 사진">
+                </a>
+                <div class="today-info">
+                    <p class="today-label">📅 오늘의 엉사 사진</p>
+                    <p class="today-date" id="today-date"></p>
+                    <h2 class="today-title" id="today-title"></h2>
+                    <p class="today-desc" id="today-desc">하루에 한 장, 날짜마다 다른 추억이 나와요. 내일은 어떤 사진일까요?</p>
+                </div>
+            </section>
+
+            <!-- 판넬: 랜덤 추억 뽑기 기계 (JS는 맨 아래 <script>, 스타일은 gallery.css "랜덤 추억 뽑기" 구역)
+                 뽑기! 누르기 → 사진이 빠르게 바뀌다가 점점 느려지며 한 장에서 멈춤 → 그 사진을 누르면 아래 라이트박스(#photo-…)가 열림 -->
+            <section class="panel g-panel g-gacha" id="panel-gacha">
+                <h2 class="g-title">랜덤 추억 뽑기</h2>
+                <div class="gacha-machine">
+                    <!-- 뽑기 창: 멈추면 JS가 href를 당첨 사진의 라이트박스 주소로 바꿔 줌 -->
+                    <a class="gacha-window" id="gacha-link">
+                        <img id="gacha-img" src="res/logo_white.png" alt="아직 뽑지 않음">
+                    </a>
+                    <div class="gacha-side">
+                        <p class="gacha-cap" id="gacha-cap" aria-live="polite">어떤 추억이 나올까?</p>
+                        <!-- 당첨된 사진의 설명 멘트 (10_yes3_gallery.json의 "desc") -->
+                        <p class="gacha-ment" id="gacha-ment" aria-live="polite"></p>
+                        <p class="gacha-desc"></p>
+                        <!-- 레버: res/lever_orange.png 한 장을 위(막대·손잡이)·아래(받침) 두 칸으로 잘라 보여줌
+                             위 칸(.lever-stick)만 받침 가운데를 축으로 돌고, 아래 칸(.lever-base)은 고정 (6주차 overflow: hidden)
+                             마우스로 오른쪽 → 왼쪽으로 끌면 JS가 각도를 바꿈. 키보드는 Enter/스페이스로 당김 -->
+                        <div class="gacha-lever-wrap">
+                            <div class="gacha-lever" id="gacha-lever" tabindex="0" role="button" aria-label="레버를 왼쪽으로 당겨 사진 뽑기">
+                                <div class="lever-stick" id="lever-stick"><img src="res/lever_orange.png" alt="" draggable="false"></div>
+                                <div class="lever-base"><img src="res/lever_orange.png" alt="" draggable="false"></div>
+                            </div>
+                            <span class="lever-hint" id="lever-hint">← 왼쪽으로 당기기</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!-- 판넬 2: 연도 버튼 + 연도별 사진 -->
             <section class="panel g-panel" id="panel-years">
             <h2 class="g-title">연도별 사진</h2>
@@ -384,6 +426,156 @@
             </div>
         </footer>
         <script>renderNav();</script>
+        <!-- 오늘의 엉사 사진 + 랜덤 추억 뽑기 기계
+             사진 목록·설명 멘트는 10_yes3_gallery.json에 있음 (멘트는 "desc"만 고치면 됨)
+             교안 범위: 13주차 fetch·JSON, 10주차 Date·Math.random·setTimeout·객체 배열,
+             11주차 getElementById·setAttribute·innerText, 12주차 addEventListener.
+             움직임은 CSS 클래스(.spinning, .win)가 맡음.
+             ※ fetch는 파일을 더블클릭해서 열면(file://) 안 되고 Live Server로 열어야 동작 -->
+        <script>
+            let galleryPhotos = [];   // JSON에서 불러온 사진 목록이 여기에 들어감
+            const GACHA_STEPS = 18;   // 뽑기 때 사진이 몇 번 바뀐 뒤 멈출지
+
+            // 11주차: getElementById
+            const gachaLever   = document.getElementById("gacha-lever");
+            const leverStick   = document.getElementById("lever-stick");
+            const leverHint    = document.getElementById("lever-hint");
+            const gachaImg     = document.getElementById("gacha-img");
+            const gachaCap     = document.getElementById("gacha-cap");
+            const gachaMent    = document.getElementById("gacha-ment");
+            const gachaLink    = document.getElementById("gacha-link");
+            const gachaMachine = document.querySelector(".gacha-machine");
+
+            /* ===== 오늘의 엉사 사진 =====
+               10주차 Date 객체: 오늘 연·월·일로 번호를 만들고, 사진 개수로 나눈 나머지(%)번째 사진을 보여줌
+               → 같은 날에는 몇 번 새로고침해도 같은 사진, 날짜가 바뀌면 다른 사진 */
+            function showTodayPhoto() {
+                const today = new Date();
+                const year  = today.getFullYear();
+                const month = today.getMonth() + 1;      // getMonth()는 0부터 시작이라 +1
+                const date  = today.getDate();
+                const dayNumber = year * 372 + month * 31 + date;   // 날짜마다 달라지는 숫자
+                const photo = galleryPhotos[dayNumber % galleryPhotos.length];
+
+                const todayImg = document.getElementById("today-img");
+                todayImg.setAttribute("src", photo.src);
+                todayImg.setAttribute("alt", photo.title);
+                document.getElementById("today-title").innerText = photo.title;
+                document.getElementById("today-date").innerText = year + "년 " + month + "월 " + date + "일";
+                document.getElementById("today-link").setAttribute("href", "#" + photo.id);
+                // 멘트를 적어 둔 사진이면 그 멘트, 아직 비어 있으면 기본 문구
+                if (photo.desc) {
+                    document.getElementById("today-desc").innerText = photo.desc;
+                }
+            }
+
+            /* ===== 랜덤 추억 뽑기 기계 ===== */
+            // 사진 한 장을 뽑기 창에 보여주는 함수
+            function showGachaPhoto(photo) {
+                gachaImg.setAttribute("src", photo.src);     // 11주차: setAttribute
+                gachaImg.setAttribute("alt", photo.title);
+                gachaCap.innerText = photo.title;
+            }
+
+            // 한 번 바꾸고, 아직 남았으면 조금 더 늦게 자기 자신을 다시 부름 (12주차 스톱워치 예제와 같은 방식)
+            function spinGacha(step) {
+                const n = Math.floor(Math.random() * galleryPhotos.length);   // 10주차: Math.random, Math.floor
+                const photo = galleryPhotos[n];
+                showGachaPhoto(photo);
+
+                if (step < GACHA_STEPS) {
+                    // 처음엔 60ms마다, 갈수록 간격이 길어져서 점점 느려짐
+                    setTimeout(() => spinGacha(step + 1), 60 + step * step);
+                } else {
+                    // 멈춤: 당첨 표시 + 설명 멘트 + 창을 누르면 그 사진 라이트박스로 (3주차: #id 링크)
+                    gachaMachine.setAttribute("class", "gacha-machine win");
+                    gachaCap.innerText = "당첨! " + photo.title;
+                    gachaMent.innerText = photo.desc;           // JSON에 적은 멘트 (비어 있으면 아무것도 안 보임)
+                    gachaLink.setAttribute("href", "#" + photo.id);
+                    gachaLink.setAttribute("title", "크게 보기");
+                    gachaReady = true;                          // 다시 당길 수 있게
+                    leverHint.innerText = "← 한 번 더 당기기";
+                }
+            }
+
+            // 뽑기 시작 (레버를 끝까지 당겼을 때 부름)
+            function startGacha() {
+                gachaReady = false;                             // 도는 동안 또 당기지 못하게
+                gachaLink.removeAttribute("href");              // 도는 동안은 창을 눌러도 안 열리게
+                gachaMent.innerText = "";                       // 지난번 멘트 지우기
+                leverHint.innerText = "두근두근...";
+                gachaMachine.setAttribute("class", "gacha-machine spinning");  // 창 흔들기 (CSS)
+                spinGacha(1);
+            }
+
+            /* ===== 레버 끌기 (12주차: 마우스 이벤트 + 이벤트 객체의 clientX) =====
+               mousedown: 레버를 잡은 위치(x좌표)를 기억
+               mousemove: 처음보다 왼쪽으로 간 만큼 막대를 왼쪽으로 기울임 (11주차: element.style)
+               mouseup:   끝까지 당겼으면 뽑기 시작, 막대는 원래 자리로 툭 돌아감 (CSS transition) */
+            let gachaReady = false;     // JSON을 다 불러오고, 뽑기가 안 돌 때만 true
+            let dragging = false;       // 지금 레버를 잡고 있는지
+            let startX = 0;             // 잡은 순간의 마우스 x좌표
+            let leverAngle = 0;         // 지금 막대 각도 (0 = 원래 자리, 음수 = 왼쪽으로 기울어짐)
+            const PULL_ANGLE = -55;     // 이만큼 기울이면 "끝까지 당김"
+
+            function setLeverAngle(angle) {
+                leverAngle = angle;
+                leverStick.style.transform = "rotate(" + angle + "deg)";
+            }
+
+            gachaLever.addEventListener("mousedown", (event) => {
+                if (!gachaReady) return;
+                event.preventDefault();                         // 그림이 끌려가는 브라우저 기본 동작 막기
+                dragging = true;
+                startX = event.clientX;
+                leverStick.style.transition = "none";           // 잡고 있는 동안은 마우스를 바로 따라오게
+            });
+
+            // 레버 밖으로 마우스가 나가도 계속 따라오도록 window에 걸어 둠
+            window.addEventListener("mousemove", (event) => {
+                if (!dragging) return;
+                const moved = event.clientX - startX;           // 왼쪽으로 가면 음수
+                // 2px 움직일 때 1도씩, 0도 ~ -55도 사이로만 (10주차: Math.max, Math.min)
+                setLeverAngle(Math.max(PULL_ANGLE, Math.min(0, moved / 2)));
+            });
+
+            window.addEventListener("mouseup", () => {
+                if (!dragging) return;
+                dragging = false;
+                const pulledToEnd = leverAngle <= PULL_ANGLE + 5;   // 거의 끝까지 당겼는지
+                leverStick.style.transition = "transform 0.35s ease-out";
+                setLeverAngle(0);                               // 막대는 원래 자리로 툭
+                if (pulledToEnd) startGacha();
+            });
+
+            // 키보드로도 당길 수 있게 (12주차: keydown + event.key)
+            gachaLever.addEventListener("keydown", (event) => {
+                if (!gachaReady) return;
+                if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    leverStick.style.transition = "transform 0.2s ease-out";
+                    setLeverAngle(PULL_ANGLE);                  // 왼쪽으로 쭉
+                    setTimeout(() => {
+                        setLeverAngle(0);                       // 0.2초 뒤 원래 자리로
+                        startGacha();
+                    }, 200);
+                }
+            });
+
+            /* ===== JSON 불러오기 (13주차 fetch, 교안 "실습: 데이터 표시 2"와 같은 구조) =====
+               다 불러오기 전에는 레버를 당겨도 안 돌게 (gachaReady = false) */
+            fetch("10_yes3_gallery.json")
+                .then(response => response.json())        // 응답 본문을 JSON으로 변환
+                .then(data => {
+                    galleryPhotos = data.photos;
+                    showTodayPhoto();
+                    gachaReady = true;                          // 이제 레버를 당길 수 있음
+                })
+                .catch(error => {
+                    console.error("갤러리 JSON을 불러오지 못했어요 (Live Server로 열었는지 확인):", error);
+                    gachaCap.innerText = "사진 목록을 불러오지 못했어요";
+                });
+        </script>
         <script src="10_yes3_rocket.js"></script>  <!-- footer 로켓 → 판넬 위 착륙 -->
     </body>
 </html>
