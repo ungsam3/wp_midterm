@@ -1,9 +1,9 @@
 /* 메인 페이지 전용 스크립트 (index.html에서 defer로 불러옴)
-   - ABOUT US 캘린더 (날짜 radio input + 일정 추가 form)
+   - ABOUT US 캘린더 (날짜 radio input, 보기 전용)
    - 사진 캐러셀은 index.html 안의 <script>에 있음 */
 /* ABOUT US 캘린더
    - 날짜 하나하나가 radio input (name="cal_day") → 고르면 그날 일정 목록이 나옴
-   - 아래 form으로 고른 날짜에 일정 추가 (이 브라우저의 localStorage에 저장, 내 일정만 삭제 가능)
+   - 방문자가 일정을 바꾸지 못하도록 일정 추가·삭제 기능은 없음 (일정은 아래 DEFAULT_EVENTS에서만 수정)
    - 제목(2026년 10월)을 누르면 연도(◀ ▶)와 월(1~12월 표) 고르는 창
    - 2026년 1월보다 앞으로는 못 감
    - 기본 일정: 2026 2학기 동아리 일정표 (1주차 = 개강 9/1이 있는 주, 월요일 시작) */
@@ -12,7 +12,6 @@
     if (!form) return;
 
     const MIN_YEAR = 2026;
-    const STORAGE_KEY = 'yes3_calendar_events';
     const WEEKDAYS = ['일', '월', '화', '수', '목', '금', '토'];
 
     // ---------- 기본 일정 (동아리 일정표) ----------
@@ -48,23 +47,12 @@
     function addDays(d, n) { const r = new Date(d); r.setDate(r.getDate() + n); return r; }
     function short(s) { const d = parse(s); return (d.getMonth() + 1) + '/' + d.getDate(); }
 
-    // ---------- 내 일정 (localStorage) ----------
-    function loadMine() {
-        try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
-        catch (e) { return []; }
-    }
-    function saveMine(list) { localStorage.setItem(STORAGE_KEY, JSON.stringify(list)); }
-
-    // 그날에 해당하는 일정 전부 (기본 + 내 일정)
+    // 그날에 해당하는 일정 전부
     function eventsOn(dateStr) {
-        const base = DEFAULT_EVENTS.filter(function (ev) {
+        return DEFAULT_EVENTS.filter(function (ev) {
             if (ev.date) return ev.date === dateStr;
             return ev.start <= dateStr && dateStr <= ev.end;
         });
-        const mine = loadMine()
-            .map(function (ev, i) { return Object.assign({ mine: true, index: i }, ev); })
-            .filter(function (ev) { return ev.date === dateStr; });
-        return base.concat(mine);
     }
 
     // ---------- 화면 요소 ----------
@@ -79,8 +67,6 @@
     const daysBox = document.getElementById('cal_days');
     const detailTitle = document.getElementById('cal_detail_title');
     const eventList = document.getElementById('cal_events');
-    const input = document.getElementById('cal_input');
-    const optionalBox = document.getElementById('cal_optional');
 
     // 처음 보여줄 달: 오늘 (2026년 이전이면 2026년 1월)
     const today = new Date();
@@ -179,30 +165,16 @@
         evs.forEach(function (ev) {
             const li = document.createElement('li');
 
-            const tagText = ev.mine ? '내 일정'
-                : ev.type === 'holiday' ? '공휴일'
+            const tagText = ev.type === 'holiday' ? '공휴일'
                 : ev.type === 'exam' ? '시험'
                 : ev.week ? ev.week + '주차'
                 : '';
-            if (tagText) li.appendChild(tag(tagText, ev.mine ? 'mine' : ev.type));
-            if (ev.type === 'optional' || ev.optional) li.appendChild(tag('희망자만', 'optional'));
+            if (tagText) li.appendChild(tag(tagText, ev.type));
+            if (ev.type === 'optional') li.appendChild(tag('희망자만', 'optional'));
 
             li.appendChild(document.createTextNode(ev.title));
 
-            if (ev.mine) {
-                const del = document.createElement('button');
-                del.type = 'button';
-                del.className = 'delete';
-                del.textContent = '✕';
-                del.setAttribute('aria-label', ev.title + ' 삭제');
-                del.addEventListener('click', function () {
-                    const list = loadMine();
-                    list.splice(ev.index, 1);
-                    saveMine(list);
-                    render();
-                });
-                li.appendChild(del);
-            } else if (!ev.date) {
+            if (!ev.date) {
                 const range = document.createElement('span');
                 range.className = 'range';
                 range.textContent = short(ev.start) + '~' + short(ev.end);
@@ -219,19 +191,8 @@
         return span;
     }
 
-    // ---------- 일정 추가 (form 제출) ----------
-    form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        const title = input.value.trim();
-        if (!selected) { alert('먼저 날짜를 골라주세요!'); return; }
-        if (!title) return;
-        const list = loadMine();
-        list.push({ date: selected, title: title, optional: optionalBox.checked });
-        saveMine(list);
-        input.value = '';
-        optionalBox.checked = false;
-        render();
-    });
+    // 엔터 등으로 form이 제출되어 페이지가 새로고침되지 않게 막기
+    form.addEventListener('submit', function (e) { e.preventDefault(); });
 
     // ---------- 달 이동 (◀ ▶) ----------
     prevBtn.addEventListener('click', function () {

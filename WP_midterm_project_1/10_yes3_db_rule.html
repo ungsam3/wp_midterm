@@ -40,33 +40,93 @@
             </div>
         </nav>
         <header>
-            <div class="sub_header">
-                <div class="menu_name">동아리방</div>
-                <div class="sub_menu_name">
-                    <div class="item"><a href="10_yes3_db_equipment.html">비품</a></div>
-                    <div class="item">|</div>
-                    <div class="item"><a id="sub_header_menu_now" href="10_yes3_db_rule.html">이용규칙</a></div>
-                    <div class="item">|</div>
-                    <div class="item"><a href="10_yea3_db_cleanup.html">청소담당</a></div>
-                </div>
-            </div>
+            <div class="sub_header"></div>
         </header>
-        <article>
-            <h1 id="subpage_title">이용규칙</h1>
-            <div class="db_article">
-                <div class="rule_list">
-                    <ol>
-                        <li>식사한 자리는 본인이 치웁니다</li>
-                        <li>음식 먹은 쓰레기는 본인이 치웁니다</li>
-                        <li>자리 비울 시 에어컨 및 전등 모두 끕니다</li>
-                        <li>담요 사용 후 잘 개서 제자리에 정리합니다</li>
-                        <li>장기간 노숙 행위 금지합니다</li>
-                        <li>장기간 개인물건 비치 행위 금지합니다</li>
-                    </ol>
-                </div>
-                <div class="rule_content">
-                    <p>동방은 공용공간입니다! 규칙 준수해주세요<br>안그러면 회장이 못 들어오게 할거야미~</p>
-                </div>
+        <article class="rule2">
+
+            <!-- 제목 (비품·교육자료 페이지의 board-head와 같은 구조) -->
+            <div class="board-head">
+                <h1>동아리방 이용규칙</h1>
+            </div>
+
+            <div class="wrap">
+                <!-- 이용규칙 큰 판넬 -->
+                <section class="r-panel" id="panel-rule">
+
+                    <p class="r-note">동방은 공용공간입니다! 규칙 준수해주세요 🙏</p>
+
+                    <!-- 규칙 카드: 한 줄에 3개씩 -->
+                    <div class="r-sec">
+                        <h2>이용 규칙</h2>
+                        <ol class="r-grid">
+                            <li class="r-card">
+                                <span class="r-num">01</span>
+                                <span class="r-tag">청결</span>
+                                <p>식사한 자리는 본인이 치웁니다</p>
+                            </li>
+                            <li class="r-card">
+                                <span class="r-num">02</span>
+                                <span class="r-tag">청결</span>
+                                <p>음식 먹은 쓰레기는 본인이 치웁니다</p>
+                            </li>
+                            <li class="r-card">
+                                <span class="r-num">03</span>
+                                <span class="r-tag">전기</span>
+                                <p>자리 비울 시 에어컨 및 전등 모두 끕니다</p>
+                            </li>
+                            <li class="r-card">
+                                <span class="r-num">04</span>
+                                <span class="r-tag">정리</span>
+                                <p>담요 사용 후 잘 개서 제자리에 정리합니다</p>
+                            </li>
+                            <li class="r-card ban">
+                                <span class="r-num">05</span>
+                                <span class="r-tag">금지</span>
+                                <p>장기간 노숙 행위 금지합니다</p>
+                            </li>
+                            <li class="r-card ban">
+                                <span class="r-num">06</span>
+                                <span class="r-tag">금지</span>
+                                <p>장기간 개인물건 비치 행위 금지합니다</p>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <!-- 나가기 전 체크 표 (규칙에서 뽑은 항목, 체크박스는 CSS만) -->
+                    <div class="r-sec">
+                        <h2>나가기 전 체크</h2>
+                        <table class="r-table">
+                            <thead>
+                                <tr><th>항목</th><th>확인할 것</th><th class="r-done">확인</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>자리</th><td>먹은 자리 닦고 의자 제자리</td>
+                                    <td class="r-done"><input type="checkbox" id="r-chk1"><label class="r-check" for="r-chk1"><span class="r-sr">자리 확인</span></label></td>
+                                </tr>
+                                <tr>
+                                    <th>쓰레기</th><td>음식 쓰레기 직접 버리기</td>
+                                    <td class="r-done"><input type="checkbox" id="r-chk2"><label class="r-check" for="r-chk2"><span class="r-sr">쓰레기 확인</span></label></td>
+                                </tr>
+                                <tr>
+                                    <th>전기</th><td>에어컨 · 전등 끄기</td>
+                                    <td class="r-done"><input type="checkbox" id="r-chk3"><label class="r-check" for="r-chk3"><span class="r-sr">전기 확인</span></label></td>
+                                </tr>
+                                <tr>
+                                    <th>담요</th><td>개서 제자리에 두기</td>
+                                    <td class="r-done"><input type="checkbox" id="r-chk4"><label class="r-check" for="r-chk4"><span class="r-sr">담요 확인</span></label></td>
+                                </tr>
+                                <tr>
+                                    <th>개인물건</th><td>내 물건 챙겨가기</td>
+                                    <td class="r-done"><input type="checkbox" id="r-chk5"><label class="r-check" for="r-chk5"><span class="r-sr">개인물건 확인</span></label></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <p class="r-warn">안그러면 회장이 못 들어오게 할거야미~</p>
+
+                </section>
             </div>
         </article>
         <footer class="ft">
